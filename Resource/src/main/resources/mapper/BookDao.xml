@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.resource.dao.IBookDao">
+
+    <select id="selectBookNum" resultType="int">
+        SELECT COUNT(*) FROM tb_Book WHERE bookName LIKE "%"#{bookName}"%"
+    </select>
+
+    <select id="selectBookByNameAndPage" resultType="com.resource.model.Book">
+        SELECT * FROM tb_Book WHERE bookName LIKE "%"#{bookName}"%" LIMIT #{pageIndex},#{pageSize}
+    </select>
+
+    <select id="selectBookByName" resultType="com.resource.model.Book">
+        SELECT * FROM tb_Book WHERE bookName LIKE "%"#{bookName}"%"
+    </select>
+
+    <select id="selectBookById" resultType="com.resource.model.Book">
+        SELECT * FROM tb_Book WHERE bookId = #{bookId}
+    </select>
+
+    <select id="selectMaxBookId" resultType="java.lang.Integer">
+        SELECT IFNULL (MAX(bookId), 0) FROM tb_Book
+    </select>
+
+    <insert id="addBook">
+      INSERT INTO tb_Book(bookId,bookName,bookPicPath,bookScore,author,publishing,price,totalNumber,havingNumber,typeName,putInDate) VALUES (#{bookId},#{bookName},#{bookPicPath},#{bookScore},#{author},#{publishing},#{price},#{totalNumber},#{havingNumber},#{typeName},#{putInDate})
+    </insert>
+
+    <!--<select id="selectUserByLogin" resultType="com.library.model.User" >-->
+        <!--SELECT * FROM tb_User WHERE userName = #{userName} and userPassword = #{userPassword}-->
+    <!--</select>-->
+
+    <!--<select id="selectUserById" resultType="com.library.model.User" >-->
+        <!--SELECT * FROM tb_User WHERE userId = #{userId}-->
+    <!--</select>-->
+
+    <!--<delete id="deleteUser">-->
+        <!--DELETE FROM tb_User WHERE userId = #{userId}-->
+    <!--</delete>-->
+
+    <!--<update id="updateUser">-->
+        <!--UPDATE tb_User SET userName = #{userName},userPassword = #{userPassword},sex = #{sex},phone = #{phone},address = #{address},power = #{power} WHERE userId = #{userId}-->
+    <!--</update>-->
+
+</mapper>

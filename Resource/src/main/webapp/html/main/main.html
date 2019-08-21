@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+    <title>main</title>
+    <link rel="shortcut icon" href="../../images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
+</head>
+<body>
+
+<div ng-app="mainApp" ng-controller="mainCtrl" style="margin-top: 65px">
+
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="3000"
+         style="margin-top: 70px">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" style="width: 96%;margin: 0 auto;border-radius:15px">
+            <div class="carousel-item active">
+                <img class="d-block w-100" ng-src="http://pic1.win4000.com/wallpaper/2019-07-18/5d301c5118971.jpg"
+                     alt="First slide" style="height:400px;object-fit: cover;">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class="font-italic">题菊花</h2>
+                    <p class="font-weight-light">飒飒西风满园栽，蕊寒香冷蝶难开。他年我若为青帝，报与桃花一处开.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" ng-src="http://pic1.win4000.com/wallpaper/2019-07-18/5d301c61ab6eb.jpg"
+                     alt="Second slide" style="height:400px;object-fit: cover">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class="font-italic">别范安成</h2>
+                    <p class="font-weight-light">勿言一樽酒，明日难重持。梦中不识路，何以慰相思.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" ng-src="http://pic1.win4000.com/wallpaper/2019-07-18/5d301c682c647.jpg"
+                     alt="Third slide" style="height:400px;object-fit: cover">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class="font-italic">浣溪沙</h2>
+                    <p class="font-weight-light">且尽红裙歌一曲，莫辞白酒饮千钟。人生半在别离中.</p>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+    <hr class="featurette-divider" style="margin-left: 30px;margin-right: 30px">
+
+    <div class="container marketing" style="margin-top: 30px;width:100%;text-align: center">
+        <div class="row">
+            <div class="col-lg-4" ng-repeat="item in data" style="width: 33%">
+                <img class="rounded-circle" style="object-fit: cover"
+                     ng-src="{{item.pic}}"
+                     alt="Generic placeholder image" width="140" height="140">
+                <h3 class="font-italic" style="margin-top: 5px;margin-bottom: 5px">{{item.title}}</h3>
+                <p class="font-weight-light">{{item.context}}</p>
+                <p><a class="btn btn-secondary" href="{{item.htmlUrl}}" role="button">More &raquo;</a></p>
+            </div>
+        </div>
+    </div>
+
+    <hr class="featurette-divider" style="margin-left: 30px;margin-right: 30px">
+
+    <div class="card-columns" style="margin-top: 50px;width: 80%;margin: 0 auto">
+        <div class="card" ng-repeat="pic in allPic">
+            <img class="card-img-top" style="object-fit: cover"
+                 ng-src="{{pic.picPath}}"
+                 alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{pic.picName}}</h5>
+                <p class="card-text font-weight-light">{{pic.picDescribe}}</p>
+                <p class="card-text">
+                    <small class="text-muted">{{pic.putDate | date:'yyyy-MM-dd HH:mm:ss'}}</small>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 置顶按钮 -->
+    <a href="javascript:window.scrollTo({top:0,behavior:'smooth'})"
+       style="position: fixed;display: block;right: 80px;bottom: 80px"><img src="../../images/toTop.ico"
+                                                                            style="width: 40px;height: 40px"></a>
+
+</div>
+
+</body>
+
+<script type="text/javascript" src="../../js/jquery2.2.2.min.js"></script>
+<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../js/angular.min.js"></script>
+<script type="text/javascript" src="../../js/main.js"></script>
+
+
+</html>

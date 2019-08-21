@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="no-referrer">
+    <title>book</title>
+    <link rel="shortcut icon" href="../../images/favicon.ico"/>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+</head>
+<body>
+
+<div ng-app="bookApp" ng-controller="bookCtrl" style="margin-top: 75px">
+
+    <form class="needs-validation" novalidate>
+        <div class="form-row col-5" style="margin: 0 auto">
+            <div class="input-group">
+                <input class="form-control mr-sm-2" ng-model="selectparams.bookName" placeholder="书名"
+                       aria-label="Search">
+                <button class="btn btn-outline-info my-2 my-sm-0" type="button" ng-click="setPage(1)"> 搜索</button>
+            </div>
+        </div>
+    </form>
+
+    <div class="list-group">
+        <a href="" class="list-group-item list-group-item-secondary" style="margin-top: 20px;margin-bottom: 10px">{{tip}}</a>
+        <li class="list-group-item" ng-model="book" ng-repeat="book in allBook | orderBy:'bookName' ">
+            <div id='book_pic' style='display:inline-block;margin-left:20px;'>
+                <a>
+                    <img style='width:100px;height:120px' ng-src="{{book.bookPicPath}}">
+                </a>
+            </div>
+            <div id='book_content' style='vertical-align:top;display:inline-block;margin-left:20px;'>
+                <a style='font-size:18px;text-decoration:none' href="">{{book.bookName}}</a>
+                <h6 style="margin-top: 5px">{{book.author}} / {{book.publishing}} / {{book.typeName}} /
+                    ￥{{book.price}}</h6>
+                <p>评分 : {{book.bookScore}}分 </p>
+                <p style='margin-top: 5px'>现存:<font color="red">{{book.havingNumber}}</font>本 总共:<font color="blue">{{book.totalNumber}}</font>本
+                </p>
+            </div>
+        </li>
+    </div>
+
+    <nav aria-label="Page navigation example" style="margin-top: 20px">
+        <ul class="pagination justify-content-center">
+            <li class="page-item">
+                <a class="page-link" ng-click="previousPage()" aria-label="Previous">
+                    <span aria-hidden="true">上一页</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            <li class="page-item" ng-repeat="page in arrayPage" ng-class="{active: isActivePage(page)}"><a
+                    class="page-link" href=""
+                    ng-click="setPage(page)">{{page}}</a></li>
+            <li class="page-item">
+                <a class="page-link" ng-click="nextPage()" aria-label="Next">
+                    <span aria-hidden="true">下一页</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- 回到顶部按钮 -->
+    <a href="javascript:window.scrollTo({top:0,behavior:'smooth'})"
+       style="position: fixed;display: block;right: 80px;bottom: 80px;z-index:9999;"><img src="../../images/toTop.ico"
+                                                                                          style="width: 40px;height: 40px"></a>
+
+
+</div>
+
+
+</body>
+
+<script type="text/javascript" src="../../js/jquery2.2.2.min.js"></script>
+<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../js/angular.min.js"></script>
+<script type="text/javascript" src="../../js/book.js"></script>
+
+</html>

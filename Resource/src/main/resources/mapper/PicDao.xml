@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.resource.dao.IPicDao">
+
+    <select id="selectMaxPicId" resultType="java.lang.Integer">
+        SELECT IFNULL (MAX(picId), 0) FROM tb_Pic
+    </select>
+
+    <insert id="insertPic">
+      INSERT INTO tb_Pic(picId,picName,picPath,picSize,picDescribe,picType,putDate) VALUES (#{picId},#{picName},#{picPath},#{picSize},#{picDescribe},#{picType},#{putDate})
+    </insert>
+
+    <select id="selectPicByName" resultType="com.resource.model.Pic">
+        SELECT * FROM tb_Pic WHERE picName LIKE "%"#{picName}"%" OR picType LIKE "%"#{picName}"%" ORDER BY putDate DESC LiMIT #{pageIndex},#{pageSize}
+    </select>
+
+    <select id="selectPicNum" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM tb_Pic WHERE picName LIKE "%"#{picName}"%" OR picType LIKE "%"#{picName}"%" ORDER BY putDate DESC
+    </select>
+
+    <!--<select id="selectUserByLogin" resultType="com.library.model.User" >-->
+        <!--SELECT * FROM tb_User WHERE userName = #{userName} and userPassword = #{userPassword}-->
+    <!--</select>-->
+
+    <!--<select id="selectUserById" resultType="com.library.model.User" >-->
+        <!--SELECT * FROM tb_User WHERE userId = #{userId}-->
+    <!--</select>-->
+
+    <!--<delete id="deleteUser">-->
+        <!--DELETE FROM tb_User WHERE userId = #{userId}-->
+    <!--</delete>-->
+
+    <!--<update id="updateUser">-->
+        <!--UPDATE tb_User SET userName = #{userName},userPassword = #{userPassword},sex = #{sex},phone = #{phone},address = #{address},power = #{power} WHERE userId = #{userId}-->
+    <!--</update>-->
+
+</mapper>

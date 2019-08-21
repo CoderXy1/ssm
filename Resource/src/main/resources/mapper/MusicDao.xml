@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.resource.dao.IMusicDao">
+
+    <select id="selectMusicByPage" resultType="com.resource.model.Music">
+        SELECT * FROM tb_Music WHERE
+        1 = 1
+        <if test="musicName != null and musicName != ''">
+            and musicName LIKE "%"#{musicName}"%"
+        </if>
+        <if test="singer != null and singer != ''">
+            and singer LIKE "%"#{singer}"%"
+        </if>
+        LIMIT #{pageIndex},#{pageSize}
+    </select>
+
+    <select id="selectMaxMusicId" resultType="java.lang.Integer">
+        SELECT IFNULL (MAX(musicId), 0) FROM tb_Music
+    </select>
+
+    <select id="getMusicNum" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM tb_Music WHERE musicName LIKE "%"#{musicName}"%"
+    </select>
+
+    <insert id="insertMusic">
+      INSERT INTO tb_Music(musicId,musicName,singer,musicPath,musicSize,putDate) VALUES (#{musicId},#{musicName},#{singer},#{musicPath},#{musicSize},#{putDate})
+    </insert>
+
+    <!--<select id="selectUserByLogin" resultType="com.library.model.User" >-->
+    <!--SELECT * FROM tb_User WHERE userName = #{userName} and userPassword = #{userPassword}-->
+    <!--</select>-->
+
+    <!--<select id="selectUserById" resultType="com.library.model.User" >-->
+    <!--SELECT * FROM tb_User WHERE userId = #{userId}-->
+    <!--</select>-->
+
+    <!--<delete id="deleteUser">-->
+    <!--DELETE FROM tb_User WHERE userId = #{userId}-->
+    <!--</delete>-->
+
+    <!--<update id="updateUser">-->
+    <!--UPDATE tb_User SET userName = #{userName},userPassword = #{userPassword},sex = #{sex},phone = #{phone},address = #{address},power = #{power} WHERE userId = #{userId}-->
+    <!--</update>-->
+
+</mapper>

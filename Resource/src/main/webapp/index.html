@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <link rel="shortcut icon" href="images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+</head>
+<body style="overflow-y: hidden">
+
+<div ng-app="indexApp" ng-controller="indexCtrl">
+
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark " style="font-size: 18px">
+        <a class="navbar-brand" href="#" style="font-size: 23px">Avecle</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" ng-class="{'active': info.currentPage == 1}">
+                    <a class="nav-link" href="" ng-click="changeUrl('index.html',1)">主页</a>
+                </li>
+                <li class="nav-item" ng-class="{'active': info.currentPage == 2}">
+                    <a class="nav-link" href="" ng-click="changeUrl('html/movie/movie.html',2)">视频</a>
+                </li>
+                <li class="nav-item" ng-class="{'active': info.currentPage == 3}">
+                    <a class="nav-link" href="" ng-click="changeUrl('html/pic/pic.html',3)">图片</a>
+                </li>
+                <li class="nav-item" ng-class="{'active': info.currentPage == 4}">
+                    <a class="nav-link" href="" ng-click="changeUrl('html/book/book.html',4)">图书</a>
+                </li>
+                <li class="nav-item" ng-class="{'active': info.currentPage == 5}">
+                    <a class="nav-link" href="" ng-click="changeUrl('html/music/music.html',5)">音乐</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        个人管理
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">1</a>
+                        <a class="dropdown-item" href="#">2</a>
+                        <a class="dropdown-item" href="#">3</a>
+                        <a class="dropdown-item" href="#">4</a>
+                    </div>
+                </li>
+            </ul>
+
+            <form class="form-inline my-2 my-lg-0" style="font-size: 16px">
+                <p style="color: red;height: 10px;margin-right: 10px">{{info.userInfo.userName}}</p>
+                <button class="btn btn-sm btn-outline-success" type="button" ng-show="!info.isLogin" data-toggle="modal" data-target="#loginModal">登录</button>
+                <button class="btn btn-sm btn-outline-success" type="button" ng-show="info.isLogin" ng-click="quitLogin()">退出登录</button>
+                <button class="btn btn-sm btn-outline-success" type="button">注册</button>
+                <button class="btn btn-sm btn-outline-success" type="button">关于</button>
+                <button class="btn btn-sm btn-outline-success" type="button">联系我们</button>
+            </form>
+
+        </div>
+    </nav>
+
+    <iframe id="myiframe" seamless frameborder="0" ng-src="{{iframeUrl}}" scrolling="auto" width="100%"></iframe>
+
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">用户登录</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <p style="color: red;font: normal 16px/1 Verdana, Helvetica;height: 8px;text-align: center;">{{tip}}</p>
+                        <div class="form-group">
+                            <label class="col-form-label">用户名:</label>
+                            <input type="text" class="form-control" ng-model="selectparams.userName" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">密码:</label>
+                            <input type="password" class="form-control" ng-model="selectparams.userPassword" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" ng-click="login()">登录</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+
+<script type="text/javascript" src="js/jquery2.2.2.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script>
+    var ifm= document.getElementById("myiframe");
+    ifm.height = document.documentElement.clientHeight;
+</script>
+
+</html>
