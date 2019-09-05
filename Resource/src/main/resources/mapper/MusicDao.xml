@@ -12,7 +12,7 @@
         <if test="singer != null and singer != ''">
             and singer LIKE "%"#{singer}"%"
         </if>
-        LIMIT #{pageIndex},#{pageSize}
+        ORDER BY putDate DESC LIMIT #{pageIndex},#{pageSize}
     </select>
 
     <select id="selectMaxMusicId" resultType="java.lang.Integer">

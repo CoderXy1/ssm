@@ -41,8 +41,8 @@ public class MusicController {
     @RequestMapping("/insertMusic")
     @ResponseBody
     public int insertMusic() {
-        int musicId = 0;
-        List<Music> list = musicJsoup.getText();
+        int musicId = this.selectMaxMusicId() + 1;
+        List<Music> list = musicJsoup.getText(musicId);
         for (Music music : list){
             musicId = this.selectMaxMusicId() + 1;
             this.musicService.insertMusic(musicId, music.getMusicName(), music.getSinger(), music.getMusicPath(), music.getMusicSize(),new Date());

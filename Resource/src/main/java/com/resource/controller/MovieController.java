@@ -34,7 +34,7 @@ public class MovieController {
 
         String movieName,movieType,address,director,movieYear,score,movieDescribe,picPath,downloadPath;
         int movieId = selectMaxMovieId() + 1;
-        List<Movie> list = movieJsoup.getText(21100 + movieId);
+        List<Movie> list = movieJsoup.getText(22100 + movieId);
         for (int i=0;i < list.size();i++){
             movieId = selectMaxMovieId() + 1;
             movieName = list.get(i).getMovieName();
@@ -47,7 +47,7 @@ public class MovieController {
             picPath = list.get(i).getPicPath();
             downloadPath = list.get(i).getDownloadPath();
             this.movieService.insertMovie(movieId, movieName, movieType, address, director, movieYear, score, movieDescribe, picPath, downloadPath);
-            Thread.sleep(1000);
+            //Thread.sleep(1000);
         }
 
         return 1;

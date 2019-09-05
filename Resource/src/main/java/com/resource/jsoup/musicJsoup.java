@@ -22,7 +22,7 @@ public class musicJsoup {
 
     public static void main(String args[]) {
 
-        musicJsoup.getText();
+        musicJsoup.getText(0);
 
     }
 
@@ -54,12 +54,13 @@ public class musicJsoup {
     }
 
 
-    public static List<Music> getText() {
+    public static List<Music> getText(int num) {
 
         List<Music> list = new ArrayList<>();
         Document doc = null;
+        int page = num / 60 + 1;
 
-        for (int i = 100; i < 400; i++) {
+        for (int i = page; i < page + 20; i++) {
 
             try {
                 String allStr = getURLContent("http://www.333ttt.com/up/?page=" + i, "utf-8");

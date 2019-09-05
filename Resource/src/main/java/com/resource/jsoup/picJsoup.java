@@ -25,7 +25,7 @@ public class picJsoup {
         Document doc = null;
         List<Pic> list = new ArrayList<>();
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 20; i++) {
 
             try {
                 String url = "http://www.win4000.com/wallpaper_detail_" + page + ".html";

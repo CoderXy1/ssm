@@ -1,4 +1,4 @@
-angular.module('picApp', [])
+angular.module('picApp', ['ui.bootstrap'])
     .controller('picCtrl', function ($scope, $http,$interval) {
 
         $scope.allPic = {};
@@ -9,10 +9,14 @@ angular.module('picApp', [])
             'picName': '',
             'pageIndex': 0,
             'pageSize': 40,
+            'pageNum' : 1,
+            'totalNum' : 0,
 
         }
 
         $scope.selectPic = function () {
+
+            $scope.selectparams.pageIndex = ($scope.selectparams.pageNum - 1) * $scope.selectparams.pageSize;
 
             $scope.getPicNum();
 
@@ -43,11 +47,7 @@ angular.module('picApp', [])
             }).then(function successCallback(response) {
                 //请求成功
                 if (response.data != null || response.data != ""){
-                    $scope.picNum = response.data;
-                    $scope.arrayPage = new Array();
-                    for (var i=0;i < Math.ceil($scope.picNum/$scope.selectparams.pageSize);i++){
-                        $scope.arrayPage.push(["0"]);
-                    }
+                    $scope.selectparams.totalNum = response.data;
                 }
             },function errorCallback(response) {
                 //请求失败
@@ -60,25 +60,6 @@ angular.module('picApp', [])
 
         $scope.hideSize = function (index) {
             $scope.allPic[index].isShow = false;
-        }
-
-        $scope.selectPage = function (page) {
-            $scope.selectparams.pageIndex = (page - 1) * $scope.selectparams.pageSize;
-            $scope.selectPic();
-        }
-
-        $scope.previousPage = function () {
-            if ($scope.selectparams.pageIndex > 0) {
-                $scope.selectparams.pageIndex -= $scope.selectparams.pageSize;
-            }
-            $scope.selectPic();
-        }
-
-        $scope.nextPage = function () {
-            if ($scope.selectparams.pageIndex + $scope.selectparams.pageSize <= $scope.picNum){
-                $scope.selectparams.pageIndex += $scope.selectparams.pageSize;
-            }
-            $scope.selectPic();
         }
 
         //初始化数据

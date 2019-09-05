@@ -37,7 +37,7 @@ public class movieJsoup {
                 conn.header("Accept-Language", "zh-CN,zh;q=0.8");
                 conn.header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36");
                 doc = conn.get();
-                Thread.sleep(2000);
+                Thread.sleep(1000);
 
                 if (doc != null) {
                     Movie movie = new Movie();

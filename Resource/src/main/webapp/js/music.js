@@ -1,4 +1,4 @@
-angular.module('musicApp', [])
+angular.module('musicApp', ['ui.bootstrap'])
     .controller('musicCtrl', function ($scope, $http,$sce) {
 
         $scope.sce = $sce.trustAsResourceUrl;
@@ -12,7 +12,8 @@ angular.module('musicApp', [])
             'singer' : '',
             'pageIndex': 0,
             'pageSize': 20,
-
+            'pageNum' : 1,
+            'totalNum' : 0,
         }
 
         $scope.addMusic = function (){
@@ -30,6 +31,8 @@ angular.module('musicApp', [])
         }
 
         $scope.selectmusic = function(){
+
+            $scope.selectparams.pageIndex = ($scope.selectparams.pageNum - 1) * $scope.selectparams.pageSize;
 
             $scope.getMusicNum();
 
@@ -56,34 +59,11 @@ angular.module('musicApp', [])
             }).then(function successCallback(response) {
                 //请求成功
                 if (response.data != null || response.data != ""){
-                    $scope.musicNum = response.data;
-                    $scope.arrayPage = new Array();
-                    for (var i=0;i < Math.ceil($scope.musicNum/$scope.selectparams.pageSize);i++){
-                        $scope.arrayPage.push(["0"]);
-                    }
+                    $scope.selectparams.totalNum = response.data;
                 }
             },function errorCallback(response) {
                 //请求失败
             });
-        }
-
-        $scope.selectPage = function (page) {
-            $scope.selectparams.pageIndex = (page - 1) * $scope.selectparams.pageSize;
-            $scope.selectmusic();
-        }
-
-        $scope.previousPage = function () {
-            if ($scope.selectparams.pageIndex > 0) {
-                $scope.selectparams.pageIndex -= $scope.selectparams.pageSize;
-            }
-            $scope.selectmusic();
-        }
-
-        $scope.nextPage = function () {
-            if ($scope.selectparams.pageIndex + $scope.selectparams.pageSize <= $scope.musicNum){
-                $scope.selectparams.pageIndex += $scope.selectparams.pageSize;
-            }
-            $scope.selectmusic();
         }
 
         //初始化数据

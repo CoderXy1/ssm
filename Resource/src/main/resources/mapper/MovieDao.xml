@@ -16,7 +16,7 @@
     </select>
 
     <select id="selectAllMovie" resultType="com.resource.model.Movie" >
-        SELECT * FROM tb_Movie WHERE movieName LIKE "%"#{movieName}"%" LIMIT #{pageIndex},#{pageSize}
+        SELECT * FROM tb_Movie WHERE movieName LIKE "%"#{movieName}"%" ORDER BY score DESC LIMIT #{pageIndex},#{pageSize}
     </select>
 
     <!--<select id="selectUserById" resultType="com.library.model.User" >-->

@@ -1,14 +1,14 @@
-angular.module('movieApp', [])
+angular.module('movieApp', ['ui.bootstrap'])
     .controller('movieCtrl', function ($scope, $http) {
 
         $scope.allMovie = "";
-        $scope.movieNum = 0;
-        $scope.arrayPage = new Array();
         $scope.selectparams = {
 
             'movieName': '',
             'pageIndex': 0,
             'pageSize': 30,
+            'pageNum' : 1,
+            'totalNum' : 0,
 
         }
 
@@ -21,11 +21,7 @@ angular.module('movieApp', [])
                 }
             }).then(function successCallback(response) {
                 //请求成功
-                $scope.movieNum = response.data;
-                $scope.arrayPage = new Array();
-                for (var i=0;i < Math.ceil($scope.movieNum/$scope.selectparams.pageSize);i++){
-                    $scope.arrayPage.push(["0"]);
-                }
+                $scope.selectparams.totalNum = response.data;
             }, function errorCallback(response) {
                 //请求失败
             });
@@ -35,7 +31,7 @@ angular.module('movieApp', [])
 
             $http({
                 method: "POST",
-                url: 'movie/insertMovie',
+                url: '../../movie/insertMovie',
             }).then(function successCallback(response) {
                 //请求成功
                 if (response.data == 1) {
@@ -48,6 +44,8 @@ angular.module('movieApp', [])
         }
 
         $scope.selectMovie = function(){
+
+            $scope.selectparams.pageIndex = ($scope.selectparams.pageNum - 1) * $scope.selectparams.pageSize;
 
             $scope.getMovieNum();
 
@@ -64,25 +62,6 @@ angular.module('movieApp', [])
                 //请求失败
             });
 
-        }
-
-        $scope.selectPage = function (page) {
-            $scope.selectparams.pageIndex = (page - 1) * $scope.selectparams.pageSize;
-            $scope.selectMovie();
-        }
-
-        $scope.previousPage = function () {
-            if ($scope.selectparams.pageIndex > 0) {
-                $scope.selectparams.pageIndex -= $scope.selectparams.pageSize;
-            }
-            $scope.selectMovie();
-        }
-
-        $scope.nextPage = function () {
-            if ($scope.selectparams.pageIndex + $scope.selectparams.pageSize <= $scope.movieNum){
-                $scope.selectparams.pageIndex += $scope.selectparams.pageSize;
-            }
-            $scope.selectMovie();
         }
 
         //初始化数据

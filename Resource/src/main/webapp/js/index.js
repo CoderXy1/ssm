@@ -74,18 +74,4 @@ angular.module('indexApp', [])
             });
         }
 
-
-        $scope.insertPic = function () {
-            $http({
-                method: "POST",
-                url: 'pic/insertPic',
-            }).then(function successCallback(response) {
-                //请求成功
-            }, function errorCallback(response) {
-                //请求失败
-            });
-        }
-        $interval($scope.insertPic, 1000 * 60 * 60 * 24);
-
-
     });
