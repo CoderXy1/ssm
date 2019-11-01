@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 设置为IUserDao接口方法提供sql语句配置 -->
+<mapper namespace="com.library.dao.IUserDao">
+
+    <select id="selectAllUser" resultType="com.library.model.User">
+        SELECT * FROM tb_User
+    </select>
+
+    <select id="selectUserByLogin" resultType="com.library.model.User" >
+        SELECT * FROM tb_User WHERE userName = #{userName} and userPassword = #{userPassword}
+    </select>
+
+    <select id="selectUserById" resultType="com.library.model.User" >
+        SELECT * FROM tb_User WHERE userId = #{userId}
+    </select>
+
+    <select id="selectMaxId" resultType="java.lang.Integer">
+        SELECT IFNULL (MAX(userId), 0) FROM tb_User
+    </select>
+
+    <insert id="addUser">
+        INSERT INTO tb_User(userId,userName,userPassword,sex,phone,address,power) VALUES (#{userId},#{userName},#{userPassword},#{sex},#{phone},#{address},#{power})
+    </insert>
+
+    <delete id="deleteUser">
+        DELETE FROM tb_User WHERE userId = #{userId}
+    </delete>
+
+    <update id="updateUser">
+        UPDATE tb_User SET userName = #{userName},userPassword = #{userPassword},sex = #{sex},phone = #{phone},address = #{address},power = #{power} WHERE userId = #{userId}
+    </update>
+
+</mapper>

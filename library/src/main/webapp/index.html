@@ -1,0 +1,33 @@
+<html>
+<head>
+    <title>login</title>
+</head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="shortcut icon" href="images/favicon.ico" />
+<body>
+
+<div  ng-app="indexApp" ng-controller="indexCtrl">
+
+    <form id="login">
+        <h1>用户登录</h1>
+        <p id="tip">{{tip}}</p>
+        <fieldset id="inputs">
+            <input id="userName" ng-model="userName" type="text" placeholder="用户名" autofocus required>
+            <input id="userPassword" ng-model="userPassword" type="password" placeholder="密码" required>
+        </fieldset>
+        <fieldset id="actions">
+            <input type="button" id="submit" value="登录" ng-click="login()"/>
+            <a href="">忘记密码?</a><a href="#" ng-click="visitorLogin()">游客登录</a>
+        </fieldset>
+    </form>
+    <br><br>
+
+
+</div>
+
+<script src="js/angular.min.js"></script>
+<script src="js/index.js"></script>
+
+</body>
+</html>

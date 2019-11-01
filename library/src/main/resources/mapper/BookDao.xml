@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.library.dao.IBookDao">
+
+    <select id="selectBookByNameAndPage" resultType="com.library.model.Book">
+        SELECT * FROM tb_Book WHERE bookName LIKE "%"#{bookName}"%" LIMIT #{currPage},#{pageSize}
+    </select>
+
+    <select id="selectBookByName" resultType="com.library.model.Book">
+        SELECT * FROM tb_Book WHERE bookName LIKE "%"#{bookName}"%"
+    </select>
+
+    <select id="selectBookById" resultType="com.library.model.Book">
+        SELECT * FROM tb_Book WHERE bookId = #{bookId}
+    </select>
+
+    <select id="selectMaxBookId" resultType="java.lang.Integer">
+        SELECT IFNULL (MAX(bookId), 0) FROM tb_Book
+    </select>
+
+    <insert id="addBook">
+      INSERT INTO tb_Book(bookId,bookName,bookPicPath,bookScore,author,publishing,price,totalNumber,havingNumber,typeId,putInDate) VALUES (#{bookId},#{bookName},#{bookPicPath},#{bookScore},#{author},#{publishing},#{price},#{totalNumber},#{havingNumber},#{typeId},#{putInDate})
+    </insert>
+
+    <update id="borrowBook">
+    UPDATE tb_Book SET havingNumber = havingNumber - 1  WHERE bookId = #{bookId}
+    </update>
+
+    <update id="returnBook">
+    UPDATE tb_Book SET userName = #{userName},userPassword = #{userPassword},sex = #{sex},phone = #{phone},address = #{address},power = #{power} WHERE userId = #{userId}
+    </update>
+
+    <!--<select id="selectUserByLogin" resultType="com.library.model.User" >-->
+        <!--SELECT * FROM tb_User WHERE userName = #{userName} and userPassword = #{userPassword}-->
+    <!--</select>-->
+
+    <!--<select id="selectUserById" resultType="com.library.model.User" >-->
+        <!--SELECT * FROM tb_User WHERE userId = #{userId}-->
+    <!--</select>-->
+
+    <!--<delete id="deleteUser">-->
+        <!--DELETE FROM tb_User WHERE userId = #{userId}-->
+    <!--</delete>-->
+
+    <!--<update id="updateUser">-->
+        <!--UPDATE tb_User SET userName = #{userName},userPassword = #{userPassword},sex = #{sex},phone = #{phone},address = #{address},power = #{power} WHERE userId = #{userId}-->
+    <!--</update>-->
+
+</mapper>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>searchBorrow</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+</head>
+<body>
+
+    <div ng-app="searchBorrowApp" ng-controller="searchBorrowCtrl">
+
+        <p>{{tip}}</p>
+
+        <table class="table table-striped" style="margin: 0 auto;width: 1000px;border: 1px solid gainsboro;text-align: center">
+            <thead>
+            <tr>
+                <th scope="col">编号</th>
+                <th scope="col">借阅ID</th>
+                <th scope="col">书名</th>
+                <th scope="col">借阅时间</th>
+                <th scope="col">应归还时间</th>
+                <th scope="col">实际归还时间</th>
+                <th scope="col">续借次数</th>
+                <th scope="col">是否超期</th>
+                <th scope="col">是否归还</th>
+                <th scope="col" colspan="2">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="borrow in borrowInfo">
+                <td>{{$index + 1}}</td>
+                <td>{{borrow.borrowId}}</td>
+                <td><span class="label label-success">{{borrow.bookId}}</span></td>
+                <td>{{borrow.borrowDate}}</td>
+                <td>{{borrow.returnDate_should}}</td>
+                <td>{{borrow.returnDate_reality}}</td>
+                <td>{{borrow.renewTimes}}</td>
+                <td>{{borrow.isExpire}}</td>
+                <td>{{borrow.isReturn}}</td>
+                <td><button type="button" class="btn btn-info" ng-disabled="borrow.renewTimes >= 3 || borrow.isExpire == 'true'" ng-click="renewBook(borrow.borrowId,borrow.returnDate_should)">续借</button></td>
+                <td><button type="button" class="btn btn-danger" ng-disabled="borrow.isReturn == 'true'" ng-click="returnBook(borrow.borrowId)">归还</button></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+</body>
+
+<script src="../../js/jquery2.2.2.min.js" type="text/javascript"></script>
+<script src="../../js/angular.min.js" type="text/javascript"></script>
+<script src="../../js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../../js/searchBorrow.js"></script>
+
+
+</html>

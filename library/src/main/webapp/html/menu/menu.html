@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>menu</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link rel="shortcut icon" href="../../images/favicon.ico"/>
+        <link href="../../css/putLogin.css" rel="stylesheet">
+    </head>
+    <body style="margin:0; padding:0;">
+        <div ng-app="menuApp" ng-controller="menuCtrl">
+            <nav class="navbar navbar-collapse" role="navigation" style="border: 1px solid lightgray">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand">图书管理系统</a>
+                    </div>
+                    <div>
+                        <!--向左对齐-->
+                        <ul class="nav navbar-nav navbar-left">
+
+                            <li class="dropdown" ng-click="changeUrl('../main/main.html')">
+                                <a class="dropdown-toggle"
+                                   data-toggle="dropdown">
+                                    <span
+                                            class="glyphicon glyphicon-home"></span>
+                                    首页
+                                </a>
+                            </li>
+
+                            <li class="dropdown">
+                                <a class="dropdown-toggle"
+                                   data-toggle="dropdown">
+                                    <span
+                                            class="glyphicon glyphicon-list-alt"></span>
+                                    图书管理
+                                    <b
+                                            class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="divider"></li>
+                                    <li ng-click="changeUrlByLogin('../main/addBook.html')">
+                                        <a href="#">图书录入</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="#">图书修改</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="#">图书查询</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="#">图书删除</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a class="dropdown-toggle"
+                                   data-toggle="dropdown">
+                                    <span
+                                            class="glyphicon glyphicon-ok-sign"></span>
+                                    借还管理
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="#">借书</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="#">还书</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a class="dropdown-toggle"
+                                   data-toggle="dropdown">
+                                    <span class="glyphicon glyphicon-user"></span>
+                                    人员管理
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="#">管理员管理</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="#">用户管理</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a class="dropdown-toggle"
+                                   data-toggle="dropdown">
+                                    <span
+                                            class="glyphicon glyphicon-wrench"></span>
+                                    个人管理
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="#">密码修改</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li ng-click="changeUrlByLogin('../main/myBook.html')">
+                                        <a href="#">我的图书</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li ng-click="changeUrlByLogin('../main/searchBorrow.html')">
+                                        <a href="#">借还查询</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li ng-click="changeUrlByLogin('../main/personTicket.html')">
+                                        <a href="#">个人罚单</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+
+                        <form class="navbar-form navbar-left">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="书名" ng-model="bookName">
+                            </div>
+                            <button type="button" class="btn btn-default" ng-click="toSearch()">
+                                <span class="glyphicon glyphicon-search"></span>
+                                搜索
+                            </button>
+                        </form>
+
+                        <!--向右对齐-->
+                        <a class="navbar-text navbar-right" href="#">联系我们&nbsp;&nbsp;&nbsp;</a>
+                        <a
+                                class="navbar-text navbar-right" href="#">关于
+                        </a>
+                        <a
+                                class="navbar-text navbar-right" href="#" ng-click="quitLogin()" ng-show="isLogin"
+                                ng-model="quit">退出登录
+                        </a>
+                        <a id="putLogin" class="navbar-text navbar-right" href="#" ng-show="!isLogin" ng-model="login">
+                            登录
+                        </a>
+                        <a
+                                class="navbar-text navbar-right" href="#"
+                                ng-click="changeUrl('../main/registeUser.html')">注册
+                        </a>
+                        <p class="navbar-text navbar-right" style="color: #2aabd2">{{userName}}</p>
+                    </div>
+                </div>
+            </nav>
+
+            <iframe id="myiframe" seamless frameborder="0"
+                    ng-src="{{trustSrc}}"></iframe>
+
+            <!-- 弹窗登录 -->
+            <div class="modal fade" id="loginModal" style="display:none;">
+
+                <div class="modal-dialog modal-sm" style="width:540px;">
+                    <div class="modal-content" style="border:none;">
+                        <div class="col-left"></div>
+                        <div class="col-right">
+                            <div class="modal-header">
+                                <button type="button" id="login_close" class="close" data-dismiss="modal">
+                                    <span aria-hidden="true">×</span>
+                                    <span class="sr-only">Close</span>
+                                </button>
+                                <h4 class="modal-title" id="loginModalLabel" style="font-size: 18px;">登录</h4>
+                            </div>
+                            <div class="modal-body">
+                                <section class="box-login v5-input-txt" id="box-login">
+                                    <form id="login_form" action="" method="post" autocomplete="off">
+
+                                        <ul>
+                                            <li class="form-group">
+                                                <p style="height: 10px;color: red">{{tip}}</p>
+                                            </li>
+                                            <li class="form-group">
+                                                <input class="form-control" id="id_account_l" maxlength="50"
+                                                       name="account_l" placeholder="请输入用户名" type="text"
+                                                       ng-model="userNamePut">
+                                            </li>
+                                            <li class="form-group">
+                                                <input class="form-control" id="id_password_l" name="password_l"
+                                                       placeholder="请输入密码" type="password" ng-model="userPasswordPut">
+                                            </li>
+                                        </ul>
+                                    </form>
+                                    <p class="good-tips marginB10"><a id="btnForgetpsw" class="fr">忘记密码？</a>还没有账号？
+                                        <a href="#" ng-click="changeUrl('../main/registeUser.html')" id="btnRegister">
+                                            立即注册
+                                        </a>
+                                    </p>
+                                    <div class="login-box marginB10">
+                                        <button id="login_btn" type="button" class="btn btn-micv5 btn-block globalLogin"
+                                                ng-click="login()">登录
+                                        </button>
+                                        <div id="login-form-tips" class="tips-error bg-danger" style="display: none;">
+                                            错误提示
+                                        </div>
+                                    </div>
+
+
+                                    <div class="threeLogin">
+                                        <span>其他方式登录</span>
+                                        <a class="nqq" href="javascript:;"></a>
+                                        <a class="nwx" href="javascript:;"></a>
+                                        <a class="nwb"></a>
+                                    </div>
+
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </body>
+
+
+    <script src="../../js/angular.min.js"></script>
+    <script src="../../js/jquery2.2.2.min.js" type="text/javascript"></script>
+    <script src="../../js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../../js/menu.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../../js/modal.js"></script>
+    <script type="text/javascript" src="../../js/script.js"></script>
+    <script>
+        var ifm= document.getElementById("myiframe");
+        ifm.height = document.documentElement.clientHeight;
+        ifm.width = document.documentElement.clientWidth;
+    </script>
+
+</html>

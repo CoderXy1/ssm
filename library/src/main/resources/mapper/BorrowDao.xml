@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 设置为IUserDao接口方法提供sql语句配置 -->
+<mapper namespace="com.library.dao.IBorrowDao">
+
+    <insert id="addBorrow">
+      INSERT INTO tb_Borrow(borrowId,userId,bookId,borrowDate,returnDate_should,returnDate_reality,renewTimes,isExpire,isReturn) VALUES (#{borrowId},#{userId},#{bookId},#{borrowDate},#{returnDate_should},#{returnDate_reality},#{renewTimes},#{isExpire},#{isReturn})
+    </insert>
+
+    <select id="selectMaxBorrowId" resultType="java.lang.Integer">
+      SELECT IFNULL (MAX(borrowId), 0) FROM tb_Borrow
+    </select>
+
+    <select id="selectBorrowByUserId" resultType="com.library.model.Borrow">
+      SELECT * FROM tb_Borrow WHERE userId = #{userId}
+    </select>
+
+    <update id="updateBorrowRenewState">
+      UPDATE tb_Borrow SET returnDate_should = #{returnDate_should},renewTimes = renewTimes + 1 WHERE borrowId = #{borrowId}
+    </update>
+
+    <update id="updateBorrowReturnState">
+      UPDATE tb_Borrow SET returnDate_reality = #{returnDate_reality},isReturn = 'true' WHERE borrowId = #{borrowId}
+    </update>
+
+    <!--<insert id="addBorrow">-->
+    <!--INSERT INTO tb_Borrow(borrowId,userId,bookId,borrowDate,returnDate_should,returnDate_reality,renewTimes,isExpire,isReturn) VALUES (#{borrowId},#{userId},#{bookId},#{borrowDate},#{returnDate_should},#{returnDate_reality},#{renewTimes},#{isExpire},#{isReturn})-->
+    <!--</insert>-->
+
+    <!--<update id="returnBook">-->
+    <!--UPDATE tb_Book SET userName = #{userName},userPassword = #{userPassword},sex = #{sex},phone = #{phone},address = #{address},power = #{power} WHERE userId = #{userId}-->
+    <!--</update>-->
+
+    <!--<select id="selectUserById" resultType="com.library.model.User" >-->
+    <!--SELECT * FROM tb_User WHERE userId = #{userId}-->
+    <!--</select>-->
+
+    <!--<delete id="deleteUser">-->
+    <!--DELETE FROM tb_User WHERE userId = #{userId}-->
+    <!--</delete>-->
+
+
+</mapper>

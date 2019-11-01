@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/main.css">
+    <script src="../../js/angular.min.js"></script>
+    <script src="../../js/jquery2.2.2.min.js"></script>
+    <script src="../../js/main.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+</head>
+<body>
+<div id='main' ng-app="mainApp" ng-controller="mainCtrl">
+    <p><img id='imgs' alt="图片" src="../../images/main_icon.png"></p>
+    <div class="col-lg-6">
+        <form>
+            <div class="input-group">
+                <input ng-model="bookName" type="text" class="form-control" style="width: 400px;"
+                       placeholder="书名"> <span class="input-group-btn">
+						<button class="btn btn-primary" style="width: 80px;" ng-click="toSearch()">搜索</button>
+					</span>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

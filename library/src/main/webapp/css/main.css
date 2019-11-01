@@ -1,0 +1,14 @@
+#main {
+    width:500px;
+    height:400px;
+    margin:0 auto;
+    padding-top: 100px;
+    text-align: center;
+}
+
+#imgs {
+    width:280px;
+    height:240px;
+    vertical-align: middle;
+}
+

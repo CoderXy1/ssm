@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.2.16/angular.min.js"></script>
+</head>
+<body ng-app="mySceApp">
+<div ng-controller="AppController">
+    <iframe width="100%" height="1000px" seamless frameborder="0" ng-src="{{trustSrc}}"></iframe>
+</div>
+<script type="text/javascript">
+    angular.module('mySceApp',[])
+        .controller('AppController', ['$scope','$sce',function($scope,$sce) {
+            //$scope.trustSrc = $sce.trustAs($sce.RESOURCE_URL,"http://fanyi.youdao.com/");
+            $scope.trustSrc = $sce.trustAsResourceUrl("http://fanyi.youdao.com/");//等同于这个方法
+        }]);
+</script>
+</body>
+</html>

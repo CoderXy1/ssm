@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 设置为IUserDao接口方法提供sql语句配置 -->
+<mapper namespace="com.library.dao.ITicketDao">
+
+    <select id="selectTicketByUserId" resultType="com.library.model.Ticket">
+      SELECT * FROM tb_Ticket WHERE userId = #{userId}
+    </select>
+
+    <update id="updateReturnState">
+    UPDATE tb_Ticket SET isReturn = #{isReturn} WHERE borrowId = #{borrowId} and bookId = #{bookId}
+    </update>
+
+    <!--<insert id="addBorrow">-->
+    <!--INSERT INTO tb_Borrow(borrowId,userId,bookId,borrowDate,returnDate_should,returnDate_reality,renewTimes,isExpire,isReturn) VALUES (#{borrowId},#{userId},#{bookId},#{borrowDate},#{returnDate_should},#{returnDate_reality},#{renewTimes},#{isExpire},#{isReturn})-->
+    <!--</insert>-->
+
+    <!--<update id="returnBook">-->
+    <!--UPDATE tb_Book SET userName = #{userName},userPassword = #{userPassword},sex = #{sex},phone = #{phone},address = #{address},power = #{power} WHERE userId = #{userId}-->
+    <!--</update>-->
+
+    <!--<select id="selectUserById" resultType="com.library.model.User" >-->
+    <!--SELECT * FROM tb_User WHERE userId = #{userId}-->
+    <!--</select>-->
+
+    <!--<delete id="deleteUser">-->
+    <!--DELETE FROM tb_User WHERE userId = #{userId}-->
+    <!--</delete>-->
+
+
+</mapper>

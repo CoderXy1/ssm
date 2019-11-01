@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="shortcut icon" href="../../images/favicon.ico" />
+    <title>Add Books</title>
+    </head>
+<body>
+
+<div class="list-group" ng-app="addBookApp" ng-controller="addBookCtrl">
+    <a class="list-group-item active">图书录入</a>
+    <p>{{tip}}</p>
+    <div id='main' style="width:500px;height:400px;margin:0 auto;padding-top: 100px">
+        <div class="col-lg-6">
+                <div class="input-group">
+                    <span class="input-group-addon">书名</span> <input ng-model='bookName'
+                                                                     type="text" class="form-control" style="width: 400px;" required>
+                </div>
+                <div class="input-group" style='margin-top: 10px'>
+                    <span class="input-group-addon">作者</span> <input ng-model='author'
+                                                                     type="text" class="form-control" style="width: 400px;" required>
+                </div>
+                <div class="input-group" style='margin-top: 10px'>
+                    <span class="input-group-addon">出版社</span> <input ng-model='publishing'
+                                                                      type="text" class="form-control" style="width: 380px;" required>
+                </div>
+                <div class="input-group" style='margin-top: 10px'>
+                    <span class="input-group-addon">价格</span> <input ng-model='price'
+                                                                     type="number" class="form-control" style="width: 400px;" required>
+                </div>
+                <div class="input-group" style='margin-top: 10px'>
+                    <span class="input-group-addon">总数</span> <input ng-model='totalNumber'
+                                                                     type="number" class="form-control" style="width: 400px;" required>
+                </div>
+                <div class="input-group" style='margin-top: 10px'>
+                    <span class="input-group-addon">现存数</span> <input ng-model='havingNumber'
+                                                                      type="number" class="form-control" style="width: 380px;" required>
+                </div>
+                <div class="input-group" style='margin-top: 10px'>
+                    <span class="input-group-addon">评分</span> <input ng-model='bookScore'
+                                                                     type="number" max="10" min="1" class="form-control" style="width: 380px;" required>
+                </div>
+                <div class="input-group" style='margin-top: 10px'>
+                    <span class="input-group-addon">类型</span><select ng-model='typeId' class="form-control"
+                                                                     style="width: 400px;" required>
+                    <option ng-repeat="type in allTypes" value="{{type.typeId}}">{{type.typeName}}</option>
+                </select>
+                </div>
+                <div class="input-group" style='margin-top: 10px'>
+                    <span class="input-group-addon">图书图片链接</span> <input ng-model='bookPicPath'
+                                                                         type="text" class="form-control" style="width: 350px;" required>
+                </div>
+
+                <button class="btn btn-primary" style="width: 120px;margin: 0 auto;margin-top: 20px;margin-left: 120px" type="button" ng-click="addBook()">添加</button>
+        </div>
+    </div>
+</div>
+
+<script src="../../js/jquery2.2.2.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/angular.min.js"></script>
+<script src="../../js/addBook.js"></script>
+
+</body>
+</html>

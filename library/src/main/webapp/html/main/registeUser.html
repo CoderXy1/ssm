@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset='utf-8'/>
+    <title>registe</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="shortcut icon" href="../../images/favicon.ico"/>
+</head>
+<body>
+
+<div ng-app="registeUserApp" ng-controller="registeUserController">
+    <p>{{tip}}</p>
+
+    <div style="width:500px;height:400px;margin:0 auto;padding-top: 100px">
+        <div class="col-lg-6">
+            <form name="myForm">
+                <div class="input-group">
+                    <span class="input-group-addon">用户</span><input class="form-control" style="width: 300px"
+                                                                    onkeyup="this.value=this.value.replace(/[^a-z0-9_]/g,'');"
+                                                                    name="userNameRe" type="text" ng-model="userNameRe"
+                                                                    required>
+                    <span class="input-group-addon" style="color: red"
+                          ng-show="myForm.userNameRe.$error.required">请输入用户名</span>
+                </div>
+
+                <div class="input-group" style='margin-top: 10px'>
+                    <span class="input-group-addon">密码</span><input class="form-control" style="width: 300px"
+                                                                    name="userPassword" type="password"
+                                                                    ng-model="userPassword" required>
+                    <span class="input-group-addon" style="color: red" ng-show="myForm.userPassword.$error.required">请输入密码</span>
+                </div>
+
+                <div class="input-group" style='margin-top: 10px'>
+                    <span class="input-group-addon">确认密码</span><input class="form-control" style="width: 300px"
+                                                                      name="userPasswordRe" type="password"
+                                                                      ng-model="userPasswordRe" required>
+                    <span class="input-group-addon" style="color: red"
+                          ng-show="userPasswordRe != userPassword">密码不相同</span>
+                </div>
+
+                <div class="input-group" style='margin-top: 10px'>
+                    <span class="input-group-addon">性别</span>
+                    <label class="radio-inline" style="margin-left: 20px">
+                        <input type="radio" name="sexCheck" ng-model="sex" value="男" checked>男
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="sexCheck" ng-model="sex" value="女">女
+                    </label>
+                </div>
+
+                <div class="input-group" style='margin-top: 10px'>
+                    <span class="input-group-addon">电话</span><input class="form-control" style="width: 300px"
+                                                                    name="phone" type="number" ng-minlength="8"
+                                                                    ng-maxlength="11"
+                                                                    ng-model="phone" required>
+                    <span class="input-group-addon" style="color: red"
+                          ng-show="myForm.phone.$error.required">请输入电话</span>
+                    <span class="input-group-addon" style="color: red"
+                          ng-show="myForm.phone.$error.minlength || myForm.phone.$error.maxlength">请输入正确的格式</span>
+                </div>
+
+                <div class="input-group" style='margin-top: 10px'>
+                    <span class="input-group-addon">地址</span>
+                    <span class="input-group-addon">
+                        <select class="form-control" style="width: 120px;"
+                                ng-model="provinceInfo"
+                                ng-options="province.provinceName for province in provinces"
+                                ng-change="changeCity(provinceInfo.provinceId)">
+                        <option value="">----省份----</option>
+                    </select>
+                    </span>
+                    <span class="input-group-addon">
+                        <select class="form-control" ng-model="cityInfo" style="width: 120px;margin-left: 20px;"
+                                ng-options="city.cityName for city in citys">
+                            <option value="">----城市----</option>
+                        </select>
+                    </span>
+                </div>
+
+                <div class="input-group" style='margin-top: 10px'>
+                    <span class="input-group-addon">权限</span>
+                    <select class="form-control" style="width: 300px;"
+                            ng-model="power">
+                        <option value="">----权限选择----</option>
+                        <option value="普通用户">普通用户</option>
+                        <option value="管理员">管理员</option>
+                    </select>
+                </div>
+
+            </form>
+            <br/>
+
+
+            <button class="btn btn-primary" style="width: 120px;margin: 0 auto;margin-top: 20px;margin-left: 120px"
+                    type="button" ng-click="registeUser()" ng-disabled="myForm.userNameRe.$invalid
+                    || myForm.userPassword.$invalid || myForm.userPasswordRe.$invalid || myForm.phone.$invalid">注册
+            </button>
+        </div>
+    </div>
+
+</div>
+
+</body>
+
+<script src="../../js/jquery2.2.2.min.js"></script>
+<script src="../../js/angular.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/registeUser.js"></script>
+
+</html>
