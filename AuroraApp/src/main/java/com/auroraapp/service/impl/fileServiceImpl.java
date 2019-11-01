@@ -1,0 +1,45 @@
+package com.auroraapp.service.impl;
+
+import com.auroraapp.mapper.FileMapper;
+import com.auroraapp.model.File;
+import com.auroraapp.service.IFileService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+
+@Service
+public class fileServiceImpl implements IFileService {
+
+    @Resource
+    private FileMapper fileMapper;
+
+    @Override
+    public int deleteByPrimaryKey(String fileid) {
+        return fileMapper.deleteByPrimaryKey(fileid);
+    }
+
+    @Override
+    public int insert(File record) {
+        return fileMapper.insert(record);
+    }
+
+    @Override
+    public int insertSelective(File record) {
+        return fileMapper.insertSelective(record);
+    }
+
+    @Override
+    public File selectByPrimaryKey(String fileid) {
+        return fileMapper.selectByPrimaryKey(fileid);
+    }
+
+    @Override
+    public int updateByPrimaryKeySelective(File record) {
+        return fileMapper.updateByPrimaryKeySelective(record);
+    }
+
+    @Override
+    public int updateByPrimaryKey(File record) {
+        return fileMapper.updateByPrimaryKey(record);
+    }
+}

@@ -1,0 +1,16 @@
+<ion-content style="margin-top: 85px">
+    <ion-refresher pulling-text="下拉刷新" on-refresh="onRefresh()"></ion-refresher>
+
+    <ion-list>
+        <ion-item ng-repeat="journal in journalList">
+
+            <!--缩略图-->
+            <a class="item item-thumbnail-left" href="#">
+                <img ng-src="data:image/jpg;base64,{{journal.file}}" style="object-fit: cover">
+                <h2>Weezer</h2>
+                <p>Blue Album</p>
+            </a>
+        </ion-item>
+    </ion-list>
+</ion-content>
+

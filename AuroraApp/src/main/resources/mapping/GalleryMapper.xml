@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.auroraapp.mapper.GalleryMapper" >
+  <resultMap id="BaseResultMap" type="com.auroraapp.model.Gallery" >
+    <id column="galleryId" property="galleryid" jdbcType="VARCHAR" />
+    <result column="galleryName" property="galleryname" jdbcType="VARCHAR" />
+    <result column="fileId" property="fileid" jdbcType="VARCHAR" />
+    <result column="putDate" property="putdate" jdbcType="TIMESTAMP" />
+    <result column="galleryDescribe" property="gallerydescribe" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    galleryId, galleryName, fileId, putDate, galleryDescribe
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_gallery
+    where galleryId = #{galleryid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_gallery
+    where galleryId = #{galleryid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.auroraapp.model.Gallery" >
+    insert into tb_gallery (galleryId, galleryName, fileId, putDate, galleryDescribe)
+    values (#{galleryid,jdbcType=VARCHAR}, #{galleryname,jdbcType=VARCHAR}, #{fileid,jdbcType=VARCHAR}, 
+      #{putdate,jdbcType=TIMESTAMP}, #{galleryDescribe,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.auroraapp.model.Gallery" >
+    insert into tb_gallery
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="galleryid != null" >
+        galleryId,
+      </if>
+      <if test="galleryname != null" >
+        galleryName,
+      </if>
+      <if test="fileid != null" >
+        fileId,
+      </if>
+      <if test="putdate != null" >
+        putDate,
+      </if>
+      <if test="galleryDescribe != null" >
+        galleryDescribe,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="galleryid != null" >
+        #{galleryid,jdbcType=VARCHAR},
+      </if>
+      <if test="galleryname != null" >
+        #{galleryname,jdbcType=VARCHAR},
+      </if>
+      <if test="fileid != null" >
+        #{fileid,jdbcType=VARCHAR},
+      </if>
+      <if test="putdate != null" >
+        #{putdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="galleryDescribe != null" >
+        #{galleryDescribe,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.auroraapp.model.Gallery" >
+    update tb_gallery
+    <set >
+      <if test="galleryname != null" >
+        galleryName = #{galleryname,jdbcType=VARCHAR},
+      </if>
+      <if test="fileid != null" >
+        fileId = #{fileid,jdbcType=VARCHAR},
+      </if>
+      <if test="putdate != null" >
+        putDate = #{putdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="galleryDescribe != null" >
+        galleryDescribe = #{galleryDescribe,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where galleryId = #{galleryid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.auroraapp.model.Gallery" >
+    update tb_gallery
+    set galleryName = #{galleryname,jdbcType=VARCHAR},
+      fileId = #{fileid,jdbcType=VARCHAR},
+      putDate = #{putdate,jdbcType=TIMESTAMP},
+      galleryDescribe = #{galleryDescribe,jdbcType=VARCHAR}
+    where galleryId = #{galleryid,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectAll" resultType="java.util.Map">
+    select * from tb_gallery g,tb_file f
+      where f.fileId = g.fileId
+    order by g.putDate desc limit #{pageIndex},#{pageSize}
+  </select>
+
+</mapper>
