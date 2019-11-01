@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aurora.mapper.JournalMapper">
+    <resultMap id="BaseResultMap" type="com.aurora.model.Journal">
+        <id column="journalId" property="journalid" jdbcType="VARCHAR"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="putDate" property="putdate" jdbcType="TIMESTAMP"/>
+        <result column="weather" property="weather" jdbcType="VARCHAR"/>
+        <result column="temperature" property="temperature" jdbcType="INTEGER"/>
+        <result column="fileId" property="fileid" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    journalId, title, content, putDate, weather, temperature, fileId
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_journal
+        where journalId = #{journalid,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_journal
+    where journalId = #{journalid,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.aurora.model.Journal">
+    insert into tb_journal (journalId, title, content, 
+      putDate, weather, temperature, 
+      fileId)
+    values (#{journalid,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{putdate,jdbcType=TIMESTAMP}, #{weather,jdbcType=VARCHAR}, #{temperature,jdbcType=INTEGER}, 
+      #{fileid,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.aurora.model.Journal">
+        insert into tb_journal
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="journalid != null">
+                journalId,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            <if test="putdate != null">
+                putDate,
+            </if>
+            <if test="weather != null">
+                weather,
+            </if>
+            <if test="temperature != null">
+                temperature,
+            </if>
+            <if test="fileid != null">
+                fileId,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="journalid != null">
+                #{journalid,jdbcType=VARCHAR},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="putdate != null">
+                #{putdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="weather != null">
+                #{weather,jdbcType=VARCHAR},
+            </if>
+            <if test="temperature != null">
+                #{temperature,jdbcType=INTEGER},
+            </if>
+            <if test="fileid != null">
+                #{fileid,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.aurora.model.Journal">
+        update tb_journal
+        <set>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="putdate != null">
+                putDate = #{putdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="weather != null">
+                weather = #{weather,jdbcType=VARCHAR},
+            </if>
+            <if test="temperature != null">
+                temperature = #{temperature,jdbcType=INTEGER},
+            </if>
+            <if test="fileid != null">
+                fileId = #{fileid,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where journalId = #{journalid,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.aurora.model.Journal">
+    update tb_journal
+    set title = #{title,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      putDate = #{putdate,jdbcType=TIMESTAMP},
+      weather = #{weather,jdbcType=VARCHAR},
+      temperature = #{temperature,jdbcType=INTEGER},
+      fileId = #{fileid,jdbcType=VARCHAR}
+    where journalId = #{journalid,jdbcType=VARCHAR}
+  </update>
+
+    <select id="selectAll" resultType="java.util.Map">
+    select * from tb_journal j,tb_file f
+      where f.fileId = j.fileId
+    order by j.putDate desc limit #{pageIndex},#{pageSize}
+  </select>
+
+</mapper>

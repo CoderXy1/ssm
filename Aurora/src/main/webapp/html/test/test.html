@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--<meta http-equiv="Content-Type" content="multipart/form-data; charset=utf-8"/>-->
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-app="testApp" ng-controller="testCtrl">
+<div>
+    <div>
+        <img ng-src="data:image/jpg;base64,{{imgUrl}}"/>
+        <input id="fileUpload" type="file"  file-model="myFile"/>
+        <button ng-click="insert('../../file/insertImage')">上传图片</button><br>
+        <button ng-click="insert('../../file/insertFile')">上传文件</button><br>
+        <button ng-click="showFile()">下载文件</button><br>
+        <button ng-click="showImage()">显示图片</button><br>
+    </div>
+
+    <div>
+        <button ng-click="insertGallery()">添加相册</button><br>
+    </div>
+
+</div>
+
+<script src="../../js/jquery/jquery-2.1.3.min.js"></script>
+<script src="../../js/angular/angular.min.js"></script>
+<script src="../../js/angular/angular-file-upload.min.js"></script>
+<script src="test.js"></script>
+
+</body>
+</html>

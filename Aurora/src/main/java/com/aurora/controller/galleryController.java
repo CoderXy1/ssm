@@ -1,0 +1,44 @@
+package com.aurora.controller;
+
+
+import com.aurora.model.Gallery;
+import com.aurora.model.Journal;
+import com.aurora.service.IGalleryService;
+import com.aurora.service.IJournalService;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.annotation.Resource;
+import java.io.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+@Controller
+@RequestMapping("/gallery")
+public class galleryController {
+
+    @Resource
+    private IGalleryService galleryService;
+
+    @RequestMapping("/insertGallery")
+    @ResponseBody
+    public int insertGallery(@RequestParam("galleryid") String galleryid,@RequestParam("galleryname") String galleryname,@RequestParam("fileid") String fileid,@RequestParam("galleryDescribe")String galleryDescribe) {
+        Gallery gallery = new Gallery();
+        gallery.setGalleryid(galleryid);
+        gallery.setGalleryname(galleryname);
+        gallery.setFileid(fileid);
+        gallery.setPutdate(new Date());
+        gallery.setGalleryDescribe(galleryDescribe);
+        return galleryService.insert(gallery);
+    }
+
+    @RequestMapping("/selectAll")
+    @ResponseBody
+    public List<Map<String,Object>> selectAll(@RequestParam("pageIndex") int pageIndex,@RequestParam("pageSize")int pageSize) {
+        return galleryService.selectAll(pageIndex, pageSize);
+    }
+}
