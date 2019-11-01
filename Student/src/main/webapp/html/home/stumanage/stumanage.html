@@ -1,0 +1,141 @@
+<div style="width: 100%;">
+    <!-- Page Header-->
+    <header class="page-header" style="border-left:5px solid deeppink">
+        <div class="container-fluid">
+            <h3 class="no-margin-bottom">学生管理</h3>
+        </div>
+    </header>
+    <div style="width: 100%;background-color: white;border: 1px solid lightgray;margin-top: 10px;border-radius: 5px">
+
+        <div class="row" style="height:50px;margin-top:20px;margin-left: 50px">
+            <div class="row col-md-4 font-weight-light">
+                <label class="form-control-label" style="line-height: 40px">学号 :&nbsp;&nbsp;</label>
+                <div class="form-group" style="width:60%">
+                    <input type="text" class="mr-3 form-control" ng-model="selectParams.stuId">
+                </div>
+            </div>
+            <div class="row col-md-4 font-weight-light">
+                <label class="form-control-label" style="line-height: 40px">姓名 :&nbsp;&nbsp;</label>
+                <div class="form-group" style="width:60%">
+                    <input type="text" class="mr-3 form-control" ng-model="selectParams.stuName">
+                </div>
+            </div>
+            <div class="row col-md-4 font-weight-light">
+                <label class="form-control-label" style="line-height: 40px">性别 :&nbsp;&nbsp;</label>
+                <div class="col-sm-9" style="width:60%">
+                    <select name="account" class="form-control mb-3" ng-model="selectParams.sex" >
+                        <option value="">--全部--</option>
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="height:50px;margin-top:10px;margin-left: 50px">
+            <div class="row col-md-4 font-weight-light">
+                <label class="form-control-label" style="line-height: 40px">籍贯 :&nbsp;&nbsp;</label>
+                <div class="form-group" style="width:60%">
+                    <input type="text" class="mr-3 form-control" ng-model="selectParams.origo">
+                </div>
+            </div>
+            <div class="row col-md-4 font-weight-light">
+                <label class="form-control-label" style="line-height: 40px">院系:</label>
+                <div class="col-sm-9">
+                    <select name="account" class="form-control mb-3" ng-model="selectParams.depId" ng-options="dep.depid as dep.depname for dep in info.depList"
+                            ng-change="selectMajorByDep(selectParams.depId)" style="width:90%">
+                        <option value="">--全部--</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row col-md-4 font-weight-light">
+                <label class="form-control-label" style="line-height: 40px">专业 :&nbsp;&nbsp;</label>
+                <div class="col-sm-9" style="width:60%">
+                    <select name="account" class="form-control mb-3" ng-model="selectParams.majorName" ng-options="major.majorname as major.majorname for major in info.majorList">
+                        <option value="">--全部--</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="height:50px;margin-top:10px;margin-left: 50px">
+            <div class="row col-md-4 font-weight-light">
+                <label class="form-control-label" style="line-height: 40px">年级:</label>
+                <div class="col-sm-9">
+                    <select name="account" class="form-control mb-3" ng-model="selectParams.grade" style="width:90%">
+                        <option value="">--全部--</option>
+                        <option value="2015级">2015级</option>
+                        <option value="2016级">2016级</option>
+                        <option value="2017级">2017级</option>
+                        <option value="2018级">2018级</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row col-md-4 font-weight-light">
+                <label class="form-control-label" style="line-height: 40px">班级:</label>
+                <div class="col-sm-9">
+                    <select name="account" class="form-control mb-3" ng-model="selectParams.className" style="width:90%">
+                        <option value="">--全部--</option>
+                        <option value="1班">1班</option>
+                        <option value="2班">2班</option>
+                        <option value="3班">3班</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-primary" ng-click="loadData()">查询</button>
+                <button class="btn btn-primary" ng-click="edit('')" style="margin-left: 20px">新增</button>
+            </div>
+        </div>
+
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">编号</th>
+                <th scope="col">学号</th>
+                <th scope="col">姓名</th>
+                <th scope="col">性别</th>
+                <th scope="col">籍贯</th>
+                <th scope="col">身份证</th>
+                <th scope="col">联系电话</th>
+                <th scope="col">院系</th>
+                <th scope="col">专业</th>
+                <th scope="col">班级</th>
+                <th scope="col">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="stu in allStudents">
+                <th scope="row">{{$index+1}}</th>
+                <td>{{stu.stuid}}</td>
+                <td>{{stu.stuname}}</td>
+                <td>{{stu.sex}}</td>
+                <td>{{stu.origo}}</td>
+                <td>{{stu.idnumber}}</td>
+                <td>{{stu.phonenumber}}</td>
+                <td>{{stu.depname}}</td>
+                <td>{{stu.majorname}}</td>
+                <td>{{stu.grade}}{{stu.classname}}</td>
+                <td><button class="btn btn-success btn-sm" ng-click="edit(stu.stuid)">修改</button> <button class="btn btn-danger btn-sm" ng-click="delete(stu.stuid)">删除</button></td>
+            </tr>
+            </tbody>
+        </table>
+
+
+        <ul uib-pagination class="pagination-md pagination-custom"
+            total-items="selectParams.totalNum"
+            first-text="«"
+            last-text="»"
+            previous-text="上一页"
+            next-text="下一页"
+            force-ellipses="true"
+            max-size="5"
+            ng-change="loadData()"
+            rotate="true"
+            ng-model="selectParams.pageNum"
+            items-per-page="selectParams.pageSize"
+            class="pagination-sm page-right" boundary-links="true" boundary-link-numbers="true" ></ul>
+
+    </div>
+
+</div>

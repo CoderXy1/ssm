@@ -1,0 +1,60 @@
+<div style="width: 100%;">
+    <style>
+        .courseBack {
+            background-color: #5bc0de;
+            color: white;
+        }
+    </style>
+    <!-- Page Header-->
+    <header class="page-header" style="border-left:5px solid deepskyblue">
+        <div class="container-fluid">
+            <h3 class="no-margin-bottom">课表</h3>
+        </div>
+    </header>
+    <div style="width: 100%;background-color: white;border: 1px solid lightgray;margin-top: 10px;border-radius: 5px">
+
+        <!--{{allCourseInfo}}-->
+
+        <table class="table table-bordered font-weight-light" style="text-align: center;">
+            <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">星期一</th>
+                <th scope="col">星期二</th>
+                <th scope="col">星期三</th>
+                <th scope="col">星期四</th>
+                <th scope="col">星期五</th>
+                <th scope="col">星期六</th>
+                <th scope="col">星期天</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="weekCourse in allCourseInfo">
+                <th rowspan="4" width="12.5%" height="200px" class="table-success" scope="row"
+                    style="line-height: 200px" ng-show="$index == 0">上午
+                </th>
+                <th rowspan="4" width="12.5%" height="200px" class="table-warning" scope="row"
+                    style="line-height: 200px" ng-show="$index == 4">下午
+                </th>
+                <th rowspan="4" width="12.5%" height="150px" scope="row"
+                    style="line-height: 150px;background-color: lightgray" ng-show="$index == 8">晚上
+                </th>
+                <td ng-repeat="course in weekCourse" height="25%" width="12.5%" style="line-height: 50px"
+                    ng-class="{'courseBack':course.coursename != null}">
+                    <span data-toggle="tooltip" data-placement="left" data-html="true" title=""
+                          data-original-title="课程名 : {{course.coursename}}<br>教师 : {{course.teaname}}<br>教室 : {{course.classroom}}<br>简介 : {{course.courseinfo}}"
+                          tooltip>{{course.coursename}}</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+    </script>
+
+</div>
+

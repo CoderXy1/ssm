@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Student.mapper.StucourseMapper">
+    <resultMap id="BaseResultMap" type="com.Student.model.Stucourse">
+        <id column="scId" property="scid" jdbcType="INTEGER"/>
+        <result column="stuId" property="stuid" jdbcType="VARCHAR"/>
+        <result column="courseId" property="courseid" jdbcType="VARCHAR"/>
+        <result column="week" property="week" jdbcType="INTEGER"/>
+        <result column="classRoom" property="classroom" jdbcType="VARCHAR"/>
+        <result column="pitchNum" property="pitchnum" jdbcType="INTEGER"/>
+        <result column="totalWeeks" property="totalweeks" jdbcType="INTEGER"/>
+        <result column="score" property="score" jdbcType="INTEGER"/>
+        <result column="scDate" property="scdate" jdbcType="TIMESTAMP"/>
+        <result column="isPass" property="ispass" jdbcType="VARCHAR"/>
+        <result column="isRebulid" property="isrebulid" jdbcType="VARCHAR"/>
+        <result column="term" property="term" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    scId, stuId, courseId, week, classRoom, pitchNum, totalWeeks, score, scDate, isPass, 
+    isRebulid, term
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_stucourse
+        where scId = #{scid,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_stucourse
+    where scId = #{scid,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.Student.model.Stucourse">
+    insert into tb_stucourse (scId, stuId, courseId, 
+      week, classRoom, pitchNum, 
+      totalWeeks, score, scDate, 
+      isPass, isRebulid, term
+      )
+    values (#{scid,jdbcType=INTEGER}, #{stuid,jdbcType=VARCHAR}, #{courseid,jdbcType=VARCHAR}, 
+      #{week,jdbcType=INTEGER}, #{classroom,jdbcType=VARCHAR}, #{pitchnum,jdbcType=INTEGER}, 
+      #{totalweeks,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, #{scdate,jdbcType=TIMESTAMP}, 
+      #{ispass,jdbcType=VARCHAR}, #{isrebulid,jdbcType=VARCHAR}, #{term,jdbcType=VARCHAR}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.Student.model.Stucourse">
+        insert into tb_stucourse
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="scid != null">
+                scId,
+            </if>
+            <if test="stuid != null">
+                stuId,
+            </if>
+            <if test="courseid != null">
+                courseId,
+            </if>
+            <if test="week != null">
+                week,
+            </if>
+            <if test="classroom != null">
+                classRoom,
+            </if>
+            <if test="pitchnum != null">
+                pitchNum,
+            </if>
+            <if test="totalweeks != null">
+                totalWeeks,
+            </if>
+            <if test="score != null">
+                score,
+            </if>
+            <if test="scdate != null">
+                scDate,
+            </if>
+            <if test="ispass != null">
+                isPass,
+            </if>
+            <if test="isrebulid != null">
+                isRebulid,
+            </if>
+            <if test="term != null">
+                term,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="scid != null">
+                #{scid,jdbcType=INTEGER},
+            </if>
+            <if test="stuid != null">
+                #{stuid,jdbcType=VARCHAR},
+            </if>
+            <if test="courseid != null">
+                #{courseid,jdbcType=VARCHAR},
+            </if>
+            <if test="week != null">
+                #{week,jdbcType=INTEGER},
+            </if>
+            <if test="classroom != null">
+                #{classroom,jdbcType=VARCHAR},
+            </if>
+            <if test="pitchnum != null">
+                #{pitchnum,jdbcType=INTEGER},
+            </if>
+            <if test="totalweeks != null">
+                #{totalweeks,jdbcType=INTEGER},
+            </if>
+            <if test="score != null">
+                #{score,jdbcType=INTEGER},
+            </if>
+            <if test="scdate != null">
+                #{scdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="ispass != null">
+                #{ispass,jdbcType=VARCHAR},
+            </if>
+            <if test="isrebulid != null">
+                #{isrebulid,jdbcType=VARCHAR},
+            </if>
+            <if test="term != null">
+                #{term,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.Student.model.Stucourse">
+        update tb_stucourse
+        <set>
+            <if test="stuid != null">
+                stuId = #{stuid,jdbcType=VARCHAR},
+            </if>
+            <if test="courseid != null">
+                courseId = #{courseid,jdbcType=VARCHAR},
+            </if>
+            <if test="week != null">
+                week = #{week,jdbcType=INTEGER},
+            </if>
+            <if test="classroom != null">
+                classRoom = #{classroom,jdbcType=VARCHAR},
+            </if>
+            <if test="pitchnum != null">
+                pitchNum = #{pitchnum,jdbcType=INTEGER},
+            </if>
+            <if test="totalweeks != null">
+                totalWeeks = #{totalweeks,jdbcType=INTEGER},
+            </if>
+            <if test="score != null">
+                score = #{score,jdbcType=INTEGER},
+            </if>
+            <if test="scdate != null">
+                scDate = #{scdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="ispass != null">
+                isPass = #{ispass,jdbcType=VARCHAR},
+            </if>
+            <if test="isrebulid != null">
+                isRebulid = #{isrebulid,jdbcType=VARCHAR},
+            </if>
+            <if test="term != null">
+                term = #{term,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where scId = #{scid,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.Student.model.Stucourse">
+    update tb_stucourse
+    set stuId = #{stuid,jdbcType=VARCHAR},
+      courseId = #{courseid,jdbcType=VARCHAR},
+      week = #{week,jdbcType=INTEGER},
+      classRoom = #{classroom,jdbcType=VARCHAR},
+      pitchNum = #{pitchnum,jdbcType=INTEGER},
+      totalWeeks = #{totalweeks,jdbcType=INTEGER},
+      score = #{score,jdbcType=INTEGER},
+      scDate = #{scdate,jdbcType=TIMESTAMP},
+      isPass = #{ispass,jdbcType=VARCHAR},
+      isRebulid = #{isrebulid,jdbcType=VARCHAR},
+      term = #{term,jdbcType=VARCHAR}
+    where scId = #{scid,jdbcType=INTEGER}
+  </update>
+
+    <select id="selectStucourseByWeekAndPitch" resultType="com.Student.model.StuCourseDepTeaMajor">
+        select * from tb_student s,tb_major m,tb_department d,tb_stucourse sc,tb_teacher t,tb_course c where
+            sc.week = #{week} and sc.pitchNum = #{pitchNum} and sc.stuId = #{stuId}
+            and s.stuId = sc.stuId and sc.courseId = c.courseId and s.majorId = m.majorId and m.depId = d.depId and c.teaId = t.teaId
+  </select>
+
+    <select id="selectStucourseNumByWeek" resultType="int">
+        select count(*) from tb_stucourse sc where week = #{week} and stuId = #{stuId} and term = #{term}
+  </select>
+
+    <select id="selectHasChooseClass" resultType="int">
+        select count(*) from tb_stucourse where stuId = #{stuId} and courseId = #{courseId} and term = #{term}
+  </select>
+
+    <select id="selectMaxStucourseId" resultType="int">
+        SELECT IFNULL (MAX(scId), 0) FROM tb_stucourse
+  </select>
+
+    <delete id="deleteStuCorse">
+        delete from tb_stucourse where stuId = #{stuId} and courseId = #{courseId} and term = #{term}
+    </delete>
+
+    <insert id="insertStuCourse">
+        insert into tb_stucourse
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="scId != null">
+                scId,
+            </if>
+            <if test="stuId != null">
+                stuId,
+            </if>
+            <if test="courseId != null">
+                courseId,
+            </if>
+            <if test="week != null">
+                week,
+            </if>
+            <if test="classRoom != null">
+                classRoom,
+            </if>
+            <if test="pitchNum != null">
+                pitchNum,
+            </if>
+            <if test="totalWeeks != null">
+                totalWeeks,
+            </if>
+            <if test="score != null">
+                score,
+            </if>
+            <if test="scDate != null">
+                scDate,
+            </if>
+            <if test="isPass != null">
+                isPass,
+            </if>
+            <if test="isRebulid != null">
+                isRebulid,
+            </if>
+            <if test="term != null">
+                term,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="scId != null">
+                #{scId,jdbcType=INTEGER},
+            </if>
+            <if test="stuId != null">
+                #{stuId,jdbcType=VARCHAR},
+            </if>
+            <if test="courseId != null">
+                #{courseId,jdbcType=VARCHAR},
+            </if>
+            <if test="week != null">
+                #{week,jdbcType=INTEGER},
+            </if>
+            <if test="classRoom != null">
+                #{classRoom,jdbcType=VARCHAR},
+            </if>
+            <if test="pitchNum != null">
+                #{pitchNum,jdbcType=INTEGER},
+            </if>
+            <if test="totalWeeks != null">
+                #{totalWeeks,jdbcType=INTEGER},
+            </if>
+            <if test="score != null">
+                #{score,jdbcType=INTEGER},
+            </if>
+            <if test="scDate != null">
+                #{scDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isPass != null">
+                #{isPass,jdbcType=VARCHAR},
+            </if>
+            <if test="isRebulid != null">
+                #{isRebulid,jdbcType=VARCHAR},
+            </if>
+            <if test="term != null">
+                #{term,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+</mapper>

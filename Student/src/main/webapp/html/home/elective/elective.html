@@ -1,0 +1,98 @@
+<div style="width: 100%;">
+    <!-- Page Header-->
+    <header class="page-header" style="border-left:5px solid #1c669c">
+        <div class="container-fluid">
+            <h3 class="no-margin-bottom">选课</h3>
+        </div>
+    </header>
+    <div style="width: 100%;height: 800px;background-color: white;border: 1px solid lightgray;margin-top: 10px;border-radius: 5px">
+
+        <form name="myForm" class="form-horizontal">
+
+            <div class="row" style="height:50px;margin-top:20px;margin-left: 50px">
+                <div class="row col-md-4 font-weight-light">
+                    <label class="form-control-label" style="line-height: 40px">课程名称 :&nbsp;&nbsp;</label>
+                    <div class="form-group" style="width:60%">
+                        <input name="stuname" type="text" class="mr-3 form-control"
+                               ng-model="selectCourseInfo.courseName">
+                    </div>
+                </div>
+                <div class="row col-md-4 font-weight-light">
+                    <label class="form-control-label" style="line-height: 40px">院系 :&nbsp;&nbsp;</label>
+                    <div class="col-sm-9">
+                        <select name="sex" class="form-control mb-3" ng-model="selectCourseInfo.depId" ng-options="dep.depid as dep.depname for dep in depList"
+                                style="width:85%" ng-change="selectTeaByDep(selectCourseInfo.depId)">
+                            <option value="" selected>--全部--</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row col-md-4 font-weight-light">
+                    <label class="form-control-label" style="line-height: 40px">教师 :&nbsp;&nbsp;</label>
+                    <div class="form-group" style="width:60%">
+                        <select name="sex" class="form-control mb-3" ng-model="selectCourseInfo.teaId" ng-options="tea.teaid as tea.teaname for tea in teaList"
+                                style="width:85%">
+                            <option value="" selected>--全部--</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="height:50px;margin-top:20px;margin-left: 50px">
+                <div class="col-md-4 font-weight-light"></div>
+                <div class="col-md-4 font-weight-light"></div>
+                <div class="col-md-4 font-weight-light">
+                    <button class="btn btn-primary" ng-click="loadData()">查询课程</button>
+                </div>
+            </div>
+
+
+        </form>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">编号</th>
+                <th scope="col">课程Id</th>
+                <th scope="col">课程名</th>
+                <th scope="col">课程描述</th>
+                <th scope="col">教师</th>
+                <th scope="col">院系</th>
+                <th scope="col" style="text-align: center">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--{{allCourseInfo}}-->
+            <tr ng-repeat="course in allCourseInfo">
+                <th scope="row">{{$index+1}}</th>
+                <td>{{course.courseId}}</td>
+                <td>{{course.courseName}}</td>
+                <td><span style='width:200px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;'
+                          title="{{course.courseInfo}}">{{course.courseInfo}}</span></td>
+                <td>{{course.teaName}}</td>
+                <td>{{course.depName}}</td>
+                <td style="text-align: center">
+                    <button class="btn btn-success btn-sm" ng-if="course.isSelect == 0" ng-click="insertStucourse(course.courseId,'2019上学期')">选课</button>
+                    <button class="btn btn-danger btn-sm" ng-if="course.isSelect > 0" ng-click="deleteStucourse(course.courseId,'2019上学期')">取消</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <ul uib-pagination class="pagination-md pagination-custom"
+            total-items="selectCourseInfo.totalNum"
+            first-text="«"
+            last-text="»"
+            previous-text="上一页"
+            next-text="下一页"
+            force-ellipses="true"
+            max-size="5"
+            ng-change="loadData()"
+            rotate="true"
+            ng-model="selectCourseInfo.pageNum"
+            items-per-page="selectCourseInfo.pageSize"
+            class="pagination-sm page-right" boundary-links="true" boundary-link-numbers="true" ></ul>
+
+        <!--<p>{{tip}}</p>-->
+
+    </div>
+
+</div>

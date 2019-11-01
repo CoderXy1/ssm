@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Student.mapper.StudentMapper">
+    <resultMap id="BaseResultMap" type="com.Student.model.Student">
+        <id column="stuId" property="stuid" jdbcType="VARCHAR"/>
+        <result column="stuName" property="stuname" jdbcType="VARCHAR"/>
+        <result column="stuPassword" property="stupassword" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="VARCHAR"/>
+        <result column="birthday" property="birthday" jdbcType="DATE"/>
+        <result column="birthPlace" property="birthplace" jdbcType="VARCHAR"/>
+        <result column="origo" property="origo" jdbcType="VARCHAR"/>
+        <result column="IdNumber" property="idnumber" jdbcType="VARCHAR"/>
+        <result column="nation" property="nation" jdbcType="VARCHAR"/>
+        <result column="nationality" property="nationality" jdbcType="VARCHAR"/>
+        <result column="phoneNumber" property="phonenumber" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="grade" property="grade" jdbcType="VARCHAR"/>
+        <result column="className" property="classname" jdbcType="VARCHAR"/>
+        <result column="majorId" property="majorid" jdbcType="INTEGER"/>
+        <result column="power" property="power" jdbcType="VARCHAR"/>
+        <result column="picPath" property="picpath" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    stuId, stuName, stuPassword, sex, birthday, birthPlace, origo, IdNumber, nation, 
+    nationality, phoneNumber, address, grade, className, majorId, power, picPath
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_student
+        where stuId = #{stuid,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_student
+    where stuId = #{stuid,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.Student.model.Student">
+    insert into tb_student (stuId, stuName, stuPassword, 
+      sex, birthday, birthPlace, 
+      origo, IdNumber, nation, 
+      nationality, phoneNumber, address, 
+      grade, className, majorId, 
+      power, picPath)
+    values (#{stuid,jdbcType=VARCHAR}, #{stuname,jdbcType=VARCHAR}, #{stupassword,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{birthplace,jdbcType=VARCHAR},
+      #{origo,jdbcType=VARCHAR}, #{idnumber,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, 
+      #{nationality,jdbcType=VARCHAR}, #{phonenumber,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{grade,jdbcType=VARCHAR}, #{classname,jdbcType=VARCHAR}, #{majorid,jdbcType=INTEGER}, 
+      #{power,jdbcType=VARCHAR}, #{picpath,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.Student.model.Student">
+        insert into tb_student
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="stuid != null and stuid != ''">
+                stuId,
+            </if>
+            <if test="stuname != null and stuname != ''">
+                stuName,
+            </if>
+            <if test="stupassword != null and stupassword != ''">
+                stuPassword,
+            </if>
+            <if test="sex != null and sex != ''">
+                sex,
+            </if>
+            <if test="birthday != null">
+                birthday,
+            </if>
+            <if test="birthplace != null and birthplace != ''">
+                birthPlace,
+            </if>
+            <if test="origo != null and origo != ''">
+                origo,
+            </if>
+            <if test="idnumber != null and idnumber != ''">
+                IdNumber,
+            </if>
+            <if test="nation != null and nation != ''">
+                nation,
+            </if>
+            <if test="nationality != null and nationality != ''">
+                nationality,
+            </if>
+            <if test="phonenumber != null and phonenumber != ''">
+                phoneNumber,
+            </if>
+            <if test="address != null and address != ''">
+                address,
+            </if>
+            <if test="grade != null and grade != ''">
+                grade,
+            </if>
+            <if test="classname != null and classname != ''">
+                className,
+            </if>
+            <if test="majorid != null and majorid != ''">
+                majorId,
+            </if>
+            <if test="power != null and power != ''">
+                power,
+            </if>
+            <if test="picpath != null and picpath != ''">
+                picPath,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="stuid != null and stuid != ''">
+                #{stuid,jdbcType=VARCHAR},
+            </if>
+            <if test="stuname != null and stuname != ''">
+                #{stuname,jdbcType=VARCHAR},
+            </if>
+            <if test="stupassword != null and stupassword != ''">
+                #{stupassword,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null and sex != ''">
+                #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="birthday != null">
+                #{birthday,jdbcType=DATE},
+            </if>
+            <if test="birthplace != null and birthplace != ''">
+                #{birthplace,jdbcType=VARCHAR},
+            </if>
+            <if test="origo != null and origo != ''">
+                #{origo,jdbcType=VARCHAR},
+            </if>
+            <if test="idnumber != null and idnumber != ''">
+                #{idnumber,jdbcType=VARCHAR},
+            </if>
+            <if test="nation != null and nation != ''">
+                #{nation,jdbcType=VARCHAR},
+            </if>
+            <if test="nationality != null and nationality != ''">
+                #{nationality,jdbcType=VARCHAR},
+            </if>
+            <if test="phonenumber != null and phonenumber != ''">
+                #{phonenumber,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null and address != ''">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="grade != null and grade != ''">
+                #{grade,jdbcType=VARCHAR},
+            </if>
+            <if test="classname != null and classname != ''">
+                #{classname,jdbcType=VARCHAR},
+            </if>
+            <if test="majorid != null and majorid != ''">
+                #{majorid,jdbcType=INTEGER},
+            </if>
+            <if test="power != null and power != ''">
+                #{power,jdbcType=VARCHAR},
+            </if>
+            <if test="picpath != null and picpath != ''">
+                #{picpath,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.Student.model.Student">
+        update tb_student
+        <set>
+            <if test="stuname != null">
+                stuName = #{stuname,jdbcType=VARCHAR},
+            </if>
+            <if test="stupassword != null">
+                stuPassword = #{stupassword,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="birthday != null">
+                birthday = #{birthday,jdbcType=DATE},
+            </if>
+            <if test="birthplace != null">
+                birthPlace = #{birthplace,jdbcType=VARCHAR},
+            </if>
+            <if test="origo != null">
+                origo = #{origo,jdbcType=VARCHAR},
+            </if>
+            <if test="idnumber != null">
+                IdNumber = #{idnumber,jdbcType=VARCHAR},
+            </if>
+            <if test="nation != null">
+                nation = #{nation,jdbcType=VARCHAR},
+            </if>
+            <if test="nationality != null">
+                nationality = #{nationality,jdbcType=VARCHAR},
+            </if>
+            <if test="phonenumber != null">
+                phoneNumber = #{phonenumber,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="grade != null">
+                grade = #{grade,jdbcType=VARCHAR},
+            </if>
+            <if test="classname != null">
+                className = #{classname,jdbcType=VARCHAR},
+            </if>
+            <if test="majorid != null">
+                majorId = #{majorid,jdbcType=INTEGER},
+            </if>
+            <if test="power != null">
+                power = #{power,jdbcType=VARCHAR},
+            </if>
+            <if test="picpath != null">
+                picPath = #{picpath,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where stuId = #{stuid,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.Student.model.Student">
+    update tb_student
+    set stuName = #{stuname,jdbcType=VARCHAR},
+      stuPassword = #{stupassword,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      birthPlace = #{birthplace,jdbcType=VARCHAR},
+      origo = #{origo,jdbcType=VARCHAR},
+      IdNumber = #{idnumber,jdbcType=VARCHAR},
+      nation = #{nation,jdbcType=VARCHAR},
+      nationality = #{nationality,jdbcType=VARCHAR},
+      phoneNumber = #{phonenumber,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      grade = #{grade,jdbcType=VARCHAR},
+      className = #{classname,jdbcType=VARCHAR},
+      majorId = #{majorid,jdbcType=INTEGER},
+      power = #{power,jdbcType=VARCHAR},
+      picPath = #{picpath,jdbcType=VARCHAR}
+    where stuId = #{stuid,jdbcType=VARCHAR}
+  </update>
+
+    <select id="selectByIdAndPw" resultType="com.Student.model.StuMajorDep">
+        select * from tb_student,tb_major,tb_department where stuId = #{id} and stuPassword = #{password}
+          and tb_student.majorId = tb_major.majorId and tb_major.depId = tb_department.depId
+  </select>
+
+    <select id="selectStuByPage" resultType="com.Student.model.StuMajorDep">
+        select * from tb_student s,tb_major m,tb_department d where 1 = 1
+        <if test="stuId != null and stuId != ''">
+            and s.stuId like "%"#{stuId}"%"
+        </if>
+        <if test="stuName != null and stuName != ''">
+            and s.stuName like "%"#{stuName}"%"
+        </if>
+        <if test="sex != null and sex != ''">
+            and s.sex = #{sex}
+        </if>
+        <if test="origo != null and origo != ''">
+            and s.origo like "%"#{origo}"%"
+        </if>
+        <if test="depId != null and !depId.equals(0)">
+            and d.depId = #{depId}
+        </if>
+        <if test="majorName != null and majorName != ''">
+            and m.majorName = #{majorName}
+        </if>
+        <if test="grade != null and grade != ''">
+            and s.grade = #{grade}
+        </if>
+        <if test="className != null and className != ''">
+            and s.className = #{className}
+        </if>
+        and m.majorId = s.majorId and m.depId = d.depId LIMIT #{pageIndex},#{pageSize}
+    </select>
+
+    <select id="selectStuNumBySearch" resultType="int">
+        select count(*) from tb_student s,tb_major m,tb_department d where 1 = 1
+        <if test="stuId != null and stuId != ''">
+            and s.stuId like "%"#{stuId}"%"
+        </if>
+        <if test="stuName != null and stuName != ''">
+            and s.stuName like "%"#{stuName}"%"
+        </if>
+        <if test="sex != null and sex != ''">
+            and s.sex = #{sex}
+        </if>
+        <if test="origo != null and origo != ''">
+            and s.origo like "%"#{origo}"%"
+        </if>
+        <if test="depId != null and !depId.equals(0)">
+            and d.depId = #{depId}
+        </if>
+        <if test="majorName != null and majorName != ''">
+            and m.majorName = #{majorName}
+        </if>
+        <if test="grade != null and grade != ''">
+            and s.grade = #{grade}
+        </if>
+        <if test="className != null and className != ''">
+            and s.className = #{className}
+        </if>
+        and m.majorId = s.majorId and m.depId = d.depId
+    </select>
+
+    <update id="updateByStuId">
+        update tb_student
+        <set>
+            <if test="stuname != null and stuname != ''">
+                stuName = #{stuname,jdbcType=VARCHAR},
+            </if>
+            <if test="stupassword != null and stupassword != ''">
+                stuPassword = #{stupassword,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null and sex != ''">
+                sex = #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="birthday != null">
+                birthday = #{birthday,jdbcType=DATE},
+            </if>
+            <if test="birthplace != null and birthplace != ''">
+                birthPlace = #{birthplace,jdbcType=VARCHAR},
+            </if>
+            <if test="origo != null and origo != ''">
+                origo = #{origo,jdbcType=VARCHAR},
+            </if>
+            <if test="idnumber != null or idnumber != ''">
+                IdNumber = #{idnumber,jdbcType=VARCHAR},
+            </if>
+            <if test="nation != null and nation != ''">
+                nation = #{nation,jdbcType=VARCHAR},
+            </if>
+            <if test="nationality != null and nationality != ''">
+                nationality = #{nationality,jdbcType=VARCHAR},
+            </if>
+            <if test="phonenumber != null and phonenumber != ''">
+                phoneNumber = #{phonenumber,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null and address != ''">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="grade != null and grade != ''">
+                grade = #{grade,jdbcType=VARCHAR},
+            </if>
+            <if test="classname != null and classname != ''">
+                className = #{classname,jdbcType=VARCHAR},
+            </if>
+            <if test="majorid != null and !majorid.equals(0)">
+                majorId = #{majorid,jdbcType=INTEGER},
+            </if>
+            <if test="power != null and power != ''">
+                power = #{power,jdbcType=VARCHAR},
+            </if>
+            <if test="picpath != null and picpath != ''">
+                picPath = #{picpath,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where stuId = #{stuid,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectStuById" resultType="com.Student.model.StuMajorDep">
+         select * from tb_student,tb_major,tb_department where stuId = #{stuId}
+          and tb_student.majorId = tb_major.majorId and tb_major.depId = tb_department.depId
+    </select>
+
+    <select id="selectStuNumByMajorClass" resultType="int">
+         select count(*) from tb_student where majorId = #{majorid} and className = #{classname} and grade = #{grade}
+    </select>
+
+</mapper>

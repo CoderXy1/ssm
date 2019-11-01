@@ -1,0 +1,46 @@
+<div style="width: 100%;">
+    <!-- Page Header-->
+    <header class="page-header" style="border-left:5px solid palegreen">
+        <div class="container-fluid">
+            <h3 class="no-margin-bottom"><i class="fa fa-user-o"></i> 个人资料</h3>
+        </div>
+    </header>
+    <div style="width: 100%;background-color: white;border: 1px solid lightgray;margin-top: 10px;border-radius: 5px;font-size: 18px;padding-left: 100px">
+        <!--{{info_me}}-->
+        <div class="row" style="height:50px;margin-top:20px;">
+            <label class="col-md-6 font-weight-light">姓名 : {{info.userInfo.userName}}</label>
+            <label class="col-md-6 font-weight-light">编号 : {{info.userInfo.userId}}</label>
+        </div>
+
+        <div class="row" style="height:50px;">
+            <label class="col-md-6 font-weight-light">性别 : {{info_me.sex}}</label>
+            <label class="col-md-6 font-weight-light">出生日期 : {{info_me.birthday | date:'yyyy-MM-dd'}}</label>
+        </div>
+
+        <div class="row" style="height:50px;">
+            <label class="col-md-6 font-weight-light">国籍 : {{info_me.nationality}}</label>
+            <label class="col-md-6 font-weight-light">籍贯 : {{info_me.origo}}</label>
+        </div>
+
+        <div class="row" style="height:50px;">
+            <label class="col-md-6 font-weight-light">身份证号码 : {{info_me.idnumber}}</label>
+            <label class="col-md-6 font-weight-light">民族 : {{info_me.nation}}</label>
+        </div>
+
+        <div class="row" style="height:50px;">
+            <label class="col-md-6 font-weight-light">联系电话 : {{info_me.phonenumber}}</label>
+            <label class="col-md-6 font-weight-light">居住地址 : {{info_me.address}}</label>
+        </div>
+
+        <div class="row" style="height:50px;">
+            <label class="col-md-6 font-weight-light">院系 : {{info_me.depname}}</label>
+            <label class="col-md-6 font-weight-light" ng-if="info_me.role == 'student'">专业 : {{info_me.majorname}}</label>
+        </div>
+
+        <div class="row" style="height:50px;" ng-if="info_me.role == 'student'">
+            <label class="col-md-6 font-weight-light">年级班级 : {{info_me.grade}}{{info_me.classname}}</label>
+        </div>
+
+    </div>
+
+</div>

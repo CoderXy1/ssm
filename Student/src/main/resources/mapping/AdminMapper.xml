@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Student.mapper.AdminMapper" >
+  <resultMap id="BaseResultMap" type="com.Student.model.Admin" >
+    <id column="adminId" property="adminid" jdbcType="VARCHAR" />
+    <result column="adminName" property="adminname" jdbcType="VARCHAR" />
+    <result column="adminPassword" property="adminpassword" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="phoneNumber" property="phonenumber" jdbcType="VARCHAR" />
+    <result column="power" property="power" jdbcType="VARCHAR" />
+    <result column="picPath" property="picpath" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    adminId, adminName, adminPassword, sex, phoneNumber, power, picPath
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_admin
+    where adminId = #{adminid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_admin
+    where adminId = #{adminid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.Student.model.Admin" >
+    insert into tb_admin (adminId, adminName, adminPassword, 
+      sex, phoneNumber, power, 
+      picPath)
+    values (#{adminid,jdbcType=VARCHAR}, #{adminname,jdbcType=VARCHAR}, #{adminpassword,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{phonenumber,jdbcType=VARCHAR}, #{power,jdbcType=VARCHAR}, 
+      #{picpath,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Student.model.Admin" >
+    insert into tb_admin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="adminid != null" >
+        adminId,
+      </if>
+      <if test="adminname != null" >
+        adminName,
+      </if>
+      <if test="adminpassword != null" >
+        adminPassword,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="phonenumber != null" >
+        phoneNumber,
+      </if>
+      <if test="power != null" >
+        power,
+      </if>
+      <if test="picpath != null" >
+        picPath,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="adminid != null" >
+        #{adminid,jdbcType=VARCHAR},
+      </if>
+      <if test="adminname != null" >
+        #{adminname,jdbcType=VARCHAR},
+      </if>
+      <if test="adminpassword != null" >
+        #{adminpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null" >
+        #{phonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="power != null" >
+        #{power,jdbcType=VARCHAR},
+      </if>
+      <if test="picpath != null" >
+        #{picpath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Student.model.Admin" >
+    update tb_admin
+    <set >
+      <if test="adminname != null" >
+        adminName = #{adminname,jdbcType=VARCHAR},
+      </if>
+      <if test="adminpassword != null" >
+        adminPassword = #{adminpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null" >
+        phoneNumber = #{phonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="power != null" >
+        power = #{power,jdbcType=VARCHAR},
+      </if>
+      <if test="picpath != null" >
+        picPath = #{picpath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where adminId = #{adminid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Student.model.Admin" >
+    update tb_admin
+    set adminName = #{adminname,jdbcType=VARCHAR},
+      adminPassword = #{adminpassword,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      phoneNumber = #{phonenumber,jdbcType=VARCHAR},
+      power = #{power,jdbcType=VARCHAR},
+      picPath = #{picpath,jdbcType=VARCHAR}
+    where adminId = #{adminid,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectAdminByLogin" resultType="com.Student.model.Admin">
+    select * from tb_admin where adminId = #{id} and adminPassword = #{password}
+  </select>
+
+
+</mapper>

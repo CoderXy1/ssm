@@ -1,0 +1,157 @@
+<div style="width: 100%;">
+    <!-- Page Header-->
+    <header class="page-header" style="border-left:5px solid #34ce57">
+        <div class="container-fluid">
+            <h3 class="no-margin-bottom">学生信息修改</h3>
+        </div>
+    </header>
+    <div style="width: 100%;height: 800px;background-color: white;border: 1px solid lightgray;margin-top: 10px;border-radius: 5px">
+
+        <form name="myForm" class="form-horizontal">
+
+            <div class="row" style="height:50px;margin-top:20px;margin-left: 50px">
+                <div class="row col-md-4 font-weight-light">
+                    <label class="form-control-label" style="line-height: 40px"><span style="color: red">*</span>姓名 :&nbsp;&nbsp;</label>
+                    <div class="form-group" style="width:60%">
+                        <input name="stuname" type="text" class="mr-3 form-control" ng-model="selectParams.stuInfo.stuname" required>
+                    </div>
+                </div>
+                <div class="row col-md-4 font-weight-light">
+                    <label class="form-control-label" style="line-height: 40px"><span style="color: red">*</span>密码 :&nbsp;&nbsp;</label>
+                    <div class="form-group" style="width:60%">
+                        <input name="stupassword" type="text" class="mr-3 form-control" ng-model="selectParams.stuInfo.stupassword"
+                               ng-disabled="selectParams.stuId == null">
+                    </div>
+                </div>
+                <div class="row col-md-4 font-weight-light">
+                    <label class="form-control-label" style="line-height: 40px"><span style="color: red">*</span>性别:&nbsp;&nbsp;</label>
+                    <div class="col-sm-9">
+                        <select name="sex" class="form-control mb-3" ng-model="selectParams.stuInfo.sex" required
+                                style="width:85%">
+                            <option value="">--全部--</option>
+                            <option value="男">男</option>
+                            <option value="女">女</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="height:50px;margin-top:20px;margin-left: 50px">
+                <div class="row col-md-4 font-weight-light">
+                    <label class="form-control-label" style="line-height: 40px"><span style="color: red">*</span>生日 :&nbsp;&nbsp;</label>
+                    <div class="form-group" style="width:60%">
+                        <input name="birthday" type="date" class="mr-3 form-control" ng-model="selectParams.stuInfo.birthday" required>
+                    </div>
+                </div>
+                <div class="row col-md-4 font-weight-light">
+                    <label class="form-control-label" style="line-height: 40px">出生地 :&nbsp;&nbsp;</label>
+                    <div class="form-group" style="width:60%">
+                        <input type="text" class="mr-3 form-control" ng-model="selectParams.stuInfo.birthplace">
+                    </div>
+                </div>
+                <div class="row col-md-4 font-weight-light">
+                    <label class="form-control-label" style="line-height: 40px"><span style="color: red">*</span>籍贯 :&nbsp;&nbsp;</label>
+                    <div class="form-group" style="width:60%">
+                        <input name="origo" type="text" class="mr-3 form-control" ng-model="selectParams.stuInfo.origo" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="height:50px;margin-top:20px;margin-left: 50px">
+                <div class="row col-md-4 font-weight-light">
+                    <label class="form-control-label" style="line-height: 40px"><span style="color: red">*</span>身份证 :&nbsp;&nbsp;</label>
+                    <div class="form-group" style="width:60%">
+                        <input name="idnumber" type="text" class="mr-3 form-control" ng-model="selectParams.stuInfo.idnumber" required>
+                    </div>
+                </div>
+                <div class="row col-md-4 font-weight-light">
+                    <label class="form-control-label" style="line-height: 40px">民族 :&nbsp;&nbsp;</label>
+                    <div class="form-group" style="width:60%">
+                        <input type="text" class="mr-3 form-control" ng-model="selectParams.stuInfo.nation">
+                    </div>
+                </div>
+                <div class="row col-md-4 font-weight-light">
+                    <label class="form-control-label" style="line-height: 40px">国籍 :&nbsp;&nbsp;</label>
+                    <div class="form-group" style="width:60%">
+                        <input type="text" class="mr-3 form-control" ng-model="selectParams.stuInfo.nationality">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="height:50px;margin-top:20px;margin-left: 50px">
+                <div class="row col-md-4 font-weight-light">
+                    <label class="form-control-label" style="line-height: 40px"><span style="color: red">*</span>电话 :&nbsp;&nbsp;</label>
+                    <div class="form-group" style="width:60%">
+                        <input name="phonenumber" type="text" class="mr-3 form-control" ng-model="selectParams.stuInfo.phonenumber" required maxlength="11">
+                    </div>
+                </div>
+                <div class="row col-md-4 font-weight-light">
+                    <label class="form-control-label" style="line-height: 40px"><span style="color: red">*</span>地址 :&nbsp;&nbsp;</label>
+                    <div class="form-group" style="width:60%">
+                        <input name="address" type="text" class="mr-3 form-control" ng-model="selectParams.stuInfo.address" required>
+                    </div>
+                </div>
+                <div class="row col-md-4 font-weight-light">
+                    <label class="form-control-label" style="line-height: 40px"><span style="color: red">*</span>年级:&nbsp;&nbsp;</label>
+                    <div class="col-sm-9">
+                        <select name="grade" class="form-control mb-3" ng-model="selectParams.stuInfo.grade" required
+                                style="width:85%">
+                            <option value="">--全部--</option>
+                            <option value="2015级">2015级</option>
+                            <option value="2016级">2016级</option>
+                            <option value="2017级">2017级</option>
+                            <option value="2018级">2018级</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="height:50px;margin-top:20px;margin-left: 50px">
+                <div class="row col-md-4 font-weight-light">
+                    <label class="form-control-label" style="line-height: 40px"><span style="color: red">*</span>院系 :&nbsp;&nbsp;</label>
+                    <div class="col-sm-9">
+                        <select name="depname" class="form-control mb-3" ng-model="selectParams.stuInfo.depid" ng-options="dep.depid as dep.depname for dep in selectParams.depList"
+                                ng-change="selectMajorByDep(selectParams.stuInfo.depid)" style="width:85%" required>
+                            <option value="">--全部--</option>
+                            <!--<option ng-repeat="dep in selectParams.depList" value="{{dep.depid}}">{{dep.depname}}</option>-->
+                        </select>
+                    </div>
+                </div>
+                <div class="row col-md-4 font-weight-light">
+                    <label class="form-control-label" style="line-height: 40px"><span style="color: red">*</span>专业 :&nbsp;&nbsp;</label>
+                    <div class="col-sm-9">
+                        <select name="majorid" class="form-control mb-3" ng-model="selectParams.stuInfo.majorid"
+                                ng-options="major.majorid as major.majorname for major in selectParams.majorList" style="width:85%" required>
+                            <option value="">--全部--</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row col-md-4 font-weight-light">
+                    <label class="form-control-label" style="line-height: 40px"><span style="color: red">*</span>班级:&nbsp;&nbsp;</label>
+                    <div class="col-sm-9">
+                        <select name="classname" class="form-control mb-3" ng-model="selectParams.stuInfo.classname" required
+                                style="width:85%">
+                            <option value="">--全部--</option>
+                            <option value="1班">1班</option>
+                            <option value="2班">2班</option>
+                            <option value="3班">3班</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="height:50px;margin-top:40px;">
+                <div style="margin: 0 auto">
+                    <button type="submit" class="btn btn-success" ng-click="save()" ng-disabled="myForm.stuname.$invalid
+                    || myForm.stupassword.$invalid || myForm.sex.$invalid || myForm.birthday.$invalid || myForm.origo.$invalid
+                    || myForm.idnumber.$invalid || myForm.phonenumber.$invalid || myForm.address.$invalid || myForm.grade.$invalid
+                    || myForm.depname.$invalid || myForm.majorid.$invalid || myForm.classname.$invalid">保存</button>
+                    <button type="button" class="btn btn-danger" style="margin-left: 50px" ng-click="cancel()">取消</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+
+</div>

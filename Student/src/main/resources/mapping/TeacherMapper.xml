@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Student.mapper.TeacherMapper" >
+  <resultMap id="BaseResultMap" type="com.Student.model.Teacher" >
+    <id column="teaId" property="teaid" jdbcType="VARCHAR" />
+    <result column="teaName" property="teaname" jdbcType="VARCHAR" />
+    <result column="teaPassword" property="teapassword" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="phoneNumber" property="phonenumber" jdbcType="VARCHAR" />
+    <result column="idNumber" property="idnumber" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="birthPlace" property="birthplace" jdbcType="VARCHAR" />
+    <result column="power" property="power" jdbcType="VARCHAR" />
+    <result column="depId" property="depid" jdbcType="INTEGER" />
+    <result column="picPath" property="picpath" jdbcType="VARCHAR" />
+    <result column="nationality" property="nationality" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    teaId, teaName, teaPassword, sex, phoneNumber, idNumber, birthday, birthPlace, power, 
+    depId, picPath, nationality
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_teacher
+    where teaId = #{teaid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_teacher
+    where teaId = #{teaid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.Student.model.Teacher" >
+    insert into tb_teacher (teaId, teaName, teaPassword, 
+      sex, phoneNumber, idNumber, 
+      birthday, birthPlace, power, 
+      depId, picPath, nationality
+      )
+    values (#{teaid,jdbcType=VARCHAR}, #{teaname,jdbcType=VARCHAR}, #{teapassword,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{phonenumber,jdbcType=VARCHAR}, #{idnumber,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=DATE}, #{birthplace,jdbcType=VARCHAR}, #{power,jdbcType=VARCHAR}, 
+      #{depid,jdbcType=INTEGER}, #{picpath,jdbcType=VARCHAR}, #{nationality,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.Student.model.Teacher" >
+    insert into tb_teacher
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="teaid != null" >
+        teaId,
+      </if>
+      <if test="teaname != null" >
+        teaName,
+      </if>
+      <if test="teapassword != null" >
+        teaPassword,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="phonenumber != null" >
+        phoneNumber,
+      </if>
+      <if test="idnumber != null" >
+        idNumber,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="birthplace != null" >
+        birthPlace,
+      </if>
+      <if test="power != null" >
+        power,
+      </if>
+      <if test="depid != null" >
+        depId,
+      </if>
+      <if test="picpath != null" >
+        picPath,
+      </if>
+      <if test="nationality != null" >
+        nationality,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="teaid != null" >
+        #{teaid,jdbcType=VARCHAR},
+      </if>
+      <if test="teaname != null" >
+        #{teaname,jdbcType=VARCHAR},
+      </if>
+      <if test="teapassword != null" >
+        #{teapassword,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null" >
+        #{phonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="idnumber != null" >
+        #{idnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="birthplace != null" >
+        #{birthplace,jdbcType=VARCHAR},
+      </if>
+      <if test="power != null" >
+        #{power,jdbcType=VARCHAR},
+      </if>
+      <if test="depid != null" >
+        #{depid,jdbcType=INTEGER},
+      </if>
+      <if test="picpath != null" >
+        #{picpath,jdbcType=VARCHAR},
+      </if>
+      <if test="nationality != null" >
+        #{nationality,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Student.model.Teacher" >
+    update tb_teacher
+    <set >
+      <if test="teaname != null" >
+        teaName = #{teaname,jdbcType=VARCHAR},
+      </if>
+      <if test="teapassword != null" >
+        teaPassword = #{teapassword,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null" >
+        phoneNumber = #{phonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="idnumber != null" >
+        idNumber = #{idnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="birthplace != null" >
+        birthPlace = #{birthplace,jdbcType=VARCHAR},
+      </if>
+      <if test="power != null" >
+        power = #{power,jdbcType=VARCHAR},
+      </if>
+      <if test="depid != null" >
+        depId = #{depid,jdbcType=INTEGER},
+      </if>
+      <if test="picpath != null" >
+        picPath = #{picpath,jdbcType=VARCHAR},
+      </if>
+      <if test="nationality != null" >
+        nationality = #{nationality,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where teaId = #{teaid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Student.model.Teacher" >
+    update tb_teacher
+    set teaName = #{teaname,jdbcType=VARCHAR},
+      teaPassword = #{teapassword,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      phoneNumber = #{phonenumber,jdbcType=VARCHAR},
+      idNumber = #{idnumber,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      birthPlace = #{birthplace,jdbcType=VARCHAR},
+      power = #{power,jdbcType=VARCHAR},
+      depId = #{depid,jdbcType=INTEGER},
+      picPath = #{picpath,jdbcType=VARCHAR},
+      nationality = #{nationality,jdbcType=VARCHAR}
+    where teaId = #{teaid,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectTeaByLogin" resultType="com.Student.model.TeacherDep">
+        select * from tb_teacher,tb_department where teaId = #{id} and teaPassword = #{password}
+          and tb_teacher.depId = tb_department.depId
+  </select>
+
+  <select id="selectAllTeacher" resultType="com.Student.model.Teacher">
+        select * from tb_teacher where 1 = 1
+        <if test="depId != 0">
+          and depId = #{depId}
+        </if>
+  </select>
+
+</mapper>

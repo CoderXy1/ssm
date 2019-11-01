@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Student.mapper.DepartmentMapper" >
+  <resultMap id="BaseResultMap" type="com.Student.model.Department" >
+    <id column="depId" property="depid" jdbcType="INTEGER" />
+    <result column="depName" property="depname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    depId, depName
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_department
+    where depId = #{depid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_department
+    where depId = #{depid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.Student.model.Department" >
+    insert into tb_department (depId, depName)
+    values (#{depid,jdbcType=INTEGER}, #{depname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.Student.model.Department" >
+    insert into tb_department
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="depid != null" >
+        depId,
+      </if>
+      <if test="depname != null" >
+        depName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="depid != null" >
+        #{depid,jdbcType=INTEGER},
+      </if>
+      <if test="depname != null" >
+        #{depname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.Student.model.Department" >
+    update tb_department
+    <set >
+      <if test="depname != null" >
+        depName = #{depname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where depId = #{depid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.Student.model.Department" >
+    update tb_department
+    set depName = #{depname,jdbcType=VARCHAR}
+    where depId = #{depid,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectAllDep" resultType="com.Student.model.Department">
+      select * from tb_department
+  </select>
+
+</mapper>
