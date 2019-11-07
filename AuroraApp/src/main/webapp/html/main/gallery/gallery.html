@@ -1,0 +1,26 @@
+<!--<header class="bar bar-header bar-positive"></header>-->
+<ion-view>
+    <ion-content style="margin-bottom: 40px;margin-top: 10px">
+
+        <!--<ion-list>-->
+        <!--<ion-item ng-repeat="journal in journalList">-->
+
+        <!--<a class="item item-thumbnail-left" href="#">-->
+        <!--<img ng-src="data:image/jpg;base64,{{journal.file}}" style="object-fit: cover">-->
+        <!--<h2>Weezer</h2>-->
+        <!--<p>Blue Album</p>-->
+        <!--</a>-->
+        <!--</ion-item>-->
+        <!--</ion-list>-->
+
+        <a href="#" ng-repeat="gallery in galleryList">
+            <img ng-src="data:image/jpg;base64,{{gallery.file}}"
+                 style="object-fit: cover;width: 32%;height: 120px;border-radius: 3px">
+        </a>
+
+        <ion-infinite-scroll ng-if="isLoadMore" on-infinite="loadMore()" immediate-check="false" distance="1%">
+        </ion-infinite-scroll>
+
+    </ion-content>
+</ion-view>
+
