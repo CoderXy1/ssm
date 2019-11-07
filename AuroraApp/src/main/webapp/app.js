@@ -1,7 +1,9 @@
+"use strict";
 angular.module('ionicApp', ['ionic', 'oc.lazyLoad'])
 
     .config(['$ionicConfigProvider', function ($ionicConfigProvider) {
         $ionicConfigProvider.tabs.position('bottom'); // other values: top
+        $ionicConfigProvider.scrolling.jsScrolling(true);
     }])
 
     .config(function ($stateProvider, $urlRouterProvider) {
@@ -32,6 +34,19 @@ angular.module('ionicApp', ['ionic', 'oc.lazyLoad'])
             resolve: {
                 deps: ['$ocLazyLoad', function (e) {
                     return e.load(['html/main/journal/journal.js']);
+                }]
+            }
+        }).state('main.gallery', {
+            url: '/gallery',
+            views: {
+                'tab-main-gallery': {
+                    templateUrl: 'html/main/gallery/gallery.html',
+                    controller: 'galleryCtrl'
+                }
+            },
+            resolve: {
+                deps: ['$ocLazyLoad', function (e) {
+                    return e.load(['html/main/gallery/gallery.js']);
                 }]
             }
         }).state('home', {
@@ -76,13 +91,10 @@ angular.module('ionicApp', ['ionic', 'oc.lazyLoad'])
         })
     })
 
-    .controller('appCtrl', function ($scope) {
-        $scope.onControllerChanged = function (oldController, oldIndex, newController, newIndex, $ionicSideMenuDelegate) {
+    .controller('appCtrl', function ($scope,$ionicSideMenuDelegate) {
 
-            $scope.toggleLeftButton = function () {
-                $ionicSideMenuDelegate.toggleLeft();
-            };
-
-
+        $scope.toggleLeftButton = function () {
+            $ionicSideMenuDelegate.toggleLeft();
         };
+
     });

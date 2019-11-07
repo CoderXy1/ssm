@@ -1,14 +1,17 @@
 <ion-view>
     <ion-tabs class="tabs-striped tabs-top">
 
-        <ion-tab title="相册" ui-sref=".journal">
+        <ion-tab title="相册" ui-sref=".gallery">
+            <ion-nav-view name="tab-main-gallery">
+            </ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="日记" ui-sref=".journal">
             <ion-nav-view name="tab-main-journal">
             </ion-nav-view>
         </ion-tab>
 
-        <ion-tab title="item2"></ion-tab>
-
-        <ion-tab title="item3"></ion-tab>
+        <ion-tab title="便签"></ion-tab>
 
         <ion-tab title="item4"></ion-tab>
 

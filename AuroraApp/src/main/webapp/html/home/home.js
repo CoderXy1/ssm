@@ -1,4 +1,4 @@
-angular.module('ionicApp', ['ionic'])
+angular.module('ionicApp')
 
 
     .controller('homeCtrl', function ($scope, $timeout, $ionicModal, $ionicActionSheet, $ionicLoading, $http,$ionicSlideBoxDelegate) {

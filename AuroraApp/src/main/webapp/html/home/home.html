@@ -2,13 +2,43 @@
 
 <ion-content>
 
-    <ion-slide-box active-slide=0 does-continue="true" slide-interval="2000" auto-play="true" style="width: 100%;height: 200px">
+    <ion-slide-box active-slide=0 does-continue="true" slide-interval="2000" auto-play="true"
+                   style="width: 100%;height: 200px">
         <ion-slide ng-repeat="gallery in galleryList">
             <img ng-src="data:image/jpg;base64,{{gallery.file}}" style="width: 100%;height: 100%;object-fit: cover">
         </ion-slide>
     </ion-slide-box>
 
     <ion-refresher pulling-text="下拉刷新" on-refresh="onRefresh()"></ion-refresher>
+
+    <div class="row" style="text-align: center;margin-top: 10px">
+        <div class="col">
+            <a ui-sref="main.journal">
+                <img src="images/home/journal.png" style="width: 50px;height: 50px;object-fit: cover">
+                <p>相册</p>
+            </a>
+        </div>
+        <div class="col">
+            <a ui-sref="main.diary">
+                <img src="images/home/diary.png" style="width: 50px;height: 50px;object-fit: cover">
+                <p>日记</p>
+            </a>
+        </div>
+        <div class="col">
+            <a href="">
+                <img src="images/home/memorial.png" style="width: 50px;height: 50px;object-fit: cover">
+                <p>便签</p>
+            </a>
+        </div>
+        <div class="col">
+            <a href="">
+                <img src="images/home/test.png" style="width: 50px;height: 50px;object-fit: cover">
+                <p>未定</p>
+            </a>
+        </div>
+    </div>
+
+
     <ion-list>
         <ion-item ng-repeat="gallery in galleryList">
             <!--缩略图-->
@@ -19,4 +49,5 @@
             </a>
         </ion-item>
     </ion-list>
+
 </ion-content>
