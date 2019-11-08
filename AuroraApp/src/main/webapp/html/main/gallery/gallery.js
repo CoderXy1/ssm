@@ -45,17 +45,6 @@ angular.module('ionicApp')
 
         }
 
-        //对话框
-        $scope.showAlert = function (title, msg) {
-            $ionicPopup.alert({
-                title: title,
-                template: msg,
-                buttons: [
-                    {text:'确定',type:'button-positive'}
-                ],
-            });
-        };
-
         //上拉刷新
         $scope.loadMore = function () {
             $http({

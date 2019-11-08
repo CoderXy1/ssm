@@ -49,6 +49,19 @@ angular.module('ionicApp', ['ionic', 'oc.lazyLoad'])
                     return e.load(['html/main/gallery/gallery.js']);
                 }]
             }
+        }).state('main.galleryEdit', {
+            url: '/galleryEdit',
+            views: {
+                'tab-main-gallery': {
+                    templateUrl: 'html/main/gallery/galleryEdit.html',
+                    controller: 'galleryEditCtrl'
+                }
+            },
+            resolve: {
+                deps: ['$ocLazyLoad', function (e) {
+                    return e.load(['html/main/gallery/galleryEdit.js']);
+                }]
+            }
         }).state('home', {
             url: '/home',
             views: {
@@ -91,10 +104,60 @@ angular.module('ionicApp', ['ionic', 'oc.lazyLoad'])
         })
     })
 
-    .controller('appCtrl', function ($scope,$ionicSideMenuDelegate) {
+    .controller('appCtrl', function ($scope,$ionicSideMenuDelegate,$ionicActionSheet,$state,$ionicPopup) {
 
         $scope.toggleLeftButton = function () {
             $ionicSideMenuDelegate.toggleLeft();
+        };
+
+        //对话框
+        $scope.showAlert = function (title, msg) {
+            $ionicPopup.alert({
+                title: title,
+                template: msg,
+                buttons: [
+                    {text:'确定',type:'button-positive'}
+                ],
+            });
+        };
+
+
+        $scope.showBottomMenu = function() {
+
+            $ionicActionSheet.show({
+                buttons: [
+                    { text: '<b> 相 册 </b>' },
+                    { text: ' 日 记 ' },
+                    { text: ' 便 签 ' },
+                    { text: ' 未 定 ' }
+                ],
+                titleText: ' 新 增 ',
+                cancelText: ' 取 消 ',
+                cancel: function() {
+                    // add cancel code..
+                },
+                buttonClicked: function(index) {
+                    switch (index) {
+                        case 0:
+                            $state.go('main.galleryEdit');
+                            break;
+                        case 1:
+                            $state.go('main.journal');
+                            break;
+                        case 2:
+                            $state.go('main.gallery');
+                            break;
+                        case 3:
+                            $state.go('main.gallery');
+                            break;
+                    }
+                }
+            });
+
+            /*$timeout(function() {
+                hideSheet();
+            }, 2000);*/
+
         };
 
     });

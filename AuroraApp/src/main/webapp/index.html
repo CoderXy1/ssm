@@ -20,12 +20,12 @@
     <ion-side-menu-content>
 
         <ion-header-bar class="bar-positive">
-            <button menu-toggle="left" class="button button-icon icon ion-navicon"
-                    ng-click="toggleLeftButton()"></button>
+            <button class="button button-icon icon ion-navicon" ng-click="toggleLeftButton()"></button>
             <h1 class="title">AuroraApp</h1>
+            <button class="button button-icon icon ion-android-add" ng-click="showBottomMenu()"></button>
         </ion-header-bar>
 
-        <ion-tabs class="tabs-icon-top tabs-positive">
+        <ion-tabs class="tabs-icon-top tabs-positive ">
 
             <ion-tab title="主页" icon-on="icon ion-ios-home" icon-off="icon  ion-ios-home-outline"  ui-sref="home">
                 <ion-nav-view name="tab-home">
