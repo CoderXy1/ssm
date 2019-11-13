@@ -9,16 +9,23 @@ angular.module('ionicApp')
             pageSize: 12,
         };
 
-        $scope.showLoading = function () {
-            $ionicLoading.show({
-                content: 'Loading',
-                animation: 'fade-in',
-                showBackdrop: true,
-                template: '<ion-spinner icon="bubbles" class="spinner-balanced"></ion-spinner>',
-                maxWidth: 200,
-                showDelay: 0
+        var htmlEl = angular.element(document.querySelector('html'));
+        htmlEl.on('click', function (event) {
+            if (event.target.nodeName === 'HTML') {
+                if ($scope.alertImgPopup) {
+                    $scope.alertImgPopup.close();
+                }
+            }
+        });
+
+        $scope.showImgAlert = function (src,imgName){
+            $scope.alertImgPopup = $ionicPopup.show({
+                template: '<img ng-src="data:image/jpg;base64,' + src + '" style="object-fit: cover;width: 100%;border-radius: 3px">',
+                title: imgName,
+                scope: $scope,
             });
         }
+
 
         $scope.selectJournal = function () {
 

@@ -24,7 +24,8 @@ angular.module('ionicApp')
             form.append('fileId', $scope.fileId);
 
             if (file == null || file == '') {
-                alert("请选择文件");
+                //alert("请选择文件");
+                $scope.showAlert("提示","请选择文件");
                 return false;
             } else {
                 $http({
@@ -93,7 +94,6 @@ angular.module('ionicApp')
                     },
                 }).then(function successCallback(response) {
                     //请求成功
-                    //alert("添加成功");
                     $scope.showAlert("添加相册","添加成功");
                 }, function errorCallback(response) {
                     //请求失败

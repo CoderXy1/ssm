@@ -104,7 +104,7 @@ angular.module('ionicApp', ['ionic', 'oc.lazyLoad'])
         })
     })
 
-    .controller('appCtrl', function ($scope,$ionicSideMenuDelegate,$ionicActionSheet,$state,$ionicPopup) {
+    .controller('appCtrl', function ($scope,$ionicSideMenuDelegate,$ionicActionSheet,$state,$ionicPopup,$ionicLoading) {
 
         $scope.toggleLeftButton = function () {
             $ionicSideMenuDelegate.toggleLeft();
@@ -120,6 +120,18 @@ angular.module('ionicApp', ['ionic', 'oc.lazyLoad'])
                 ],
             });
         };
+
+        //loading弹窗
+        $scope.showLoading = function () {
+            $ionicLoading.show({
+                content: 'Loading',
+                animation: 'fade-in',
+                showBackdrop: true,
+                template: '<ion-spinner icon="bubbles" class="spinner-balanced"></ion-spinner>',
+                maxWidth: 200,
+                showDelay: 0
+            });
+        }
 
 
         $scope.showBottomMenu = function() {
