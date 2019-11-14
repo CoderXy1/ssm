@@ -50,7 +50,7 @@ angular.module('ionicApp')
                 method: "POST",
                 url: 'file/downloadFile',
                 params: {
-                    galleryid: '48f4c552-ed28-491d-9a7e-8a605c88dbc9',
+                    fileId: '48f4c552-ed28-491d-9a7e-8a605c88dbc9',
                     path: 'C:\\Users\\Administrator.SC-201907111318\\Desktop',
                 },
             }).then(function successCallback(response) {

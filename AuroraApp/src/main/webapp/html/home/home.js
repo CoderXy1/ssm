@@ -32,6 +32,7 @@ angular.module('ionicApp')
                 $ionicLoading.hide();
                 $ionicSlideBoxDelegate.update(); //渲染之后更新
                 $ionicSlideBoxDelegate.loop(true); //更新轮播
+                $scope.$broadcast('scroll.refreshComplete');
             }, function errorCallback(response) {
                 //请求失败
                 $ionicLoading.hide();
@@ -46,11 +47,25 @@ angular.module('ionicApp')
         }
 
         $scope.onRefresh = function () {
-            console.log('ON REFRESH');
 
-            $timeout(function () {
+            $http({
+                method: "POST",
+                url: 'gallery/selectAll',
+                params: {
+                    pageIndex: 0,
+                    pageSize: 5,
+                }
+            }).then(function successCallback(response) {
+                //请求成功
+                $scope.galleryList = response.data;
+                $ionicSlideBoxDelegate.update(); //渲染之后更新
+                $ionicSlideBoxDelegate.loop(true); //更新轮播
                 $scope.$broadcast('scroll.refreshComplete');
-            }, 1000);
+            }, function errorCallback(response) {
+                //请求失败
+                $ionicSlideBoxDelegate.update();
+            });
+
         }
 
         $scope.loadData();

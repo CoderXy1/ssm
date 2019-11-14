@@ -4,17 +4,6 @@ angular.module('ionicApp')
 
         $scope.journalList = [];
 
-        $scope.showLoading = function () {
-            $ionicLoading.show({
-                content: 'Loading',
-                animation: 'fade-in',
-                showBackdrop: true,
-                template: '<ion-spinner icon="bubbles" class="spinner-balanced"></ion-spinner>',
-                maxWidth: 200,
-                showDelay: 0
-            });
-        }
-
         $scope.selectJournal = function (){
 
             $scope.showLoading();
@@ -63,6 +52,6 @@ angular.module('ionicApp')
             });
         }
 
-        $scope.loadData();
+        //$scope.loadData();
 
     });

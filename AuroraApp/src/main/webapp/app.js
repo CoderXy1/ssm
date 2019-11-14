@@ -62,6 +62,19 @@ angular.module('ionicApp', ['ionic', 'oc.lazyLoad'])
                     return e.load(['html/main/gallery/galleryEdit.js']);
                 }]
             }
+        }).state('main.note', {
+            url: '/note',
+            views: {
+                'tab-main-note': {
+                    templateUrl: 'html/main/note/note.html',
+                    controller: 'noteCtrl'
+                }
+            },
+            resolve: {
+                deps: ['$ocLazyLoad', function (e) {
+                    return e.load(['html/main/note/note.js']);
+                }]
+            }
         }).state('home', {
             url: '/home',
             views: {

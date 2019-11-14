@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import sun.misc.BASE64Encoder;
 
 import javax.annotation.Resource;
+import javax.swing.filechooser.FileSystemView;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,7 @@ public class fileController {
         try {
             fileName = file.getOriginalFilename();
             BASE64Encoder encoder = new BASE64Encoder();
-            fileStr = ReduceImgTest.compressPicForScale(file.getBytes(),50);
+            fileStr = ReduceImgTest.compressPicForScale(file.getBytes(),100);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -90,7 +91,8 @@ public class fileController {
     public int selectFile(@RequestParam(value = "fileId")String fileId,@RequestParam(value = "path")String path) {
 
         File file = this.fileService.selectByPrimaryKey(fileId);
-        FIleUtil.getFile(file.getFile(),path,file.getFilename());
+        FileSystemView fsv = FileSystemView.getFileSystemView();
+        FIleUtil.getFile(file.getFile(),fsv.getHomeDirectory().toString(),file.getFilename());
 
         return  1;
 

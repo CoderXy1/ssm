@@ -1,6 +1,6 @@
 angular.module('ionicApp')
 
-    .controller('galleryCtrl', function ($scope, $timeout, $ionicModal, $ionicActionSheet, $ionicLoading, $http,$ionicPopup) {
+    .controller('galleryCtrl', function ($scope, $timeout, $ionicModal, $ionicActionSheet, $ionicLoading, $http, $ionicPopup) {
 
         $scope.galleryList = [];
         $scope.isLoadMore = true;
@@ -15,10 +15,13 @@ angular.module('ionicApp')
                 if ($scope.alertImgPopup) {
                     $scope.alertImgPopup.close();
                 }
+                if ($scope.alertMenuPopup){
+                    $scope.alertMenuPopup.close();
+                }
             }
         });
 
-        $scope.showImgAlert = function (src,imgName){
+        $scope.showImgAlert = function (src, imgName) {
             $scope.alertImgPopup = $ionicPopup.show({
                 template: '<img ng-src="data:image/jpg;base64,' + src + '" style="object-fit: cover;width: 100%;border-radius: 3px">',
                 title: imgName,
@@ -26,8 +29,40 @@ angular.module('ionicApp')
             });
         }
 
+        $scope.alertMenu = function (fileId,imgName,galleryId) {
+            $scope.downFileId = fileId;
+            $scope.deleteGalleryId = galleryId;
+            $scope.alertMenuPopup = $ionicPopup.show({
+                template:
+                    '<div class="button-bar" style="margin-bottom: 10px"><button class="button button-balanced" ng-click="showFile(downFileId)">下载</button></div>' +
+                    '<div class="button-bar" style="margin-bottom: 10px"><button class="button button-assertive" ng-click="deleteGallery(deleteGalleryId,downFileId)">删除</button></div>',
+                title: imgName,
+                scope: $scope,
+            });
+        }
 
-        $scope.selectJournal = function () {
+        $scope.showFile = function (fileId) {
+
+            $http({
+                method: "POST",
+                url: 'file/downloadFile',
+                params: {
+                    fileId: fileId,
+                    path: 'C:\\Users\\Administrator.SC-201907111318\\Desktop',
+                },
+            }).then(function successCallback(response) {
+                //请求成功
+               $scope.showAlert("成功下载到桌面","");
+               $scope.alertMenuPopup.close();
+            }, function errorCallback(response) {
+                //请求失败
+                console.log(response.data);
+                $scope.alertMenuPopup.close();
+            });
+
+        };
+
+        $scope.selectGallery = function () {
 
             $scope.showLoading();
 
@@ -46,9 +81,35 @@ angular.module('ionicApp')
             });
         }
 
+        $scope.deleteGallery = function (galleryId,fileId) {
+
+            if (confirm("是否删除")){
+                $http({
+                    method: "POST",
+                    url: 'gallery/deleteGallery',
+                    params: {
+                        galleryId : galleryId,
+                        fileId : fileId,
+                    }
+                }).then(function successCallback(response) {
+                    //请求成功
+                    $scope.galleryList = [];
+                    $scope.selectParams.pageIndex = 0;
+                    $scope.loadData();
+                    $scope.showAlert("删除成功",'');
+                    $scope.isLoadMore = true;
+                    $scope.alertMenuPopup.close();
+                }, function errorCallback(response) {
+                    //请求失败
+                    $scope.showAlert("删除失败",'');
+                    $scope.alertMenuPopup.close();
+                });
+            }
+        }
+
         $scope.loadData = function () {
 
-            $scope.selectJournal();
+            $scope.selectGallery();
 
         }
 
@@ -61,7 +122,7 @@ angular.module('ionicApp')
             }).then(function successCallback(response) {
                 //请求成功
                 if (response.data == null || response.data == '') {
-                    $scope.showAlert("提示","没有更多数据了");
+                    $scope.showAlert("提示", "没有更多数据了");
                     $scope.isLoadMore = false;
                 } else {
                     angular.forEach(response.data, function (item, index, array) {
