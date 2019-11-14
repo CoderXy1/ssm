@@ -1,0 +1,14 @@
+<ion-view>
+    <ion-content>
+        <ion-refresher pulling-text="下拉刷新" on-refresh="onRefresh()"></ion-refresher>
+        <!--<h1>便签</h1>-->
+        <ion-list ng-repeat="note in noteList">
+            <ion-item>
+                <a class="item" href="#" style="border-radius: 5px;" ng-style="{ 'border-left' : '7px solid {{note.noteColor}}' }">
+                    <h2 style="font-weight: bold">{{note.noteTitle}}</h2>
+                    <p style="color:gray;margin-top: 7px">{{note.noteDatetime | date:'yyyy/MM/dd hh:mm:ss'}}</p>
+                </a>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

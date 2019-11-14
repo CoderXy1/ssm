@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.auroraapp.mapper.NoteMapper" >
+  <resultMap id="BaseResultMap" type="com.auroraapp.model.Note" >
+    <id column="noteId" property="noteid" jdbcType="INTEGER" />
+    <result column="noteTitle" property="notetitle" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="noteDatetime" property="notedatetime" jdbcType="TIMESTAMP" />
+    <result column="noteColor" property="notecolor" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    noteId, noteTitle, content, noteDatetime, noteColor
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_note
+    where noteId = #{noteid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_note
+    where noteId = #{noteid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.auroraapp.model.Note" >
+    insert into tb_note (noteId, noteTitle, content, 
+      noteDatetime, noteColor)
+    values (#{noteid,jdbcType=INTEGER}, #{notetitle,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{notedatetime,jdbcType=TIMESTAMP}, #{notecolor,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.auroraapp.model.Note" >
+    insert into tb_note
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="noteid != null" >
+        noteId,
+      </if>
+      <if test="notetitle != null" >
+        noteTitle,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="notedatetime != null" >
+        noteDatetime,
+      </if>
+      <if test="notecolor != null" >
+        noteColor,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="noteid != null" >
+        #{noteid,jdbcType=INTEGER},
+      </if>
+      <if test="notetitle != null" >
+        #{notetitle,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="notedatetime != null" >
+        #{notedatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="notecolor != null" >
+        #{notecolor,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.auroraapp.model.Note" >
+    update tb_note
+    <set >
+      <if test="notetitle != null" >
+        noteTitle = #{notetitle,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="notedatetime != null" >
+        noteDatetime = #{notedatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="notecolor != null" >
+        noteColor = #{notecolor,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where noteId = #{noteid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.auroraapp.model.Note" >
+    update tb_note
+    set noteTitle = #{notetitle,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      noteDatetime = #{notedatetime,jdbcType=TIMESTAMP},
+      noteColor = #{notecolor,jdbcType=VARCHAR}
+    where noteId = #{noteid,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectAll" resultType="java.util.Map">
+    select * from tb_note order by noteDatetime desc limit #{pageIndex},#{pageSize}
+  </select>
+
+</mapper>
