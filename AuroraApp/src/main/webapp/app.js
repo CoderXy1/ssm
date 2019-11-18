@@ -75,6 +75,20 @@ angular.module('ionicApp', ['ionic', 'oc.lazyLoad'])
                     return e.load(['html/main/note/note.js']);
                 }]
             }
+        }).state('main.noteEdit', {
+            params : { noteId : ''},
+            url: '/noteEdit',
+            views: {
+                'tab-main-note': {
+                    templateUrl: 'html/main/note/noteEdit.html',
+                    controller: 'noteEditCtrl'
+                }
+            },
+            resolve: {
+                deps: ['$ocLazyLoad', function (e) {
+                    return e.load(['html/main/note/noteEdit.js']);
+                }]
+            }
         }).state('home', {
             url: '/home',
             views: {
@@ -123,6 +137,17 @@ angular.module('ionicApp', ['ionic', 'oc.lazyLoad'])
             $ionicSideMenuDelegate.toggleLeft();
         };
 
+        //生成随机字母数字
+        $scope.genUUID = function () {
+            var d = new Date().getTime();
+            var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = (d + Math.random() * 16) % 16 | 0;
+                d = Math.floor(d / 16);
+                return (c == 'x' ? r : (r & 0x7 | 0x8)).toString(16);
+            });
+            return uuid;
+        }
+
         //对话框
         $scope.showAlert = function (title, msg) {
             $ionicPopup.alert({
@@ -170,7 +195,7 @@ angular.module('ionicApp', ['ionic', 'oc.lazyLoad'])
                             $state.go('main.journal');
                             break;
                         case 2:
-                            $state.go('main.gallery');
+                            $state.go('main.noteEdit');
                             break;
                         case 3:
                             $state.go('main.gallery');

@@ -1,0 +1,11 @@
+.ion-contentFit {
+    margin-bottom: 40px;
+    padding-top: 10px;
+    padding-left: 1%;
+}
+
+.textOverflow {
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}

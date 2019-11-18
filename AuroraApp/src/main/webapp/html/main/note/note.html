@@ -1,12 +1,15 @@
 <ion-view>
-    <ion-content>
+    <ion-content class="ion-contentFit">
         <ion-refresher pulling-text="下拉刷新" on-refresh="onRefresh()"></ion-refresher>
-        <!--<h1>便签</h1>-->
+
         <ion-list ng-repeat="note in noteList">
             <ion-item>
-                <a class="item" href="#" style="border-radius: 5px;" ng-style="{ 'border-left' : '7px solid {{note.noteColor}}' }">
+                <a class="item" ui-sref="main.noteEdit({noteId:note.noteId})" on-hold="showNoteMenu(note.noteId,note.noteTitle)" style="border-radius: 5px;" ng-style="{ 'border-left' : '7px solid {{note.noteColor}}' }">
                     <h2 style="font-weight: bold">{{note.noteTitle}}</h2>
-                    <p style="color:gray;margin-top: 7px">{{note.noteDatetime | date:'yyyy/MM/dd hh:mm:ss'}}</p>
+                    <div class="row">
+                        <p class="textOverflow" style="color:cadetblue;margin-top: 7px;max-width: 60%;">{{note.content}}</p>
+                        <p style="font-size:10px;color:gray;margin-top: 7px;position:absolute;right:10px;max-width: 35%">{{note.noteDatetime | date:'yyyy/MM/dd hh:mm:ss'}}</p>
+                    </div>
                 </a>
             </ion-item>
         </ion-list>

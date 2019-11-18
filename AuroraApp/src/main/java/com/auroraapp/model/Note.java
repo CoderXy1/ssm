@@ -3,7 +3,7 @@ package com.auroraapp.model;
 import java.util.Date;
 
 public class Note {
-    private Integer noteid;
+    private String noteid;
 
     private String notetitle;
 
@@ -13,11 +13,11 @@ public class Note {
 
     private String notecolor;
 
-    public Integer getNoteid() {
+    public String getNoteid() {
         return noteid;
     }
 
-    public void setNoteid(Integer noteid) {
+    public void setNoteid(String noteid) {
         this.noteid = noteid;
     }
 

@@ -1,0 +1,32 @@
+<ion-view>
+    <ion-content class="ion-contentFit">
+        <a class="button button-icon icon ion-ios-arrow-left" ui-sref="main.note"> 返回</a>
+        <a class="button button-icon icon ion-compose" style="position: absolute;right: 10px" ng-click="editNote()"> 保存</a>
+
+        <div class="list list-inset" style="margin-top: 0px">
+            <form>
+                <label class="item item-input">
+                    <input type="text" placeholder="标题" ng-model="$parent.selectNoteParams.noteTitle">
+                </label>
+                <label class="item item-input">
+                    <textarea cols="2" rows="10" placeholder="此时此刻你想写点什么..." style="OVERFLOW:scroll"
+                              ng-model="$parent.selectNoteParams.content"></textarea>
+                </label>
+                <label class="item item-input">
+                    <h2 style="font-weight: bold;padding: 5px">便签颜色</h2>
+                </label>
+                <label class="item row">
+                    <ion-radio class="col col-33" style="color: #30e3ca;" ng-model="selectNoteParams.noteColor" value='#30e3ca'><i class="icon ion-ios-circle-filled"></i></ion-radio>
+                    <ion-radio class="col col-33" style="color: #fc5185;" ng-model="selectNoteParams.noteColor" value='#fc5185'><i class="icon ion-ios-circle-filled"></i></ion-radio>
+                    <ion-radio class="col col-33" style="color: #6639a6;" ng-model="selectNoteParams.noteColor" value='#6639a6'><i class="icon ion-ios-circle-filled"></i></ion-radio>
+                </label>
+                <label class="item row">
+                    <ion-radio class="col col-33" style="color: #ff6f3c;" ng-model="selectNoteParams.noteColor" value='#ff6f3c'><i class="icon ion-ios-circle-filled"></i></ion-radio>
+                    <ion-radio class="col col-33" style="color: #f33535;" ng-model="selectNoteParams.noteColor" value='#f33535'><i class="icon ion-ios-circle-filled"></i></ion-radio>
+                    <ion-radio class="col col-33" style="color: #4cd964;" ng-model="selectNoteParams.noteColor" value='#4cd964'><i class="icon ion-ios-circle-filled"></i></ion-radio>
+                </label>
+            </form>
+        </div>
+
+    </ion-content>
+</ion-view>

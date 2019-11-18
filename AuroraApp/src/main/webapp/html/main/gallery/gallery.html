@@ -1,5 +1,5 @@
 <ion-view>
-    <ion-content style="margin-bottom: 40px;padding-top: 10px;padding-left: 1%;">
+    <ion-content class="ion-contentFit">
 
         <a ng-repeat="gallery in galleryList">
             <img ng-src="data:image/jpg;base64,{{gallery.file}}" on-hold="alertMenu(gallery.fileId,gallery.fileName,gallery.galleryId)" ng-click="showImgAlert(gallery.file,gallery.fileName)"

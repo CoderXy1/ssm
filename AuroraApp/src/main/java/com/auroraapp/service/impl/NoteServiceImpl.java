@@ -16,7 +16,7 @@ public class NoteServiceImpl implements INoteService {
     private NoteMapper noteMapper;
 
     @Override
-    public int deleteByPrimaryKey(Integer noteid) {
+    public int deleteByPrimaryKey(String noteid) {
         return noteMapper.deleteByPrimaryKey(noteid);
     }
 
@@ -31,7 +31,7 @@ public class NoteServiceImpl implements INoteService {
     }
 
     @Override
-    public Note selectByPrimaryKey(Integer noteid) {
+    public Note selectByPrimaryKey(String noteid) {
         return noteMapper.selectByPrimaryKey(noteid);
     }
 

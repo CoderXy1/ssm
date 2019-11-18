@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.auroraapp.mapper.NoteMapper" >
   <resultMap id="BaseResultMap" type="com.auroraapp.model.Note" >
-    <id column="noteId" property="noteid" jdbcType="INTEGER" />
+    <id column="noteId" property="noteid" jdbcType="VARCHAR" />
     <result column="noteTitle" property="notetitle" jdbcType="VARCHAR" />
     <result column="content" property="content" jdbcType="VARCHAR" />
     <result column="noteDatetime" property="notedatetime" jdbcType="TIMESTAMP" />
@@ -11,20 +11,20 @@
   <sql id="Base_Column_List" >
     noteId, noteTitle, content, noteDatetime, noteColor
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from tb_note
-    where noteId = #{noteid,jdbcType=INTEGER}
+    where noteId = #{noteid,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey">
     delete from tb_note
-    where noteId = #{noteid,jdbcType=INTEGER}
+    where noteId = #{noteid,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.auroraapp.model.Note" >
     insert into tb_note (noteId, noteTitle, content, 
       noteDatetime, noteColor)
-    values (#{noteid,jdbcType=INTEGER}, #{notetitle,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+    values (#{noteid,jdbcType=VARCHAR}, #{notetitle,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR},
       #{notedatetime,jdbcType=TIMESTAMP}, #{notecolor,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.auroraapp.model.Note" >
@@ -48,7 +48,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="noteid != null" >
-        #{noteid,jdbcType=INTEGER},
+        #{noteid,jdbcType=VARCHAR},
       </if>
       <if test="notetitle != null" >
         #{notetitle,jdbcType=VARCHAR},
@@ -80,7 +80,7 @@
         noteColor = #{notecolor,jdbcType=VARCHAR},
       </if>
     </set>
-    where noteId = #{noteid,jdbcType=INTEGER}
+    where noteId = #{noteid,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.auroraapp.model.Note" >
     update tb_note
@@ -88,7 +88,7 @@
       content = #{content,jdbcType=VARCHAR},
       noteDatetime = #{notedatetime,jdbcType=TIMESTAMP},
       noteColor = #{notecolor,jdbcType=VARCHAR}
-    where noteId = #{noteid,jdbcType=INTEGER}
+    where noteId = #{noteid,jdbcType=VARCHAR}
   </update>
 
   <select id="selectAll" resultType="java.util.Map">
