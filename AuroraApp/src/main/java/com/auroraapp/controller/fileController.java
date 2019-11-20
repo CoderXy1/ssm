@@ -5,6 +5,9 @@ import com.auroraapp.model.File;
 import com.auroraapp.service.IFileService;
 import com.auroraapp.util.FIleUtil;
 import com.auroraapp.util.ReduceImgTest;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -86,15 +89,23 @@ public class fileController {
 
     }
 
+//    @RequestMapping("/downloadFile")
+//    @ResponseBody
+//    public int selectFile(@RequestParam(value = "fileId")String fileId,@RequestParam(value = "path")String path) {
+//
+//        File file = this.fileService.selectByPrimaryKey(fileId);
+//        FileSystemView fsv = FileSystemView.getFileSystemView();
+//        FIleUtil.getFile(file.getFile(),fsv.getHomeDirectory().toString(),file.getFilename());
+//
+//        return  1;
+//
+//    }
+
     @RequestMapping("/downloadFile")
     @ResponseBody
-    public int selectFile(@RequestParam(value = "fileId")String fileId,@RequestParam(value = "path")String path) {
+    public File selectFile(@RequestParam(value = "fileId")String fileId, @RequestParam(value = "path")String path) {
 
-        File file = this.fileService.selectByPrimaryKey(fileId);
-        FileSystemView fsv = FileSystemView.getFileSystemView();
-        FIleUtil.getFile(file.getFile(),fsv.getHomeDirectory().toString(),file.getFilename());
-
-        return  1;
+        return  this.fileService.selectByPrimaryKey(fileId);
 
     }
 

@@ -1,6 +1,6 @@
 angular.module('ionicApp')
 
-    .controller('galleryEditCtrl', function ($scope, $timeout, $ionicModal, $ionicActionSheet, $ionicLoading, $http, $ionicPopup) {
+    .controller('galleryEditCtrl', function ($scope, $timeout, $ionicModal, $ionicActionSheet, $ionicLoading, $http, $ionicPopup,$state) {
 
         $scope.imgUrl = '';
 
@@ -85,6 +85,7 @@ angular.module('ionicApp')
                 }).then(function successCallback(response) {
                     //请求成功
                     $scope.showAlert("添加相册","添加成功");
+                    $state.go('main.gallery',{},{reload:true});
                 }, function errorCallback(response) {
                     //请求失败
                     console.log(response.data)
