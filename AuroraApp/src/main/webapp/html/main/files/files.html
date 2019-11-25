@@ -1,0 +1,34 @@
+<ion-view>
+    <ion-content class="ion-contentFit">
+        <div class="list">
+            <div class="item item-select">
+                <div class="input-label">文件类型</div>
+                <select class="item-select" ng-model="$parent.selectParams.fileType">
+                    <option value="">--全部--</option>
+                    <option value="docx">docx</option>
+                    <option value="txt">txt</option>
+                    <option value="jpg">jpg</option>
+                    <option value="png">png</option>
+                </select>
+            </div>
+            <div class="item item-input">
+                <input type="text" placeholder="文件名" ng-model="$parent.selectParams.fileName">
+            </div>
+            <div class="button-bar">
+                <button class="button button-positive" ng-click="selectFiles()">搜索</button>
+            </div>
+        </div>
+
+        <ion-list>
+            <ion-item ng-repeat="file in fileList">
+
+                <!--缩略图-->
+                <a class="item " href="#">
+                    <h2>{{file.filename}}</h2>
+                    <p>{{file.filetype}}</p>
+                </a>
+            </ion-item>
+        </ion-list>
+
+    </ion-content>
+</ion-view>

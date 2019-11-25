@@ -37,7 +37,6 @@ public class fileController {
 
         try {
             fileName = file.getOriginalFilename();
-            BASE64Encoder encoder = new BASE64Encoder();
             fileStr = ReduceImgTest.compressPicForScale(file.getBytes(),100);
         } catch (IOException e) {
             e.printStackTrace();
@@ -47,6 +46,7 @@ public class fileController {
         files.setFileid(fileId);
         files.setFile(fileStr);
         files.setFilename(fileName);
+        files.setFiletype(fileName.substring(fileName.lastIndexOf(".") + 1));
         this.fileService.insert(files);
         return  1;
     }
@@ -69,6 +69,7 @@ public class fileController {
         File files = new File();
         files.setFileid(fileId);
         files.setFile(fileStr);
+        files.setFiletype(fileName.substring(fileName.lastIndexOf(".") + 1));
         files.setFilename(fileName);
         this.fileService.insert(files);
         return  1;
@@ -85,27 +86,23 @@ public class fileController {
         byte[] bytes = file.getFile();
         list.add(encoder.encode(bytes));
 
-        return  list;
+        return list;
 
     }
 
-//    @RequestMapping("/downloadFile")
-//    @ResponseBody
-//    public int selectFile(@RequestParam(value = "fileId")String fileId,@RequestParam(value = "path")String path) {
-//
-//        File file = this.fileService.selectByPrimaryKey(fileId);
-//        FileSystemView fsv = FileSystemView.getFileSystemView();
-//        FIleUtil.getFile(file.getFile(),fsv.getHomeDirectory().toString(),file.getFilename());
-//
-//        return  1;
-//
-//    }
-
     @RequestMapping("/downloadFile")
     @ResponseBody
-    public File selectFile(@RequestParam(value = "fileId")String fileId, @RequestParam(value = "path")String path) {
+    public File downloadFile(@RequestParam(value = "fileId")String fileId) {
 
-        return  this.fileService.selectByPrimaryKey(fileId);
+        return this.fileService.selectByPrimaryKey(fileId);
+
+    }
+
+    @RequestMapping("/selectAllFile")
+    @ResponseBody
+    public List<File> selectAllFile(@RequestParam(value = "fileName")String fileName,@RequestParam(value = "fileType")String fileType,@RequestParam(value = "pageIndex")int pageIndex,@RequestParam(value = "pageSize")int pageSize) {
+
+        return this.fileService.selectAllFile(fileName,fileType,pageIndex,pageSize);
 
     }
 

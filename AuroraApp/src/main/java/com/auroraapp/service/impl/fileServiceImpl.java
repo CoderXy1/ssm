@@ -6,6 +6,7 @@ import com.auroraapp.service.IFileService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class fileServiceImpl implements IFileService {
@@ -41,5 +42,10 @@ public class fileServiceImpl implements IFileService {
     @Override
     public int updateByPrimaryKey(File record) {
         return fileMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public List<File> selectAllFile(String fileName, String fileType, int pageIndex, int pageSize) {
+        return fileMapper.selectAllFile(fileName, fileType, pageIndex, pageSize);
     }
 }

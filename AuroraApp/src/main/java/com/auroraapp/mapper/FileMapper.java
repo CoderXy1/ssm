@@ -1,6 +1,9 @@
 package com.auroraapp.mapper;
 
 import com.auroraapp.model.File;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface FileMapper {
     int deleteByPrimaryKey(String fileid);
@@ -16,4 +19,6 @@ public interface FileMapper {
     int updateByPrimaryKeyWithBLOBs(File record);
 
     int updateByPrimaryKey(File record);
+
+    List<File> selectAllFile(@Param("fileName")String fileName,@Param("fileType") String fileType, @Param("pageIndex") int pageIndex,@Param("pageSize") int pageSize);
 }

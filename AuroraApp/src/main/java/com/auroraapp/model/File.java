@@ -5,6 +5,8 @@ public class File {
 
     private String filename;
 
+    private String filetype;
+
     private byte[] file;
 
     public String getFileid() {
@@ -21,6 +23,14 @@ public class File {
 
     public void setFilename(String filename) {
         this.filename = filename == null ? null : filename.trim();
+    }
+
+    public String getFiletype() {
+        return filetype;
+    }
+
+    public void setFiletype(String filetype) {
+        this.filetype = filetype == null ? null : filetype.trim();
     }
 
     public byte[] getFile() {

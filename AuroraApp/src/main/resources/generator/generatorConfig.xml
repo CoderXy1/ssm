@@ -67,7 +67,6 @@
         <!--<table schema="test" tableName="tb_journal" domainObjectName="Journal" ></table>-->
         <!--<table schema="test" tableName="tb_file" domainObjectName="File"></table>-->
         <!--<table schema="test" tableName="tb_gallery" domainObjectName="Gallery"></table>-->
-        <!--<table schema="test" tableName="tb_note" domainObjectName="Note"></table>-->
 
 </context>
 </generatorConfiguration>
