@@ -34,42 +34,6 @@ angular.module('ionicApp')
 
         };
 
-        $scope.showFile = function () {
-
-            $http({
-                method: "POST",
-                url: 'file/downloadFile',
-                params: {
-                    fileId: '48f4c552-ed28-491d-9a7e-8a605c88dbc9',
-                    path: 'C:\\Users\\Administrator.SC-201907111318\\Desktop',
-                },
-            }).then(function successCallback(response) {
-                //请求成功
-                alert("下载成功");
-            }, function errorCallback(response) {
-                //请求失败
-                console.log(response.data)
-            });
-
-        };
-
-        $scope.showImage = function () {
-
-            $http({
-                method: "POST",
-                url: 'file/selectImage',
-                params: {
-                    fileId: '824faf19-c056-45c2-c588-0cc999ece9d7'
-                },
-            }).then(function successCallback(response) {
-                //请求成功
-                $scope.imgUrl = response.data[0];
-            }, function errorCallback(response) {
-                //请求失败
-                console.log(response.data)
-            });
-        }
-
         $scope.insertGallery = function () {
 
             if ($scope.insert('file/insertImage')) {

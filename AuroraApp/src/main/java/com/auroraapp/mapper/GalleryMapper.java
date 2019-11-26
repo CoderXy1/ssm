@@ -20,4 +20,6 @@ public interface GalleryMapper {
     int updateByPrimaryKey(Gallery record);
 
     List<Map<String,Object>> selectAll(@Param("pageIndex") int pageIndex,@Param("pageSize") int pageSize);
+
+    int deleteGalleryByFileId(@Param("fileId")String fileId);
 }

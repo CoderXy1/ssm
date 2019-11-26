@@ -3,6 +3,7 @@ package com.auroraapp.controller;
 
 import com.auroraapp.model.File;
 import com.auroraapp.service.IFileService;
+import com.auroraapp.service.IGalleryService;
 import com.auroraapp.util.FIleUtil;
 import com.auroraapp.util.ReduceImgTest;
 import org.springframework.http.HttpHeaders;
@@ -27,6 +28,9 @@ public class fileController {
 
     @Resource
     private IFileService fileService;
+
+    @Resource
+    private IGalleryService galleryService;
 
     @RequestMapping("/insertImage")
     @ResponseBody
@@ -106,5 +110,13 @@ public class fileController {
 
     }
 
+    @RequestMapping("/deleteFile")
+    @ResponseBody
+    public int deleteFile(@RequestParam(value = "fileId")String fileId) {
+
+        this.galleryService.deleteGalleryByFileId(fileId);
+        return this.fileService.deleteByPrimaryKey(fileId);
+
+    }
 
 }

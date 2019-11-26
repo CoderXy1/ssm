@@ -1,0 +1,17 @@
+<ion-view>
+    <ion-content class="ion-contentFit">
+        <a class="button button-icon icon ion-ios-arrow-left" ui-sref="main.files"> 返回</a>
+
+        <div class="list list-inset" style="margin-top: 0px">
+            <form>
+                <label class="item item-input">
+                    <input id="fileUpload" type="file"/>
+                </label>
+                <div class="button-bar" style="margin-top: 10px;padding: 10px">
+                    <button class="button button-positive" ng-click="insertFile('fileUpload')">上传文件</button>
+                </div>
+            </form>
+        </div>
+
+    </ion-content>
+</ion-view>

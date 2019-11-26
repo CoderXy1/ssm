@@ -21,14 +21,18 @@
 
         <ion-list>
             <ion-item ng-repeat="file in fileList">
-
-                <!--缩略图-->
-                <a class="item " href="#">
+                <a class="item item-thumbnail-left item-icon-right" on-hold="showFilesMenu(file.fileid,file.filename)">
+                    <img ng-src="data:image/jpg;base64,{{file.file}}" ng-if="isImage(file.filetype)" style="object-fit: cover">
+                    <img src="images/main/file.png" ng-if="!isImage(file.filetype)" style="object-fit: cover">
                     <h2>{{file.filename}}</h2>
                     <p>{{file.filetype}}</p>
+                    <i class="icon ion-android-download" style="color: green" ng-click="downloadFile(file.fileid)"></i>
                 </a>
             </ion-item>
         </ion-list>
+
+        <ion-infinite-scroll ng-if="isLoadMore" on-infinite="loadMore()" immediate-check="false" distance="1%">
+        </ion-infinite-scroll>
 
     </ion-content>
 </ion-view>

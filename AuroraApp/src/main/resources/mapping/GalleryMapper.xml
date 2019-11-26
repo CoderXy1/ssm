@@ -96,4 +96,9 @@
     order by g.putDate desc limit #{pageIndex},#{pageSize}
   </select>
 
+  <delete id="deleteGalleryByFileId" parameterType="java.lang.String" >
+    delete from tb_gallery
+    where fileId = #{fileId,jdbcType=VARCHAR}
+  </delete>
+
 </mapper>

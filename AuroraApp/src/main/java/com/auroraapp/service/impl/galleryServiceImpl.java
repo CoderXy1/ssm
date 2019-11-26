@@ -49,4 +49,9 @@ public class galleryServiceImpl implements IGalleryService {
     public List<Map<String, Object>> selectAll(int pageIndex, int pageSize) {
         return galleryMapper.selectAll(pageIndex, pageSize);
     }
+
+    @Override
+    public int deleteGalleryByFileId(String fileId) {
+        return galleryMapper.deleteGalleryByFileId(fileId);
+    }
 }

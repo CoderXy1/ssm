@@ -19,4 +19,6 @@ public interface IGalleryService {
     int updateByPrimaryKey(Gallery record);
 
     List<Map<String,Object>> selectAll(int pageIndex, int pageSize);
+
+    int deleteGalleryByFileId(String fileId);
 }

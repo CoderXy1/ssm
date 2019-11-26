@@ -102,6 +102,19 @@ angular.module('ionicApp', ['ionic', 'oc.lazyLoad'])
                     return e.load(['html/main/files/files.js']);
                 }]
             }
+        }).state('main.filesEdit', {
+            url: '/filesEdit',
+            views: {
+                'tab-main-files': {
+                    templateUrl: 'html/main/files/filesEdit.html',
+                    controller: 'filesEditCtrl'
+                }
+            },
+            resolve: {
+                deps: ['$ocLazyLoad', function (e) {
+                    return e.load(['html/main/files/filesEdit.js']);
+                }]
+            }
         }).state('home', {
             url: '/home',
             views: {
@@ -160,6 +173,43 @@ angular.module('ionicApp', ['ionic', 'oc.lazyLoad'])
             });
             return uuid;
         }
+
+        //上传文件@parms input文件的id号
+        $scope.insertFile = function (inputId) {
+
+            var url = '';
+            $scope.fileId = $scope.genUUID();
+
+            var form = new FormData();
+            var file = document.getElementById(inputId).files[0];
+            form.append('file', file);
+            form.append('fileId', $scope.fileId);
+
+            if (file == null || file == '') {
+                $scope.showAlert("提示", "请选择文件");
+            } else {
+                var suffixIndex = file.name.lastIndexOf(".");
+                var suffix = file.name.substring(suffixIndex + 1).toUpperCase();
+                if (suffix != "BMP" && suffix != "JPG" && suffix != "JPEG" && suffix != "PNG" && suffix != "GIF") {
+                    url = "file/insertFile";
+                } else {
+                    url = "file/insertImage";
+                }
+
+                $http({
+                    method: 'POST',
+                    url: url,
+                    data: form,
+                    headers: {'Content-Type': undefined},
+                    transformRequest: angular.identity
+                }).success(function (data) {
+                    $scope.showAlert("上传成功", "");
+                }).error(function (data) {
+                    $scope.showAlert("上传失败", "");
+                });
+            }
+
+        };
 
         //从数据库下载文件
         $scope.downloadFile = function (fileId) {
@@ -241,7 +291,7 @@ angular.module('ionicApp', ['ionic', 'oc.lazyLoad'])
                     { text: '<b> 相 册 </b>' },
                     { text: ' 日 记 ' },
                     { text: ' 便 签 ' },
-                    { text: ' 未 定 ' }
+                    { text: ' 文 件 ' }
                 ],
                 titleText: ' 新 增 ',
                 cancelText: ' 取 消 ',
@@ -260,7 +310,7 @@ angular.module('ionicApp', ['ionic', 'oc.lazyLoad'])
                             $state.go('main.noteEdit');
                             break;
                         case 3:
-                            $state.go('main.gallery');
+                            $state.go('main.filesEdit');
                             break;
                     }
                 }
