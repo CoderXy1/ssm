@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.angular.mapper.GoodsSpecMapper">
+    <resultMap id="BaseResultMap" type="com.angular.model.GoodsSpec">
+        <id column="spec_id" property="specId" jdbcType="VARCHAR"/>
+        <result column="spec_name" property="specName" jdbcType="VARCHAR"/>
+        <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP"/>
+        <result column="gmt_update" property="gmtUpdate" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    spec_id, spec_name, gmt_create, gmt_update
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from goods_spec
+        where spec_id = #{specId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from goods_spec
+    where spec_id = #{specId,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.angular.model.GoodsSpec">
+    insert into goods_spec (spec_id, spec_name, gmt_create, 
+      gmt_update)
+    values (#{specId,jdbcType=VARCHAR}, #{specName,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, 
+      #{gmtUpdate,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="com.angular.model.GoodsSpec">
+        insert into goods_spec
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="specId != null">
+                spec_id,
+            </if>
+            <if test="specName != null">
+                spec_name,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
+            </if>
+            <if test="gmtUpdate != null">
+                gmt_update,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="specId != null">
+                #{specId,jdbcType=VARCHAR},
+            </if>
+            <if test="specName != null">
+                #{specName,jdbcType=VARCHAR},
+            </if>
+            <if test="gmtCreate != null">
+                #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtUpdate != null">
+                #{gmtUpdate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.angular.model.GoodsSpec">
+        update goods_spec
+        <set>
+            <if test="specName != null">
+                spec_name = #{specName,jdbcType=VARCHAR},
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtUpdate != null">
+                gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where spec_id = #{specId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.angular.model.GoodsSpec">
+    update goods_spec
+    set spec_name = #{specName,jdbcType=VARCHAR},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP}
+    where spec_id = #{specId,jdbcType=VARCHAR}
+  </update>
+
+    <select id="selectGoodsSpecAndValue" resultType="java.util.Map">
+    select ta.spec_name,val.spec_id,GROUP_CONCAT(val.spec_value_id,':',val.spec_value) as spec_value from (SELECT spec.spec_id,spec.spec_name FROM goods_spu_spec spu_spec
+	LEFT JOIN goods_spu sp on spu_spec.spu_id = sp.spu_id
+	LEFT JOIN goods_spec spec on spu_spec.spec_id = spec.spec_id
+	WHERE sp.spu_id = #{spu_id}
+	) ta
+	left join goods_spec_value val on val.spec_id = ta.spec_id
+	GROUP BY ta.spec_name
+  </select>
+
+    <select id="selectAllGoodsSpec" resultType="java.util.Map">
+     select spec.spec_id,spec.spec_name from goods_spec_category sc
+	LEFT JOIN goods_category category on category.category_id = sc.category_id
+	LEFT JOIN goods_spec spec on sc.spec_id = spec.spec_id
+	where sc.category_id  = #{category_id}
+  </select>
+
+    <select id="selectBySpecName" resultType="java.lang.String">
+     SELECT spec_id from goods_spec where spec_name = #{spec_name}
+  </select>
+
+    <select id="selectGoodsSpecValue" resultType="java.util.Map">
+     SELECT * from goods_spec_value where spec_id = #{spec_id}
+  </select>
+
+    <insert id="insertGoodsSpecSpu">
+    INSERT INTO goods_spu_spec(spu_id, spec_id, gmt_create, gmt_update)
+    VALUES (#{spu_id}, #{spec_id}, #{gmt_create}, #{gmt_update});
+  </insert>
+
+    <insert id="insertGoodsSpecCategory">
+    INSERT INTO goods_spec_category( spec_id, category_id, gmt_create, gmt_update)
+    VALUES (#{spec_id}, #{category_id}, #{gmt_create}, #{gmt_update});
+</insert>
+
+    <insert id="insertGoodsSpecValue">
+    INSERT INTO goods_spec_value(spec_value_id, spec_id, spec_value, gmt_create, gmt_update)
+    VALUES (#{spec_value_id}, #{spec_id}, #{spec_value}, #{gmt_create},#{gmt_update});
+</insert>
+
+</mapper>

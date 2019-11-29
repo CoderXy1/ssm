@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.angular.mapper.GoodsSpuMapper" >
+  <resultMap id="BaseResultMap" type="com.angular.model.GoodsSpu" >
+    <id column="spu_id" property="spuId" jdbcType="VARCHAR" />
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="low_price" property="lowPrice" jdbcType="DECIMAL" />
+    <result column="spu_icon_id" property="spuIconId" jdbcType="VARCHAR" />
+    <result column="category_id" property="categoryId" jdbcType="VARCHAR" />
+    <result column="brand_id" property="brandId" jdbcType="VARCHAR" />
+    <result column="spu_order" property="spuOrder" jdbcType="INTEGER" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmt_update" property="gmtUpdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    spu_id, goods_name, low_price, spu_icon_id, category_id, brand_id, spu_order, gmt_create, 
+    gmt_update
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_spu
+    where spu_id = #{spuId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from goods_spu
+    where spu_id = #{spuId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.angular.model.GoodsSpu" >
+    insert into goods_spu (spu_id, goods_name, low_price, 
+      spu_icon_id, category_id, brand_id, 
+      spu_order, gmt_create, gmt_update
+      )
+    values (#{spuId,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR}, #{lowPrice,jdbcType=DECIMAL}, 
+      #{spuIconId,jdbcType=VARCHAR}, #{categoryId,jdbcType=VARCHAR}, #{brandId,jdbcType=VARCHAR}, 
+      #{spuOrder,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtUpdate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.angular.model.GoodsSpu" >
+    insert into goods_spu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="spuId != null" >
+        spu_id,
+      </if>
+      <if test="goodsName != null" >
+        goods_name,
+      </if>
+      <if test="lowPrice != null" >
+        low_price,
+      </if>
+      <if test="spuIconId != null" >
+        spu_icon_id,
+      </if>
+      <if test="categoryId != null" >
+        category_id,
+      </if>
+      <if test="brandId != null" >
+        brand_id,
+      </if>
+      <if test="spuOrder != null" >
+        spu_order,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="gmtUpdate != null" >
+        gmt_update,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="spuId != null" >
+        #{spuId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="lowPrice != null" >
+        #{lowPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="spuIconId != null" >
+        #{spuIconId,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null" >
+        #{brandId,jdbcType=VARCHAR},
+      </if>
+      <if test="spuOrder != null" >
+        #{spuOrder,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null" >
+        #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.angular.model.GoodsSpu" >
+    update goods_spu
+    <set >
+      <if test="goodsName != null" >
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="lowPrice != null" >
+        low_price = #{lowPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="spuIconId != null" >
+        spu_icon_id = #{spuIconId,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null" >
+        category_id = #{categoryId,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null" >
+        brand_id = #{brandId,jdbcType=VARCHAR},
+      </if>
+      <if test="spuOrder != null" >
+        spu_order = #{spuOrder,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null" >
+        gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where spu_id = #{spuId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.angular.model.GoodsSpu" >
+    update goods_spu
+    set goods_name = #{goodsName,jdbcType=VARCHAR},
+      low_price = #{lowPrice,jdbcType=DECIMAL},
+      spu_icon_id = #{spuIconId,jdbcType=VARCHAR},
+      category_id = #{categoryId,jdbcType=VARCHAR},
+      brand_id = #{brandId,jdbcType=VARCHAR},
+      spu_order = #{spuOrder,jdbcType=INTEGER},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP}
+    where spu_id = #{spuId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectGoodsSpu" resultType="java.util.Map">
+    SELECT sp.spu_id,sp.goods_name,sp.low_price,sp.spu_icon_id,b.brand_name,c.category_name FROM goods_spu sp
+	LEFT JOIN goods_brand b on b.brand_id = sp.brand_id
+	LEFT JOIN goods_category c on c.category_id = sp.category_id
+	where 1 = 1
+	<if test="category_id != null and category_id != ''">
+      and c.category_id = #{category_id}
+    </if>
+    <if test="brand_id != null and brand_id != ''">
+      and b.brand_id = #{brand_id}
+    </if>
+    order by sp.spu_order limit #{pageIndex},#{pageSize}
+  </select>
+
+</mapper>

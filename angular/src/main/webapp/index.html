@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+    <input type="text" placeholder="品牌名" ng-model="brand_name"><button ng-click="insertBrand()">增加品牌</button><br/>
+    <input type="text" placeholder="类别名" ng-model="category_name"><button ng-click="insertCategory()">增加类别</button><br/>
+    <input type="text" placeholder="规格名" ng-model="spec_name"><button ng-click="insertSpec()">增加规格</button><br/>
+
+    <label ng-repeat="brand in brandList">
+        <input type="radio" ng-model="selectParms.brand_id" value="{{brand.brand_id}}">
+        {{brand.brand_name}}
+    </label><br/>
+
+    <label ng-repeat="category in categoryList">
+        <input type="radio" ng-model="selectParms.category_id" value="{{category.category_id}}" ng-change="selectAllSpec(category.category_id)">
+        {{category.category_name}}
+    </label><br/>
+
+    规格:
+    <div class="form-inline" ng-repeat="spec in specList">
+        <input type="checkbox" id="lastYear" ng-model="isCheck" value="spec.spec_id" ng-change="addGoodsSpec(isCheck,spec.spec_id)">
+        <label for="lastYear">{{spec.spec_name}}</label>
+        <button ng-click="selectSpecValue(spec.spec_id)">规格值</button>
+        <input type="text" placeholder="规格值" ng-model="spec_value">
+        <button ng-click="insertSpecValue(spec.spec_id,spec_value)">新增规格值</button>
+    </div><br/>
+    <span ng-repeat="specValue in specValueList">
+        {{specValue.spec_value}}
+    </span>
+    <br/>
+
+
+
+    <input type="text" placeholder="商品名" ng-model="goods_name">
+    <input type="number" placeholder="最低价格" ng-model="low_price">
+
+    <button ng-click="selectGoodsSpu()">搜索</button> <button ng-click="insertGoodsSpu()">添加商品</button><br/><br/>
+
+    <a ng-repeat="spu in spuList" href="details.html?spu_id={{spu.spu_id}}">{{spu.goods_name}}  </a>
+
+</div>
+
+<script src="js/angular.min.js"></script>
+<script src="js/index.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <base href="?">
+</head>
+<body>
+
+<div ng-app="detailApp" ng-controller="detailCtrl">
+
+    <!--{{specList}}<br/>-->
+    <label ng-repeat="spec in specList.spec_name">
+        <label>{{spec}}:</label>
+        <select ng-model="specId" ng-options="values[0] as values[1] for values in specList.spec_value[$index]" ng-change="addGoodsSku(spec,specId)">
+            <option value="">--请选择--</option>
+        </select>
+    </label>
+    {{specIds}}
+
+
+    <button ng-click="selectGoodsSku()">搜索</button><br/>
+    <input type="number" placeholder="价格" ng-model="price">
+    <input type="number" placeholder="数量" ng-model="stock">
+    <button ng-click="insertGoodsSku()">进货</button><br/>
+    {{goodsSku}}
+</div>
+
+<script src="js/angular.min.js"></script>
+<script src="js/details.js"></script>
+
+</body>
+</html>
