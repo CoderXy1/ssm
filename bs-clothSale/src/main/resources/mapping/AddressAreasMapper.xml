@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.clothSale.mapper.AddressAreasMapper" >
+  <resultMap id="BaseResultMap" type="com.clothSale.model.AddressAreas" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="area_id" property="areaId" jdbcType="VARCHAR" />
+    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+    <result column="city_id" property="cityId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, area_id, area_name, city_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from address_areas
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from address_areas
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.clothSale.model.AddressAreas" >
+    insert into address_areas (id, area_id, area_name, 
+      city_id)
+    values (#{id,jdbcType=INTEGER}, #{areaId,jdbcType=VARCHAR}, #{areaName,jdbcType=VARCHAR}, 
+      #{cityId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.clothSale.model.AddressAreas" >
+    insert into address_areas
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="areaName != null" >
+        area_name,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null" >
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.clothSale.model.AddressAreas" >
+    update address_areas
+    <set >
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null" >
+        area_name = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.clothSale.model.AddressAreas" >
+    update address_areas
+    set area_id = #{areaId,jdbcType=VARCHAR},
+      area_name = #{areaName,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectAllProvinces" resultType="java.util.Map">
+    select * from address_provinces
+  </select>
+
+  <select id="selectCityByProvinceId" resultType="java.util.Map">
+    select * from address_cities where province_id = #{province_id}
+  </select>
+
+  <select id="selectAreaByCityId" resultType="java.util.Map">
+    select * from address_areas where city_id = #{city_id}
+  </select>
+
+  <select id="selectInfoByAreaId" resultType="java.util.Map">
+    select c.city_name,p.province_name,a.area_name from address_areas a
+	left join address_cities c on c.city_id = a.city_id
+	left join address_provinces p on p.province_id = c.province_id
+	where a.area_id = #{area_id}
+  </select>
+
+</mapper>
