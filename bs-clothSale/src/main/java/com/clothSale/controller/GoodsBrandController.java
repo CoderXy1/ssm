@@ -3,6 +3,7 @@ package com.clothSale.controller;
 import com.clothSale.controller.jsonmodel.RequsetData;
 import com.clothSale.model.GoodsBrand;
 import com.clothSale.service.IGoodsBrandService;
+import com.clothSale.service.IUploadFileService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +20,9 @@ public class GoodsBrandController {
 
     @Resource
     private IGoodsBrandService goodsBrandService;
+
+    @Resource
+    private IUploadFileService uploadFileService;
 
     @RequestMapping("/selectGoodsBrand")
     @ResponseBody
@@ -71,13 +75,14 @@ public class GoodsBrandController {
 
     @RequestMapping("/deleteGoodsBrand")
     @ResponseBody
-    public RequsetData<Integer> insertGoodsBrand(@RequestParam("brand_id") String brand_id){
+    public RequsetData<Integer> deleteGoodsBrand(@RequestParam("brand_id") String brand_id,@RequestParam("file_id") String file_id){
 
         RequsetData<Integer> res = new RequsetData<>();
 
-        int count = goodsBrandService.deleteByPrimaryKey(brand_id);
+        int count = uploadFileService.deleteByPrimaryKey(file_id);
+        count += goodsBrandService.deleteByPrimaryKey(brand_id);
 
-        if (count == 1){
+        if (count == 2){
             res.setItem(count);
             res.setMsg("删除成功");
             res.setSuccess(true);

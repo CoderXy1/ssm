@@ -19,8 +19,10 @@
     where brand_id = #{brandId,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from goods_brand
-    where brand_id = #{brandId,jdbcType=VARCHAR}
+    delete from goods_brand where brand_id = #{brandId,jdbcType=VARCHAR};
+    delete from goods_sku_spec_value where sku_id in (select sku_id from goods_sku where spu_id in (select spu_id from goods_spu where brand_id = #{brandId,jdbcType=VARCHAR}));
+    delete from goods_sku where spu_id in (select spu_id from goods_spu where brand_id = #{brandId,jdbcType=VARCHAR});
+    delete from goods_spu where brand_id = #{brandId,jdbcType=VARCHAR};
   </delete>
   <insert id="insert" parameterType="com.clothSale.model.GoodsBrand" >
     insert into goods_brand (brand_id, brand_name, gmt_create, 
@@ -105,15 +107,16 @@
   </update>
 
   <select id="selectGoodsBrand" resultType="java.util.Map">
-    select *,(select count(*) from goods_brand where 1 = 1
+    select b.*,(select count(*) from goods_brand where 1 = 1
         <if test="brandName != null and brandName != ''">
-          and brand_name like concat('%',#{brandName},'%')
-        </if>) as total from goods_brand
+          and b.brand_name like concat('%',#{brandName},'%')
+        </if>) as total,f.* from goods_brand b
+      left join tb_file f on f.file_id = b.brand_icon_id
       where 1 = 1
       <if test="brandName != null and brandName != ''">
-          and brand_name like concat('%',#{brandName},'%')
+          and b.brand_name like concat('%',#{brandName},'%')
       </if>
-      order by brand_order limit #{pageIndex},#{pageSize}
+      order by b.brand_order limit #{pageIndex},#{pageSize}
   </select>
 
 

@@ -3,25 +3,25 @@
         <div class="card">
 
 
-            <!-- modal:新增品牌 -->
+            <!-- modal:新增分类 -->
             <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="picModalModalLabel">新增品牌</h5>
+                            <h5 class="modal-title" id="picModalModalLabel">新增分类</h5>
                             <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
                                 <!--<span aria-hidden="true">&times;</span>-->
                             <!--</button>-->
                         </div>
                         <div class="modal-body">
-                            <form name="editForm" role="form" id="editForm" autocomplete="off" ng-submit="insertBrand()">
+                            <form name="editForm" role="form" id="editForm" autocomplete="off" ng-submit="insertCategory()">
                                 <div class="form-group">
-                                    <label for="brand_name" class="col-form-label">品牌名:</label>
-                                    <input name="brand_name" type="text" class="form-control" id="brand_name" ng-model="editBrand_name" ng-required="true">
+                                    <label for="category_name" class="col-form-label">类别名:</label>
+                                    <input type="text" class="form-control" id="category_name" ng-model="editCategory_name" ng-required="true">
                                 </div>
                                 <div class="form-group">
-                                    <label for="brand_icon_id" class="col-form-label">品牌图标:</label>
-                                    <input id="brand_icon_id" type="file" class="form-control" ng-required="true">
+                                    <label for="brand_icon_id" class="col-form-label">类别优先级:</label>
+                                    <input id="brand_icon_id" type="number" class="form-control" ng-model="category_order" ng-required="true">
                                 </div>
                             </form>
                         </div>
@@ -34,13 +34,13 @@
             </div>
 
             <div class="card-title">
-                <h4><i class="fa fa-trademark color-info"></i> 商品品牌</h4>
+                <h4><i class="fa fa-th-large color-info"></i> 商品分类</h4>
             </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6 input-group">
-                        <input class="form-control" placeholder="品牌名" type="text" ng-model="selectParams.brandName">
-                        <span class="input-group-btn"><button class="btn btn-sm btn-primary" ng-click="searchBrand()"><i class="ti-search"></i></button></span>
+                        <input class="form-control" placeholder="类别名" type="text" ng-model="selectParams.categoryName">
+                        <span class="input-group-btn"><button class="btn btn-sm btn-primary" ng-click="searchCategory()"><i class="ti-search"></i></button></span>
                     </div>
 
                     <div class="col-md-5">
@@ -53,22 +53,21 @@
                         <thead class="text-center">
                         <tr>
                             <th>序号</th>
-                            <th>品牌名</th>
-                            <th>品牌图标</th>
+                            <th>类别名</th>
+                            <th>优先级</th>
                             <th>添加时间</th>
                             <th style="text-align: center">操作</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr class="text-center" ng-repeat="brand in brandList">
+                        <tr class="text-center" ng-repeat="category in categoryList">
                             <th scope="row">{{$index+1}}</th>
-                            <td class="color-primary font-weight-bold">{{brand.brand_name}}</td>
-                            <td><img ng-src="data:image/jpg;base64,{{brand.file_content}}"
-                                      style="object-fit: cover;height: 40px;"></td>
-                            <td>{{brand.gmt_create | date:'yyyy/MM/dd HH:mm:ss'}}</td>
+                            <td class="color-primary font-weight-bold">{{category.category_name}}</td>
+                            <td><span class="badge badge-info">{{category.category_order}}</span></td>
+                            <td>{{category.gmt_create | date:'yyyy/MM/dd HH:mm:ss'}}</td>
                             <td class="text-center">
                                 <button class="btn btn-sm btn-success" title="修改"><i class="fa fa-edit"></i></button>
-                                <button class="btn btn-sm btn-danger" title="删除" ng-click="deleteBrand(brand.brand_id,brand.file_id)"><i class="fa fa-close"></i></button>
+                                <button class="btn btn-sm btn-danger" title="删除" ng-click="deleteCategory(category.category_id)"><i class="fa fa-close"></i></button>
                             </td>
                         </tr>
                         <tr ng-if="specValueList.length<=0">

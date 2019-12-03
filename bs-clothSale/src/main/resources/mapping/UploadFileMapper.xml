@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.clothSale.mapper.UploadFileMapper" >
+  <resultMap id="BaseResultMap" type="com.clothSale.model.UploadFile" >
+    <id column="file_id" property="fileId" jdbcType="VARCHAR" />
+    <result column="file_name" property="fileName" jdbcType="VARCHAR" />
+    <result column="file_type" property="fileType" jdbcType="VARCHAR" />
+    <result column="put_date" property="putDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.clothSale.model.UploadFile" extends="BaseResultMap" >
+    <result column="file_content" property="fileContent" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    file_id, file_name, file_type, put_date
+  </sql>
+  <sql id="Blob_Column_List" >
+    file_content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_file
+    where file_id = #{fileId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_file
+    where file_id = #{fileId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.clothSale.model.UploadFile" >
+    insert into tb_file (file_id, file_name, file_type, 
+      put_date, file_content)
+    values (#{fileId,jdbcType=VARCHAR}, #{fileName,jdbcType=VARCHAR}, #{fileType,jdbcType=VARCHAR}, 
+      #{putDate,jdbcType=TIMESTAMP}, #{fileContent,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.clothSale.model.UploadFile" >
+    insert into tb_file
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fileId != null" >
+        file_id,
+      </if>
+      <if test="fileName != null" >
+        file_name,
+      </if>
+      <if test="fileType != null" >
+        file_type,
+      </if>
+      <if test="putDate != null" >
+        put_date,
+      </if>
+      <if test="fileContent != null" >
+        file_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fileId != null" >
+        #{fileId,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null" >
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileType != null" >
+        #{fileType,jdbcType=VARCHAR},
+      </if>
+      <if test="putDate != null" >
+        #{putDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fileContent != null" >
+        #{fileContent,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.clothSale.model.UploadFile" >
+    update tb_file
+    <set >
+      <if test="fileName != null" >
+        file_name = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileType != null" >
+        file_type = #{fileType,jdbcType=VARCHAR},
+      </if>
+      <if test="putDate != null" >
+        put_date = #{putDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fileContent != null" >
+        file_content = #{fileContent,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where file_id = #{fileId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.clothSale.model.UploadFile" >
+    update tb_file
+    set file_name = #{fileName,jdbcType=VARCHAR},
+      file_type = #{fileType,jdbcType=VARCHAR},
+      put_date = #{putDate,jdbcType=TIMESTAMP},
+      file_content = #{fileContent,jdbcType=LONGVARBINARY}
+    where file_id = #{fileId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.clothSale.model.UploadFile" >
+    update tb_file
+    set file_name = #{fileName,jdbcType=VARCHAR},
+      file_type = #{fileType,jdbcType=VARCHAR},
+      put_date = #{putDate,jdbcType=TIMESTAMP}
+    where file_id = #{fileId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectAllFile" resultType="com.clothSale.model.UploadFile">
+    select * from tb_file
+    where 1 = 1
+    <if test="fileName != null and fileName != ''">
+      and file_name like "%"#{file_name}"%"
+    </if>
+    <if test="fileType != null and fileType != ''">
+      and file_type = #{file_type}
+    </if>
+    order by file_name limit #{pageIndex},#{pageSize}
+  </select>
+
+</mapper>

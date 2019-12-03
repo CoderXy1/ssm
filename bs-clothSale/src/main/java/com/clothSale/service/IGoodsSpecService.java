@@ -22,9 +22,11 @@ public interface IGoodsSpecService {
 
     List<HashMap<String,Object>> selectGoodsSpecAndValue(String spu_id);
 
-    List<HashMap<String,Object>> selectGoodsSpecValue(String spec_id);
+    List<HashMap<String,Object>> selectGoodsSpecValue(String spec_id,String spec_value,int pageIndex,int pageSize);
 
-    List<HashMap<String,Object>> selectAllGoodsSpec(String category_id);
+    List<HashMap<String,Object>> selectAllGoodsSpec(String spec_name,String category_id,int pageIndex,int pageSize);
+
+    HashMap<String,Object> selectAllGoodsSpecNum(String spec_name,String category_id);
 
     String selectBySpecName(String spec_name);
 

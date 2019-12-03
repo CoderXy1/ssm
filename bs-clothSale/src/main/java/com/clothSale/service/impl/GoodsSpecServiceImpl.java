@@ -3,6 +3,7 @@ package com.clothSale.service.impl;
 import com.clothSale.mapper.GoodsSpecMapper;
 import com.clothSale.model.GoodsSpec;
 import com.clothSale.service.IGoodsSpecService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -52,8 +53,13 @@ public class GoodsSpecServiceImpl implements IGoodsSpecService {
     }
 
     @Override
-    public List<HashMap<String, Object>> selectAllGoodsSpec(String category_id) {
-        return goodsSpecMapper.selectAllGoodsSpec(category_id);
+    public List<HashMap<String, Object>> selectAllGoodsSpec(String spec_name,String category_id,int pageIndex,int pageSize) {
+        return goodsSpecMapper.selectAllGoodsSpec(spec_name,category_id,pageIndex,pageSize);
+    }
+
+    @Override
+    public HashMap<String,Object> selectAllGoodsSpecNum(String spec_name, String category_id) {
+        return goodsSpecMapper.selectAllGoodsSpecNum(spec_name,category_id);
     }
 
     @Override
@@ -67,8 +73,8 @@ public class GoodsSpecServiceImpl implements IGoodsSpecService {
     }
 
     @Override
-    public List<HashMap<String, Object>> selectGoodsSpecValue(String spec_id) {
-        return goodsSpecMapper.selectGoodsSpecValue(spec_id);
+    public List<HashMap<String, Object>> selectGoodsSpecValue(String spec_id,String spec_value,int pageIndex,int pageSize) {
+        return goodsSpecMapper.selectGoodsSpecValue(spec_id,spec_value,pageIndex,pageSize);
     }
 
     @Override

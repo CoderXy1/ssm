@@ -23,9 +23,11 @@ public interface GoodsSpecMapper {
 
     List<HashMap<String,Object>> selectGoodsSpecAndValue(@Param("spu_id") String spu_id);
 
-    List<HashMap<String,Object>> selectAllGoodsSpec(@Param("category_id") String category_id);
+    List<HashMap<String,Object>> selectAllGoodsSpec(@Param("spec_name")String spec_name,@Param("category_id") String category_id,@Param("pageIndex") int pageIndex,@Param("pageSize") int pageSize);
 
-    List<HashMap<String,Object>> selectGoodsSpecValue(@Param("spec_id") String spec_id);
+    HashMap<String,Object> selectAllGoodsSpecNum(@Param("spec_name")String spec_name,@Param("category_id") String category_id);
+
+    List<HashMap<String,Object>> selectGoodsSpecValue(@Param("spec_id") String spec_id,@Param("spec_value")String spec_value,@Param("pageIndex") int pageIndex,@Param("pageSize") int pageSize);
 
     String selectBySpecName(@Param("spec_name") String spec_name);
 

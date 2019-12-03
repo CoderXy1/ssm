@@ -43,11 +43,11 @@ public class GoodsSpecController {
 
     @RequestMapping("/selectGoodsSpecValue")
     @ResponseBody
-    public RequsetData<List<HashMap<String, Object>>> selectGoodsSpecValue(@RequestParam("spec_id") String spec_id) {
+    public RequsetData<List<HashMap<String, Object>>> selectGoodsSpecValue(@RequestParam("spec_id") String spec_id,@RequestParam(required = false)String spec_value,@RequestParam("pageIndex")int pageIndex,@RequestParam("pageSize")int pageSize) {
 
         RequsetData<List<HashMap<String, Object>>> res = new RequsetData<>();
 
-        List<HashMap<String, Object>> list = goodsSpecService.selectGoodsSpecValue(spec_id);
+        List<HashMap<String, Object>> list = goodsSpecService.selectGoodsSpecValue(spec_id,spec_value,pageIndex,pageSize);
 
         if (list != null) {
             res.setItem(list);
@@ -63,15 +63,17 @@ public class GoodsSpecController {
 
     @RequestMapping("/selectAllGoodsSpec")
     @ResponseBody
-    public RequsetData<List<HashMap<String, Object>>> selectAllGoodsSpec(@RequestParam("category_id")String category_id) {
+    public RequsetData<List<HashMap<String, Object>>> selectAllGoodsSpec(@RequestParam(required = false)String spec_name,@RequestParam(required = false)String category_id,@RequestParam("pageIndex")int pageIndex,@RequestParam("pageSize")int pageSize) {
 
         RequsetData<List<HashMap<String, Object>>> res = new RequsetData<>();
 
-        List<HashMap<String, Object>> list = goodsSpecService.selectAllGoodsSpec(category_id);
+        List<HashMap<String, Object>> list = goodsSpecService.selectAllGoodsSpec(spec_name,category_id, pageIndex, pageSize);
+        HashMap<String,Object> map = goodsSpecService.selectAllGoodsSpecNum(spec_name,category_id);
 
         if (list != null) {
             res.setItem(list);
             res.setMsg("成功");
+            res.setExtdata(map);
             res.setSuccess(true);
         } else {
             res.setMsg("失败");
@@ -118,16 +120,18 @@ public class GoodsSpecController {
             goodsSpec.setGmtCreate(new Date());
             count = goodsSpecService.insertSelective(goodsSpec);
 
-            goodsSpecService.insertGoodsSpecCategory(spec_id,category_id,new Date(),null);
+            count += goodsSpecService.insertGoodsSpecCategory(spec_id,category_id,new Date(),null);
         }
 
 
-        if (count == 1) {
-            res.setItem(count);
-            res.setMsg("成功");
+        if (count == 2) {
+            res.setMsg("添加成功");
+            res.setSuccess(true);
+        } else if((count == 1)){
+            res.setMsg("添加成功，但已有重复规格");
             res.setSuccess(true);
         } else {
-            res.setMsg("失败");
+            res.setMsg("添加失败");
             res.setSuccess(false);
         }
 
@@ -143,11 +147,29 @@ public class GoodsSpecController {
         int count = goodsSpecService.insertGoodsSpecValue(spec_value_id, spec_id, spec_value, new Date(),null);
 
         if (count == 1) {
-            res.setItem(count);
-            res.setMsg("成功");
+            res.setMsg("添加成功");
             res.setSuccess(true);
         } else {
-            res.setMsg("失败");
+            res.setMsg("添加失败");
+            res.setSuccess(false);
+        }
+
+        return res;
+    }
+
+    @RequestMapping("/deleteGoodsSpec")
+    @ResponseBody
+    public RequsetData<Integer> deleteGoodsSpec(@RequestParam("specId")String specId) {
+
+        RequsetData<Integer> res = new RequsetData<>();
+
+        int count = goodsSpecService.deleteByPrimaryKey(specId);
+
+        if (count == 1) {
+            res.setMsg("删除成功");
+            res.setSuccess(true);
+        } else {
+            res.setMsg("删除失败");
             res.setSuccess(false);
         }
 

@@ -1,29 +1,24 @@
 angular.module("clothSaleApp")
-    .controller("goodsBrandCtrl", function ($scope,$rootScope,$http,$alert) {
+    .controller("goodsCategoryCtrl", function ($scope,$rootScope,$http,$alert) {
 
-        $scope.brandList = [];
+        $scope.categoryList = [];
         $scope.selectParams = {
             pageIndex : 0,
             pageSize : 10,
             pageNum : 1,
             totalNum : 0,
-            brandName : '',
+            categoryName : '',
         }
 
-        //新增品牌
-        $scope.insertBrand = function (){
-
-            var file_id = $scope.getUUID();
-            $scope.insertFile(file_id,'brand_icon_id','../../');
-
+        //新增分类
+        $scope.insertCategory = function (){
             $http({
                 method: "POST",
-                url: '../../GoodsBrand/insertGoodsBrand',
+                url: '../../GoodsCategory/insertGoodsCategory',
                 params: {
-                    brand_id : $scope.getUUID(),
-                    brand_name : $scope.editBrand_name,
-                    brand_order : 1,
-                    brand_icon_id : file_id,
+                    category_id : $scope.getUUID(),
+                    category_name : $scope.editCategory_name,
+                    category_order : $scope.category_order,
                 }
             }).then(function successCallback(response) {
                 //请求成功
@@ -35,16 +30,15 @@ angular.module("clothSaleApp")
             });
         }
 
-        //删除品牌
-        $scope.deleteBrand = function (brand_id,file_id){
+        //删除分类
+        $scope.deleteCategory = function (category_id){
 
-            if (confirm("将会同时删除该品牌下所有商品，确定删除")){
+            if (confirm("将会同时删除该分类下所有商品，确定删除")){
                 $http({
                     method: "POST",
-                    url: '../../GoodsBrand/deleteGoodsBrand',
+                    url: '../../GoodsCategory/deleteGoodsCategory',
                     params: {
-                        brand_id : brand_id,
-                        file_id : file_id,
+                        category_id : category_id,
                     }
                 }).then(function successCallback(response) {
                     //请求成功
@@ -58,17 +52,17 @@ angular.module("clothSaleApp")
 
         }
 
-        //查询品牌
-        $scope.selectBrand = function (){
+        //查询分类
+        $scope.selectCategory = function (){
             $http({
                 method: "POST",
-                url: '../../GoodsBrand/selectGoodsBrand',
+                url: '../../GoodsCategory/selectGoodsCategory',
                 params : $scope.selectParams
             }).then(function successCallback(response) {
                 //请求成功
-                $scope.brandList = response.data.item;
-                if ($scope.brandList != null &&  $scope.brandList != ''){
-                    $scope.selectParams.totalNum = $scope.brandList[0].total;
+                $scope.categoryList = response.data.item;
+                if ($scope.categoryList != null &&  $scope.categoryList != ''){
+                    $scope.selectParams.totalNum = $scope.categoryList[0].total;
                 }else {
                     $scope.selectParams.totalNum = 0;
                 }
@@ -77,14 +71,14 @@ angular.module("clothSaleApp")
             });
         }
 
-        $scope.searchBrand = function (){
+        $scope.searchCategory = function (){
             $scope.selectParams.pageIndex = 0;
-            $scope.selectBrand();
+            $scope.selectCategory();
         }
 
         $scope.loadData = function () {
             $scope.selectParams.pageIndex = ($scope.selectParams.pageNum - 1) * $scope.selectParams.pageSize;
-            $scope.selectBrand();
+            $scope.selectCategory();
         }
 
         $scope.loadData();

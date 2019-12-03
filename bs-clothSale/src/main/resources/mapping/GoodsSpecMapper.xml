@@ -17,13 +17,14 @@
         where spec_id = #{specId,jdbcType=VARCHAR}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from goods_spec
-    where spec_id = #{specId,jdbcType=VARCHAR}
+        delete from goods_spec where spec_id = #{specId,jdbcType=VARCHAR};
+        delete from goods_spec_category where spec_id = #{specId,jdbcType=VARCHAR};
+        delete from goods_spec_value where spec_id = #{specId,jdbcType=VARCHAR};
   </delete>
     <insert id="insert" parameterType="com.clothSale.model.GoodsSpec">
-    insert into goods_spec (spec_id, spec_name, gmt_create, 
+    insert into goods_spec (spec_id, spec_name, gmt_create,
       gmt_update)
-    values (#{specId,jdbcType=VARCHAR}, #{specName,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, 
+    values (#{specId,jdbcType=VARCHAR}, #{specName,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP},
       #{gmtUpdate,jdbcType=TIMESTAMP})
   </insert>
     <insert id="insertSelective" parameterType="com.clothSale.model.GoodsSpec">
@@ -90,20 +91,44 @@
 	GROUP BY ta.spec_name
   </select>
 
+    <select id="selectAllGoodsSpecNum" resultType="java.util.Map">
+        select count(*) as total from goods_spec_category sc
+        LEFT JOIN goods_category category on category.category_id = sc.category_id
+        LEFT JOIN goods_spec spec on sc.spec_id = spec.spec_id
+        where 1 = 1
+        <if test="category_id != null and category_id != ''">
+            and sc.category_id = #{category_id}
+        </if>
+        <if test="spec_name != null and spec_name != ''">
+            and spec.spec_name like concat('%',#{spec_name},'%')
+        </if>
+    </select>
+
     <select id="selectAllGoodsSpec" resultType="java.util.Map">
-     select spec.spec_id,spec.spec_name from goods_spec_category sc
-	LEFT JOIN goods_category category on category.category_id = sc.category_id
-	LEFT JOIN goods_spec spec on sc.spec_id = spec.spec_id
-	where sc.category_id  = #{category_id}
-  </select>
+        select spec.*,category.category_id,category.category_name from goods_spec_category sc
+        LEFT JOIN goods_category category on category.category_id = sc.category_id
+        LEFT JOIN goods_spec spec on sc.spec_id = spec.spec_id
+        where 1 = 1
+        <if test="category_id != null and category_id != ''">
+            and sc.category_id = #{category_id}
+        </if>
+        <if test="spec_name != null and spec_name != ''">
+            and spec.spec_name like concat('%',#{spec_name},'%')
+        </if>
+        limit #{pageIndex},#{pageSize}
+    </select>
 
     <select id="selectBySpecName" resultType="java.lang.String">
      SELECT spec_id from goods_spec where spec_name = #{spec_name}
   </select>
 
     <select id="selectGoodsSpecValue" resultType="java.util.Map">
-     SELECT * from goods_spec_value where spec_id = #{spec_id}
-  </select>
+        SELECT * from goods_spec_value where spec_id = #{spec_id}
+        <if test="spec_value != null and spec_value != ''">
+            and spec_value like concat('%',#{spec_value},'%')
+        </if>
+        limit #{pageIndex},#{pageSize}
+    </select>
 
     <insert id="insertGoodsSpecSpu">
     INSERT INTO goods_spu_spec(spu_id, spec_id, gmt_create, gmt_update)

@@ -2,26 +2,25 @@
     <div class="container-fluid" style="height: 100%;">
         <div class="card">
 
-
-            <!-- modal:新增品牌 -->
+            <!-- modal:新增规格 -->
             <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="picModalModalLabel">新增品牌</h5>
-                            <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-                                <!--<span aria-hidden="true">&times;</span>-->
-                            <!--</button>-->
+                            <h5 class="modal-title" id="picModalModalLabel">新增规格</h5>
                         </div>
                         <div class="modal-body">
-                            <form name="editForm" role="form" id="editForm" autocomplete="off" ng-submit="insertBrand()">
+                            <form name="editForm" role="form" id="editForm" autocomplete="off" ng-submit="insertSpec()">
                                 <div class="form-group">
-                                    <label for="brand_name" class="col-form-label">品牌名:</label>
-                                    <input name="brand_name" type="text" class="form-control" id="brand_name" ng-model="editBrand_name" ng-required="true">
+                                    <label for="category_name" class="col-form-label">所属类别:</label>
+                                    <select id="category_name" class="form-control" ng-model="editCategory_id" ng-required="true">
+                                        <option value="">--请选择--</option>
+                                        <option ng-repeat="category in categoryList" value="{{category.category_id}}">{{category.category_name}}</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="brand_icon_id" class="col-form-label">品牌图标:</label>
-                                    <input id="brand_icon_id" type="file" class="form-control" ng-required="true">
+                                    <label for="brand_icon_id" class="col-form-label">规格名:</label>
+                                    <input id="brand_icon_id" type="text" class="form-control" ng-model="editSpec_name" ng-required="true">
                                 </div>
                             </form>
                         </div>
@@ -34,16 +33,21 @@
             </div>
 
             <div class="card-title">
-                <h4><i class="fa fa-trademark color-info"></i> 商品品牌</h4>
+                <h4><i class="fa fa-sliders color-info"></i> 规格管理</h4>
             </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6 input-group">
-                        <input class="form-control" placeholder="品牌名" type="text" ng-model="selectParams.brandName">
-                        <span class="input-group-btn"><button class="btn btn-sm btn-primary" ng-click="searchBrand()"><i class="ti-search"></i></button></span>
+                        <input class="form-control" placeholder="规格名" type="text" ng-model="selectParams.spec_name">
+                        <span class="input-group-btn"><button class="btn btn-sm btn-primary" ng-click="searchSpec()"><i class="ti-search"></i></button></span>
                     </div>
-
-                    <div class="col-md-5">
+                    <div class="col-md-4 input-group">
+                        <select class="form-control" ng-model="selectParams.category_id" ng-change="searchSpec()">
+                            <option value="">--请选择类别--</option>
+                            <option ng-repeat="category in categoryList" value="{{category.category_id}}">{{category.category_name}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
                         <button class="btn btn-sm btn-primary float-right" data-toggle="modal" data-target="#addModal">新增</button>
                     </div>
                 </div>
@@ -53,22 +57,21 @@
                         <thead class="text-center">
                         <tr>
                             <th>序号</th>
-                            <th>品牌名</th>
-                            <th>品牌图标</th>
+                            <th>规格名</th>
+                            <th>所属类别</th>
                             <th>添加时间</th>
                             <th style="text-align: center">操作</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr class="text-center" ng-repeat="brand in brandList">
+                        <tr class="text-center" ng-repeat="spec in specList">
                             <th scope="row">{{$index+1}}</th>
-                            <td class="color-primary font-weight-bold">{{brand.brand_name}}</td>
-                            <td><img ng-src="data:image/jpg;base64,{{brand.file_content}}"
-                                      style="object-fit: cover;height: 40px;"></td>
-                            <td>{{brand.gmt_create | date:'yyyy/MM/dd HH:mm:ss'}}</td>
+                            <td class="font-weight-bold"><a class="color-primary" ui-sref="goodsSpecValue({spec_id:'{{spec.spec_id}}',spec_name:'{{spec.spec_name}}'})">{{spec.spec_name}}</a></td>
+                            <td><span class="badge badge-dark">{{spec.category_name}}</span></td>
+                            <td>{{spec.gmt_create | date:'yyyy/MM/dd HH:mm:ss'}}</td>
                             <td class="text-center">
                                 <button class="btn btn-sm btn-success" title="修改"><i class="fa fa-edit"></i></button>
-                                <button class="btn btn-sm btn-danger" title="删除" ng-click="deleteBrand(brand.brand_id,brand.file_id)"><i class="fa fa-close"></i></button>
+                                <button class="btn btn-sm btn-danger" title="删除" ng-click="deleteSpec(spec.spec_id)"><i class="fa fa-close"></i></button>
                             </td>
                         </tr>
                         <tr ng-if="specValueList.length<=0">

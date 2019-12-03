@@ -67,6 +67,24 @@ public class GoodsCategoryController {
         return res;
     }
 
+    @RequestMapping("/deleteGoodsCategory")
+    @ResponseBody
+    public RequsetData<Integer> deleteGoodsCategory(@RequestParam("category_id") String category_id){
 
+        RequsetData<Integer> res = new RequsetData<>();
+
+        int count = goodsCategoryService.deleteByPrimaryKey(category_id);
+
+        if (count == 1){
+            res.setItem(count);
+            res.setMsg("删除成功");
+            res.setSuccess(true);
+        }else {
+            res.setMsg("删除失败");
+            res.setSuccess(false);
+        }
+
+        return res;
+    }
 
 }
