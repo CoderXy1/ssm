@@ -1,0 +1,82 @@
+/**
+  * 轮播图
+  */
+.full_eye{
+	width: 100%;
+	height: 380px;
+	overflow: hidden;
+	position: relative;
+}
+.big_eye_pic{
+    height: 435px;
+    z-index: 1;
+    overflow: hidden;
+}
+.big_eye_pic ul li {
+	position: absolute;
+}
+.btn{
+	width: 100%;
+	height: 15px;
+	line-height: 15px;
+	position: absolute;
+	bottom: 20px;
+	text-align: center;
+	z-index: 4;
+}
+.btn ul{
+	display: inline-block;
+}
+.btn ul li{
+	width: 15px;
+	height: 15px;
+	float: left;
+	background: #B9B8BB;
+	border-radius:50%;
+	margin: 0 5px;
+}
+/*轮播区结束*/
+/**
+ * 品牌专区
+ */
+.qinha_box {
+    margin-top: 15px;
+}
+.qinha_title {
+    background: url("./../image/h2_bg.jpg") no-repeat scroll center center;
+    height: 71px;
+    float: left;
+    width: 1200px;
+    text-align: center;
+}
+.v_h2 {
+    margin: 0 auto;
+    padding-right: 40px;
+    text-align: center;
+    width: 227px;
+}
+.h2_top {
+    font-size: 30px;
+    padding-top: 6px;
+}
+.qinha_ul {
+    width: 100%;
+    overflow: hidden;
+    margin-top: 30px;
+}
+.qinha_ul li{
+	float: left;
+	width: 579px;
+	height: 275px;
+	position: relative;
+	margin-right: 6px;
+	margin-bottom: 20px;
+	overflow: hidden;
+	background: #E8E8E8;
+}
+.qinha_ul .no_margin {
+    margin-right: 0;
+}
+.qinha_ul li a img {
+    width: 100%;
+}

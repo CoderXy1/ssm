@@ -1,0 +1,64 @@
+<div class="main" style="height: 650px;margin-top: 20px">
+    <div class="container-fluid" style="height: 100%;">
+        <div class="card">
+            <div class="card-title">
+                <h4><i class="fa fa-gift color-info"></i> 商品详细{{spu_id}}</h4>
+                <a class="float-right" ui-sref="goodsSpu" style="margin-right: 30px"><i class="fa fa-arrow-left color-info"></i>返回</a>
+            </div>
+            <div class="card-body">
+
+                <div class="table-responsive" style="margin-top: 10px">
+                    <table class="table table-bordered table-striped">
+                        <thead class="text-center">
+                        <tr>
+                            <th>序号</th>
+                            <th>所属商品</th>
+                            <th>规格</th>
+                            <th>进价</th>
+                            <th>卖价</th>
+                            <th>库存</th>
+                            <th>添加时间</th>
+                            <th style="text-align: center">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="text-center" ng-repeat="sku in skuList">
+                            <th scope="row">{{$index+1}}</th>
+                            <td class="font-weight-bold color-primary">{{sku.goods_name}}</td>
+                            <td>{{sku.spec_value}}</td>
+                            <td><span class="badge badge-secondary">￥{{sku.price_input}}</span></td>
+                            <td><span class="badge badge-secondary">￥{{sku.price_sale}}</span></td>
+                            <td><span class="badge badge-primary">{{sku.stock}}</span></td>
+                            <td>{{sku.gmt_create | date:'yyyy/MM/dd HH:mm:ss'}}</td>
+                            <td class="text-center">
+                                <button class="btn btn-sm btn-success" title="修改"><i class="fa fa-edit"></i></button>
+                                <button class="btn btn-sm btn-danger" title="删除" ng-click="deleteSpec(spec.spec_id)"><i class="fa fa-close"></i></button>
+                            </td>
+                        </tr>
+                        <tr ng-if="skuList.length<=0">
+                            <td colspan="15" style="text-align:center">暂无数据</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <ul uib-pagination class="pagination-md pagination-custom float-right" style="margin-right: 20px"
+                        total-items="selectParams.totalNum"
+                        first-text="«"
+                        last-text="»"
+                        previous-text="上一页"
+                        next-text="下一页"
+                        force-ellipses="true"
+                        max-size="5"
+                        ng-change="loadData()"
+                        rotate="true"
+                        ng-model="selectParams.pageNum"
+                        items-per-page="selectParams.pageSize"
+                        class="pagination-sm page-right" boundary-links="true" boundary-link-numbers="true"></ul>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>

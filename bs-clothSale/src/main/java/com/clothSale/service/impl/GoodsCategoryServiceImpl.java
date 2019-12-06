@@ -7,6 +7,7 @@ import com.clothSale.service.IGoodsCategoryService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -49,5 +50,15 @@ public class GoodsCategoryServiceImpl implements IGoodsCategoryService {
     @Override
     public List<HashMap<String, Object>> selectGoodsCategory(int pageIndex, int pageSize, String categoryName) {
         return goodsCategoryMapper.selectGoodsCategory(pageIndex, pageSize, categoryName);
+    }
+
+    @Override
+    public int insertCategoryFirst(String categoryFirstId, String categoryFirstName, int categoryFirstOrder, Date gmtCreate, Date gmtUpdate) {
+        return goodsCategoryMapper.insertCategoryFirst(categoryFirstId, categoryFirstName, categoryFirstOrder, gmtCreate, gmtUpdate);
+    }
+
+    @Override
+    public List<HashMap<String, Object>> selectGoodsCategoryFirst(int pageIndex, int pageSize, String categoryFirstName) {
+        return goodsCategoryMapper.selectGoodsCategoryFirst(pageIndex, pageSize, categoryFirstName);
     }
 }

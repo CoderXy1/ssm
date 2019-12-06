@@ -49,26 +49,36 @@ angular.module("clothSaleApp", ['ui.router', 'oc.lazyLoad','ui.bootstrap','mgcre
                     return e.load(['goods/spec/specValue.js']);
                 }]
             }
+        }).state('goodsSpu', {
+            url: '/goodsSpu',
+            templateUrl: 'goods/spu/spu.html',
+            controller: 'goodsSpuCtrl',
+            resolve: {
+                deps: ['$ocLazyLoad', function (e) {
+                    return e.load(['goods/spu/spu.js']);
+                }]
+            }
+        }).state('goodsSku', {
+            url: '/goodsSku?spu_id',
+            templateUrl: 'goods/spu/sku.html',
+            controller: 'goodsSkuCtrl',
+            resolve: {
+                deps: ['$ocLazyLoad', function (e) {
+                    return e.load(['goods/spu/sku.js']);
+                }]
+            }
+        }).state('goodsSkuAdd', {
+            url: '/goodsSkuAdd',
+            templateUrl: 'goods/spu/skuAdd.html',
+            controller: 'goodsSkuAddCtrl',
+            resolve: {
+                deps: ['$ocLazyLoad', function (e) {
+                    return e.load(['goods/spu/skuAdd.js']);
+                }]
+            }
         });
     }).controller("clothSaleCtrl", ['$scope', '$http','$rootScope','$alert',
     function ($scope, $http,$rootScope,$alert) {
-
-        $rootScope.info = {
-            currentPage: 1,
-        }
-
-        //获取cookie里面的currentPage
-        var cookieString = decodeURI(document.cookie);
-        if(cookieString.length!=0){
-            var cookieArray=cookieString.split(";");
-            for(var i=0;i<cookieArray.length;i++){
-                var cookieNum=cookieArray[i].split("=");
-                var cookieName=cookieNum[0];
-                if (cookieName == 'currentPage'){
-                    $rootScope.info.currentPage = cookieNum[1];
-                }
-            }
-        }
 
         //生成随机字母数字
         $scope.getUUID = function () {
@@ -82,8 +92,8 @@ angular.module("clothSaleApp", ['ui.router', 'oc.lazyLoad','ui.bootstrap','mgcre
         }
 
         //提示信息
-        $scope.showAlert = function (title,data) {
-            $alert({title:title, content: data, placement: 'top', type: 'info', show: true, duration: 2});
+        $scope.showAlert = function (title,data,type) {
+            $alert({title:title, content: data, placement: 'top', type: type, show: true, duration: 3});
         };
 
         //上传文件@parms input文件的id号
@@ -97,7 +107,7 @@ angular.module("clothSaleApp", ['ui.router', 'oc.lazyLoad','ui.bootstrap','mgcre
             form.append('file_id', fileId);
 
             if (file == null || file == '') {
-                $scope.showAlert("提示:", "请选择文件");
+                $scope.showAlert("提示:", "请选择文件",'warning');
             } else {
                 var suffixIndex = file.name.lastIndexOf(".");
                 var suffix = file.name.substring(suffixIndex + 1).toUpperCase();
@@ -114,9 +124,9 @@ angular.module("clothSaleApp", ['ui.router', 'oc.lazyLoad','ui.bootstrap','mgcre
                     headers: {'Content-Type': undefined},
                     transformRequest: angular.identity
                 }).success(function (data) {
-                    $scope.showAlert("提示:", "上传成功");
+                    $scope.showAlert("提示:", "上传成功",'success');
                 }).error(function (data) {
-                    $scope.showAlert("警告:", "上传失败");
+                    $scope.showAlert("警告:", "上传失败",'danger');
                 });
             }
 
@@ -136,7 +146,7 @@ angular.module("clothSaleApp", ['ui.router', 'oc.lazyLoad','ui.bootstrap','mgcre
                 download("data:text/plain;base64," + response.data.file,response.data.filename);
             }, function errorCallback(response) {
                 //请求失败
-                $scope.showAlert("警告:","下载失败");
+                $scope.showAlert("警告:","下载失败",'danger');
             });
 
         };
@@ -171,11 +181,6 @@ angular.module("clothSaleApp", ['ui.router', 'oc.lazyLoad','ui.bootstrap','mgcre
             return new Blob([uInt8Array], {type: contentType});
         }
 
-        //改变左侧菜单active状态
-        $scope.changeActive = function (index) {
-            document.cookie = encodeURI("currentPage="+index);
-            $scope.info.currentPage = index;
-        }
 
     }
 ]).factory('httpInterceptor', ["$rootScope", function ($rootScope) {

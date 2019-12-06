@@ -19,6 +19,8 @@ public interface IGoodsSpuService {
 
     int updateByPrimaryKey(GoodsSpu record);
 
-    List<HashMap<String,Object>> selectGoodsSpu(int pageIndex, int pageSize, String category_id, String brand_id);
+    List<HashMap<String,Object>> selectGoodsSpu(int pageIndex, int pageSize, String category_id, String brand_id,String goods_name);
+
+    HashMap<String, Object> selectGoodsSpuNum(String category_id, String brand_id,String goods_name);
 
 }

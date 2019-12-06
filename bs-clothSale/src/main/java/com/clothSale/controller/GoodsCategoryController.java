@@ -40,6 +40,25 @@ public class GoodsCategoryController {
         return res;
     }
 
+    @RequestMapping("/selectGoodsCategoryFirst")
+    @ResponseBody
+    public RequsetData<List<HashMap<String,Object>>> selectGoodsCategoryFirst(@RequestParam("pageIndex") int pageIndex, @RequestParam("pageSize") int pageSize, @RequestParam(required = false) String categoryFirstName){
+
+        RequsetData<List<HashMap<String,Object>>> res = new RequsetData<>();
+
+        List<HashMap<String,Object>> list = goodsCategoryService.selectGoodsCategoryFirst(pageIndex, pageSize, categoryFirstName);
+        if (list != null){
+            res.setItem(list);
+            res.setMsg("成功");
+            res.setSuccess(true);
+        }else {
+            res.setMsg("失败");
+            res.setSuccess(false);
+        }
+
+        return res;
+    }
+
     @RequestMapping("/insertGoodsCategory")
     @ResponseBody
     //有参数要加 @RequestParam("参数名")
@@ -54,6 +73,26 @@ public class GoodsCategoryController {
         goodsCategory.setGmtCreate(new Date());
 
         int count = goodsCategoryService.insertSelective(goodsCategory);
+
+        if (count == 1){
+            res.setItem(count);
+            res.setMsg("成功");
+            res.setSuccess(true);
+        }else {
+            res.setMsg("失败");
+            res.setSuccess(false);
+        }
+
+        return res;
+    }
+
+    @RequestMapping("/insertCategoryFirst")
+    @ResponseBody
+    public RequsetData<Integer> insertCategoryFirst(@RequestParam("categoryFirstId") String categoryFirstId, @RequestParam("categoryFirstName") String categoryFirstName, @RequestParam("categoryFirstOrder") int categoryFirstOrder){
+
+        RequsetData<Integer> res = new RequsetData<>();
+
+        int count = goodsCategoryService.insertCategoryFirst(categoryFirstId,categoryFirstName,categoryFirstOrder,new Date(),null);
 
         if (count == 1){
             res.setItem(count);

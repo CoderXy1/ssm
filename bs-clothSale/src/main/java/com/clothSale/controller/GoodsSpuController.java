@@ -28,14 +28,16 @@ public class GoodsSpuController {
     @RequestMapping("/selectGoodsSpu")
     @ResponseBody
     //有参数要加 @RequestParam("参数名")
-    public RequsetData<List<HashMap<String, Object>>> selectGoodsSpu(@RequestParam("pageIndex") int pageIndex, @RequestParam("pageSize") int pageSize, @RequestParam(required = false) String category_id, @RequestParam(required = false) String brand_id) {
+    public RequsetData<List<HashMap<String, Object>>> selectGoodsSpu(@RequestParam("pageIndex") int pageIndex, @RequestParam("pageSize") int pageSize, @RequestParam(required = false) String category_id, @RequestParam(required = false) String brand_id,@RequestParam(required = false)String goods_name) {
 
         RequsetData<List<HashMap<String, Object>>> res = new RequsetData<>();
 
-        List<HashMap<String, Object>> list = goodsSpuService.selectGoodsSpu(pageIndex, pageSize, category_id, brand_id);
+        List<HashMap<String, Object>> list = goodsSpuService.selectGoodsSpu(pageIndex, pageSize, category_id, brand_id,goods_name);
+        HashMap<String, Object> total = goodsSpuService.selectGoodsSpuNum(category_id, brand_id,goods_name);
 
         if (list != null) {
             res.setItem(list);
+            res.setExtdata(total);
             res.setMsg("成功");
             res.setSuccess(true);
         } else {
@@ -81,6 +83,27 @@ public class GoodsSpuController {
             res.setSuccess(true);
         } else {
             res.setMsg("失败");
+            res.setSuccess(false);
+        }
+
+        return res;
+    }
+
+    @RequestMapping("/deleteGoodsSpu")
+    @ResponseBody
+    //有参数要加 @RequestParam("参数名")
+    public RequsetData<Integer> selectGoodsSpu(@RequestParam("spu_id") String spu_id) {
+
+        RequsetData<Integer> res = new RequsetData<>();
+
+        int count = goodsSpuService.deleteByPrimaryKey(spu_id);
+
+        if (count == 1) {
+            res.setItem(count);
+            res.setMsg("删除成功");
+            res.setSuccess(true);
+        } else {
+            res.setMsg("删除失败");
             res.setSuccess(false);
         }
 

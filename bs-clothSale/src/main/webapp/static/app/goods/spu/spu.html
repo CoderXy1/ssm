@@ -1,0 +1,79 @@
+<div class="main" style="height: 650px;margin-top: 20px">
+    <div class="container-fluid" style="height: 100%;">
+        <div class="card">
+            <div class="card-title">
+                <h4><i class="fa fa-gift color-info"></i> 商品管理</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 input-group">
+                        <input class="form-control" placeholder="商品名" type="text" ng-model="selectParams.goods_name">
+                        <span class="input-group-btn"><button class="btn btn-sm btn-primary" ng-click="searchSpec()"><i class="ti-search"></i></button></span>
+                    </div>
+                    <div class="col-md-3 input-group">
+                        <select class="form-control" ng-model="selectParams.category_id" ng-change="searchSpec()">
+                            <option value="">--请选择类别--</option>
+                            <option ng-repeat="category in categoryList" value="{{category.category_id}}">{{category.category_name}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 input-group">
+                        <select class="form-control" ng-model="selectParams.brand_id" ng-change="searchSpec()">
+                            <option value="">--请选择品牌--</option>
+                            <option ng-repeat="brand in brandList" value="{{brand.brand_id}}">{{brand.brand_name}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table-responsive" style="margin-top: 10px">
+                    <table class="table table-bordered table-striped">
+                        <thead class="text-center">
+                        <tr>
+                            <th>序号</th>
+                            <th>商品名</th>
+                            <th>最低价格</th>
+                            <th>所属品牌</th>
+                            <th>所属类别</th>
+                            <th>添加时间</th>
+                            <th style="text-align: center">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="text-center" ng-repeat="spu in spuList">
+                            <th scope="row">{{$index+1}}</th>
+                            <td class="font-weight-bold"><a class="color-primary" ui-sref="goodsSku({spu_id:'{{spu.spu_id}}'})">{{spu.goods_name}}</a></td>
+                            <td>￥{{spu.low_price}}</td>
+                            <td><span class="badge badge-warning">{{spu.brand_name}}</span></td>
+                            <td><span class="badge badge-primary">{{spu.category_name}}</span></td>
+                            <td>{{spu.gmt_create | date:'yyyy/MM/dd HH:mm:ss'}}</td>
+                            <td class="text-center">
+                                <button class="btn btn-sm btn-success" title="修改"><i class="fa fa-edit"></i></button>
+                                <button class="btn btn-sm btn-danger" title="删除" ng-click="deleteSpu(spu.spu_id)"><i class="fa fa-close"></i></button>
+                            </td>
+                        </tr>
+                        <tr ng-if="spuList.length<=0">
+                            <td colspan="15" style="text-align:center">暂无数据</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <ul uib-pagination class="pagination-md pagination-custom float-right" style="margin-right: 20px"
+                        total-items="selectParams.totalNum"
+                        first-text="«"
+                        last-text="»"
+                        previous-text="上一页"
+                        next-text="下一页"
+                        force-ellipses="true"
+                        max-size="5"
+                        ng-change="loadData()"
+                        rotate="true"
+                        ng-model="selectParams.pageNum"
+                        items-per-page="selectParams.pageSize"
+                        class="pagination-sm page-right" boundary-links="true" boundary-link-numbers="true"></ul>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>

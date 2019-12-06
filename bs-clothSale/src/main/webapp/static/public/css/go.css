@@ -1,0 +1,755 @@
+/*未提交订单*/
+.order_bottom{
+	background: #FFF;
+    border-bottom: 2px solid #e6e6e5;
+}
+.order_Status {
+    background: url(./../image/order_icon_list.png) no-repeat 0 0;
+    height: 42px;
+    margin-top: 40px;
+    width: 415px;
+}
+.os_oredr {
+    background-position: 0 -108px;
+}
+/*未提交订单*/
+.no-margin-top{
+	margin-top: 0px;
+}
+/*....*/
+.public_b{
+	width: 100%;
+	background: #fff;
+	padding-bottom: 40px;"
+}
+.car_no_goods {
+    width: 700px;
+    margin: 0 auto;
+    padding-top: 40px;
+}
+.no_goods {
+    float: right;
+}
+.no_goods_t {
+    padding-top: 65px;
+    font-size: 18px;
+    color: #000000;
+}
+.no_goods_buy {
+    margin-left: 79px;
+    margin-top: 35px;
+    display: block;
+    height: 49px;
+    width: 190px;
+    background-color: #94193f;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    line-height: 49px;
+}
+.d_h2 {
+    width: 100%;
+    margin-top: 40px;
+    height: 25px;
+    line-height: 25px;
+}
+.d_h2 ul {
+    border-bottom: 2px solid #cccccc;
+    width: 100%;
+    height: 25px;
+}
+.d_h2 ul li {
+    float: left;
+    width: 120px;
+    text-align: center;
+    height: 25px;
+    font-size: 14px;
+    position: relative;
+    cursor: pointer;
+}
+.d_h2 ul .on {
+    color: #93193e;
+    border-bottom: 2px solid #93193e;
+    font-size: 12px;
+}
+.detail_l_con4 {
+    border: 1px solid #eeeeee;
+    overflow: hidden;
+    position: relative;
+    margin-top: 20px;
+}
+.noguess {
+    color: #AAA;
+    text-align: center;
+    padding: 50px 0;
+}
+/*end*/
+/**
+ * 确认订单信息
+ */
+.h2 {
+    font-size: 18px;
+    color: #333333;
+    height: 60px;
+    line-height: 60px;
+    padding-top: 20px;
+    width: 100%;
+    overflow: hidden;
+}
+.o_o_content {
+    border: 1px solid #eee;
+    padding-bottom: 20px;
+}
+.part_h2 {
+    padding: 25px 0 15px 10px;
+    font-size: 16px;
+    color: #666666;
+    font-weight: normal;
+    height: 25px;
+    line-height: 25px;
+    overflow: hidden;
+}
+.addr_errtips {
+    color: #e4393c;
+    padding-left: 35px;
+}
+.icon_err {
+    background: url("./../image/login_icon_list.png") no-repeat 0 0;
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    vertical-align: middle;
+}
+/*填写地址*/
+.ncc-form-default dl {
+    font-size: 0;
+    line-height: 20px;
+    clear: both;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+.ncc-form-default dl dt {
+    font-size: 12px;
+    vertical-align: top;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-align: right;
+    display: inline-block;
+    width: 90px;
+    padding: 10px 1% 10px 20px;
+    margin: 0;
+    color: #666;
+}
+.ncc-form-default dl dd {
+    font-size: 12px;
+    vertical-align: top;
+    letter-spacing: normal;
+    word-spacing: normal;
+    display: inline-block;
+    width: 84%;
+    padding: 10px 0 10px 0;
+    color: #666;
+}
+input[type="text"], input[type="password"], input.text, input.password {
+    font: 12px/20px Tahoma;
+    color: #777;
+    background-color: #FFF;
+    vertical-align: middle;
+    display: inline-block;
+    height: 19px;
+    padding: 2px 4px;
+    border: solid 1px #CCC;
+    outline: 0 none;
+}
+.w100 {
+    width: 100px !important;
+}
+.btn_item {
+    height: 28px;
+    line-height: 28px;
+    padding-left: 238px;
+    padding-top: 10px;
+    margin-bottom: 24px;
+}
+.btn_addaddr, .btn_addaddr:link, .btn_addaddr:visited {
+    display: block;
+    width: 136px;
+    height: 42px;
+    line-height: 42px;
+    text-align: center;
+    background-color: #94193f;
+    color: #fff;
+    font-size: 16px;
+    float: left;
+    margin-right: 15px;
+}
+/*添加地址*/
+.addr_list {
+    overflow: hidden;
+    width: 100%;
+}
+.addr_list ul {
+    padding-left: 25px;
+}
+.addr_list ul .addr_new {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    height: 28px;
+}
+.addr_list ul li {
+    cursor: pointer;
+    color: #666666;
+    position: relative;
+    float: left;
+    overflow: hidden;
+}
+.btn_new_addr {
+    font-family: "宋体";
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 0px;
+    width: 83px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    background: url("./../image/order_icon_list.png") no-repeat scroll 0 -664px;
+    color: #666666;
+}
+.w500 {
+    width: 500px;
+}
+/*填写地址结束*/
+/*支付方式*/
+.pay_type {
+    width: 100%;
+    overflow: hidden;
+    height: 46px;
+}
+.pay_type ul {
+    padding-left: 27px;
+}
+.pay_type ul .on, .ask_bill ul .on {
+    border: 1px solid #94193f;
+    color: #94193f;
+}
+.pay_type ul li, .ask_bill ul li {
+    cursor: pointer;
+    float: left;
+    position: relative;
+    width: 180px;
+    height: 44px;
+    border: 1px solid #eeeeee;
+    color: #333333;
+    margin-right: 25px;
+    text-align: center;
+    line-height: 44px;
+    font-size: 14px;
+}
+.pay_type ul li, .ask_bill ul li {
+    cursor: pointer;
+    float: left;
+    position: relative;
+    width: 180px;
+    height: 44px;
+    border: 1px solid #eeeeee;
+    color: #333333;
+    margin-right: 25px;
+    text-align: center;
+    line-height: 44px;
+    font-size: 14px;
+}
+
+/*支付方式edn*/
+/*商品*/
+/*.....*/
+.a_return_car {
+    float: right;
+    padding-right: 32px;
+    font-family: simsun;
+    color: #666;
+}
+.a_return_car:hover{
+	color: #A21612;
+}
+/*.....*/
+.shop_tit {
+    background-color: #efefef;
+    font-family: "宋体";
+    height: 47px;
+    line-height: 47px;
+    overflow: hidden;
+    width: 100%;
+    box-shadow: 0 0 10px #ebedeb inset;
+}
+.cart_checkbox {
+    float: left;
+    padding-left: 6px;
+    width: 646px;
+}
+.cart_checkbox span {
+    color: #000;
+    display: inline-block;
+    font-family: "宋体";
+    font-size: 14px;
+    font-weight: bold;
+    padding-left: 35px;
+}
+.cart_standard {
+    width: 200px;
+}
+.column {
+    float: left;
+    font-family: "宋体";
+    text-align: center;
+}
+.t_price {
+    width: 115px;
+}
+.t_quantity {
+    width: 115px;
+}
+.t_sum {
+    width: 115px;
+}
+.item_list {
+    border-left: 1px solid #f2f2f2;
+    border-right: 1px solid #f2f2f2;
+}
+.item_form {
+    border-bottom: 1px solid #f2f2f2;
+    float: left;
+    width: 100%;
+}
+.cell {
+    float: left;
+    padding: 25px 0 15px;
+}
+.p_checkbox {
+    padding-top: 40px;
+    text-align: center;
+    width: 40px;
+}
+.p_goods {
+    width: 611px;
+}
+.p_imgs {
+    float: left;
+    width: 62px;
+    position: relative;
+    height: 62px;
+}
+.item_msg {
+    float: left;
+    margin-left: 12px;
+    width: 537px;
+}
+.p_border_bottom {
+    border-bottom: 1px dotted #efefef;
+    overflow: hidden;
+    padding-bottom: 10px;
+    height: 20px;
+}
+.p_name {
+    line-height: 20px;
+    overflow: hidden;
+    width: 483px;
+    height: 20px;
+}
+.p_name a {
+    color: #585858;
+    font-family: 宋体;
+    font-size: 12x;
+}
+.p_standard {
+    width: 200px;
+    text-align: center;
+}
+.p_border_bottom {
+    border-bottom: 1px dotted #efefef;
+    overflow: hidden;
+    padding-bottom: 10px;
+    height: 20px;
+}
+.p_border_bottom {
+    border-bottom: 1px dotted #efefef;
+    overflow: hidden;
+    padding-bottom: 10px;
+    height: 20px;
+}
+.p_prices {
+    width: 115px;
+    padding-left: 0px;
+    text-align: center;
+}
+.p_prices2 {
+    line-height: 0.9em;
+}
+.p_quantity {
+    width: 115px;
+    text-align: center;
+}
+.quantity_form {
+    text-align: center;
+    color: #666666;
+}
+.p_sum {
+    width: 115px;
+    text-align: center;
+}
+.p_sum strong {
+    color: #93193e;
+    font-weight: normal;
+}
+.border_b {
+    border-bottom: 1px solid #f2f2f2;
+    overflow: hidden;
+    padding: 19px 0;
+    width: 100%;
+    font-size: 12px;
+    color: #666;
+}
+.user_jf_yhj {
+    float: left;
+    width: 450px;
+    padding-left: 30px;
+}
+.user_jf_yhj_t {
+    color: #94193f;
+    font-family: "宋体";
+    padding-bottom: 18px;
+    cursor: pointer;
+}
+.user_jf_yhj_t b {
+    background-color: #94193f;
+    color: #fff;
+    float: left;
+    height: 11px;
+    line-height: 11px;
+    margin-right: 6px;
+    margin-top: 4px;
+    text-align: center;
+    width: 11px;
+}
+.order_items {
+    padding-top: 5px;
+}
+.yhj_show {
+    float: left;
+    width: 72px;
+    text-align: right;
+    padding-right: 5px;
+}
+.yhj_list {
+    float: left;
+    width: 373px;
+}
+select {
+    color: #777;
+    background-color: #FFF;
+    display: inline-block;
+    height: 23px;
+    border: solid 1px #CCC;
+    color: #777;
+}
+select option {
+    line-height: 20px;
+    height: 20px;
+}
+.yhxx_list {
+    border-bottom: 1px solid #f2f2f2;
+    padding: 20px 0;
+}
+.yhxx_list li {
+    width: 100%;
+    overflow: hidden;
+    height: 25px;
+    line-height: 25px;
+    text-align: right;
+}
+.yhxx_tit {
+    padding-right: 35px;
+    font-family: "宋体";
+    color: #666666;
+}
+.yhxx_money {
+    font-size: 18px;
+    color: #94193f;
+    padding-left: 10px;
+    display: inline-block;
+    vertical-align: bottom;
+}
+.yhxx_money span {
+    font-family: Arial;
+    font-size: 18px;
+    font-weight: bold;
+}
+.yhxx_money .s_jian {
+    font-weight: normal;
+}
+.margin_top10 {
+    margin-top: 10px;
+}
+.yhxx_list li {
+    width: 100%;
+    overflow: hidden;
+    height: 25px;
+    line-height: 25px;
+    text-align: right;
+}
+/*发票*/
+.ask_bill {
+    width: 100%;
+    overflow: hidden;
+    padding: 24px 0;
+    border-bottom: 1px solid #f2f2f2;
+    font-size: 12px;
+    color:#666;
+}
+.ask_bill_item {
+    float: left;
+    padding-left: 30px;
+    text-align: left;
+}
+.bill_t .lab_bill span {
+    font-family: 宋体;
+    text-indent: 3em;
+}
+.ask_bill ul {
+    overflow: hidden;
+    height: 46px;
+    padding: 20px 0 0 20px;
+}
+.bill_c {
+    padding-left: 25px;
+    padding-top: 13px;
+    width: 1142px;
+}
+.p_r_30 {
+    padding-right: 30px;
+}
+input[type="radio"], .radio {
+    vertical-align: middle;
+    display: inline-block;
+    margin-right: 5px;
+}
+.bill_c .lab_bill span {
+    font-family: 宋体;
+    padding-left: 2px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.bill_c p {
+    width: 100%;
+    overflow: hidden;
+}
+.bill_c p.bill_tips {
+    color: #999;
+    font-family: 宋体;
+    padding-top: 5px;
+    width: auto;
+    padding-left: 63px;
+}
+.bill_c_name {
+    float: left;
+    display: block;
+    font-family: 宋体;
+    width: 63px;
+}
+.btnsure_bg {
+    overflow: hidden;
+    padding: 33px 0 13px;
+    width: 100%;
+}
+.sureorder {
+    float: right;
+    padding-right: 32px;
+}
+.jine {
+    float: left;
+    height: 38px;
+    line-height: 38px;
+    padding-right: 15px;
+    font-family: "宋体";
+}
+.un_btn_sure {
+    background-color: #888;
+    color: #fff;
+    display: block;
+    float: left;
+    font-size: 20px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    width: 124px;
+}
+.sureorder a:hover{
+	background-color: #A82045;
+}
+.fwxh_30 {
+    font-family: "华文细黑";
+    font-size: 30px;
+    color: #94193f;
+}
+.span_m {
+    font-family: Arial;
+    font-size: 30px;
+    font-weight: bold;
+    color: #94193f;
+}
+/*商品end*/
+/*确定交易*/
+.payfor_h2 {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    padding-top: 20px;
+    border-bottom: 2px solid #000;
+    font-size: 18px;
+    color: #94193f;
+}
+.payfor_h2 i {
+    display: block;
+    float: left;
+    height: 21px;
+    margin-top: 16px;
+    width: 47px;
+    background: url(./../image/order_icon_list.png) no-repeat -377px -350px;
+}
+.payfo_tips {
+    padding: 20px 0;
+    height: 31px;
+    line-height: 31px;
+    font-size: 24px;
+    color: #434343;
+}
+.payfo_tips i {
+    display: block;
+    float: left;
+    height: 31px;
+    width: 47px;
+    background: url(./../image/order_icon_list.png) no-repeat -377px -407px;
+}
+.o_n_t1 {
+    color: #434343;
+    height: 28px;
+    line-height: 28px;
+}
+.o_n_t2 {
+    padding-bottom: 29px;
+}
+.o_n_l {
+    float: left;
+    padding-right: 30px;
+}
+.o_n_m {
+    float: left;
+    padding-right: 30px;
+}
+.o_n_l span {
+    color: #94193f;
+}
+.o_n_m span {
+    color: #94193f;
+}
+.s_fs_12 {
+    font-size: 12px;
+}
+.s_fs_14 {
+    font-size: 14px;
+}
+.s_fs_18 {
+    font-size: 18px;
+    color: #94193f;
+}
+/**/
+.choose_pay {
+    background-color: #f9f9f9;
+    border: 1px solid #eeeeee;
+    padding: 33px 68px 0px;
+}
+.choose_pay_box {
+    background-color: #fff;
+    padding: 25px 44px;
+}
+.choose_agin {
+    padding-top: 25px;
+}
+.r_txt {
+    padding-left: 10px;
+    font-size: 18px;
+    color: #000;
+    display: inline-block;
+    height: 27px;
+    line-height: 27px;
+}
+.agin_radio {
+    padding-top: 15px;
+}
+.s_a_radio {
+    margin-right: 40px;
+}
+.l_t_pay {
+    border: 1px solid #ccc;
+    display: inline-block;
+    height: 29px;
+    line-height: 29px;
+    padding: 8px 25px;
+}
+.i_zfb {
+    background: url("./../image/order_icon_list.png") no-repeat scroll -382px -465px;
+    display: inline-block;
+    height: 29px;
+    padding-right: 10px;
+    vertical-align: top;
+    width: 29px;
+}
+.i_wx {
+    background: url("./../image/order_icon_list.png") no-repeat scroll -382px -517px;
+    display: inline-block;
+    height: 29px;
+    padding-right: 10px;
+    vertical-align: top;
+    width: 29px;
+}
+.btnsure_bg {
+    overflow: hidden;
+    padding: 25px 0;
+    width: 100%;
+}
+.sureorder {
+    width: 460px;
+    margin: 0 25%;
+}
+.jine {
+    float: left;
+    height: 38px;
+    line-height: 38px;
+    padding-right: 15px;
+    font-family: "宋体";
+}
+.btn_sure {
+    background-color: #94193f;
+    color: #fff;
+    display: block;
+    float: left;
+    font-size: 20px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    width: 177px;
+}
+.fwxh_30 {
+    font-family: "华文细黑";
+    font-size: 30px;
+    color: #94193f;
+}
+.span_m {
+    font-family: Arial;
+    font-size: 30px;
+    font-weight: bold;
+    color: #94193f;
+}
+/*确定交易end*/

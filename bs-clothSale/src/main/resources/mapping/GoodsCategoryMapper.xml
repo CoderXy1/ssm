@@ -106,4 +106,24 @@
         order by category_order limit #{pageIndex},#{pageSize}
     </select>
 
+    <insert id="insertCategoryFirst">
+    insert into goods_category_first (category_first_id, category_first_name, category_first_order,
+      gmt_create, gmt_update)
+    values (#{categoryFirstId,jdbcType=VARCHAR}, #{categoryFirstName,jdbcType=VARCHAR}, #{categoryFirstOrder,jdbcType=INTEGER},
+      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtUpdate,jdbcType=TIMESTAMP})
+  </insert>
+
+    <select id="selectGoodsCategoryFirst" resultType="java.util.Map">
+        select *,(select count(*) from goods_category_first where 1 = 1
+        <if test="categoryFirstName != null and categoryFirstName != ''">
+            and category_first_name like concat('%',#{categoryFirstName},'%')
+        </if>) as total from goods_category_first
+        where 1 = 1
+        <if test="categoryFirstName != null and categoryFirstName != ''">
+            and category_first_name like concat('%',#{categoryFirstName},'%')
+        </if>
+        order by category_first_order limit #{pageIndex},#{pageSize}
+    </select>
+
+
 </mapper>

@@ -31,37 +31,48 @@
             <ul>
                 <div class="logo"><a ui-sref="main" ng-click="changeActive(1)"><span>Cloth</span></a></div>
 
-                <li ng-class="{'active': info.currentPage == 1}" ng-click="changeActive(1)">
+                <li ui-sref-active="active">
                     <a ui-sref="main"><i class="ti-calendar"></i>主页</a>
                 </li>
 
                 <li class="label">商品管理</li>
 
-                <li ng-class="{'active': info.currentPage == 2}" ng-click="changeActive(2)">
+                <li ui-sref-active="active">
                     <a ui-sref="goodsBrand"><i class="fa fa-trademark"></i>商品品牌</a>
                 </li>
-                <li ng-class="{'active': info.currentPage == 3}" ng-click="changeActive(3)">
+                <li ui-sref-active="active">
                     <a ui-sref="goodsCategory"><i class="fa fa-th-large"></i>商品分类</a>
                 </li>
-                <li ng-class="{'active': info.currentPage == 4}" ng-click="changeActive(4)">
+                <li ui-sref-active="active">
                     <a ui-sref="goodsSpec"><i class="fa fa-sliders"></i>规格管理</a>
                 </li>
-
-                <li class="label">用户管理</li>
-                <li><a class="sidebar-sub-toggle"><i class="ti-bar-chart-alt"></i> Charts <span
+                <li><a class="sidebar-sub-toggle"><i class="fa fa-gift"></i>商品<span
                         class="sidebar-collapse-icon ti-angle-down"></span></a>
                     <ul>
-                        <li ng-class="{'active': info.currentPage == 4}" ng-click="changeActive(4)">
-                            <a >Morris</a>
+                        <li ui-sref-active="active">
+                            <a ui-sref="goodsSpu"><i class="fa fa-gift"></i>商品一览</a>
                         </li>
-                        <li ng-class="{'active': info.currentPage == 5}" ng-click="changeActive(5)">
-                            <a >Chartjs</a>
+                        <li ui-sref-active="active">
+                            <a ui-sref="goodsSkuAdd"><i class="fa fa-cart-plus"></i>进货</a>
                         </li>
                     </ul>
                 </li>
-                <li ng-class="{'active': info.currentPage == 6}" ng-click="changeActive(6)">
-                    <a><i class="ti-calendar"></i> Calender </a>
-                </li>
+
+                <li class="label">用户管理</li>
+                <!--<li><a class="sidebar-sub-toggle"><i class="ti-bar-chart-alt"></i> Charts <span-->
+                        <!--class="sidebar-collapse-icon ti-angle-down"></span></a>-->
+                    <!--<ul>-->
+                        <!--<li ng-class="{'active': info.currentPage == 4}" ng-click="changeActive(4)">-->
+                            <!--<a >Morris</a>-->
+                        <!--</li>-->
+                        <!--<li ng-class="{'active': info.currentPage == 5}" ng-click="changeActive(5)">-->
+                            <!--<a >Chartjs</a>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+                <!--<li ng-class="{'active': info.currentPage == 6}" ng-click="changeActive(6)">-->
+                    <!--<a><i class="ti-calendar"></i> Calender </a>-->
+                <!--</li>-->
                 <li ng-class="{'active': info.currentPage == 7}" ng-click="changeActive(7)">
                     <a ><i class="ti-email"></i> Email</a>
                 </li>

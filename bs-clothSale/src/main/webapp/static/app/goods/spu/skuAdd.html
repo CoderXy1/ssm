@@ -1,0 +1,158 @@
+<div class="main" style="height: 650px;margin-top: 20px">
+    <div class="container-fluid" style="height: 100%;">
+        <div class="card">
+            <div class="card-title">
+                <h4><i class="fa fa-cart-plus color-info"></i> 进货</h4>
+            </div>
+            <ul class="nav nav-tabs">
+                <li ng-class="{'active': addSkuType == 1}"><a href="" ng-click="addSkuType = 1">已有商品</a></li>
+                <li ng-class="{'active': addSkuType == 2}"><a href="" ng-click="addSkuType = 2">新进商品</a></li>
+            </ul>
+            <div class="card-body" ng-if="addSkuType==1">
+                <form name="editForm" role="form" id="editForm" autocomplete="off" ng-submit="updateSku()">
+                    <div class="row">
+                        <div class="col-md-6 input-group">
+                            <select class="form-control" ng-model="selectParams.category_id" ng-change="searchSpu()">
+                                <option value="">--请选择类别--</option>
+                                <option ng-repeat="category in categoryList" value="{{category.category_id}}">
+                                    {{category.category_name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 input-group">
+                            <select class="form-control" ng-model="selectParams.brand_id" ng-change="searchSpu()">
+                                <option value="">--请选择品牌--</option>
+                                <option ng-repeat="brand in brandList" value="{{brand.brand_id}}">{{brand.brand_name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive" style="margin-top: 10px">
+                        <table class="table table-bordered table-striped">
+                            <thead class="text-center">
+                            <tr>
+                                <th>选取</th>
+                                <th>序号</th>
+                                <th>商品名</th>
+                                <th>最低价格</th>
+                                <th>所属品牌</th>
+                                <th>所属类别</th>
+                                <th>添加时间</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="text-center" ng-repeat="spu in spuList">
+                                <th><input type="radio" class="radio" id="{{spu.spu_id}}" name="radio"
+                                           ng-model="isChecked" ng-click="selectSku(spu.spu_id)"></th>
+                                <th scope="row">{{$index+1}}</th>
+                                <td class="font-weight-bold color-primary">{{spu.goods_name}}</td>
+                                <td>￥{{spu.low_price}}</td>
+                                <td><span class="badge badge-warning">{{spu.brand_name}}</span></td>
+                                <td><span class="badge badge-primary">{{spu.category_name}}</span></td>
+                                <td>{{spu.gmt_create | date:'yyyy/MM/dd HH:mm:ss'}}</td>
+                            </tr>
+                            <tr ng-if="spuList.length<=0">
+                                <td colspan="15" style="text-align:center">暂无数据</td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <ul uib-pagination class="pagination-md pagination-custom float-right"
+                            style="margin-right: 20px"
+                            total-items="selectParams.totalNum"
+                            first-text="«"
+                            last-text="»"
+                            previous-text="上一页"
+                            next-text="下一页"
+                            force-ellipses="true"
+                            max-size="5"
+                            ng-change="loadData()"
+                            rotate="true"
+                            ng-model="selectParams.pageNum"
+                            items-per-page="selectParams.pageSize"
+                            class="pagination-sm page-right" boundary-links="true" boundary-link-numbers="true"></ul>
+                    </div>
+
+                    <div ng-if="isSelectSpu">
+                        <div class="row">
+                            <label class="col-md-5">
+                                <label for="sku" class="col-form-label">已有规格:</label>
+                                <select id="sku" class="form-control" ng-model="form1Params.sku_id"
+                                        ng-change="addGoodsSpecId(spec,specId)" ng-required="true">
+                                    <option value="">--请选择--</option>
+                                    <option value="{{sku.sku_id}}" ng-repeat="sku in skuList">{{sku.spec_value}}
+                                    </option>
+                                </select>
+                            </label>
+
+                            <label class="col-md-5">
+                                <label for="stock1" class="col-form-label">数量:</label>
+                                <input id="stock1" class="form-control" type="number" ng-required="true"
+                                       ng-model="form1Params.stock">
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" form="editForm">进货</button>
+
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="card-body" ng-if="addSkuType==2">
+                <form name="editForm2" role="form" id="editForm2" autocomplete="off" ng-submit="insertSku()">
+                    <div class="row">
+                        <div class="col-md-6 input-group">
+                            <label for="form2Params.category_id" class="col-form-label">类别:</label>
+                            <select id="form2Params.category_id" class="form-control" ng-model="form2Params.category_id" ng-required="true">
+                                <option value="">--请选择--</option>
+                                <option ng-repeat="category in categoryList" value="{{category.category_id}}">
+                                    {{category.category_name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 input-group">
+                            <label for="form2Params.brand_id" class="col-form-label">品牌:</label>
+                            <select id="form2Params.brand_id" class="form-control" ng-model="form2Params.brand_id" ng-required="true">
+                                <option value="">--请选择--</option>
+                                <option ng-repeat="brand in brandList" value="{{brand.brand_id}}">{{brand.brand_name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!--<div class="row" ng-if="isSelectSpu">-->
+                    <!--<label ng-repeat="spec in specList.spec_name" style="margin-right: 10px">-->
+                    <!--<label for="{{spec}}" class="col-form-label">{{spec}}:</label>-->
+                    <!--<select id="{{spec}}" class="form-control" ng-model="specId"-->
+                    <!--ng-options="values[0] as values[1] for values in specList.spec_value[$index]"-->
+                    <!--ng-change="addGoodsSpecId(spec,specId)" ng-required="true">-->
+                    <!--<option value="">&#45;&#45;请选择&#45;&#45;</option>-->
+                    <!--</select>-->
+                    <!--</label>-->
+                    <!--</div>-->
+
+                    <!--<div class="row" ng-if="isSelectSpu">-->
+                    <!--<label style="margin-right: 10px">-->
+                    <!--<label for="price_input" class="col-form-label">进价:</label>-->
+                    <!--<input id="price_input" class="form-control" type="number" ng-required="true" ng-model="price_input">-->
+                    <!--</label>-->
+
+                    <!--<label style="margin-right: 10px">-->
+                    <!--<label for="price_sale" class="col-form-label">卖价:</label>-->
+                    <!--<input id="price_sale" class="form-control" type="number" ng-required="true" ng-model="price_sale">-->
+                    <!--</label>-->
+
+                    <!--<label style="margin-right: 10px">-->
+                    <!--<label for="stock" class="col-form-label">数量:</label>-->
+                    <!--<input id="stock" class="form-control" type="number" ng-required="true" ng-model="stock">-->
+                    <!--</label>-->
+                    <!--</div>-->
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

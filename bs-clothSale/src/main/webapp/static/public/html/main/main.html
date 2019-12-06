@@ -1,0 +1,631 @@
+<!--菜单-->
+<div class="full_nav">
+    <div class="w1200">
+        <ul class="nav">
+            <li class="li_all_type">
+                <a href="">全部分类</a>
+                <b class="b_down"></b>
+            </li>
+            <li class="home">
+                <a href="index.html" style="color: #C41F3A;">首页</a>
+            </li>
+            <li>
+                <a href="refined.html">精选品牌</a>
+            </li>
+            <li>
+                <a href="go.html">全球购</a>
+            </li>
+            <li>
+                <a href="brand.html">品牌馆</a>
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
+<!--头部end-->
+<!--轮播区域-->
+<div class="full_big_eye">
+    <!--菜单-->
+    <div class="index_type">
+        <ul class="index_type_ul">
+            <li ng-repeat="category in categoryList" ng-mouseover="selectGoodsSpu(category.category_id)">
+                <span>{{category.category_name}}<b>></b></span>
+                <div class="nav_type_list">
+                    <ul>
+                        <li ng-repeat="spu in spuList">
+                            <a href="#" target="_blank" style="font-weight: bold">{{spu.goods_name}}</a>
+                        </li>
+                        <li ng-if="spuList.length<=0">
+                            <a>暂无商品</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!--菜单-->
+    <!--轮播图-->
+    <div class="full_eye">
+        <div id="inBaner">
+            <ul class="big_eye_pic">
+                <li style="display: block;">
+                    <a href="" class="img_box">
+                        <img src="./image/web-101-101-1.jpg"/>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="tpl">
+                        <img src="./image/web-101-101-2.jpg"/>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="tpl">
+                        <img src="./image/web-101-101-3.jpg"/>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="tpl">
+                        <img src="./image/web-101-101-4.jpg"/>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="tpl">
+                        <img src="./image/web-101-101-5.jpg"/>
+                    </a>
+                </li>
+            </ul>
+            <div class="btn">
+                <ul>
+                    <li class="cur"></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--轮播图-->
+</div>
+<!--轮播区域-->
+<!--商品区-->
+<div class="w1200">
+    <div class="her_top">
+        <div class="her_title">
+            <ul class="her_menu">
+                <li class="current">
+                    <i class="today_zb_icon"></i>
+                    精选服饰
+                    <i class="jx_icon_down"></i>
+                </li>
+                <li>
+                    <i class="yesto_icon"></i>
+                    限时抢购
+                    <i class="jx_icon_down"></i>
+                </li>
+            </ul>
+        </div>
+        <div class="pro_con" style="display: block;">
+            <div class="P_left">
+                <div class="groDiv">
+                    <div style="position: relative;overflow: hidden;">
+                        <ul class="groUlOut">
+                            <li style="float: left;width: 224px;">
+                                <div class="x">精选服饰</div>
+                                <a href="iemt.html" class="pro">
+                                    <img src="./image/top_1.jpg"/>
+                                </a>
+                                <p class="box_glay">
+                                    <a href="" class="pro_text">
+                                        <span>意大利TVS进口磐石锅具套组</span>
+                                    </a>
+                                </p>
+                                <p class="p_num">
+                                    No.9195763
+                                </p>
+                                <div class="now_price">
+                                    <div class="price">
+	    	    								<span class="bigfont">
+	    	    									<span class="f_14">￥</span><span>999.00</span>
+	    	    								</span>
+                                        <span><del>￥2100.00</del></span>
+                                        <div class="zk">4.8折</div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li style="float: left;width: 224px;">
+                                <div class="x">精选服饰</div>
+                                <a href="" class="pro">
+                                    <img src="./image/top_2.jpg"/>
+                                </a>
+                                <p class="box_glay">
+                                    <a href="" class="pro_text">
+                                        <span>意大利TVS进口磐石锅具套组</span>
+                                    </a>
+                                </p>
+                                <p class="p_num">
+                                    No.9195763
+                                </p>
+                                <div class="now_price">
+                                    <div class="price">
+	    	    								<span class="bigfont">
+	    	    									<span class="f_14">￥</span><span>999.00</span>
+	    	    								</span>
+                                        <span><del>￥2100.00</del></span>
+                                        <div class="zk">4.8折</div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li style="float: left;width: 224px;">
+                                <div class="x">精选服饰</div>
+                                <a href="iemt.html" class="pro">
+                                    <img src="./image/top_3.jpg"/>
+                                </a>
+                                <p class="box_glay">
+                                    <a href="" class="pro_text">
+                                        <span>意大利TVS进口磐石锅具套组</span>
+                                    </a>
+                                </p>
+                                <p class="p_num">
+                                    No.9195763
+                                </p>
+                                <div class="now_price">
+                                    <div class="price">
+	    	    								<span class="bigfont">
+	    	    									<span class="f_14">￥</span><span>999.00</span>
+	    	    								</span>
+                                        <span><del>￥2100.00</del></span>
+                                        <div class="zk">4.8折</div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li style="float: left;width: 224px;">
+                                <div class="x">精选服饰</div>
+                                <a href="" class="pro">
+                                    <img src="./image/top_4.jpg"/>
+                                </a>
+                                <p class="box_glay">
+                                    <a href="" class="pro_text">
+                                        <span>意大利TVS进口磐石锅具套组</span>
+                                    </a>
+                                </p>
+                                <p class="p_num">
+                                    No.9195763
+                                </p>
+                                <div class="now_price">
+                                    <div class="price">
+	    	    								<span class="bigfont">
+	    	    									<span class="f_14">￥</span><span>999.00</span>
+	    	    								</span>
+                                        <span><del>￥2100.00</del></span>
+                                        <div class="zk">4.8折</div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li style="float: left;width: 224px;">
+                                <div class="x">精选服饰</div>
+                                <a href="iemt.html" class="pro">
+                                    <img src="./image/top_5.jpg"/>
+                                </a>
+                                <p class="box_glay">
+                                    <a href="" class="pro_text">
+                                        <span>意大利TVS进口磐石锅具套组</span>
+                                    </a>
+                                </p>
+                                <p class="p_num">
+                                    No.9195763
+                                </p>
+                                <div class="now_price">
+                                    <div class="price">
+	    	    								<span class="bigfont">
+	    	    									<span class="f_14">￥</span><span>999.00</span>
+	    	    								</span>
+                                        <span><del>￥2100.00</del></span>
+                                        <div class="zk">4.8折</div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pro_con" style="display: none;">
+            <div class="P_left">
+                <div class="groDiv">
+                    <div style="position: relative;overflow: hidden;">
+                        <ul class="groUlOut">
+                            <li style="float: left;width: 224px;">
+                                <div class="s">限时抢购</div>
+                                <a href="iemt.html" class="pro">
+                                    <img src="./image/top_1.jpg"/>
+                                </a>
+                                <p class="box_glay">
+                                    <a href="" class="pro_text">
+                                        <span>意大利TVS进口磐石锅具套组</span>
+                                    </a>
+                                </p>
+                                <p class="p_num">
+                                    No.9195763
+                                </p>
+                                <div class="now_price">
+                                    <div class="price">
+	    	    								<span class="bigfont">
+	    	    									<span class="f_14">￥</span><span>999.00</span>
+	    	    								</span>
+                                        <span><del>￥2100.00</del></span>
+                                        <div class="zk">4.8折</div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li style="float: left;width: 224px;">
+                                <div class="s">限时抢购</div>
+                                <a href="iemt.html" class="pro">
+                                    <img src="./image/top_2.jpg"/>
+                                </a>
+                                <p class="box_glay">
+                                    <a href="" class="pro_text">
+                                        <span>意大利TVS进口磐石锅具套组</span>
+                                    </a>
+                                </p>
+                                <p class="p_num">
+                                    No.9195763
+                                </p>
+                                <div class="now_price">
+                                    <div class="price">
+	    	    								<span class="bigfont">
+	    	    									<span class="f_14">￥</span><span>999.00</span>
+	    	    								</span>
+                                        <span><del>￥2100.00</del></span>
+                                        <div class="zk">4.8折</div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li style="float: left;width: 224px;">
+                                <div class="s">限时抢购</div>
+                                <a href="iemt.html" class="pro">
+                                    <img src="./image/top_3.jpg"/>
+                                </a>
+                                <p class="box_glay">
+                                    <a href="" class="pro_text">
+                                        <span>意大利TVS进口磐石锅具套组</span>
+                                    </a>
+                                </p>
+                                <p class="p_num">
+                                    No.9195763
+                                </p>
+                                <div class="now_price">
+                                    <div class="price">
+	    	    								<span class="bigfont">
+	    	    									<span class="f_14">￥</span><span>999.00</span>
+	    	    								</span>
+                                        <span><del>￥2100.00</del></span>
+                                        <div class="zk">4.8折</div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li style="float: left;width: 224px;">
+                                <div class="s">限时抢购</div>
+                                <a href="" class="pro">
+                                    <img src="./image/top_4.jpg"/>
+                                </a>
+                                <p class="box_glay">
+                                    <a href="" class="pro_text">
+                                        <span>意大利TVS进口磐石锅具套组</span>
+                                    </a>
+                                </p>
+                                <p class="p_num">
+                                    No.9195763
+                                </p>
+                                <div class="now_price">
+                                    <div class="price">
+	    	    								<span class="bigfont">
+	    	    									<span class="f_14">￥</span><span>999.00</span>
+	    	    								</span>
+                                        <span><del>￥2100.00</del></span>
+                                        <div class="zk">4.8折</div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li style="float: left;width: 224px;">
+                                <div class="s">限时抢购</div>
+                                <a href="iemt.html" class="pro">
+                                    <img src="./image/top_5.jpg"/>
+                                </a>
+                                <p class="box_glay">
+                                    <a href="" class="pro_text">
+                                        <span>意大利TVS进口磐石锅具套组</span>
+                                    </a>
+                                </p>
+                                <p class="p_num">
+                                    No.9195763
+                                </p>
+                                <div class="now_price">
+                                    <div class="price">
+	    	    								<span class="bigfont">
+	    	    									<span class="f_14">￥</span><span>999.00</span>
+	    	    								</span>
+                                        <span><del>￥2100.00</del></span>
+                                        <div class="zk">4.8折</div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--第二区-->
+    <div class="ver_box">
+        <ul class="qinha_ul ClearFix"></ul>
+    </div>
+    <div class="qinha_box">
+        <div class="qinha_title">
+            <div class="v_h2">
+                <p class="h2_top">限时抢购</p>
+                <p class="h2_bottom">天天特价 早10点强势上新 </p>
+            </div>
+        </div>
+        <div class="qinha_cons">
+            <ul class="qinha_ul">
+                <li>
+                    <div class="djs_time">
+                        还剩<span>10:50:22</span>
+                    </div>
+                    <a href=""><img src="./image/top_2_1.jpg" style="width: 595px;height: 317px;"/></a>
+                </li>
+                <li style="margin-right: 0;">
+                    <div class="djs_time">
+                        还剩<span>10:50:22</span>
+                    </div>
+                    <a href=""><img src="./image/top_2_2.jpg" style="width: 595px;height: 317px;"/></a>
+                </li>
+                <li>
+                    <div class="djs_time">
+                        还剩<span>10:50:22</span>
+                    </div>
+                    <a href=""><img src="./image/top_2_3.jpg" style="width: 595px;height: 317px;"/></a>
+                </li>
+                <li style="margin-right: 0;">
+                    <div class="djs_time">
+                        还剩<span>10:50:22</span>
+                    </div>
+                    <a href=""><img src="./image/top_2_4.jpg" style="width: 595px;height: 317px;"/></a>
+                </li>
+                <li>
+                    <div class="djs_time">
+                        还剩<span>10:50:22</span>
+                    </div>
+                    <a href=""><img src="./image/top_2_5.jpg" style="width: 595px;height: 317px;"/></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--第二区-->
+    <!--第三区-->
+    <div class="jinpin_box">
+        <div class="qinha_title">
+            <div class="v_h2">
+                <p class="h2_top">品类精选</p>
+                <p class="h2_bottom">品类齐全 轻松购物</p>
+            </div>
+        </div>
+        <ul class="jinpin_ul">
+            <li>
+                <a href=""><img src="./image/jinpin_1.png"/></a>
+                <a href="go.html" target="_blank" class="ppsx_tc">
+                    <div class="ppsx_tc_xx">
+                        <div class="ppsx_tc_xx1">
+                            <div class="ppsx_xx_zk"><span>79</span>元起</div>
+                            <div class="ppsx_xx_qg">立即抢购</div>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href=""><img src="./image/jinpin_2.png"/></a>
+                <a href="go.html" target="_blank" class="ppsx_tc">
+                    <div class="ppsx_tc_xx">
+                        <div class="ppsx_tc_xx1">
+                            <div class="ppsx_xx_zk"><span>79</span>元起</div>
+                            <div class="ppsx_xx_qg">立即抢购</div>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href=""><img src="./image/jinpin_3.png"/></a>
+                <a href="go.html" target="_blank" class="ppsx_tc">
+                    <div class="ppsx_tc_xx">
+                        <div class="ppsx_tc_xx1">
+                            <div class="ppsx_xx_zk"><span>79</span>元起</div>
+                            <div class="ppsx_xx_qg">立即抢购</div>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href=""><img src="./image/jinpin_4.png"/></a>
+                <a href="go.html" target="_blank" class="ppsx_tc">
+                    <div class="ppsx_tc_xx">
+                        <div class="ppsx_tc_xx1">
+                            <div class="ppsx_xx_zk"><span>79</span>元起</div>
+                            <div class="ppsx_xx_qg">立即抢购</div>
+                        </div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!--第三区-->
+    <!--第四区-->
+    <div class="day_box">
+        <div class="qinha_title">
+            <div class="v_h2">
+                <p class="h2_top">今日发现</p>
+                <p class="h2_bottom">精致好物 更快乐的生活</p>
+            </div>
+        </div>
+        <ul class="day_goods">
+            <li>
+                <a href="" class="a_con_list">
+                    <p class="p_img"><img src="./image/day_1.jpg"/></p>
+                </a>
+                <p class="p_title">
+                    <span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
+                </p>
+                <p class="p_p">
+                    <span class="price1">￥<span>298.00</span></span>
+                    <span class="price2"><del>￥398.00</del></span>
+                    <a href="" class="gwc"></a>
+                </p>
+            </li>
+            <li>
+                <a href="" class="a_con_list">
+                    <p class="p_img"><img src="./image/day_2.jpg"/></p>
+                </a>
+                <p class="p_title">
+                    <span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
+                </p>
+                <p class="p_p">
+                    <span class="price1">￥<span>298.00</span></span>
+                    <span class="price2"><del>￥398.00</del></span>
+                    <a href="" class="gwc"></a>
+                </p>
+            </li>
+            <li>
+                <a href="" class="a_con_list">
+                    <p class="p_img"><img src="./image/day_3.jpg"/></p>
+                </a>
+                <p class="p_title">
+                    <span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
+                </p>
+                <p class="p_p">
+                    <span class="price1">￥<span>298.00</span></span>
+                    <span class="price2"><del>￥398.00</del></span>
+                    <a href="" class="gwc"></a>
+                </p>
+            </li>
+            <li>
+                <a href="" class="a_con_list">
+                    <p class="p_img"><img src="./image/day_4.jpg"/></p>
+                </a>
+                <p class="p_title">
+                    <span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
+                </p>
+                <p class="p_p">
+                    <span class="price1">￥<span>298.00</span></span>
+                    <span class="price2"><del>￥398.00</del></span>
+                    <a href="" class="gwc"></a>
+                </p>
+            </li>
+            <li>
+                <a href="" class="a_con_list">
+                    <p class="p_img"><img src="./image/day_5.jpg"/></p>
+                </a>
+                <p class="p_title">
+                    <span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
+                </p>
+                <p class="p_p">
+                    <span class="price1">￥<span>298.00</span></span>
+                    <span class="price2"><del>￥398.00</del></span>
+                    <a href="" class="gwc"></a>
+                </p>
+            </li>
+            <li>
+                <a href="" class="a_con_list">
+                    <p class="p_img"><img src="./image/day_6.jpg"/></p>
+                </a>
+                <p class="p_title">
+                    <span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
+                </p>
+                <p class="p_p">
+                    <span class="price1">￥<span>298.00</span></span>
+                    <span class="price2"><del>￥398.00</del></span>
+                    <a href="" class="gwc"></a>
+                </p>
+            </li>
+            <li>
+                <a href="" class="a_con_list">
+                    <p class="p_img"><img src="./image/day_7.jpg"/></p>
+                </a>
+                <p class="p_title">
+                    <span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
+                </p>
+                <p class="p_p">
+                    <span class="price1">￥<span>298.00</span></span>
+                    <span class="price2"><del>￥398.00</del></span>
+                    <a href="" class="gwc"></a>
+                </p>
+            </li>
+            <li>
+                <a href="" class="a_con_list">
+                    <p class="p_img"><img src="./image/day_8.jpg"/></p>
+                </a>
+                <p class="p_title">
+                    <span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
+                </p>
+                <p class="p_p">
+                    <span class="price1">￥<span>298.00</span></span>
+                    <span class="price2"><del>￥398.00</del></span>
+                    <a href="" class="gwc"></a>
+                </p>
+            </li>
+            <li>
+                <a href="" class="a_con_list">
+                    <p class="p_img"><img src="./image/day_9.jpg"/></p>
+                </a>
+                <p class="p_title">
+                    <span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
+                </p>
+                <p class="p_p">
+                    <span class="price1">￥<span>298.00</span></span>
+                    <span class="price2"><del>￥398.00</del></span>
+                    <a href="" class="gwc"></a>
+                </p>
+            </li>
+            <li>
+                <a href="" class="a_con_list">
+                    <p class="p_img"><img src="./image/day_10.jpg"/></p>
+                </a>
+                <p class="p_title">
+                    <span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
+                </p>
+                <p class="p_p">
+                    <span class="price1">￥<span>298.00</span></span>
+                    <span class="price2"><del>￥398.00</del></span>
+                    <a href="" class="gwc"></a>
+                </p>
+            </li>
+            <li>
+                <a href="" class="a_con_list">
+                    <p class="p_img"><img src="./image/day_11.jpg"/></p>
+                </a>
+                <p class="p_title">
+                    <span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
+                </p>
+                <p class="p_p">
+                    <span class="price1">￥<span>298.00</span></span>
+                    <span class="price2"><del>￥398.00</del></span>
+                    <a href="" class="gwc"></a>
+                </p>
+            </li>
+            <li>
+                <a href="" class="a_con_list">
+                    <p class="p_img"><img src="./image/day_12.jpg"/></p>
+                </a>
+                <p class="p_title">
+                    <span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
+                </p>
+                <p class="p_p">
+                    <span class="price1">￥<span>298.00</span></span>
+                    <span class="price2"><del>￥398.00</del></span>
+                    <a href="" class="gwc"></a>
+                </p>
+            </li>
+        </ul>
+    </div>
+    <!--第四区-->
+</div>
+<!--商品区-->

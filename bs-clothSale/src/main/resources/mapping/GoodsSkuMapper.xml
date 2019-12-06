@@ -3,14 +3,15 @@
 <mapper namespace="com.clothSale.mapper.GoodsSkuMapper">
     <resultMap id="BaseResultMap" type="com.clothSale.model.GoodsSku">
         <id column="sku_id" property="skuId" jdbcType="VARCHAR"/>
-        <result column="price" property="price" jdbcType="DECIMAL"/>
+        <result column="price_input" property="priceInput" jdbcType="DECIMAL"/>
+        <result column="price_sale" property="priceSale" jdbcType="DECIMAL"/>
         <result column="stock" property="stock" jdbcType="INTEGER"/>
         <result column="spu_id" property="spuId" jdbcType="VARCHAR"/>
         <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP"/>
         <result column="gmt_update" property="gmtUpdate" jdbcType="TIMESTAMP"/>
     </resultMap>
     <sql id="Base_Column_List">
-    sku_id, price, stock, spu_id, gmt_create, gmt_update
+    sku_id, price_input,price_sale, stock, spu_id, gmt_create, gmt_update
   </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
@@ -23,10 +24,10 @@
     where sku_id = #{skuId,jdbcType=VARCHAR}
   </delete>
     <insert id="insert" parameterType="com.clothSale.model.GoodsSku">
-    insert into goods_sku (sku_id, price, stock, 
+    insert into goods_sku (sku_id, price_input,price_sale, stock,
       spu_id, gmt_create, gmt_update
       )
-    values (#{skuId,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{stock,jdbcType=INTEGER}, 
+    values (#{skuId,jdbcType=VARCHAR}, #{priceInput,jdbcType=DECIMAL},#{priceSale,jdbcType=DECIMAL}, #{stock,jdbcType=INTEGER},
       #{spuId,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtUpdate,jdbcType=TIMESTAMP}
       )
   </insert>
@@ -36,8 +37,11 @@
             <if test="skuId != null">
                 sku_id,
             </if>
-            <if test="price != null">
-                price,
+            <if test="priceInput != null">
+                price_input,
+            </if>
+            <if test="priceSale != null">
+                price_sale,
             </if>
             <if test="stock != null">
                 stock,
@@ -56,8 +60,11 @@
             <if test="skuId != null">
                 #{skuId,jdbcType=VARCHAR},
             </if>
-            <if test="price != null">
-                #{price,jdbcType=DECIMAL},
+            <if test="priceInput != null">
+                #{priceInput,jdbcType=DECIMAL},
+            </if>
+            <if test="priceSale != null">
+                #{priceSale,jdbcType=DECIMAL},
             </if>
             <if test="stock != null">
                 #{stock,jdbcType=INTEGER},
@@ -76,11 +83,14 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.clothSale.model.GoodsSku">
         update goods_sku
         <set>
-            <if test="price != null">
-                price = #{price,jdbcType=DECIMAL},
+            <if test="priceInput != null">
+                price_input = #{priceInput,jdbcType=DECIMAL},
+            </if>
+            <if test="priceSale != null">
+                price_sale = #{priceSale,jdbcType=DECIMAL},
             </if>
             <if test="stock != null">
-                stock = #{stock,jdbcType=INTEGER},
+                stock = stock+#{stock,jdbcType=INTEGER},
             </if>
             <if test="spuId != null">
                 spu_id = #{spuId,jdbcType=VARCHAR},
@@ -96,7 +106,8 @@
     </update>
     <update id="updateByPrimaryKey" parameterType="com.clothSale.model.GoodsSku">
     update goods_sku
-    set price = #{price,jdbcType=DECIMAL},
+    set price_input = #{priceInput,jdbcType=DECIMAL},
+      price_sale = #{priceSale,jdbcType=DECIMAL},
       stock = #{stock,jdbcType=INTEGER},
       spu_id = #{spuId,jdbcType=VARCHAR},
       gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
@@ -104,8 +115,18 @@
     where sku_id = #{skuId,jdbcType=VARCHAR}
   </update>
 
+    <select id="selectAllSku" resultType="java.util.Map">
+        select sku.*,GROUP_CONCAT(val.spec_value) as spec_value,spu.goods_name from goods_sku sku
+          left join goods_sku_spec_value sv on sku.sku_id = sv.sku_id
+          left join goods_spec_value val on val.spec_value_id = sv.spec_value_id
+		  left join goods_spu spu on spu.spu_id = sku.spu_id
+		  where sku.spu_id = #{spu_id}
+		  GROUP BY sku.sku_id
+		  limit #{pageIndex},#{pageSize}
+    </select>
+
     <select id="test" resultType="java.util.Map">
-        select sku.sku_id,sku.price,sku.stock from goods_sku_spec_value sv
+        select sku.sku_id,sku.price_input,price_sale,sku.stock from goods_sku_spec_value sv
         left join goods_sku sku on sku.sku_id = sv.sku_id
         left join goods_spec_value val on val.spec_value_id = sv.spec_value_id
         where

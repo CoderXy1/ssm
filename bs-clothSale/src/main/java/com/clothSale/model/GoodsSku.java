@@ -6,7 +6,9 @@ import java.util.Date;
 public class GoodsSku {
     private String skuId;
 
-    private BigDecimal price;
+    private BigDecimal priceInput;
+
+    private BigDecimal priceSale;
 
     private Integer stock;
 
@@ -24,12 +26,20 @@ public class GoodsSku {
         this.skuId = skuId == null ? null : skuId.trim();
     }
 
-    public BigDecimal getPrice() {
-        return price;
+    public BigDecimal getPriceInput() {
+        return priceInput;
     }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
+    public void setPriceInput(BigDecimal priceInput) {
+        this.priceInput = priceInput;
+    }
+
+    public BigDecimal getPriceSale() {
+        return priceSale;
+    }
+
+    public void setPriceSale(BigDecimal priceSale) {
+        this.priceSale = priceSale;
     }
 
     public Integer getStock() {

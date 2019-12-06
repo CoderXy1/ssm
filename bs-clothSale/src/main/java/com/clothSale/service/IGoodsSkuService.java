@@ -22,5 +22,7 @@ public interface IGoodsSkuService {
 
     List<HashMap<String,Object>> test(List<String> list, int size, String spu_id);
 
+    List<HashMap<String,Object>> selectAllSku(String spu_id,int pageIndex,int pageSize);
+
     int insertGoodsSkuSpecValue(String sku_id, String spec_value_id, Date gmt_create, Date gmt_update);
 }

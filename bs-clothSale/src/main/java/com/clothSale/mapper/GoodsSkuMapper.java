@@ -23,6 +23,8 @@ public interface GoodsSkuMapper {
 
     List<HashMap<String,Object>> test(@Param("list") List<String> list, @Param("size") int size, @Param("spu_id") String spu_id);
 
+    List<HashMap<String,Object>> selectAllSku(@Param("spu_id")String spu_id,@Param("pageIndex")int pageIndex,@Param("pageSize")int pageSize);
+
     int insertGoodsSkuSpecValue(@Param("sku_id") String sku_id, @Param("spec_value_id") String spec_value_id, @Param("gmt_create") Date gmt_create, @Param("gmt_update") Date gmt_update);
 
 }

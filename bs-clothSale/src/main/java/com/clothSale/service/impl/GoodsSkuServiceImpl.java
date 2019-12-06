@@ -56,4 +56,9 @@ public class GoodsSkuServiceImpl implements IGoodsSkuService {
     public int insertGoodsSkuSpecValue(String sku_id, String spec_value_id, Date gmt_create, Date gmt_update) {
         return goodsSkuMapper.insertGoodsSkuSpecValue(sku_id, spec_value_id, gmt_create, gmt_update);
     }
+
+    @Override
+    public List<HashMap<String, Object>> selectAllSku(String spu_id, int pageIndex, int pageSize) {
+        return goodsSkuMapper.selectAllSku(spu_id, pageIndex, pageSize);
+    }
 }

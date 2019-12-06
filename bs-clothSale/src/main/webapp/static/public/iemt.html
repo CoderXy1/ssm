@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="./css/head.css" />
+		<link rel="stylesheet" type="text/css" href="./css/footer.css" />
+		<link rel="stylesheet" type="text/css" href="./css/iemt.css" />
+		<script src="js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+		    $(function(){
+		    	//添加一个点击事件
+		    	$(".color_ul li").click(function(){
+		    		//切换颜色
+		    		$(this).addClass("on").siblings().removeClass("on");
+		    	});
+		    	//添加商品数量
+		    	$(".wrap_input .btn-add").click(function(){
+		    		//获得input值
+		    		var y = $("#buy_num").val();
+		    		//转整
+		    		x = parseInt(y)+1;
+		    		$("#buy_num").val(x); 
+		    		
+		    	});
+		    	//添加商品数量
+		    	$(".wrap_input .btn-reduce").click(function(){
+		    		//获得input值
+		    		var y = $("#buy_num").val();
+		    		//转整
+		    		x = parseInt(y)-1;
+		    		if(x>0){
+		    		   $("#buy_num").val(x); 
+		    		}
+		    		
+		    	});
+		    });
+		</script>
+		<script type="text/javascript">
+			//放大镜效果
+			window.onload = function(){
+				//抓取元素
+				var 
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			}
+			
+		</script>
+	</head>
+	<body>
+		<!--顶部公用-->
+		<div class="header">
+			<!--顶部导航-->
+			<div class="header_top">
+				<div class="w1200">
+					<div class="h_t_l">
+						<div class="login_l">
+							<span>欢迎来到快乐购!</span>
+							<a class="a_login" href="">[登录]</a>
+							<span class="line"></span>
+							<a class="" href="">[注册]</a>
+						</div>
+					</div>
+					<div class="h_t_r">
+						<ul>
+							<li>
+								<a href="">订单查询</a>
+								<span class="line"></span>
+							</li>
+							<li>
+								<a href="">我的快乐购</a>
+								<span class="line"></span>
+							</li>
+							<li>
+								<i class="tel_icon"></i>
+								<a href="">400-705-1111</a>
+								<span class="line"></span>
+							</li>
+							<li>
+								<a href="">下载快乐购app</a>
+								<span class="line"></span>
+							</li>
+							<li>
+								<a href="">客服中心</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!--搜索-->
+			<div class="full_sc">
+				<div class="w1200 header_conter">
+					<div class="h_c_logo">
+						<a href="index.html">
+							<img src="./image/logo.jpg" />
+						</a>
+					</div>
+					<div class="h_c_bz">
+						<img src="./image/top_center.jpg" style="width: 467px;29px" />
+					</div>
+					<div class="h_c_search">
+						<div class="search_input">
+							<form action="" method="post">
+								<input type="text" style="color: rgb(102, 102, 102);" name="keyword" class="text_search" placeholder="limu 胶原蛋白" value="" />
+								<input type="submit" class="btn_search" value="搜索" />
+							</form>
+						</div>
+						<div class="search_key">
+							<ul>
+								<li>
+									<a href="">太阳镜</a>
+								</li>
+								<li>
+									<a href="">蕉下</a>
+								</li>
+								<li>
+									<a href="">果蔬脆片</a>
+								</li>
+								<li>
+									<a href="">德亚酸牛奶</a>
+								</li>
+								<li>
+									<a href="">蚕丝面膜</a>
+								</li>
+								<li>
+									<a href="">山地车</a>
+								</li>
+								<li>
+									<a href="">BB霜</a>
+								</li>
+								<li>
+									<a href="">乳胶枕</a>
+								</li>
+								<li>
+									<a href="">蝙蝠侠系列石英表</a>
+								</li>
+								<li>
+									<a href="">拍立得</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="h_c_right">
+						<a href="" class="h_c_r_car">
+							<b class="b_car1"></b>
+							<span><i class="ci-count">0</i>我的购物车</span>
+							<b class="b_car2"></b>
+						</a>
+					</div>
+				</div>
+			</div>
+			<!--菜单-->
+			<div class="full_nav">
+				<div class="w1200">
+					<ul class="nav">
+						<li class="li_all_type">
+							<a href="">全部分类</a>
+							<b class="b_down"></b>
+						</li>
+						<li class="home">
+							<a href="" style="color: #C41F3A;">首页</a>
+						</li>
+						<li>
+							<a href="">精选品牌</a>
+						</li>
+						<li>
+							<a href="">全球购</a>
+						</li>
+						<li>
+							<a href="">品牌馆</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--头部end-->
+		<div class="w1200">
+			<!--分类导航-->
+			<div class="top_nv">
+				<span><a href="index.html">首页</a></span>
+				<span>></span>
+				<span><a href="index.html">测试</a></span>
+				<span>></span>
+				<span><a href="index.html">护肤品</a></span>
+			</div>
+			<!--分类导航-->
+			<div class="con_content">
+				<!--提交区域-->
+				<div class="con_top">
+					<div class="con_top_l">
+						<div class="tab-w">
+							<!--放大镜-->
+							<div class="divw">
+								<a href="">
+									<span class="zoomPad">
+	    								<img src="./image/con_c_1.png"/>
+	    								<div style="top: 148px; left: 153.5px; width: 180px; height: 180px; position: absolute; border-width: 1px; display: none;" class="zoomPup"></div>
+	    								<div style="position: absolute; z-index: 500; left: 390px; top: 0px; display: none;" class="zoomWindow">
+	    									<div style="width: 380px;" class="zoomWrapper"><div style="width: 100%; position: absolute; display: block;" class="zoomWrapperTitle"></div>
+	    									    <div style="width: 100%; height: 380px;" class="zoomWrapperImage"><img src="./image/con_c_2.png" style="position: absolute; border: 0px none; display: block; left: -5000px; top: 0px; width: 800px; height: 800px;">
+	    									    </div>
+	    									</div>
+	    								</div>
+	    							</span>
+								</a>
+							</div>
+							<!--放大镜-->
+							<!--tab,ajax-->
+							<div class="box-tab">
+								<div class="ul-w">
+									<ul class="als-wrapper">
+										<li class="als-item">
+											<a href="javascipt:;"><img src="image/con_s_1.jpg" /></a>
+										</li>
+										<li class="als-item">
+											<a href="javascipt:;"><img src="image/con_s_2.jpg" /></a>
+										</li>
+										<li class="als-item">
+											<a href="javascipt:;"><img src="image/con_s_3.jpg" /></a>
+										</li>
+										<li class="als-item">
+											<a href="javascipt:;"><img src="image/con_s_4.jpg" /></a>
+										</li>
+										<li class="als-item">
+											<a href="javascipt:;"><img src="image/con_s_5.jpg" /></a>
+										</li>
+									</ul>
+								</div>
+								<div class="g_t_l_hd">
+									<a href="javascript:;" class="btn l als-prev"></a>
+									<a href="javascript:;" class="btn r als-next"></a>
+								</div>
+							</div>
+							<!--tab,ajax-->
+						</div>
+						<div class="detail_share">
+							<div class="detail_sc">
+								<i class="i_addsc"></i> 收藏商品
+							</div>
+						</div>
+					</div>
+					<div class="con_top_r">
+						<div class="detail_top">
+							<h1 class="detail_tit">乐途女士经典跑鞋1+1时尚组（后跟杯） 粉红 225(35)</h1>
+							<h2 class="detail_tit_md">复古鞋面，撞色设计，橡胶大底更耐磨。</h2>
+							<div class="price_wrap">
+								<div class="detail_price">
+									<span class="price_now">
+	    								<b class="em_sign">￥</b>
+	    								298.00
+	    							</span>
+								</div>
+								<div class="d_bh">编号：9197795</div>
+							</div>
+							<div class="detail_freight">
+								<span class="pop_tit ">运费：</span>
+								<span id="freight" class="pop_black">包邮</span>
+							</div>
+							<div class="detail_color">
+								<div class="model_wrap color_wrap">
+									<span class="pop_tit">颜色：</span>
+									<ul class="color_ul">
+										<li class="no_kc on">
+											<a href="javascript:void(0)" data-param="{valid:51008, key:1}">粉红</a>
+											<b></b>
+										</li>
+										<li class="no_kc">
+											<a href="javascript:void(0)" data-param="{valid:51014, key:1}">暗紫色</a>
+											<b></b>
+										</li>
+									</ul>
+								</div>
+								<div class="model_wrap color_wrap">
+									<span class="pop_tit">尺码：</span>
+									<ul class="color_ul">
+										<li class="no_kc on">
+											<a href="javascript:void(0)" data-param="{valid:51009, key:15}">225(35)</a>
+											<b></b>
+										</li>
+										<li class="no_kc">
+											<a href="javascript:void(0)" data-param="{valid:51010, key:15}">230(36)</a>
+											<b></b>
+										</li>
+										<li class="no_kc">
+											<a href="javascript:void(0)" data-param="{valid:51011, key:15}">235(37)</a>
+											<b></b>
+										</li>
+										<li class="no_kc">
+											<a href="javascript:void(0)" data-param="{valid:51012, key:15}">240(38)</a>
+											<b></b>
+										</li>
+										<li class="no_kc">
+											<a href="javascript:void(0)" data-param="{valid:51013, key:15}">245(39)</a>
+											<b></b>
+										</li>
+									</ul>
+								</div>
+								<div class="model_wrap count_wrap">
+									<span class="pop_tit">数量：</span>
+									<div class="wrap_input">
+										<a href="javascript://" data-param="0" class="btn-add">-</a>
+										<a href="javascript://" data-param="0" class="btn-reduce">+</a>
+										<input value="1" id="buy_num" class="text" onkeyup="this.value=this.value.replace(/\D/g, '');">
+									</div>
+								</div>
+								<div class="model_wrap">
+									<div class="model_submilt">
+										<div class="btn_goods_remind">到货提醒</div>
+									</div>
+									<div class="detail_ewm">
+										<p class="ewm_bg_img"></p>
+										<p>
+											<span class="fs_14">微信 支付宝</span>
+											<span class="fs_14">直播商品订购减 20 元</span>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--提交区域end-->
+				<!--展示区域-->
+				<div class="con_tab">
+					<div class="con_nav">
+						<div class="con_nav_c">
+							<div class="w1200">
+								<ul>
+									<li class="on "><a href="javascript:;">商品详情</a></li>
+									<li><a href="javascript:;">商品参数</a></li>
+									<li><a href="javascript:;">用户评价</a></li>
+									<li><a href="javascript:;">为您推荐</a></li>
+								</ul>
+								<div class="fix_add_car">
+									<div class="db_price">
+										<em>¥</em>298.00
+									</div>
+									<a class="fixed_add_car" href="javascript:;">加入购物车</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="display">
+					<div class="goods_box">
+						<div class="detail_lists">
+							<div class="d_h2">
+								<h2>商品详情</h2>
+							</div>
+							<div class="detail_con">
+								<div style="margin: auto;">
+									<p><img src="image/d_1.jpg" /></p>
+								</div>
+								<div style="margin: auto;">
+									<img src="image/d_2.jpg" />
+									<img src="image/d_3.jpg" />
+									<img src="image/d_4.jpg" />
+									<img src="image/d_5.jpg" />
+									<img src="image/d_6.jpg" />
+									<img src="image/d_7.jpg" />
+								</div>
+								<div style="margin: auto;">
+									<p><img src="image/d_8.jpg" /></p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="premeter_box">
+						<div class="detail_lists">
+							<div class="d_h2">
+								<h2>商品参数</h2>
+							</div>
+							<div class="detail_con_l">
+								<ul>
+									<li>
+										<div class="d_l_con1_l">主商品配套：</div>
+										<div class="d_l_con1_r">乐途女士后跟杯款经典跑鞋</div>
+									</li>
+									<li>
+										<div class="d_l_con1_l">材质是否防水：</div>
+										<div class="d_l_con1_r">否</div>
+									</li>
+									<li>
+										<div class="d_l_con1_l">鞋垫是否固定：</div>
+										<div class="d_l_con1_r">是</div>
+									</li>
+									<li>
+										<div class="d_l_con1_l">是否具备气垫：</div>
+										<div class="d_l_con1_r">否</div>
+									</li>
+									<li>
+										<div class="d_l_con1_l">型号（品牌运动鞋）：</div>
+										<div class="d_l_con1_r">ERCL002-1 ERCL002-2</div>
+									</li>
+									<li>
+										<div class="d_l_con1_l">是否为标准尺码：</div>
+										<div class="d_l_con1_r">是</div>
+									</li>
+									<li>
+										<div class="d_l_con1_l">颜色：</div>
+										<div class="d_l_con1_r">ERCL002-1：康乃馨红/海棠红/白 ERCL002-2：馨香紫/风信紫/白</div>
+									</li>
+									<li>
+										<div class="d_l_con1_l">配套赠品（无编号）：</div>
+										<div class="d_l_con1_r">乐途斜挎包</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="appraise_box">
+	    		    	<div class="detail_lists ">
+	    		    		<div class="d_h2 ">
+	    		    			<h2>用户评价</h2>
+	    		    		</div>
+	    		    	<div class="detail_l_con3 ">
+	    		    		<div class="appraise_h2 ">
+                                <div class="appraise_t1 ">评价心得</div>
+                                <div class="appraise_t2 ">用户满意度</div>
+                                <div class="appraise_t3 ">购买价格</div>
+                                <div class="appraise_t4 ">用户信息</div> 
+	    		    		</div>
+	    		    		<ul>
+	    		    			<li class="appraise_li ">
+	    		    				<div class="a_li_t1 ">
+	    		    					<div class="appr_cons ">很轻，很舒适^_^</div>
+                                        <div class="appr_time ">2016-05-19 12:27</div>
+	    		    				</div>
+	    		    				<div class="a_li_t2 ">
+	    		    					<i class="i_icon_csi i_satisfy "></i>
+	    		    					<i class="i_icon_csi i_satisfy "></i>
+                                        <i class="i_icon_csi i_satisfy "></i>
+                                        <i class="i_icon_csi i_satisfy "></i>
+                                        <i class="i_icon_csi "></i>                                           
+	    		    				</div>
+	    		    				<div class="a_li_t3 ">
+	    		    					<p class="p_p ">￥<span>298.00</span></p>
+	    		    				</div>
+	    		    				<div class="a_li_t4 ">
+	    		    					<img src="image/user_center_img4.jpg "><br><span>MB***</span>
+	    		    				</div>
+	    		    			</li>
+	    		    			<li class="appraise_li ">
+	    		    				<div class="a_li_t1 ">
+	    		    					<div class="appr_cons ">很轻，很舒适^_^</div>
+	    		    					<!--反馈图片-->
+	    		    					<div class="appraise_img ">
+	    		    						<ul class="appr_img_list ">
+	    		    							<li><img src="image/pinlun_1.jpg "/></li>
+	    		    						</ul>
+	    		    					</div>
+	    		    					<!--反馈图片-->
+                                        <div class="appr_time ">2016-05-19 12:27</div>
+                                        <!--卖家回复-->
+                                        <div class="call_me_back ">
+                                        	客服回复：<span>您好！感谢您对我们的支持和开发商品提出的宝贵建议，您的建议就是我们的动力，我们会继续努力的，请您继续关注我们哦！</span>
+                                        </div>
+                                        <!--卖家回复-->
+	    		    				</div>
+	    		    				<div class="a_li_t2 ">
+	    		    					<i class="i_icon_csi i_satisfy "></i>
+	    		    					<i class="i_icon_csi i_satisfy "></i>
+                                        <i class="i_icon_csi i_satisfy "></i>
+                                        <i class="i_icon_csi i_satisfy "></i>
+                                        <i class="i_icon_csi "></i>                                           
+	    		    				</div>
+	    		    				<div class="a_li_t3 ">
+	    		    					<p class="p_p ">￥<span>298.00</span></p>
+	    		    				</div>
+	    		    				<div class="a_li_t4 ">
+	    		    					<img src="image/user_center_img4.jpg "><br><span>MB***</span>
+	    		    				</div>
+	    		    			</li>
+	    		    			<li class="appraise_li ">
+	    		    				<div class="a_li_t1">
+	    		    					<div class="appr_cons ">很轻，很舒适^_^</div>
+                                        <div class="appr_time ">2016-05-19 12:27</div>
+	    		    				</div>
+	    		    				<div class="a_li_t2 ">
+	    		    					<i class="i_icon_csi i_satisfy "></i>
+	    		    					<i class="i_icon_csi i_satisfy "></i>
+                                        <i class="i_icon_csi i_satisfy "></i>
+                                        <i class="i_icon_csi i_satisfy "></i>
+                                        <i class="i_icon_csi "></i>                                           
+	    		    				</div>
+	    		    				<div class="a_li_t3 ">
+	    		    					<p class="p_p ">￥<span>298.00</span></p>
+	    		    				</div>
+	    		    				<div class="a_li_t4 ">
+	    		    					<img src="image/user_center_img4.jpg "><br><span>MB***</span>
+	    		    				</div>
+	    		    			</li>
+	    		    		</ul>
+	    		    	</div>
+	    		    </div>
+	    		    </div>
+	    		    <div class="recommend_box">
+	    		    	<div class="detail_lists">
+	    		    		<div class="d_h2">
+	    		    			<h2>为您推荐</h2>
+	    		    		</div>
+	    		    		<div class="detail_l_con4">
+	    		    			<div class="d_l_con4_list">
+	    		    				<ul>
+	    		    					<li>
+	    		    						<a href="" class="a_con4_list">
+	    		    							<p class="p_img"><img src="image/tui_1.jpg"/></p>
+	    		    							<p class="p_title">乐途男士经典跑鞋1+1时尚组（后跟杯） 蓝灰色 245(39)</p>
+	    		    							<p class="p_price">
+	    		    								<span class="price1">￥<span>298.00</span></span>
+	    		    							</p>
+	    		    						</a>
+	    		    					</li>
+	    		    					<li>
+	    		    						<a href="" class="a_con4_list">
+	    		    							<p class="p_img"><img src="image/tui_2.jpg"/></p>
+	    		    							<p class="p_title">乐途男士经典跑鞋1+1时尚组（后跟杯） 蓝灰色 245(39)</p>
+	    		    							<p class="p_price">
+	    		    								<span class="price1">￥<span>298.00</span></span>
+	    		    							</p>
+	    		    						</a>
+	    		    					</li>
+	    		    					<li>
+	    		    						<a href="" class="a_con4_list">
+	    		    							<p class="p_img"><img src="image/tui_3.jpg"/></p>
+	    		    							<p class="p_title">乐途男士经典跑鞋1+1时尚组（后跟杯） 蓝灰色 245(39)</p>
+	    		    							<p class="p_price">
+	    		    								<span class="price1">￥<span>298.00</span></span>
+	    		    							</p>
+	    		    						</a>
+	    		    					</li>
+	    		    					<li>
+	    		    						<a href="" class="a_con4_list">
+	    		    							<p class="p_img"><img src="image/tui_4.jpg"/></p>
+	    		    							<p class="p_title">乐途男士经典跑鞋1+1时尚组（后跟杯） 蓝灰色 245(39)</p>
+	    		    							<p class="p_price">
+	    		    								<span class="price1">￥<span>298.00</span></span>
+	    		    							</p>
+	    		    						</a>
+	    		    					</li>
+	    		    					<li>
+	    		    						<a href="" class="a_con4_list">
+	    		    							<p class="p_img"><img src="image/tui_5.jpg"/></p>
+	    		    							<p class="p_title">乐途男士经典跑鞋1+1时尚组（后跟杯） 蓝灰色 245(39)</p>
+	    		    							<p class="p_price">
+	    		    								<span class="price1">￥<span>298.00</span></span>
+	    		    							</p>
+	    		    						</a>
+	    		    					</li>
+	    		    				</ul>
+	    		    		    </div>
+	    		    		    <div class="hd">
+	    		    		    	<a href="javascript:;" class="prev"><</a>
+	    		    		    	<a href="javascript:;" class="next">></a>
+	    		    		    </div>
+	    		    		</div>
+	    		    	</div>
+	    		    </div>
+				</div>
+	    		<!--展示区域end-->
+	    	</div>
+	    </div>
+	    <!--底部公用-->
+	    <div class="footer">
+	    	<div class="footer_b w1200"><img src="./image/foot_img1.jpg"/></div>
+	    	<div class="footer_help w1200">
+	    		<div class="footer1_l">
+	    			<dl class="helpDl">
+	    				<dt><h5>使用帮助</h5></dt>
+	    				<dd><a href="">税费收取规则 </a></dd>
+	    				<dd><a href="">新手指南 </a></dd>
+	    			    <dd><a href="">常见问题 </a></dd>
+	    				<dd><a href="">用户协议 </a></dd>
+	    			</dl>
+	    			<dl class="helpDl">
+	    				<dt><h5>会员服务</h5></dt>
+	    				<dd><a href="">积分政策  </a></dd>
+	    				<dd><a href="">会员权益  </a></dd>
+	    			    <dd><a href="">会员等级  </a></dd>
+	    			</dl>
+	    			<dl class="helpDl">
+	    				<dt><h5>支付方式</h5></dt>
+	    				<dd><a href="">积分支付  </a></dd>
+	    				<dd><a href="">货到付款  </a></dd>
+	    			    <dd><a href="">在线支付  </a></dd>
+	    				<dd><a href="">优惠券支付  </a></dd>
+	    			</dl>
+	    			<dl class="helpDl">
+	    				<dt><h5>配送方式</h5></dt>
+	    				<dd><a href="">包邮政策   </a></dd>
+	    				<dd><a href="">费用说明   </a></dd>
+	    			    <dd><a href="">配送说明   </a></dd>
+	    			</dl>
+	    			<dl class="helpDl">
+	    				<dt><h5>售后服务</h5></dt>
+	    				<dd><a href="">电子发票   </a></dd>
+	    				<dd><a href="">售后咨询   </a></dd>
+	    			    <dd><a href="">退货办理   </a></dd>
+	    				<dd><a href="">退货政策   </a></dd>
+	    			</dl>
+	    		</div>
+	    		<div class="footer1_r">
+	    			<ul>
+	    				<li>
+	    					<h2>手机快乐购</h2>
+	    					<img src="./image/footer_ewm_01.png"/>
+	    					<p>下载移动客户端</p>
+	    				</li>
+	    				<li>
+	    					<h2>快乐购微信</h2>
+	    					<img src="./image/footer_ewm_02.png"/>
+                            <p>快乐购官方微信</p>
+	    				</li>
+	    			</ul>
+	    		</div>
+	    	</div>
+	        <div class="footer_nav">
+	        	<div class="w720">
+	        		<ul>
+	        			<li>
+	        				<a href="">关于快乐购 </a>
+	        				<span class="line"></span>
+	        			</li>
+	        			<li>
+	        				<a href="">投资者关系 </a>
+	        				<span class="line"></span>
+	        			</li>
+	        			<li>
+	        				<a href="">商家入驻  </a>
+	        				<span class="line"></span>
+	        			</li>
+	        			<li>
+	        				<a href="">联系我们 </a>
+	        				<span class="line"></span>
+	        			</li>
+	        		</ul>
+	        	</div>
+	        </div>
+	        <div class="footer_bottom">
+	        	<div class="w1200">
+	        		<p>
+	        			<span class="font_arial">Copyright© 2006-2016 happigo. All Rights Reserved </span>
+                                           免费服务热线: 400-705-1111 | 固话也可拨打: 800-705-1111
+                        <span class="font_arial">E-Mail: service@happigo.com</span><br>
+                                           湘ICP备12000157号 信息网络传播视听节目许可证号：1810530
+	        		</p>
+	        		<p class="footer_b">
+	        			<a href="http://www.itrust.org.cn/home/index/itrust_certifi/wm/2782875193.html">
+	        				<img src="./image/foot_img3.png"/>
+	        			</a>
+	        			<a href="https://search.szfw.org/cert/l/CX20150428007576007720">
+	        				<img src="image/foot_img4.png"/>
+	        			</a>
+	        		</p>
+	        	</div>
+	        </div>
+	    </div>
+	    <!--底部end-->
+	    <!--左侧导航-->
+	    <div class="fixed_dh">
+	    	<div class="f_r_top">
+	    		<div class="top_i">
+	    		    <i class="icon_user"></i>
+	    		    <span>账号</span>
+	    		</div>
+	    		<div class="f_line">
+	    			<p class="f_line1"></p>
+	    			<p class="f_line2"></p>
+	    		</div>
+	    		<div class="f_gwc">
+	    			<a href="">
+	    				<i class="icon_car"></i>
+	    			    <span>购物车</span>
+	    			    <b class="car_num">0</b>
+	    			</a>
+	    		</div>
+	    		<div class="f_line">
+	    			<p class="f_line1"></p>
+	    			<p class="f_line2"></p>
+	    		</div>
+	    		<div class="top_i">
+	    		    <i class="icon_collect"></i>
+	    		    <span>收藏</span>
+	    		</div>
+	    	</div>
+	        <div class="f_bottom">
+	        	<div class="f_sao">
+	        		<i class="ewm_img"></i>
+	        	</div>
+	        	<div class="f_ke">
+	        		<i class="online_cus"></i>
+	        	</div>
+	        	<div class="top_is">
+	    		    <a href="javascipt:;">
+	    		    	<i class="retrun_top"></i>
+	    		    </a>
+	    		</div>
+	        </div>
+	    </div>
+	    <!--左侧导航-->
+	</body>
+</html>

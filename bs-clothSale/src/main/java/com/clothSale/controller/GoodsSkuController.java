@@ -52,16 +52,49 @@ public class GoodsSkuController {
         return res;
     }
 
+    @RequestMapping("/selectAllSku")
+    @ResponseBody
+    public RequsetData<List<HashMap<String, Object>>> selectAllSku(@RequestParam("spu_id")String spu_id,@RequestParam("pageIndex")int pageIndex,@RequestParam("pageSize")int pageSize) {
+
+        List<HashMap<String, Object>> list = goodsSkuService.selectAllSku(spu_id, pageIndex, pageSize);
+
+        return setRequsetData(list,"查询");
+    }
+
+    @RequestMapping("/updateGoodsSku")
+    @ResponseBody
+    public RequsetData<Integer> updateGoodsSku(@RequestParam("sku_id")String sku_id,@RequestParam("stock")int stock) {
+
+        RequsetData<Integer> res = new RequsetData<>();
+        GoodsSku goodsSku = new GoodsSku();
+        goodsSku.setSkuId(sku_id);
+        goodsSku.setStock(stock);
+
+        int count = goodsSkuService.updateByPrimaryKeySelective(goodsSku);
+
+        if (count == 1) {
+            res.setItem(count);
+            res.setMsg("进货成功");
+            res.setSuccess(true);
+        } else {
+            res.setMsg("进货失败");
+            res.setSuccess(false);
+        }
+
+        return res;
+    }
+
     @RequestMapping("/insertGoodsSku")
     @ResponseBody
-    public RequsetData<Integer> insertGoodsSku(@RequestParam("sku_id")String sku_id, @RequestParam("price") BigDecimal price,@RequestParam("stock") int stock, @RequestParam("spu_id")String spu_id, @RequestParam("specIds") List<String> specIds) {
+    public RequsetData<Integer> insertGoodsSku(@RequestParam("sku_id")String sku_id, @RequestParam("price_input") BigDecimal price_input,@RequestParam("price_sale") BigDecimal price_sale,@RequestParam("stock") int stock, @RequestParam("spu_id")String spu_id, @RequestParam("specIds") List<String> specIds) {
 
         RequsetData<Integer> res = new RequsetData<>();
 
         GoodsSku goodsSku = new GoodsSku();
         goodsSku.setSkuId(sku_id);
         goodsSku.setSpuId(spu_id);
-        goodsSku.setPrice(price);
+        goodsSku.setPriceInput(price_input);
+        goodsSku.setPriceSale(price_sale);
         goodsSku.setStock(stock);
         goodsSku.setGmtCreate(new Date());
         int count = goodsSkuService.insertSelective(goodsSku);
@@ -84,6 +117,20 @@ public class GoodsSkuController {
             res.setSuccess(false);
         }
 
+        return res;
+    }
+
+    private RequsetData<List<HashMap<String, Object>>> setRequsetData(List<HashMap<String, Object>> list,String msg) {
+
+        RequsetData<List<HashMap<String, Object>>> res = new RequsetData<>();
+        if (list != null) {
+            res.setItem(list);
+            res.setMsg(msg + "成功");
+            res.setSuccess(true);
+        } else {
+            res.setMsg(msg + "失败");
+            res.setSuccess(false);
+        }
         return res;
     }
 

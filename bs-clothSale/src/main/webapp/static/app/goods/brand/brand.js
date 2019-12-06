@@ -27,7 +27,7 @@ angular.module("clothSaleApp")
                 }
             }).then(function successCallback(response) {
                 //请求成功
-                $scope.showAlert('提示:',response.data.msg);
+                $scope.showAlert('提示:',response.data.msg,'success');
                 $scope.loadData();
                 $('#addModal').modal('hide');
             }, function errorCallback(response) {
@@ -48,11 +48,11 @@ angular.module("clothSaleApp")
                     }
                 }).then(function successCallback(response) {
                     //请求成功
-                    $scope.showAlert('提示:',response.data.msg);
+                    $scope.showAlert('提示:',response.data.msg,'success');
                     $scope.loadData();
                 }, function errorCallback(response) {
                     //请求失败
-                    $scope.showAlert('警告:',response.data.msg);
+                    $scope.showAlert('警告:',response.data.msg,'danger');
                 });
             }
 
