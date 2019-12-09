@@ -28,12 +28,13 @@
     <!--菜单-->
     <div class="index_type">
         <ul class="index_type_ul">
-            <li ng-repeat="category in categoryList" ng-mouseover="selectGoodsSpu(category.category_id)">
-                <span>{{category.category_name}}<b>></b></span>
+            <li ng-repeat="categoryFirst in categoryFirstList" style="cursor: pointer"
+                ng-mouseover="selectCategory(categoryFirst.category_first_id)">
+                <span>{{categoryFirst.category_first_name}}<b>></b></span>
                 <div class="nav_type_list">
                     <ul>
-                        <li ng-repeat="spu in spuList">
-                            <a href="#" target="_blank" style="font-weight: bold">{{spu.goods_name}}</a>
+                        <li ng-repeat="category in categoryList">
+                            <a href="javascript:void(0);" target="_blank" style="font-weight: bold">{{category.category_name}}</a>
                         </li>
                         <li ng-if="spuList.length<=0">
                             <a>暂无商品</a>
@@ -89,278 +90,72 @@
 </div>
 <!--轮播区域-->
 <!--商品区-->
-<div class="w1200">
-    <div class="her_top">
-        <div class="her_title">
-            <ul class="her_menu">
-                <li class="current">
-                    <i class="today_zb_icon"></i>
-                    精选服饰
-                    <i class="jx_icon_down"></i>
-                </li>
-                <li>
-                    <i class="yesto_icon"></i>
-                    限时抢购
-                    <i class="jx_icon_down"></i>
-                </li>
-            </ul>
-        </div>
-        <div class="pro_con" style="display: block;">
-            <div class="P_left">
-                <div class="groDiv">
-                    <div style="position: relative;overflow: hidden;">
-                        <ul class="groUlOut">
-                            <li style="float: left;width: 224px;">
-                                <div class="x">精选服饰</div>
-                                <a href="iemt.html" class="pro">
-                                    <img src="./image/top_1.jpg"/>
-                                </a>
-                                <p class="box_glay">
-                                    <a href="" class="pro_text">
-                                        <span>意大利TVS进口磐石锅具套组</span>
-                                    </a>
-                                </p>
-                                <p class="p_num">
-                                    No.9195763
-                                </p>
-                                <div class="now_price">
-                                    <div class="price">
+<div class="w1200" style="margin-top: 50px">
+    <ul class="her_menu her_title">
+        <li ng-class="{'current':tabsSign == 1}" ng-click="changeTabs(1)">
+            <i class="today_zb_icon"></i>
+            精选服饰
+            <i class="jx_icon_down"></i>
+        </li>
+        <li ng-class="{'current':tabsSign == 2}" ng-click="changeTabs(2)">
+            <i class="yesto_icon"></i>
+            限时抢购
+            <i class="jx_icon_down"></i>
+        </li>
+    </ul>
+    <div class="pro_con" style="display: block">
+        <div class="groDiv P_left">
+            <div style="position: relative;overflow: hidden;">
+                <ul class="groUlOut" ng-if="tabsSign == 1">
+                    <li style="float: left;width: 224px;" ng-repeat="good in goods">
+                        <div class="x">精选服饰</div>
+                        <a href="" class="pro">
+                            <img src="./image/top_2.jpg"/>
+                        </a>
+                        <p class="box_glay">
+                            <a href="" class="pro_text">
+                                <span>意大利TVS进口磐石锅具套组</span>
+                            </a>
+                        </p>
+                        <div class="now_price">
+                            <div class="price">
 	    	    								<span class="bigfont">
 	    	    									<span class="f_14">￥</span><span>999.00</span>
 	    	    								</span>
-                                        <span><del>￥2100.00</del></span>
-                                        <div class="zk">4.8折</div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li style="float: left;width: 224px;">
-                                <div class="x">精选服饰</div>
-                                <a href="" class="pro">
-                                    <img src="./image/top_2.jpg"/>
-                                </a>
-                                <p class="box_glay">
-                                    <a href="" class="pro_text">
-                                        <span>意大利TVS进口磐石锅具套组</span>
-                                    </a>
-                                </p>
-                                <p class="p_num">
-                                    No.9195763
-                                </p>
-                                <div class="now_price">
-                                    <div class="price">
+                                <span><del>￥2100.00</del></span>
+                                <div class="zk">4.8折</div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <ul class="groUlOut" ng-if="tabsSign == 2">
+                    <li style="float: left;width: 224px;" ng-repeat="good in goods">
+                        <div class="s">限时抢购</div>
+                        <a href="iemt.html" class="pro">
+                            <img src="./image/top_1.jpg"/>
+                        </a>
+                        <p class="box_glay">
+                            <a href="" class="pro_text">
+                                <span>意大利TVS进口磐石锅具套组</span>
+                            </a>
+                        </p>
+                        <div class="now_price">
+                            <div class="price">
 	    	    								<span class="bigfont">
 	    	    									<span class="f_14">￥</span><span>999.00</span>
 	    	    								</span>
-                                        <span><del>￥2100.00</del></span>
-                                        <div class="zk">4.8折</div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li style="float: left;width: 224px;">
-                                <div class="x">精选服饰</div>
-                                <a href="iemt.html" class="pro">
-                                    <img src="./image/top_3.jpg"/>
-                                </a>
-                                <p class="box_glay">
-                                    <a href="" class="pro_text">
-                                        <span>意大利TVS进口磐石锅具套组</span>
-                                    </a>
-                                </p>
-                                <p class="p_num">
-                                    No.9195763
-                                </p>
-                                <div class="now_price">
-                                    <div class="price">
-	    	    								<span class="bigfont">
-	    	    									<span class="f_14">￥</span><span>999.00</span>
-	    	    								</span>
-                                        <span><del>￥2100.00</del></span>
-                                        <div class="zk">4.8折</div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li style="float: left;width: 224px;">
-                                <div class="x">精选服饰</div>
-                                <a href="" class="pro">
-                                    <img src="./image/top_4.jpg"/>
-                                </a>
-                                <p class="box_glay">
-                                    <a href="" class="pro_text">
-                                        <span>意大利TVS进口磐石锅具套组</span>
-                                    </a>
-                                </p>
-                                <p class="p_num">
-                                    No.9195763
-                                </p>
-                                <div class="now_price">
-                                    <div class="price">
-	    	    								<span class="bigfont">
-	    	    									<span class="f_14">￥</span><span>999.00</span>
-	    	    								</span>
-                                        <span><del>￥2100.00</del></span>
-                                        <div class="zk">4.8折</div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li style="float: left;width: 224px;">
-                                <div class="x">精选服饰</div>
-                                <a href="iemt.html" class="pro">
-                                    <img src="./image/top_5.jpg"/>
-                                </a>
-                                <p class="box_glay">
-                                    <a href="" class="pro_text">
-                                        <span>意大利TVS进口磐石锅具套组</span>
-                                    </a>
-                                </p>
-                                <p class="p_num">
-                                    No.9195763
-                                </p>
-                                <div class="now_price">
-                                    <div class="price">
-	    	    								<span class="bigfont">
-	    	    									<span class="f_14">￥</span><span>999.00</span>
-	    	    								</span>
-                                        <span><del>￥2100.00</del></span>
-                                        <div class="zk">4.8折</div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="pro_con" style="display: none;">
-            <div class="P_left">
-                <div class="groDiv">
-                    <div style="position: relative;overflow: hidden;">
-                        <ul class="groUlOut">
-                            <li style="float: left;width: 224px;">
-                                <div class="s">限时抢购</div>
-                                <a href="iemt.html" class="pro">
-                                    <img src="./image/top_1.jpg"/>
-                                </a>
-                                <p class="box_glay">
-                                    <a href="" class="pro_text">
-                                        <span>意大利TVS进口磐石锅具套组</span>
-                                    </a>
-                                </p>
-                                <p class="p_num">
-                                    No.9195763
-                                </p>
-                                <div class="now_price">
-                                    <div class="price">
-	    	    								<span class="bigfont">
-	    	    									<span class="f_14">￥</span><span>999.00</span>
-	    	    								</span>
-                                        <span><del>￥2100.00</del></span>
-                                        <div class="zk">4.8折</div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li style="float: left;width: 224px;">
-                                <div class="s">限时抢购</div>
-                                <a href="iemt.html" class="pro">
-                                    <img src="./image/top_2.jpg"/>
-                                </a>
-                                <p class="box_glay">
-                                    <a href="" class="pro_text">
-                                        <span>意大利TVS进口磐石锅具套组</span>
-                                    </a>
-                                </p>
-                                <p class="p_num">
-                                    No.9195763
-                                </p>
-                                <div class="now_price">
-                                    <div class="price">
-	    	    								<span class="bigfont">
-	    	    									<span class="f_14">￥</span><span>999.00</span>
-	    	    								</span>
-                                        <span><del>￥2100.00</del></span>
-                                        <div class="zk">4.8折</div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li style="float: left;width: 224px;">
-                                <div class="s">限时抢购</div>
-                                <a href="iemt.html" class="pro">
-                                    <img src="./image/top_3.jpg"/>
-                                </a>
-                                <p class="box_glay">
-                                    <a href="" class="pro_text">
-                                        <span>意大利TVS进口磐石锅具套组</span>
-                                    </a>
-                                </p>
-                                <p class="p_num">
-                                    No.9195763
-                                </p>
-                                <div class="now_price">
-                                    <div class="price">
-	    	    								<span class="bigfont">
-	    	    									<span class="f_14">￥</span><span>999.00</span>
-	    	    								</span>
-                                        <span><del>￥2100.00</del></span>
-                                        <div class="zk">4.8折</div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li style="float: left;width: 224px;">
-                                <div class="s">限时抢购</div>
-                                <a href="" class="pro">
-                                    <img src="./image/top_4.jpg"/>
-                                </a>
-                                <p class="box_glay">
-                                    <a href="" class="pro_text">
-                                        <span>意大利TVS进口磐石锅具套组</span>
-                                    </a>
-                                </p>
-                                <p class="p_num">
-                                    No.9195763
-                                </p>
-                                <div class="now_price">
-                                    <div class="price">
-	    	    								<span class="bigfont">
-	    	    									<span class="f_14">￥</span><span>999.00</span>
-	    	    								</span>
-                                        <span><del>￥2100.00</del></span>
-                                        <div class="zk">4.8折</div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li style="float: left;width: 224px;">
-                                <div class="s">限时抢购</div>
-                                <a href="iemt.html" class="pro">
-                                    <img src="./image/top_5.jpg"/>
-                                </a>
-                                <p class="box_glay">
-                                    <a href="" class="pro_text">
-                                        <span>意大利TVS进口磐石锅具套组</span>
-                                    </a>
-                                </p>
-                                <p class="p_num">
-                                    No.9195763
-                                </p>
-                                <div class="now_price">
-                                    <div class="price">
-	    	    								<span class="bigfont">
-	    	    									<span class="f_14">￥</span><span>999.00</span>
-	    	    								</span>
-                                        <span><del>￥2100.00</del></span>
-                                        <div class="zk">4.8折</div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                                <span><del>￥2100.00</del></span>
+                                <div class="zk">4.8折</div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
     <!--第二区-->
-    <div class="ver_box">
-        <ul class="qinha_ul ClearFix"></ul>
-    </div>
-    <div class="qinha_box">
+    <div style="margin-top: 10px">
         <div class="qinha_title">
             <div class="v_h2">
                 <p class="h2_top">限时抢购</p>

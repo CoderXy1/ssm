@@ -130,6 +130,18 @@
         limit #{pageIndex},#{pageSize}
     </select>
 
+    <select id="selectGoodsSpecValueNum" resultType="java.util.Map">
+        SELECT count(*) as total from goods_spec_value where spec_id = #{spec_id}
+        <if test="spec_value != null and spec_value != ''">
+            and spec_value like concat('%',#{spec_value},'%')
+        </if>
+    </select>
+
+    <delete id="deleteGoodsSpecValue" parameterType="java.lang.String">
+        delete from goods_spec_value where spec_value_id = #{spec_value_id,jdbcType=VARCHAR};
+        delete from goods_sku_spec_value where spec_value_id = #{spec_value_id,jdbcType=VARCHAR};
+  </delete>
+
     <insert id="insertGoodsSpecSpu">
     INSERT INTO goods_spu_spec(spu_id, spec_id, gmt_create, gmt_update)
     VALUES (#{spu_id}, #{spec_id}, #{gmt_create}, #{gmt_update});

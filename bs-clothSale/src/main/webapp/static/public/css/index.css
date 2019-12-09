@@ -177,7 +177,7 @@ ul li{
     overflow: hidden;
     padding: 10px;
     position: relative;
-    height: 380px;
+    height: 330px;
 }
 .P_left {
     height: 380px;
@@ -307,9 +307,6 @@ ul li{
 }
 .ver_box{
 	margin-top:20px
-}
-.qinha_box{
-	margin-top: 31px;
 }
 /**/
 .qinha_title {

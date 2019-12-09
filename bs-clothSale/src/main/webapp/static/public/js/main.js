@@ -72,7 +72,7 @@
         scrollSpeed: 900,
         animationInSpeed: 1000, // Animation in speed (ms)
         animationOutSpeed: 1000, // Animation out speed (ms)
-        scrollText: '<img src="../images/arrow_up.png" style="width: 64px;height: 64px">', // Text for element
+        scrollText: '<img src="images/arrow_up.png" style="width: 36px;height: 36px">', // Text for element
         activeOverlay: false // Set CSS color to display scrollUp active point, e.g '#00FFFF'
     });
 

@@ -23,11 +23,17 @@
                                 </div>
                                 <div class="form-group" ng-if="categoryStep == 2">
                                     <label for="category_first_id" class="col-form-label">一级分类:</label>
-                                    <select id="category_first_id" class="form-control" ng-model="editCategory_first_id"
-                                            ng-required="true">
-                                        <option value="">--请选择--</option>
-                                        <option ng-repeat="categoryFirst in categoryFirstList" value="{{categoryFirst.category_first_id}}">{{categoryFirst.category_first_name}}</option>
-                                    </select>
+                                    <div id="category_first_id" class="row">
+                                        <div class="col-md-3 checkbox checkbox-info"
+                                             ng-repeat="categoryFirst in allCategoryFirstList">
+                                            <input id="{{categoryFirst.category_first_id}}" type="checkbox" name="role" ng-model="GoodsCategoryFirstSelected"
+                                                   ng-change="addGoodsCategoryFirst(GoodsCategoryFirstSelected,categoryFirst.category_first_id,categoryFirst.category_first_name)">
+                                            <label class="font-weight-light" for="{{categoryFirst.category_first_id}}"
+                                                   style="line-height: 16px">
+                                                {{categoryFirst.category_first_name}}
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="category_name" class="col-form-label">类别名:</label>

@@ -63,7 +63,7 @@
                             <td>{{specValue.gmt_create | date:'yyyy/MM/dd HH:mm:ss'}}</td>
                             <td class="text-center">
                                 <button class="btn btn-sm btn-success" title="修改"><i class="fa fa-edit"></i></button>
-                                <button class="btn btn-sm btn-danger" title="删除" ng-click="deleteSpec(spec.spec_id)"><i class="fa fa-close"></i></button>
+                                <button class="btn btn-sm btn-danger" title="删除" ng-click="deleteGoodsSpecValue(specValue.spec_value_id)"><i class="fa fa-close"></i></button>
                             </td>
                         </tr>
                         <tr ng-if="specValueList.length<=0">

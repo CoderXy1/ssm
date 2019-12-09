@@ -27,6 +27,10 @@ public interface GoodsSpecMapper {
 
     HashMap<String,Object> selectAllGoodsSpecNum(@Param("spec_name")String spec_name,@Param("category_id") String category_id);
 
+    HashMap<String,Object> selectGoodsSpecValueNum(@Param("spec_id")String spec_id,@Param("spec_value")String spec_value);
+
+    int deleteGoodsSpecValue(@Param("spec_value_id")String spec_value_id);
+
     List<HashMap<String,Object>> selectGoodsSpecValue(@Param("spec_id") String spec_id,@Param("spec_value")String spec_value,@Param("pageIndex") int pageIndex,@Param("pageSize") int pageSize);
 
     String selectBySpecName(@Param("spec_name") String spec_name);

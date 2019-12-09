@@ -48,9 +48,11 @@ public class GoodsSpecController {
         RequsetData<List<HashMap<String, Object>>> res = new RequsetData<>();
 
         List<HashMap<String, Object>> list = goodsSpecService.selectGoodsSpecValue(spec_id,spec_value,pageIndex,pageSize);
+        HashMap<String,Object> map = goodsSpecService.selectGoodsSpecValueNum(spec_id,spec_value);
 
         if (list != null) {
             res.setItem(list);
+            res.setExtdata(map);
             res.setMsg("成功");
             res.setSuccess(true);
         } else {
@@ -164,6 +166,25 @@ public class GoodsSpecController {
         RequsetData<Integer> res = new RequsetData<>();
 
         int count = goodsSpecService.deleteByPrimaryKey(specId);
+
+        if (count == 1) {
+            res.setMsg("删除成功");
+            res.setSuccess(true);
+        } else {
+            res.setMsg("删除失败");
+            res.setSuccess(false);
+        }
+
+        return res;
+    }
+
+    @RequestMapping("/deleteGoodsSpecValue")
+    @ResponseBody
+    public RequsetData<Integer> deleteGoodsSpecValue(@RequestParam("spec_value_id")String spec_value_id) {
+
+        RequsetData<Integer> res = new RequsetData<>();
+
+        int count = goodsSpecService.deleteGoodsSpecValue(spec_value_id);
 
         if (count == 1) {
             res.setMsg("删除成功");

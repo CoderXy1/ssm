@@ -1,21 +1,31 @@
 angular.module("clothSalePublicApp")
     .controller("mainCtrl", function ($scope, $rootScope,$http) {
 
+        $scope.categoryFirstList = [];
         $scope.categoryList = [];
-        $scope.spuList = [];
-        $scope.categoryStep = 1;
-        $scope.selectParams = {
+        $scope.goods = [
+            1,2,3,4,5
+        ]
+        $scope.tabsSign = 1;
+        $scope.selectFirstParams = {
             pageIndex : 0,
             pageSize : 12,
-            categoryName : '',
+        }
+
+        $scope.changeTabs = function (num){
+            $scope.tabsSign = num;
         }
 
         //查询分类
-        $scope.selectCategory = function (){
+        $scope.selectCategory = function (category_first_id){
             $http({
                 method: "POST",
                 url: '../../GoodsCategory/selectGoodsCategory',
-                params : $scope.selectParams
+                params : {
+                    pageIndex : 0,
+                    pageSize : 12,
+                    category_first_id : category_first_id
+                }
             }).then(function successCallback(response) {
                 //请求成功
                 $scope.categoryList = response.data.item;
@@ -24,26 +34,22 @@ angular.module("clothSalePublicApp")
             });
         }
 
-        //查询商品
-        $scope.selectGoodsSpu = function (category_id) {
+        //查询一级分类
+        $scope.selectFirstCategory = function (){
             $http({
                 method: "POST",
-                url: '../../GoodsSpu/selectGoodsSpu',
-                params: {
-                    pageIndex : 0,
-                    pageSize : 10,
-                    category_id : category_id,
-                }
+                url: '../../GoodsCategory/selectGoodsCategoryFirst',
+                params : $scope.selectFirstParams
             }).then(function successCallback(response) {
                 //请求成功
-                $scope.spuList = response.data.item;
+                $scope.categoryFirstList = response.data.item;
             }, function errorCallback(response) {
                 //请求失败
             });
         }
 
         $scope.loadData = function () {
-            $scope.selectCategory();
+            $scope.selectFirstCategory();
         }
 
         $scope.loadData();

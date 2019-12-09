@@ -48,8 +48,8 @@ public class GoodsCategoryServiceImpl implements IGoodsCategoryService {
     }
 
     @Override
-    public List<HashMap<String, Object>> selectGoodsCategory(int pageIndex, int pageSize, String categoryName) {
-        return goodsCategoryMapper.selectGoodsCategory(pageIndex, pageSize, categoryName);
+    public List<HashMap<String, Object>> selectGoodsCategory(int pageIndex, int pageSize, String categoryName,String category_first_id) {
+        return goodsCategoryMapper.selectGoodsCategory(pageIndex, pageSize, categoryName,category_first_id);
     }
 
     @Override
@@ -60,5 +60,10 @@ public class GoodsCategoryServiceImpl implements IGoodsCategoryService {
     @Override
     public List<HashMap<String, Object>> selectGoodsCategoryFirst(int pageIndex, int pageSize, String categoryFirstName) {
         return goodsCategoryMapper.selectGoodsCategoryFirst(pageIndex, pageSize, categoryFirstName);
+    }
+
+    @Override
+    public int insertCategoryConnect(String category_first_id, String category_id, Date gmt_create, Date gmt_update) {
+        return goodsCategoryMapper.insertCategoryConnect(category_first_id, category_id, gmt_create, gmt_update);
     }
 }

@@ -86,4 +86,14 @@ public class GoodsSpecServiceImpl implements IGoodsSpecService {
     public String selectBySpecName(String spec_name) {
         return goodsSpecMapper.selectBySpecName(spec_name);
     }
+
+    @Override
+    public HashMap<String, Object> selectGoodsSpecValueNum(String spec_id, String spec_value) {
+        return goodsSpecMapper.selectGoodsSpecValueNum(spec_id, spec_value);
+    }
+
+    @Override
+    public int deleteGoodsSpecValue(String spec_value_id) {
+        return goodsSpecMapper.deleteGoodsSpecValue(spec_value_id);
+    }
 }

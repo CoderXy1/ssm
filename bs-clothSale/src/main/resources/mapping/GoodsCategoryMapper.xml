@@ -95,15 +95,21 @@
   </update>
 
     <select id="selectGoodsCategory" resultType="java.util.Map">
-        select *,(select count(*) from goods_category where 1 = 1
+        select c.*,(select count(*) from goods_category where 1 = 1
         <if test="categoryName != null and categoryName != ''">
             and category_name like concat('%',#{categoryName},'%')
-        </if>) as total from goods_category
+        </if>) as total from goods_category c
+        <if test="category_first_id != null and category_first_id != ''">
+            left join goods_category_connect con on c.category_id = con.category_id
+        </if>
         where 1 = 1
         <if test="categoryName != null and categoryName != ''">
-            and category_name like concat('%',#{categoryName},'%')
+            and c.category_name like concat('%',#{categoryName},'%')
         </if>
-        order by category_order limit #{pageIndex},#{pageSize}
+        <if test="category_first_id != null and category_first_id != ''">
+            and con.category_first_id = #{category_first_id}
+        </if>
+        order by c.category_order limit #{pageIndex},#{pageSize}
     </select>
 
     <insert id="insertCategoryFirst">
@@ -125,5 +131,10 @@
         order by category_first_order limit #{pageIndex},#{pageSize}
     </select>
 
+    <insert id="insertCategoryConnect">
+    insert into goods_category_connect (category_first_id, category_id, gmt_create,gmt_update)
+    values (#{category_first_id,jdbcType=VARCHAR}, #{category_id,jdbcType=INTEGER},
+      #{gmt_create,jdbcType=TIMESTAMP}, #{gmt_update,jdbcType=TIMESTAMP})
+  </insert>
 
 </mapper>

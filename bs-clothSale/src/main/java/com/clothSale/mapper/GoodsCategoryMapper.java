@@ -23,7 +23,9 @@ public interface GoodsCategoryMapper {
 
     int insertCategoryFirst(@Param("categoryFirstId")String categoryFirstId, @Param("categoryFirstName")String categoryFirstName, @Param("categoryFirstOrder")int categoryFirstOrder, @Param("gmtCreate")Date gmtCreate, @Param("gmtUpdate")Date gmtUpdate);
 
-    List<HashMap<String,Object>> selectGoodsCategory(@Param("pageIndex") int pageIndex, @Param("pageSize") int pageSize, @Param("categoryName") String categoryName);
+    int insertCategoryConnect(@Param("category_first_id") String category_first_id,@Param("category_id") String category_id,@Param("gmt_create") Date gmt_create,@Param("gmt_update")Date gmt_update);
+
+    List<HashMap<String,Object>> selectGoodsCategory(@Param("pageIndex") int pageIndex, @Param("pageSize") int pageSize, @Param("categoryName") String categoryName,@Param("category_first_id")String category_first_id);
 
     List<HashMap<String,Object>> selectGoodsCategoryFirst(@Param("pageIndex")int pageIndex,@Param("pageSize") int pageSize,@Param("categoryFirstName") String categoryFirstName);
 }

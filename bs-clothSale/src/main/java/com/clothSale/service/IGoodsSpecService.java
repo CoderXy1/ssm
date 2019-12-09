@@ -28,6 +28,10 @@ public interface IGoodsSpecService {
 
     HashMap<String,Object> selectAllGoodsSpecNum(String spec_name,String category_id);
 
+    HashMap<String,Object> selectGoodsSpecValueNum(String spec_id,String spec_value);
+
+    int deleteGoodsSpecValue(String spec_value_id);
+
     String selectBySpecName(String spec_name);
 
     int insertGoodsSpecSpu(String spu_id, String spec_id, Date gmt_create, Date gmt_update);

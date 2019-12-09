@@ -19,9 +19,11 @@ public interface IGoodsCategoryService {
 
     int updateByPrimaryKey(GoodsCategory record);
 
+    int insertCategoryConnect(String category_first_id, String category_id, Date gmt_create,Date gmt_update);
+
     int insertCategoryFirst(String categoryFirstId, String categoryFirstName, int categoryFirstOrder, Date gmtCreate,Date gmtUpdate);
 
-    List<HashMap<String,Object>> selectGoodsCategory(int pageIndex, int pageSize, String categoryName);
+    List<HashMap<String,Object>> selectGoodsCategory(int pageIndex, int pageSize, String categoryName,String category_first_id);
 
     List<HashMap<String,Object>> selectGoodsCategoryFirst(int pageIndex, int pageSize, String categoryFirstName);
 }
