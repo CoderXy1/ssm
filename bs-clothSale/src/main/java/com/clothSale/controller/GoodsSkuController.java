@@ -3,6 +3,7 @@ package com.clothSale.controller;
 import com.clothSale.controller.jsonmodel.RequsetData;
 import com.clothSale.model.GoodsSku;
 import com.clothSale.service.IGoodsSkuService;
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,16 +26,16 @@ public class GoodsSkuController {
     @RequestMapping("/selectGoodsSku")
     @ResponseBody
     //有参数要加 @RequestParam("参数名")
-    public RequsetData<List<HashMap<String, Object>>> selectGoodsSku(@RequestParam("specIds") List<String> specIds, @RequestParam("spu_id")String spu_id) {
+    public RequsetData<List<HashMap<String, Object>>> selectGoodsSku(@RequestParam("specIds") String specIds, @RequestParam("spu_id")String spu_id) {
 
         RequsetData<List<HashMap<String, Object>>> res = new RequsetData<>();
 
         List<String> list = new ArrayList<>();
 
-        for (String item : specIds){
-            String temp = item.replace("{","").replace("}","").split(":")[1];
-            if (temp != null && temp != ""){
-                list.add(temp.replaceAll("\"",""));
+        JSONObject jsonObj = new JSONObject(specIds);
+        for(String str:jsonObj.keySet()){
+            if (!jsonObj.isNull(str)){
+                list.add(jsonObj.get(str).toString());
             }
         }
 
@@ -86,7 +87,7 @@ public class GoodsSkuController {
 
     @RequestMapping("/insertGoodsSku")
     @ResponseBody
-    public RequsetData<Integer> insertGoodsSku(@RequestParam("sku_id")String sku_id, @RequestParam("price_input") BigDecimal price_input,@RequestParam("price_sale") BigDecimal price_sale,@RequestParam("stock") int stock, @RequestParam("spu_id")String spu_id, @RequestParam("specIds") List<String> specIds) {
+    public RequsetData<Integer> insertGoodsSku(@RequestParam("sku_id")String sku_id, @RequestParam("price_input") BigDecimal price_input,@RequestParam("price_sale") BigDecimal price_sale,@RequestParam("stock") int stock, @RequestParam("spu_id")String spu_id, @RequestParam("specIds") String specIds) {
 
         RequsetData<Integer> res = new RequsetData<>();
 
@@ -99,21 +100,19 @@ public class GoodsSkuController {
         goodsSku.setGmtCreate(new Date());
         int count = goodsSkuService.insertSelective(goodsSku);
 
-        List<String> list = new ArrayList<>();
-
-        for (String item : specIds){
-            String temp = item.replace("{","").replace("}","").split(":")[1];
-            if (temp != null && temp != ""){
-                goodsSkuService.insertGoodsSkuSpecValue(sku_id,temp.replaceAll("\"",""),new Date(),null);
+        JSONObject jsonObj = new JSONObject(specIds);
+        for(String str:jsonObj.keySet()){
+            if (!jsonObj.isNull(str)){
+                count += goodsSkuService.insertGoodsSkuSpecValue(sku_id,jsonObj.get(str).toString(),new Date(),null);
             }
         }
 
-        if (count == 1) {
+        if (count >= 2) {
             res.setItem(count);
-            res.setMsg("成功");
+            res.setMsg("进货成功");
             res.setSuccess(true);
         } else {
-            res.setMsg("失败");
+            res.setMsg("进货失败");
             res.setSuccess(false);
         }
 

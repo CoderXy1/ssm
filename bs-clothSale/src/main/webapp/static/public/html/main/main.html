@@ -107,30 +107,28 @@
         <div class="groDiv P_left">
             <div style="position: relative;overflow: hidden;">
                 <ul class="groUlOut" ng-if="tabsSign == 1">
-                    <li style="float: left;width: 224px;" ng-repeat="good in goods">
+                    <li style="float: left;width: 224px;" ng-repeat="spu in spuList">
                         <div class="x">精选服饰</div>
                         <a href="" class="pro">
-                            <img src="./image/top_2.jpg"/>
+                            <img ng-src="data:image/jpg;base64,{{spu.file_content}}" title="{{spu.goods_name}}"/>
                         </a>
                         <p class="box_glay">
                             <a href="" class="pro_text">
-                                <span>意大利TVS进口磐石锅具套组</span>
+                                <span>{{spu.goods_name}}</span>
                             </a>
                         </p>
                         <div class="now_price">
                             <div class="price">
-	    	    								<span class="bigfont">
-	    	    									<span class="f_14">￥</span><span>999.00</span>
-	    	    								</span>
-                                <span><del>￥2100.00</del></span>
-                                <div class="zk">4.8折</div>
+	    	    				<span class="bigfont">
+	    	    					<span class="f_14">￥</span><span>{{spu.low_price}}</span>
+	    	    				</span>
                             </div>
                         </div>
                     </li>
                 </ul>
 
                 <ul class="groUlOut" ng-if="tabsSign == 2">
-                    <li style="float: left;width: 224px;" ng-repeat="good in goods">
+                    <li style="float: left;width: 224px;" ng-repeat="spu in spuList">
                         <div class="s">限时抢购</div>
                         <a href="iemt.html" class="pro">
                             <img src="./image/top_1.jpg"/>

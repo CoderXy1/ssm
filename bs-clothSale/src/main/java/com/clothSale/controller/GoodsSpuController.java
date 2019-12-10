@@ -4,6 +4,7 @@ import com.clothSale.controller.jsonmodel.RequsetData;
 import com.clothSale.model.GoodsSpu;
 import com.clothSale.service.IGoodsSpecService;
 import com.clothSale.service.IGoodsSpuService;
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -53,7 +54,7 @@ public class GoodsSpuController {
     //有参数要加 @RequestParam("参数名")
     public RequsetData<Integer> insertGoodsSpu(@RequestParam("spu_id") String spu_id,@RequestParam("goods_name") String goods_name,
                                                                       @RequestParam("low_price") BigDecimal low_price,@RequestParam("spu_icon_id")String spu_icon_id,
-                                                                      @RequestParam("category_id") String category_id,@RequestParam("brand_id")String brand_id,@RequestParam("specIds")List<String> specIds,@RequestParam(required = false)int spu_order) {
+                                                                      @RequestParam("category_id") String category_id,@RequestParam("brand_id")String brand_id,@RequestParam("specIds")String specIds,@RequestParam(required = false)int spu_order) {
 
         RequsetData<Integer> res = new RequsetData<>();
 
@@ -69,15 +70,14 @@ public class GoodsSpuController {
 
         int count = goodsSpuService.insertSelective(goodsSpu);
 
-        for (String item : specIds){
-            String temp = item.replace("{","").replace("}","").split(":")[0];
-            String temp1 = item.replace("{","").replace("}","").split(":")[1];
-            if (Boolean.valueOf(temp1)){
-                goodsSpecService.insertGoodsSpecSpu(spu_id,temp.replaceAll("\"",""),new Date(),null);
+        JSONObject jsonObj = new JSONObject(specIds);
+        for(String str:jsonObj.keySet()){
+            if (!jsonObj.isNull(str)){
+                count += goodsSpecService.insertGoodsSpecSpu(spu_id,jsonObj.get(str).toString(),new Date(),null);
             }
         }
 
-        if (count == 1) {
+        if (count >= 2) {
             res.setItem(count);
             res.setMsg("成功");
             res.setSuccess(true);

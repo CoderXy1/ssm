@@ -3,15 +3,12 @@ angular.module("clothSalePublicApp")
 
         $scope.categoryFirstList = [];
         $scope.categoryList = [];
-        $scope.goods = [
-            1,2,3,4,5
-        ]
+        $scope.spuList = [];
         $scope.tabsSign = 1;
         $scope.selectFirstParams = {
             pageIndex : 0,
             pageSize : 12,
         }
-
         $scope.changeTabs = function (num){
             $scope.tabsSign = num;
         }
@@ -48,8 +45,26 @@ angular.module("clothSalePublicApp")
             });
         }
 
+        //查询spu
+        $scope.selectGoodsSpu = function () {
+            $http({
+                method: "POST",
+                url: '../../GoodsSpu/selectGoodsSpu',
+                params: {
+                    pageIndex: 0,
+                    pageSize: 5,
+                }
+            }).then(function successCallback(response) {
+                //请求成功
+                $scope.spuList = response.data.item;
+            }, function errorCallback(response) {
+                //请求失败
+            });
+        }
+
         $scope.loadData = function () {
             $scope.selectFirstCategory();
+            $scope.selectGoodsSpu();
         }
 
         $scope.loadData();
