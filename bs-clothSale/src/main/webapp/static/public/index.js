@@ -2,9 +2,18 @@
 angular.module("clothSalePublicApp", ['ui.router', 'oc.lazyLoad','ui.bootstrap','mgcrea.ngStrap'])
     .config(function ($stateProvider, $urlRouterProvider) {
 
-        $urlRouterProvider.otherwise("/main");
+        $urlRouterProvider.otherwise("/public/main");
 
-        $stateProvider.state('main', {
+        $stateProvider.state('public', {
+            url: '/public',
+            templateUrl: 'public.html',
+            controller: 'publicCtrl',
+            resolve: {
+                deps: ['$ocLazyLoad', function (e) {
+                    return e.load(['public.js']);
+                }]
+            }
+        }).state('public.main', {
             url: '/main',
             templateUrl: 'html/main/main.html',
             controller: 'mainCtrl',
@@ -13,7 +22,7 @@ angular.module("clothSalePublicApp", ['ui.router', 'oc.lazyLoad','ui.bootstrap',
                     return e.load(['html/main/main.js']);
                 }]
             }
-        }).state('test', {
+        }).state('public.test', {
             url: '/test',
             templateUrl: 'html/test/test.html',
             controller: 'testCtrl',

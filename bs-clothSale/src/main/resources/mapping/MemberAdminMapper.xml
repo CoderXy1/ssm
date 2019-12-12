@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.clothSale.mapper.MemberAdminMapper" >
+  <resultMap id="BaseResultMap" type="com.clothSale.model.MemberAdmin" >
+    <id column="admin_id" property="adminId" jdbcType="VARCHAR" />
+    <result column="admin_name" property="adminName" jdbcType="VARCHAR" />
+    <result column="admin_password" property="adminPassword" jdbcType="VARCHAR" />
+    <result column="login_times" property="loginTimes" jdbcType="INTEGER" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="admin_phone" property="adminPhone" jdbcType="VARCHAR" />
+    <result column="admin_icon_id" property="adminIconId" jdbcType="VARCHAR" />
+    <result column="login_datetime" property="loginDatetime" jdbcType="TIMESTAMP" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    admin_id, admin_name, admin_password,login_times, real_name, admin_phone, admin_icon_id, login_datetime,
+    gmt_create
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from member_admin
+    where admin_id = #{adminId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from member_admin
+    where admin_id = #{adminId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.clothSale.model.MemberAdmin" >
+    insert into member_admin (admin_id, admin_name, admin_password, login_times,
+      real_name, admin_phone, admin_icon_id,
+      login_datetime, gmt_create)
+    values (#{adminId,jdbcType=VARCHAR}, #{adminName,jdbcType=VARCHAR}, #{adminPassword,jdbcType=VARCHAR}, #{loginTimes,jdbcType=INTEGER}
+      #{realName,jdbcType=VARCHAR}, #{adminPhone,jdbcType=VARCHAR}, #{adminIconId,jdbcType=VARCHAR},
+      #{loginDatetime,jdbcType=TIMESTAMP}, #{gmtCreate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.clothSale.model.MemberAdmin" >
+    insert into member_admin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="adminId != null" >
+        admin_id,
+      </if>
+      <if test="adminName != null" >
+        admin_name,
+      </if>
+      <if test="adminPassword != null" >
+        admin_password,
+      </if>
+      <if test="loginTimes != null" >
+        login_times,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="adminPhone != null" >
+        admin_phone,
+      </if>
+      <if test="adminIconId != null" >
+        admin_icon_id,
+      </if>
+      <if test="loginDatetime != null" >
+        login_datetime,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="adminId != null" >
+        #{adminId,jdbcType=VARCHAR},
+      </if>
+      <if test="adminName != null" >
+        #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPassword != null" >
+        #{adminPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTimes != null" >
+        #{loginTimes,jdbcType=INTEGER},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPhone != null" >
+        #{adminPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="adminIconId != null" >
+        #{adminIconId,jdbcType=VARCHAR},
+      </if>
+      <if test="loginDatetime != null" >
+        #{loginDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.clothSale.model.MemberAdmin" >
+    update member_admin
+    <set >
+      <if test="adminName != null" >
+        admin_name = #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPassword != null" >
+        admin_password = #{adminPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTimes != null" >
+        login_times = login_times + 1,
+      </if>
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPhone != null" >
+        admin_phone = #{adminPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="adminIconId != null" >
+        admin_icon_id = #{adminIconId,jdbcType=VARCHAR},
+      </if>
+      <if test="loginDatetime != null" >
+        login_datetime = #{loginDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where admin_id = #{adminId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.clothSale.model.MemberAdmin" >
+    update member_admin
+    set admin_name = #{adminName,jdbcType=VARCHAR},
+      admin_password = #{adminPassword,jdbcType=VARCHAR},
+      login_times = #{loginTimes,jdbcType=INTEGER},
+      real_name = #{realName,jdbcType=VARCHAR},
+      admin_phone = #{adminPhone,jdbcType=VARCHAR},
+      admin_icon_id = #{adminIconId,jdbcType=VARCHAR},
+      login_datetime = #{loginDatetime,jdbcType=TIMESTAMP},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP}
+    where admin_id = #{adminId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectAdminByLogin" resultType="java.util.Map">
+    select *  from member_admin
+    where ( admin_name = #{admin_name} and admin_password = #{admin_password} )
+        or ( admin_phone = #{admin_name} and admin_password = #{admin_password} )
+  </select>
+
+</mapper>

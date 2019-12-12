@@ -64,8 +64,8 @@
                <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
         <!--</table>-->
 
-        <!--<table schema="test" tableName="tb_file"-->
-               <!--domainObjectName="UploadFile" enableCountByExample="false"-->
+        <!--<table schema="test" tableName="member_admin"-->
+               <!--domainObjectName="MemberAdmin" enableCountByExample="false"-->
                <!--enableUpdateByExample="false" enableDeleteByExample="false"-->
                <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
         <!--</table>-->

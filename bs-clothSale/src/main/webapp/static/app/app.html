@@ -1,61 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>服装销售后台管理系统</title>
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="../../images/favicon.ico"/>
-    <!-- Styles -->
-    <link href="assets/css/lib/calendar2/pignose.calendar.min.css" rel="stylesheet">
-    <link href="assets/css/lib/chartist/chartist.min.css" rel="stylesheet">
-    <link href="assets/css/lib/themify-icons.css" rel="stylesheet">
-    <link href="assets/css/lib/owl.carousel.min.css" rel="stylesheet"/>
-    <link href="assets/css/lib/owl.theme.default.min.css" rel="stylesheet"/>
-    <link href="assets/css/lib/weather-icons.css" rel="stylesheet"/>
-    <link href="assets/css/lib/menubar/sidebar.css" rel="stylesheet">
-    <link href="assets/css/lib/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/css/awesome-bootstrap-checkbox.min.css" rel="stylesheet">
-    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
-    <link href="assets/css/build.css" rel="stylesheet">
-    <link href="assets/css/lib/helper.css" rel="stylesheet">
-    <link href="assets/css/style.css" rel="stylesheet">
-    <link href="assets/css/style_own.css" rel="stylesheet">
-</head>
-
-<body ng-app="clothSaleApp" ng-controller="clothSaleCtrl">
+<link href="assets/css/lib/menubar/sidebar.css" rel="stylesheet">
+<script src="assets/js/lib/menubar/sidebar.js"></script>
+<script src="assets/js/lib/preloader/pace.min.js"></script>
 
 <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
     <div class="nano">
         <div class="nano-content">
             <ul>
-                <div class="logo"><a ui-sref="main" ng-click="changeActive(1)"><span>Cloth</span></a></div>
+                <div class="logo"><a ui-sref="app.main"><span>Cloth</span></a></div>
 
                 <li ui-sref-active="active">
-                    <a ui-sref="main"><i class="ti-calendar"></i>主页</a>
+                    <a ui-sref="app.main"><i class="ti-calendar"></i>主页</a>
                 </li>
 
                 <li class="label">商品管理</li>
 
                 <li ui-sref-active="active">
-                    <a ui-sref="goodsBrand"><i class="fa fa-trademark"></i>商品品牌</a>
+                    <a ui-sref="app.goodsBrand"><i class="fa fa-trademark"></i>商品品牌</a>
                 </li>
                 <li ui-sref-active="active">
-                    <a ui-sref="goodsCategory"><i class="fa fa-th-large"></i>商品分类</a>
+                    <a ui-sref="app.goodsCategory"><i class="fa fa-th-large"></i>商品分类</a>
                 </li>
                 <li ui-sref-active="active">
-                    <a ui-sref="goodsSpec"><i class="fa fa-sliders"></i>规格管理</a>
+                    <a ui-sref="app.goodsSpec"><i class="fa fa-sliders"></i>规格管理</a>
                 </li>
                 <li><a class="sidebar-sub-toggle"><i class="fa fa-gift"></i>商品<span
                         class="sidebar-collapse-icon ti-angle-down"></span></a>
                     <ul>
                         <li ui-sref-active="active">
-                            <a ui-sref="goodsSpu"><i class="fa fa-gift"></i>商品一览</a>
+                            <a ui-sref="app.goodsSpu"><i class="fa fa-gift"></i>商品一览</a>
                         </li>
                         <li ui-sref-active="active">
-                            <a ui-sref="goodsSkuAdd"><i class="fa fa-cart-plus"></i>进货</a>
+                            <a ui-sref="app.goodsSkuAdd"><i class="fa fa-cart-plus"></i>进货</a>
                         </li>
                     </ul>
                 </li>
@@ -263,7 +238,7 @@
                     </div>
                     <div class="dropdown dib">
                         <div class="header-icon" data-toggle="dropdown">
-                                <span class="user-avatar">John
+                                <span class="user-avatar">{{admin_info.real_name}}
                                     <i class="ti-angle-down f-s-10"></i>
                                 </span>
                             <div class="drop-down dropdown-profile dropdown-menu dropdown-menu-right">
@@ -279,30 +254,16 @@
                                                 <span>Profile</span>
                                             </a>
                                         </li>
-
-                                        <li>
-                                            <a href="#">
-                                                <i class="ti-email"></i>
-                                                <span>Inbox</span>
-                                            </a>
-                                        </li>
                                         <li>
                                             <a href="#">
                                                 <i class="ti-settings"></i>
                                                 <span>Setting</span>
                                             </a>
                                         </li>
-
-                                        <li>
-                                            <a href="#">
-                                                <i class="ti-lock"></i>
-                                                <span>Lock Screen</span>
-                                            </a>
-                                        </li>
                                         <li>
                                             <a href="#">
                                                 <i class="ti-power-off"></i>
-                                                <span>退出</span>
+                                                <span ng-click="quitLogin()">退出</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -318,39 +279,3 @@
 
 
 <div class="content-wrap" ui-view></div>
-
-<!-- jquery vendor -->
-<script src="assets/js/lib/jquery.min.js"></script>
-<script src="assets/js/lib/jquery.nanoscroller.min.js"></script>
-<!-- nano scroller -->
-<script src="assets/js/lib/menubar/sidebar.js"></script>
-<script src="assets/js/lib/preloader/pace.min.js"></script>
-<!-- sidebar -->
-
-<!-- angular -->
-<script src="../../js/angular/angular.min.js"></script>
-<script src="../../js/angular/angular-ui-router.min.js"></script>
-<script src="../../js/angular/ocLazyLoad.min.js"></script>
-<script src="../../js/angular/angular-strap.js"></script>
-<script src="../../js/angular/angular-strap.tpl.js"></script>
-<script src="app.js"></script>
-
-<!-- bootstrap -->
-<script src="assets/js/lib/bootstrap.min.js"></script>
-<script src="assets/js/scripts.js"></script>
-<script src="assets/js/lib/ui-bootstrap-tpls.js"></script>
-
-
-<script src="assets/js/lib/calendar-2/moment.latest.min.js"></script>
-<script src="assets/js/lib/calendar-2/pignose.calendar.min.js"></script>
-<script src="assets/js/lib/calendar-2/pignose.init.js"></script>
-
-<script src="assets/js/lib/circle-progress/circle-progress.min.js"></script>
-<script src="assets/js/lib/circle-progress/circle-progress-init.js"></script>
-<script src="assets/js/lib/sparklinechart/jquery.sparkline.min.js"></script>
-<script src="assets/js/lib/sparklinechart/sparkline.init.js"></script>
-<script src="assets/js/lib/owl-carousel/owl.carousel.min.js"></script>
-<script src="assets/js/lib/owl-carousel/owl.carousel-init.js"></script>
-</body>
-
-</html>
