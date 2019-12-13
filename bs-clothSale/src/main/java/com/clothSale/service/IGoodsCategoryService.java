@@ -26,4 +26,6 @@ public interface IGoodsCategoryService {
     List<HashMap<String,Object>> selectGoodsCategory(int pageIndex, int pageSize, String categoryName,String category_first_id);
 
     List<HashMap<String,Object>> selectGoodsCategoryFirst(int pageIndex, int pageSize, String categoryFirstName);
+
+    List<HashMap<String,Object>> selectCategorySpuTotal();
 }

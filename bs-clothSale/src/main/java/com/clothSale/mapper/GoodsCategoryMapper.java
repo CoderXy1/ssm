@@ -28,4 +28,6 @@ public interface GoodsCategoryMapper {
     List<HashMap<String,Object>> selectGoodsCategory(@Param("pageIndex") int pageIndex, @Param("pageSize") int pageSize, @Param("categoryName") String categoryName,@Param("category_first_id")String category_first_id);
 
     List<HashMap<String,Object>> selectGoodsCategoryFirst(@Param("pageIndex")int pageIndex,@Param("pageSize") int pageSize,@Param("categoryFirstName") String categoryFirstName);
+
+    List<HashMap<String,Object>> selectCategorySpuTotal();
 }

@@ -66,4 +66,9 @@ public class GoodsCategoryServiceImpl implements IGoodsCategoryService {
     public int insertCategoryConnect(String category_first_id, String category_id, Date gmt_create, Date gmt_update) {
         return goodsCategoryMapper.insertCategoryConnect(category_first_id, category_id, gmt_create, gmt_update);
     }
+
+    @Override
+    public List<HashMap<String, Object>> selectCategorySpuTotal() {
+        return goodsCategoryMapper.selectCategorySpuTotal();
+    }
 }

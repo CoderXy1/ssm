@@ -2,7 +2,7 @@
 angular.module("clothSaleApp", ['ui.router', 'oc.lazyLoad', 'ui.bootstrap', 'mgcrea.ngStrap'])
     .config(function ($stateProvider, $urlRouterProvider) {
 
-        $urlRouterProvider.otherwise("/login");
+        $urlRouterProvider.otherwise("/app/main");
 
         $stateProvider.state('login', {
             url: '/login',
@@ -92,6 +92,15 @@ angular.module("clothSaleApp", ['ui.router', 'oc.lazyLoad', 'ui.bootstrap', 'mgc
             resolve: {
                 deps: ['$ocLazyLoad', function (e) {
                     return e.load(['goods/spu/skuAdd.js']);
+                }]
+            }
+        }).state('app.memberAdmin', {
+            url: '/memberAdmin',
+            templateUrl: 'member/admin/admin.html',
+            controller: 'memberAdminCtrl',
+            resolve: {
+                deps: ['$ocLazyLoad', function (e) {
+                    return e.load(['member/admin/admin.js']);
                 }]
             }
         });

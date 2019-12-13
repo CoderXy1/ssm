@@ -137,4 +137,18 @@
       #{gmt_create,jdbcType=TIMESTAMP}, #{gmt_update,jdbcType=TIMESTAMP})
   </insert>
 
+    <select id="selectCategorySpuTotal" resultType="java.util.Map">
+        select * from ( SELECT cf.category_first_name as name,count(*) as y  FROM goods_spu spu
+          inner join goods_category_connect cc on spu.category_id = cc.category_id
+          inner join goods_category_first cf on cf.category_first_id = cc.category_first_id
+          GROUP BY cf.category_first_id ORDER BY y desc LIMIT 0,5 )
+		  as t1
+		UNION
+		SELECT '其他' as name,sum(y) as y from(select cf.category_first_name as name,count(*) as y from goods_spu spu
+          inner join goods_category_connect cc on spu.category_id = cc.category_id
+          inner join goods_category_first cf on cf.category_first_id = cc.category_first_id
+          GROUP BY cf.category_first_id ORDER BY y desc LIMIT 5,1000 )
+          as t2
+    </select>
+
 </mapper>

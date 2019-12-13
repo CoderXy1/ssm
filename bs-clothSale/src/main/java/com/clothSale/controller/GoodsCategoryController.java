@@ -27,7 +27,7 @@ public class GoodsCategoryController {
         RequsetData<List<HashMap<String,Object>>> res = new RequsetData<>();
 
         List<HashMap<String,Object>> list = goodsCategoryService.selectGoodsCategory(pageIndex, pageSize, categoryName,category_first_id);
-        if (list != null){
+        if (!list.isEmpty()){
             res.setItem(list);
             res.setMsg("成功");
             res.setSuccess(true);
@@ -46,7 +46,7 @@ public class GoodsCategoryController {
         RequsetData<List<HashMap<String,Object>>> res = new RequsetData<>();
 
         List<HashMap<String,Object>> list = goodsCategoryService.selectGoodsCategoryFirst(pageIndex, pageSize, categoryFirstName);
-        if (list != null){
+        if (!list.isEmpty()){
             res.setItem(list);
             res.setMsg("成功");
             res.setSuccess(true);
@@ -125,6 +125,26 @@ public class GoodsCategoryController {
             res.setSuccess(true);
         }else {
             res.setMsg("删除失败");
+            res.setSuccess(false);
+        }
+
+        return res;
+    }
+
+    @RequestMapping("/selectCategorySpuTotal")
+    @ResponseBody
+    public RequsetData<List<HashMap<String,Object>>> selectCategorySpuTotal(){
+
+        RequsetData<List<HashMap<String,Object>>> res = new RequsetData<>();
+
+        List<HashMap<String,Object>> list = goodsCategoryService.selectCategorySpuTotal();
+
+        if (!list.isEmpty()){
+            res.setItem(list);
+            res.setMsg("成功");
+            res.setSuccess(true);
+        }else {
+            res.setMsg("失败");
             res.setSuccess(false);
         }
 

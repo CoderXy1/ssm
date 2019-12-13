@@ -14,10 +14,10 @@ angular.module("clothSaleApp")
             category_id : '',
         }
 
-        //删除商品
+        //删除服饰
         $scope.deleteSpu = function (spu_id){
 
-            if (confirm("将会删除该商品下的所有库存,确定删除")){
+            if (confirm("将会删除该服饰下的所有库存,确定删除")){
                 $http({
                     method: "POST",
                     url: '../../GoodsSpu/deleteGoodsSpu',

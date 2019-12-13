@@ -25,7 +25,7 @@ public class MemberAdminController {
 
     @RequestMapping("/selectAdminByLogin")
     @ResponseBody
-    public RequsetData<List<HashMap<String,Object>>> selectAdminByLogin(String admin_name,String admin_password) {
+    public RequsetData<List<HashMap<String,Object>>> selectAdminByLogin(@RequestParam("admin_name") String admin_name,@RequestParam("admin_password")String admin_password) {
         RequsetData<List<HashMap<String, Object>>> res = new RequsetData<>();
 
         List<HashMap<String,Object>> list = memberAdminService.selectAdminByLogin(admin_name,DigestUtils.md5DigestAsHex(admin_password.getBytes()).toUpperCase());
@@ -41,6 +41,52 @@ public class MemberAdminController {
             res.setSuccess(true);
         } else {
             res.setMsg("登陆失败，账号或密码错误");
+            res.setSuccess(false);
+        }
+        return res;
+    }
+
+    @RequestMapping("/insertMemberAdmin")
+    @ResponseBody
+    public RequsetData<Integer> insertMemberAdmin(@RequestParam("admin_id") String admin_id,@RequestParam("admin_name") String admin_name,@RequestParam("real_name") String real_name,
+                                                  @RequestParam("admin_password")String admin_password,@RequestParam("admin_phone") String admin_phone,@RequestParam("admin_icon_id") String admin_icon_id) {
+        RequsetData<Integer> res = new RequsetData<>();
+
+        MemberAdmin memberAdmin = new MemberAdmin();
+        memberAdmin.setAdminId(admin_id);
+        memberAdmin.setAdminName(admin_name);
+        memberAdmin.setAdminPassword(admin_password);
+        memberAdmin.setRealName(real_name);
+        memberAdmin.setAdminPhone(admin_phone);
+        memberAdmin.setAdminIconId(admin_icon_id);
+        memberAdmin.setGmtCreate(new Date());
+        memberAdmin.setLoginTimes(0);
+        int count =  memberAdminService.insertSelective(memberAdmin);
+        if (count == 1) {
+            res.setItem(count);
+            res.setMsg("添加成功");
+            res.setSuccess(true);
+        } else {
+            res.setMsg("添加失败");
+            res.setSuccess(false);
+        }
+        return res;
+    }
+
+    @RequestMapping("/updateMemberAdmin")
+    @ResponseBody
+    public RequsetData<Integer> updateMemberAdmin(@RequestParam("admin_id") String admin_id,@RequestParam("admin_password")String admin_password) {
+        RequsetData<Integer> res = new RequsetData<>();
+
+        MemberAdmin memberAdmin = new MemberAdmin();
+        memberAdmin.setAdminPassword(admin_password);
+        int count =  memberAdminService.updateByPrimaryKeySelective(memberAdmin);
+        if (count == 1) {
+            res.setItem(count);
+            res.setMsg("修改成功");
+            res.setSuccess(true);
+        } else {
+            res.setMsg("修改失败");
             res.setSuccess(false);
         }
         return res;

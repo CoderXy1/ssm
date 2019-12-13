@@ -3604,13 +3604,13 @@ tbody tr td:last-child {
   height: 265px;
 }
 .ct-pie-chart {
-  height: 328px;
+  height: 360px;
 }
 .ct-svg-chart {
   height: 270px;
 }
 .ct-bar-chart {
-  height: 250px;
+  height: 360px;
 }
 .ct-label {
   color: rgba(0, 0, 0, 0.8);
@@ -3626,13 +3626,13 @@ tbody tr td:last-child {
 .ct-series-a .ct-line,
 .ct-series-a .ct-point,
 .ct-series-a .ct-slice-donut {
-  stroke: #28A745;
+  stroke: #007BFF;
 }
 .ct-series-b .ct-bar,
 .ct-series-b .ct-line,
 .ct-series-b .ct-point,
 .ct-series-b .ct-slice-donut {
-  stroke: #007BFF;
+  stroke: #28A745;
 }
 .ct-series-c .ct-bar,
 .ct-series-c .ct-line,

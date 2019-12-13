@@ -5,8 +5,8 @@
                 <h4><i class="fa fa-cart-plus color-info"></i> 进货</h4>
             </div>
             <ul class="nav nav-tabs">
-                <li ng-class="{'active': addSkuType == 1}"><a href="" ng-click="addSkuType = 1">已有商品</a></li>
-                <li ng-class="{'active': addSkuType == 2}"><a href="" ng-click="addSkuType = 2 ; addSpuStep = 1">新进商品</a></li>
+                <li ng-class="{'active': addSkuType == 1}"><a href="" ng-click="addSkuType = 1">已有服饰</a></li>
+                <li ng-class="{'active': addSkuType == 2}"><a href="" ng-click="addSkuType = 2 ; addSpuStep = 1">新进服饰</a></li>
             </ul>
             <div class="card-body" ng-if="addSkuType==1">
                 <form name="editForm" role="form" id="editForm" autocomplete="off" ng-submit="updateSku()">
@@ -34,7 +34,7 @@
                             <tr>
                                 <th>选取</th>
                                 <th>序号</th>
-                                <th>商品名</th>
+                                <th>服饰名</th>
                                 <th>最低价格</th>
                                 <th>所属品牌</th>
                                 <th>所属类别</th>
@@ -139,12 +139,12 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-md-6">
-                            <label for="goods_name" class="col-form-label">商品名:&nbsp;</label>
-                            <input id="goods_name" type="text" class="form-control" placeholder="商品名"
+                            <label for="goods_name" class="col-form-label">服饰名:&nbsp;</label>
+                            <input id="goods_name" type="text" class="form-control" placeholder="服饰名"
                                    ng-model="form2Params.goods_name" ng-required="true">
                         </div>
                         <div class="col-md-6">
-                            <label for="goods_icon" class="col-form-label">商品图片:&nbsp;</label>
+                            <label for="goods_icon" class="col-form-label">服饰图片:&nbsp;</label>
                             <input id="goods_icon" type="file" class="form-control" ng-model="form2Params.category_id"
                                    ng-required="true">
                         </div>

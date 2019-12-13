@@ -89,7 +89,7 @@ angular.module("clothSaleApp")
         //删除分类
         $scope.deleteCategory = function (category_id){
 
-            if (confirm("将会同时删除该分类下所有商品，确定删除")){
+            if (confirm("将会同时删除该分类下所有服饰，确定删除")){
                 $http({
                     method: "POST",
                     url: '../../GoodsCategory/deleteGoodsCategory',

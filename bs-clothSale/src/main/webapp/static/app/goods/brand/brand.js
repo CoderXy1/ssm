@@ -38,7 +38,7 @@ angular.module("clothSaleApp")
         //删除品牌
         $scope.deleteBrand = function (brand_id,file_id){
 
-            if (confirm("将会同时删除该品牌下所有商品，确定删除")){
+            if (confirm("将会同时删除该品牌下所有服饰，确定删除")){
                 $http({
                     method: "POST",
                     url: '../../GoodsBrand/deleteGoodsBrand',
