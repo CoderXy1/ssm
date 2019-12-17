@@ -1,5 +1,8 @@
 angular.module("clothSaleApp")
     .controller("mainCtrl", function ($scope, $rootScope, $state,$http) {
+
+        $scope.spuTotalNum = 0; //商品种类
+
         //统计图
         $scope.makeBarChart = function () {
             Highcharts.chart('chart-bar',{
@@ -97,7 +100,22 @@ angular.module("clothSaleApp")
             });
         }
 
+        $scope.selectSpuTotalNum = function (){
+            $http({
+                method: "POST",
+                url: '../../GoodsSpu/selectGoodsSpuNum',
+                params: {}
+            }).then(function successCallback(response) {
+                //请求成功
+                $scope.spuTotalNum = response.data.extdata.total;
+            }, function errorCallback(response) {
+                //请求失败
+                $scope.showAlert('警告:',response.data.msg,'danger');
+            });
+        }
+
         $scope.loadData = function () {
+            $scope.selectSpuTotalNum();
             $scope.selectCategorySpuTotal();
             $scope.makeBarChart();
         }

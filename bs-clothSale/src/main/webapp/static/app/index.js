@@ -103,13 +103,22 @@ angular.module("clothSaleApp", ['ui.router', 'oc.lazyLoad', 'ui.bootstrap', 'mgc
                     return e.load(['member/admin/admin.js']);
                 }]
             }
+        }).state('app.memberUser', {
+            url: '/memberUser',
+            templateUrl: 'member/user/user.html',
+            controller: 'memberUserCtrl',
+            resolve: {
+                deps: ['$ocLazyLoad', function (e) {
+                    return e.load(['member/user/user.js']);
+                }]
+            }
         });
     })
     .run(['$rootScope','$state',function($rootScope,$state) {
         /* 监听路由的状态变化*/
         $rootScope.$on('$stateChangeSuccess', function (event,toState) {
             //是否未登录
-            if(!(sessionStorage.getItem("token"))) {
+            if(!(sessionStorage.getItem("token_admin"))) {
                 $state.go('login');
             }
         });

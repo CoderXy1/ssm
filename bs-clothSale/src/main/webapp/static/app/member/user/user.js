@@ -1,37 +1,37 @@
 angular.module("clothSaleApp")
-    .controller("memberAdminCtrl", function ($scope, $rootScope,$state,$http) {
+    .controller("memberUserCtrl", function ($scope, $rootScope,$state,$http) {
 
-        $scope.memberAdminList = [];
+        $scope.memberUserList = [];
         $scope.selectParams = {
             pageIndex : 0,
             pageSize : 10,
             pageNum : 1,
             totalNum : 0,
-            admin_name : '',
+            user_name : '',
         }
 
-        $scope.selectAllAdmin = function (){
+        $scope.selectAllUser = function (){
             $http({
                 method: "POST",
-                url: '../../memberAdmin/selectAllAdmin',
+                url: '../../memberUserinfo/selectAllUserinfo',
                 params : $scope.selectParams
             }).then(function successCallback(response) {
                 //请求成功
-                $scope.memberAdminList = response.data.item;
+                $scope.memberUserList = response.data.item;
                 $scope.selectParams.totalNum = response.data.extdata.total;
             }, function errorCallback(response) {
                 //请求失败
             });
         }
 
-        $scope.searchAdmin = function (){
+        $scope.searchUser = function (){
             $scope.selectParams.pageIndex = 0;
-            $scope.selectAllAdmin();
+            $scope.selectAllUser();
         }
 
         $scope.loadData = function () {
             $scope.selectParams.pageIndex = ($scope.selectParams.pageNum - 1) * $scope.selectParams.pageSize;
-            $scope.selectAllAdmin();
+            $scope.selectAllUser();
         }
 
         $scope.loadData();

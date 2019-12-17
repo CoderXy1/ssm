@@ -39,10 +39,7 @@
                         class="sidebar-collapse-icon ti-angle-down"></span></a>
                     <ul>
                         <li ui-sref-active="active">
-                            <a ><i class="fa fa-user-o"></i>用户一览</a>
-                        </li>
-                        <li ui-sref-active="active">
-                            <a ><i class="fa fa-cart-plus"></i>进货</a>
+                            <a ui-sref="app.memberUser"><i class="fa fa-user-o"></i>用户一览</a>
                         </li>
                     </ul>
                 </li>
@@ -52,9 +49,6 @@
                         <li ui-sref-active="active">
                             <a ui-sref="app.memberAdmin"><i class="ti-user"></i>管理员一览</a>
                         </li>
-                        <li ui-sref-active="active">
-                            <a ><i class="fa fa-cart-plus"></i>进货</a>
-                        </li>
                     </ul>
                 </li>
 
@@ -62,17 +56,21 @@
                 <li><a class="sidebar-sub-toggle"><i class="ti-layout"></i> UI Elements <span
                         class="sidebar-collapse-icon ti-angle-down"></span></a>
                     <ul>
-                        <li ng-class="{'active': info.currentPage == 10}" ng-click="changeActive(10)"><a >Typography</a></li>
-                        <li ng-class="{'active': info.currentPage == 11}" ng-click="changeActive(11)"><a >Alerts</a></li>
-                        <li ng-class="{'active': info.currentPage == 12}" ng-click="changeActive(12)"><a >Button</a></li>
-                        <li ng-class="{'active': info.currentPage == 13}" ng-click="changeActive(13)"><a >Dropdown</a></li>
+                        <li ng-class="{'active': info.currentPage == 10}" ng-click="changeActive(10)"><a>Typography</a>
+                        </li>
+                        <li ng-class="{'active': info.currentPage == 11}" ng-click="changeActive(11)"><a>Alerts</a></li>
+                        <li ng-class="{'active': info.currentPage == 12}" ng-click="changeActive(12)"><a>Button</a></li>
+                        <li ng-class="{'active': info.currentPage == 13}" ng-click="changeActive(13)"><a>Dropdown</a>
+                        </li>
                     </ul>
                 </li>
                 <li><a class="sidebar-sub-toggle"><i class="ti-panel"></i> Components <span
                         class="sidebar-collapse-icon ti-angle-down"></span></a>
                     <ul>
-                        <li ng-class="{'active': info.currentPage == 14}" ng-click="changeActive(14)"><a >Calendar</a></li>
-                        <li ng-class="{'active': info.currentPage == 15}" ng-click="changeActive(15)"><a >Carousel</a></li>
+                        <li ng-class="{'active': info.currentPage == 14}" ng-click="changeActive(14)"><a>Calendar</a>
+                        </li>
+                        <li ng-class="{'active': info.currentPage == 15}" ng-click="changeActive(15)"><a>Carousel</a>
+                        </li>
                     </ul>
                 </li>
 
@@ -94,7 +92,8 @@
                 </div>
 
                 <div class="float-left">
-                    <p style="font-weight: bold;font-size: 20px;margin-top: 8px;margin-left: 100px;color: white">服装销售后台管理系统</p>
+                    <p style="font-weight: bold;font-size: 20px;margin-top: 8px;margin-left: 100px;color: white">
+                        服装销售后台管理系统</p>
                 </div>
 
                 <div class="float-right">
@@ -110,7 +109,7 @@
                                         <li>
                                             <a href="#">
                                                 <!--<img class="pull-left m-r-10 avatar-img"-->
-                                                     <!--src="assets/images/avatar/3.jpg" alt=""/>-->
+                                                <!--src="assets/images/avatar/3.jpg" alt=""/>-->
                                                 <div class="notification-content">
                                                     <small class="notification-timestamp pull-right">02:34 PM</small>
                                                     <div class="notification-heading">Mr. John</div>
@@ -121,7 +120,7 @@
                                         <li>
                                             <a href="#">
                                                 <!--<img class="pull-left m-r-10 avatar-img"-->
-                                                     <!--src="assets/images/avatar/3.jpg" alt=""/>-->
+                                                <!--src="assets/images/avatar/3.jpg" alt=""/>-->
                                                 <div class="notification-content">
                                                     <small class="notification-timestamp pull-right">02:34 PM</small>
                                                     <div class="notification-heading">Mariam</div>
@@ -132,7 +131,7 @@
                                         <li>
                                             <a href="#">
                                                 <!--<img class="pull-left m-r-10 avatar-img"-->
-                                                     <!--src="assets/images/avatar/3.jpg" alt=""/>-->
+                                                <!--src="assets/images/avatar/3.jpg" alt=""/>-->
                                                 <div class="notification-content">
                                                     <small class="notification-timestamp pull-right">02:34 PM</small>
                                                     <div class="notification-heading">Tasnim</div>
@@ -145,7 +144,7 @@
                                         <li>
                                             <a href="#">
                                                 <!--<img class="pull-left m-r-10 avatar-img"-->
-                                                     <!--src="assets/images/avatar/3.jpg" alt=""/>-->
+                                                <!--src="assets/images/avatar/3.jpg" alt=""/>-->
                                                 <div class="notification-content">
                                                     <small class="notification-timestamp pull-right">02:34 PM</small>
                                                     <div class="notification-heading">Mr. John</div>
@@ -178,7 +177,7 @@
                                         <li class="notification-unread">
                                             <a href="#">
                                                 <!--<img class="pull-left m-r-10 avatar-img"-->
-                                                     <!--src="assets/images/avatar/1.jpg" alt=""/>-->
+                                                <!--src="assets/images/avatar/1.jpg" alt=""/>-->
                                                 <div class="notification-content">
                                                     <small class="notification-timestamp pull-right">02:34 PM</small>
                                                     <div class="notification-heading">Michael Qin</div>
@@ -191,7 +190,7 @@
                                         <li class="notification-unread">
                                             <a href="#">
                                                 <!--<img class="pull-left m-r-10 avatar-img"-->
-                                                     <!--src="assets/images/avatar/2.jpg" alt=""/>-->
+                                                <!--src="assets/images/avatar/2.jpg" alt=""/>-->
                                                 <div class="notification-content">
                                                     <small class="notification-timestamp pull-right">02:34 PM</small>
                                                     <div class="notification-heading">Mr. John</div>
@@ -204,7 +203,7 @@
                                         <li>
                                             <a href="#">
                                                 <!--<img class="pull-left m-r-10 avatar-img"-->
-                                                     <!--src="assets/images/avatar/3.jpg" alt=""/>-->
+                                                <!--src="assets/images/avatar/3.jpg" alt=""/>-->
                                                 <div class="notification-content">
                                                     <small class="notification-timestamp pull-right">02:34 PM</small>
                                                     <div class="notification-heading">Michael Qin</div>
@@ -217,7 +216,7 @@
                                         <li>
                                             <a href="#">
                                                 <!--<img class="pull-left m-r-10 avatar-img"-->
-                                                     <!--src="assets/images/avatar/2.jpg" alt=""/>-->
+                                                <!--src="assets/images/avatar/2.jpg" alt=""/>-->
                                                 <div class="notification-content">
                                                     <small class="notification-timestamp pull-right">02:34 PM</small>
                                                     <div class="notification-heading">Mr. John</div>
@@ -237,13 +236,15 @@
                     </div>
                     <div class="dropdown dib">
                         <div class="header-icon" data-toggle="dropdown">
-                                <span class="user-avatar">{{admin_info.real_name}}
+                            <img class="rounded-circle" ng-src="data:image/jpg;base64,{{admin_info.file_content}}"
+                                 style="height: 40px;width: 40px">
+                            <span class="user-avatar" style="margin-left: 10px">{{admin_info.real_name}}
                                     <i class="ti-angle-down f-s-10"></i>
                                 </span>
                             <div class="drop-down dropdown-profile dropdown-menu dropdown-menu-right">
                                 <div class="dropdown-content-heading">
                                     <span class="text-left">登录时间</span>
-                                    <p class="trial-day">{{admin_info.login_datetime | date : 'yyyy-MM-dd HH:mm:ss'}}</p>
+                                    <p class="trial-day">{{admin_info.login_datetime|date:'yyyy-MM-dd HH:mm:ss'}}</p>
                                 </div>
                                 <div class="dropdown-content-body">
                                     <ul>

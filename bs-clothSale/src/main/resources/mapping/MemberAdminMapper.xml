@@ -139,9 +139,29 @@
   </update>
 
   <select id="selectAdminByLogin" resultType="java.util.Map">
-    select *  from member_admin
-    where ( admin_name = #{admin_name} and admin_password = #{admin_password} )
-        or ( admin_phone = #{admin_name} and admin_password = #{admin_password} )
+    select a.*,f.file_name,f.file_content from member_admin a
+    left join tb_file f on f.file_id = a.admin_icon_id
+    where ( a.admin_name = #{admin_name} and a.admin_password = #{admin_password} )
+        or ( a.admin_phone = #{admin_name} and a.admin_password = #{admin_password} )
+  </select>
+
+  <select id="selectAllAdmin" resultType="java.util.Map">
+    select a.*,f.file_name,f.file_content from member_admin a
+    left join tb_file f on f.file_id = a.admin_icon_id
+    where 1 = 1
+    <if test="admin_name != null and admin_name != ''">
+      and a.admin_name like concat('%',#{admin_name},'%')
+    </if>
+    order by a.gmt_create desc limit #{pageIndex},#{pageSize}
+  </select>
+
+  <select id="selectAllAdminNum" resultType="java.util.Map">
+    select count(*) as total from member_admin
+    where 1 = 1
+    <if test="admin_name != null and admin_name != ''">
+      and admin_name like concat('%',#{admin_name},'%')
+    </if>
+    order by gmt_create desc
   </select>
 
 </mapper>

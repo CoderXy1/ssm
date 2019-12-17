@@ -228,7 +228,7 @@ body{
 	padding: 12px 0;
 }
 .ur_right{
-	width: 860px;
+	width: 1000px;
 	margin-left: 20px;
 	float: left;
 }
@@ -266,6 +266,18 @@ body{
     display: block;
     padding-left: 30px;
 }
+
+.slide_list .active a{
+    background-color: #fff;
+    width: 108px;
+    box-shadow: 0 1px 2px #e9e9e9;
+    position: absolute;
+    top: 0;
+    left: -1px;
+    z-index: 2;
+    color: #94193f;
+}
+
 .slide_list li a:hover, .slide_list .on a {
     background-color: #fff;
     width: 108px;

@@ -29,7 +29,7 @@ public class GoodsSpecController {
 
         List<HashMap<String, Object>> list = goodsSpecService.selectGoodsSpecAndValue(spu_id);
 
-        if (list != null) {
+        if (!list.isEmpty()) {
             res.setItem(list);
             res.setMsg("成功");
             res.setSuccess(true);
@@ -50,7 +50,7 @@ public class GoodsSpecController {
         List<HashMap<String, Object>> list = goodsSpecService.selectGoodsSpecValue(spec_id,spec_value,pageIndex,pageSize);
         HashMap<String,Object> map = goodsSpecService.selectGoodsSpecValueNum(spec_id,spec_value);
 
-        if (list != null) {
+        if (!list.isEmpty()) {
             res.setItem(list);
             res.setExtdata(map);
             res.setMsg("成功");
@@ -72,7 +72,7 @@ public class GoodsSpecController {
         List<HashMap<String, Object>> list = goodsSpecService.selectAllGoodsSpec(spec_name,category_id, pageIndex, pageSize);
         HashMap<String,Object> map = goodsSpecService.selectAllGoodsSpecNum(spec_name,category_id);
 
-        if (list != null) {
+        if (!list.isEmpty()) {
             res.setItem(list);
             res.setMsg("成功");
             res.setExtdata(map);

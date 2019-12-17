@@ -49,4 +49,14 @@ public class MemberAdminServiceImpl implements IMemberAdminService {
     public List<HashMap<String,Object>> selectAdminByLogin(String admin_name, String admin_password) {
         return memberAdminMapper.selectAdminByLogin(admin_name, admin_password);
     }
+
+    @Override
+    public List<HashMap<String, Object>> selectAllAdmin(int pageIndex, int pageSize, String admin_name) {
+        return memberAdminMapper.selectAllAdmin(pageIndex, pageSize, admin_name);
+    }
+
+    @Override
+    public HashMap<String, Object> selectAllAdminNum(String admin_name) {
+        return memberAdminMapper.selectAllAdminNum(admin_name);
+    }
 }

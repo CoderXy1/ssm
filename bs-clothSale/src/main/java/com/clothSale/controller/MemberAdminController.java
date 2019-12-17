@@ -34,7 +34,7 @@ public class MemberAdminController {
             MemberAdmin memberAdmin = new MemberAdmin();
             memberAdmin.setAdminId(list.get(0).get("admin_id").toString());
             memberAdmin.setLoginTimes(0); //修改登录次数 不为空自加1
-            memberAdmin.setLoginDatetime(new Date()); //修改登录次数
+            memberAdmin.setLoginDatetime(new Date()); //修改登录时间
             memberAdminService.updateByPrimaryKeySelective(memberAdmin);
             res.setItem(list);
             res.setMsg("登录成功");
@@ -44,6 +44,16 @@ public class MemberAdminController {
             res.setSuccess(false);
         }
         return res;
+    }
+
+    @RequestMapping("/selectAllAdmin")
+    @ResponseBody
+    public RequsetData<List<HashMap<String,Object>>> selectAllAdmin(@RequestParam("pageIndex")int pageIndex,@RequestParam("pageSize")int pageSize,@RequestParam(required = false) String admin_name) {
+
+        List<HashMap<String,Object>> list = memberAdminService.selectAllAdmin(pageIndex, pageSize, admin_name);
+        HashMap<String,Object> total = memberAdminService.selectAllAdminNum(admin_name);
+
+        return setRequsetData(list,"成功","失败",total);
     }
 
     @RequestMapping("/insertMemberAdmin")
@@ -79,6 +89,7 @@ public class MemberAdminController {
         RequsetData<Integer> res = new RequsetData<>();
 
         MemberAdmin memberAdmin = new MemberAdmin();
+        memberAdmin.setAdminId(admin_id);
         memberAdmin.setAdminPassword(admin_password);
         int count =  memberAdminService.updateByPrimaryKeySelective(memberAdmin);
         if (count == 1) {
@@ -92,11 +103,12 @@ public class MemberAdminController {
         return res;
     }
 
-    private RequsetData<List<HashMap<String, Object>>> setRequsetData(List<HashMap<String, Object>> list,String msgSuccess,String msgError) {
+    private RequsetData<List<HashMap<String, Object>>> setRequsetData(List<HashMap<String, Object>> list,String msgSuccess,String msgError,HashMap<String,Object> extdata) {
 
         RequsetData<List<HashMap<String, Object>>> res = new RequsetData<>();
         if (!list.isEmpty()) {
             res.setItem(list);
+            res.setExtdata(extdata);
             res.setMsg(msgSuccess);
             res.setSuccess(true);
         } else {

@@ -38,7 +38,7 @@
                                 <th>最低价格</th>
                                 <th>所属品牌</th>
                                 <th>所属类别</th>
-                                <th>添加时间</th>
+                                <th class="text-center">添加时间</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -50,7 +50,7 @@
                                 <td>￥{{spu.low_price}}</td>
                                 <td><span class="badge badge-warning">{{spu.brand_name}}</span></td>
                                 <td><span class="badge badge-primary">{{spu.category_name}}</span></td>
-                                <td>{{spu.gmt_create | date:'yyyy/MM/dd HH:mm:ss'}}</td>
+                                <td class="text-center">{{spu.gmt_create | date:'yyyy/MM/dd HH:mm:ss'}}</td>
                             </tr>
                             <tr ng-if="spuList.length<=0">
                                 <td colspan="15" style="text-align:center">暂无数据</td>

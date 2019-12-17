@@ -71,7 +71,7 @@ ul li{
 	width: 100%;
 	height: 380px;
 	overflow: hidden;
-	position: relative;
+	position: absolute;
 }
 .big_eye_pic{
 	height: 380px;
@@ -174,7 +174,6 @@ ul li{
 }
 /*tab切换结束*/
 .pro_con {
-    overflow: hidden;
     padding: 10px;
     position: relative;
     height: 330px;
@@ -233,8 +232,8 @@ ul li{
     overflow: hidden;
 }
 .box_glay {
-    height: 20px;
-    line-height: 20px;
+    height: 30px;
+    line-height: 30px;
     overflow: hidden;
     padding: 10px 5px 0 5px;
 }
@@ -244,6 +243,11 @@ ul li{
 .p_num {
     color: #dbdbdb;
     padding: 0 5px;
+}
+.overflow_name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .now_price {
     color: #434343;
@@ -529,7 +533,7 @@ ul li{
 .txt_f_sb {
     width: 805px;
     border: 1px solid #fff;
-    height: 19px;
+    height: 30px;
     padding: 5px 0 5px 5px;
     float: left;
     font-family: "宋体";

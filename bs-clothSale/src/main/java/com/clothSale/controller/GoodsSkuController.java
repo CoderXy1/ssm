@@ -122,7 +122,7 @@ public class GoodsSkuController {
     private RequsetData<List<HashMap<String, Object>>> setRequsetData(List<HashMap<String, Object>> list,String msg) {
 
         RequsetData<List<HashMap<String, Object>>> res = new RequsetData<>();
-        if (list != null) {
+        if (!list.isEmpty()) {
             res.setItem(list);
             res.setMsg(msg + "成功");
             res.setSuccess(true);

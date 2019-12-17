@@ -212,6 +212,39 @@ ul li{
     line-height: 25px;
 }
 
+/*输入框设置样式*/
+.mainindex .input_text {
+    float: left;
+    width: 80%;
+    height: 40px;
+    /*清除掉默认的padding*/
+    padding: 0px;
+    /*提示字首行缩进*/
+    text-indent: 10px;
+    /*去掉蓝色高亮框*/
+    outline: none;
+    border-radius: 3px;
+    border: 3px solid #94193f;
+}
+
+.mainindex .input_sub {
+    cursor: pointer;
+    background-color: #94193f;
+    border: medium none;
+    color: #fff;
+    float: left;
+    height: 40px;
+    width: 20%;
+    font-size: 16px;
+    line-height: 33px;
+}
+
+/*.mainindex .input_text:focus {*/
+    /*outline: none;*/
+    /*background: #f0ecec;*/
+    /*box-shadow: 0 0 5px #94193f;*/
+/*}*/
+
 .text_search{
 	border: none;
 	float: left;
@@ -222,6 +255,7 @@ ul li{
     outline: none;
 	text-indent: 1em;
 }
+
 .btn_search{
 	cursor: pointer;
     background-color: #94193f;
@@ -347,29 +381,29 @@ ul li{
 .full_nav ul li{
 	list-style: none;
 }
-.nav {
+.nav_head {
     height: 39px;
     float: left;
 }
-.nav li a{
+.nav_head li a{
 	color: #303030;
 	font-weight: 700;
 	font-family: "微软雅黑";
 }
-.nav .li_all_type {
+.nav_head .li_all_type {
     width: 215px;
     padding: 0;
     text-align: center;
     background-color: #B1191A;
 }
-.nav .li_all_type a{
+.nav_head .li_all_type a{
     color: #fff;
     font-size: 16px;
     float: left;
     padding-left: 55px;
     letter-spacing: 2px;
 }
-.nav li .b_down {
+.nav_head li .b_down {
     background: url(./../image/icon_list.png) no-repeat -36px -128px;
     height: 8px;
     width: 16px;
@@ -377,7 +411,7 @@ ul li{
     right: 16px;
     top: 19px;
 }
-.nav li {
+.nav_head li {
     float: left;
     padding: 0 30px;
     position: relative;
@@ -385,7 +419,7 @@ ul li{
     line-height: 39px;
     z-index: 5;
 }
-.nav .home {
+.nav_head .home {
     padding: 0 30px 0 60px;
 }
 /**

@@ -3,21 +3,27 @@
     <div class="header_top">
         <div class="w1200">
             <div class="h_t_l">
-                <div class="login_l">
+                <div class="login_l" ng-if="!isLogin">
                     <span>欢迎来到服装销售!</span>
-                    <a class="a_login" href="register.html">[登录]</a>
+                    <a class="a_login" ui-sref="public.login({url:'public.main'})">[登录]</a>
                     <span class="line"></span>
-                    <a class="" href="login.html">[注册]</a>
+                    <a ui-sref="public.test">[注册]</a>
+                </div>
+                <div class="login_l" ng-if="isLogin">
+                    <span>欢迎来到服装销售!</span>
+                    <a class="a_login" ui-sref="public.user.orderInfo">[{{user_info.user_name}}]</a>
+                    <span class="line"></span>
+                    <a href="javascript:void(0)" ng-click="quitLogin()">[退出登录]</a>
                 </div>
             </div>
             <div class="h_t_r">
                 <ul>
                     <li>
-                        <a href="">订单查询</a>
+                        <a ui-sref="public.user.orderInfo">订单查询</a>
                         <span class="line"></span>
                     </li>
                     <li>
-                        <a href=""><i class="fa fa-cart-plus"></i>&nbsp;购物车</a>
+                        <a ui-sref="public.user.shopCart"><i class="fa fa-cart-plus"></i>&nbsp;购物车</a>
                         <span class="line"></span>
                     </li>
                     <li>
@@ -44,14 +50,13 @@
         <div class="w1200 header_conter">
 
             <div style="width: 25%;float: left;height: 75px;text-align: center">
-                <img src="XXX" style="width: 90%;height: 100%">
+                <a ui-sref="public.main"><img src="XXX" style="width: 90%;height: 100%"></a>
             </div>
 
             <div style="width: 50%;float: left">
-                <div class="search_input">
-                    <input type="text" style="color: rgb(102, 102, 102);" name="keyword" class="text_search"
-                           placeholder="limu 胶原蛋白" value=""/>
-                    <input type="button" class="btn_search" value="搜索"/>
+                <div class="mainindex">
+                    <input type="text" class="input_text" placeholder="商品名">
+                    <button class="button input_sub">搜索</button>
                 </div>
                 <div class="search_key">
                     <ul>
@@ -102,7 +107,7 @@
     <div class="w1200">
         <div class="s_fixed_l"><img src="XX" style="width: 36px;height: 36px"/></div>
         <div class="s_fixed_r">
-            <input placeholder="lumi 胶原蛋白" autocomplete="off" class="txt_f_sb" name="keyword" type="text">
+            <input placeholder="商品名" autocomplete="off" class="txt_f_sb" name="keyword" type="text">
             <input value="搜索" class="f_btn_search" style="cursor:pointer" type="button">
         </div>
     </div>

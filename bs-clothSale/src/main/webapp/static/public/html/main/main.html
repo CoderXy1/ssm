@@ -1,7 +1,7 @@
 <!--菜单-->
 <div class="full_nav">
     <div class="w1200">
-        <ul class="nav">
+        <ul class="nav_head">
             <li class="li_all_type">
                 <a href="">全部分类</a>
                 <b class="b_down"></b>
@@ -103,54 +103,35 @@
             <i class="jx_icon_down"></i>
         </li>
     </ul>
-    <div class="pro_con" style="display: block">
-        <div class="groDiv P_left">
-            <div style="position: relative;overflow: hidden;">
-                <ul class="groUlOut" ng-if="tabsSign == 1">
-                    <li style="float: left;width: 224px;" ng-repeat="spu in spuList">
-                        <div class="x">精选服饰</div>
-                        <a href="" class="pro">
-                            <img ng-src="data:image/jpg;base64,{{spu.file_content}}" title="{{spu.goods_name}}"/>
-                        </a>
-                        <p class="box_glay">
-                            <a href="" class="pro_text">
-                                <span>{{spu.goods_name}}</span>
-                            </a>
-                        </p>
-                        <div class="now_price">
-                            <div class="price">
-	    	    				<span class="bigfont">
-	    	    					<span class="f_14">￥</span><span>{{spu.low_price}}</span>
-	    	    				</span>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+    <div class="goods">
+        <ul class="row goods_ul" ng-if="tabsSign == 1">
+            <li class="goods_li" ng-repeat="spu in spuList">
+                <div style="cursor: pointer;position: relative;">
+                    <span class="badge badge-primary goods_badge" style="background-color: #f40;">精选服饰</span>
+                    <img ng-src="data:image/jpg;base64,{{spu.file_content}}" title="{{spu.goods_name}}"
+                         style="width: 100%;height: 200px;overflow: hidden"/>
+                    <p style="width:100%;color: gray;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
+                        {{spu.goods_name}}</p>
+                </div>
+                <span style="font-weight: bold;color: #fd3f31">￥{{spu.low_price}}</span>
+                <span style="font-weight: lighter;font-size:12px;color: gray;float: right">月销1.2万件</span>
+            </li>
+        </ul>
 
-                <ul class="groUlOut" ng-if="tabsSign == 2">
-                    <li style="float: left;width: 224px;" ng-repeat="spu in spuList">
-                        <div class="s">限时抢购</div>
-                        <a href="iemt.html" class="pro">
-                            <img src="./image/top_1.jpg"/>
-                        </a>
-                        <p class="box_glay">
-                            <a href="" class="pro_text">
-                                <span>意大利TVS进口磐石锅具套组</span>
-                            </a>
-                        </p>
-                        <div class="now_price">
-                            <div class="price">
-	    	    								<span class="bigfont">
-	    	    									<span class="f_14">￥</span><span>999.00</span>
-	    	    								</span>
-                                <span><del>￥2100.00</del></span>
-                                <div class="zk">4.8折</div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <ul class="row goods_ul" ng-if="tabsSign == 2">
+            <li class="goods_li" ng-repeat="spu in spuList">
+                <div style="cursor: pointer;position: relative;">
+                    <span class="badge badge-danger goods_badge">限时抢购</span>
+                    <img ng-src="data:image/jpg;base64,{{spu.file_content}}" title="{{spu.goods_name}}"
+                         style="width: 100%;height: 200px;overflow: hidden"/>
+                    <p style="width:100%;color: gray;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
+                        {{spu.goods_name}}</p>
+                </div>
+                <span style="font-weight: bold;color: #fd3f31">￥{{spu.low_price}}</span>
+                <span style="font-weight: lighter;font-size:12px;color: gray;float: right">月销1.2万件</span>
+            </li>
+        </ul>
+
     </div>
     <!--第二区-->
     <div style="margin-top: 10px">

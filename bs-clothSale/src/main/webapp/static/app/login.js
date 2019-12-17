@@ -18,7 +18,7 @@ angular.module("clothSaleApp")
             }).then(function successCallback(response) {
                 //请求成功
                 if (response.data.success){
-                    sessionStorage.setItem("token", response.data.success);
+                    sessionStorage.setItem("token_admin", response.data.success);
                     sessionStorage.setItem("admin_info", JSON.stringify(response.data.item));
                     $scope.showAlert('提示:',response.data.msg,'success');
                     $state.go("app.main");

@@ -1,0 +1,31 @@
+<div class="bg-danger row" style="width: 100%;height: 500px;margin-top: 10px">
+
+    <div class="col-md-7">
+
+    </div>
+
+    <div class="col-md-5">
+        <div class="login_box">
+
+            <form id="loginForm" class="form-horizontal" autocomplete="off" ng-submit="login()">
+                <span class="heading">用户登录</span>
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="selectParams.user_name" placeholder="用户名/手机号" autofocus="autofocus" ng-required="true">
+                    <i class="fa fa-user"></i>
+                </div>
+                <div class="form-group help">
+                    <input id="user_password" type="password" class="form-control" ng-model="selectParams.user_password" placeholder="密码"
+                           ng-required="true">
+                    <i class="fa fa-lock"></i>
+                    <a href="javascript:void(0)" ng-click="showPassword()" title="显示密码" ng-class="{'fa fa-eye':isShowPassword == 0,'fa fa-eye-slash':isShowPassword == 1}"></a>
+                </div>
+                <button type="submit" class="btn-sm col-md-9" form="loginForm">登录</button>
+                <div class="login_footer col-md-11">
+                    <a href="#">忘记密码</a>
+                    <a href="#">免费注册</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

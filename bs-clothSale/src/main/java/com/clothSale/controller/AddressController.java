@@ -58,7 +58,7 @@ public class AddressController {
     private RequsetData<List<HashMap<String, Object>>> setRequsetData(List<HashMap<String, Object>> list) {
 
         RequsetData<List<HashMap<String, Object>>> res = new RequsetData<>();
-        if (list != null) {
+        if (!list.isEmpty()) {
             res.setItem(list);
             res.setMsg("成功");
             res.setSuccess(true);

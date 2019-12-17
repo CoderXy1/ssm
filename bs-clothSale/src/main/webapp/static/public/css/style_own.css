@@ -1,0 +1,176 @@
+/* 通用 */
+.line_divider {
+    background-color: lightgray;
+    margin:20px auto;
+    width: 96%;
+    height: 1px;
+}
+
+/* main首页 */
+.goods {
+    padding: 10px;
+    position: relative;
+}
+
+.goods_li {
+    width: 20%;
+    padding: 20px;
+    border: 1px solid #f2f2f2;
+    border-radius: 5px;
+}
+
+.goods_ul li:hover {
+    border: 1px solid tomato;
+    border-radius: 5px;
+}
+
+.goods_badge {
+    opacity: 0.8;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+/* 登录界面login */
+.login_box {
+    width: 400px;
+    height: 340px;
+    margin: 0 auto;
+    position: relative;
+    top:50%;
+    margin-top: -170px;
+}
+
+.form-bg {
+    padding: 2em 0;
+}
+
+.form-horizontal {
+    background: white;
+    padding-bottom: 30px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.form-horizontal .heading {
+    display: block;
+    font-size: 25px;
+    font-weight: 700;
+    padding: 20px 0;
+    color: orangered;
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 10px;
+}
+
+.form-horizontal .form-group {
+    padding: 0 40px;
+    margin: 0 0 25px 0;
+    position: relative;
+}
+
+.form-horizontal .form-control {
+    background: #f0f0f0;
+    border: none;
+    box-shadow: none;
+    padding: 0 20px 0 45px;
+    height: 40px;
+    transition: all 0.3s ease 0s;
+}
+
+.form-horizontal .form-control:focus {
+    background: #e0e0e0;
+    box-shadow: none;
+    outline: 0 none;
+}
+
+.form-horizontal .form-group i {
+    position: absolute;
+    top: 12px;
+    left: 60px;
+    font-size: 17px;
+    color: #c8c8c8;
+    transition: all 0.5s ease 0s;
+}
+
+.form-horizontal .form-control:focus + i {
+    color: orangered;
+}
+
+.form-horizontal .fa-eye {
+    display: inline-block;
+    position: absolute;
+    top: 12px;
+    right: 60px;
+    font-size: 20px;
+    color: #808080;
+    transition: all 0.5s ease 0s;
+}
+
+.form-horizontal .fa-eye:hover {
+    color: #000;
+}
+
+.form-horizontal .fa-eye-slash {
+    display: inline-block;
+    position: absolute;
+    top: 12px;
+    right: 60px;
+    font-size: 20px;
+    color: #808080;
+    transition: all 0.5s ease 0s;
+}
+
+.form-horizontal .fa-eye-slash:hover {
+    color: #000;
+}
+
+.login_footer {
+    padding-top: 20px;
+    text-align: right;
+    font-size: 14px;
+}
+
+.login_footer a{
+    color: gray;
+    margin : 0 10px;
+}
+
+.login_footer a:hover{
+    color: #f40;
+}
+
+.form-horizontal .text {
+    float: left;
+    margin-left: 7px;
+    line-height: 20px;
+    padding-top: 5px;
+    text-transform: capitalize;
+}
+
+.form-horizontal .btn-sm {
+    font-size: 14px;
+    color: #fff;
+    background: #f40;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 10px 25px;
+    border: none;
+    text-transform: capitalize;
+    transition: all 0.5s ease 0s;
+}
+
+@media only screen and (max-width: 479px) {
+    .form-horizontal .form-group {
+        padding: 0 25px;
+    }
+
+    .form-horizontal .form-group i {
+        left: 45px;
+    }
+}
+
+
+
+
+
+

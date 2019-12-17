@@ -3,13 +3,13 @@
         <div class="card">
 
             <div class="card-title">
-                <h4><i class="ti-user color-info"></i> 管理员</h4>
+                <h4><i class="fa fa-user-o color-info"></i> 用户</h4>
             </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6 input-group">
-                        <input class="form-control" placeholder="管理员名" type="text" ng-model="selectParams.admin_name">
-                        <span class="input-group-btn"><button class="btn btn-sm btn-primary" ng-click="searchAdmin()"><i
+                        <input class="form-control" placeholder="用户名" type="text" ng-model="selectParams.user_name">
+                        <span class="input-group-btn"><button class="btn btn-sm btn-primary" ng-click="searchUser()"><i
                                 class="ti-search"></i></button></span>
                     </div>
                 </div>
@@ -20,30 +20,23 @@
                         <tr>
                             <th>序号</th>
                             <th>头像</th>
-                            <th>管理员名</th>
-                            <th>姓名</th>
+                            <th>用户名</th>
+                            <th>邮箱</th>
                             <th>联系电话</th>
                             <th>上次登录时间</th>
                             <th style="text-align: center">创建时间</th>
-                            <!--<th style="text-align: center">操作</th>-->
                         </tr>
                         </thead>
                         <tbody>
-                        <tr class="text-center" ng-repeat="memberAdmin in memberAdminList">
+                        <tr class="text-center" ng-repeat="memberUser in memberUserList">
                             <th scope="row">{{$index+1}}</th>
-                            <td><img ng-src="data:image/jpg;base64,{{memberAdmin.file_content}}"
+                            <td><img ng-src="data:image/jpg;base64,{{memberUser.file_content}}"
                                      style="object-fit: cover;height: 40px;width: 40px"></td>
-                            <td class="color-primary font-weight-bold">{{memberAdmin.admin_name}}</td>
-                            <td class="color-info font-weight-bold">{{memberAdmin.real_name}}</td>
-                            <td>{{memberAdmin.admin_phone}}</td>
-                            <td>{{memberAdmin.login_datetime | date:'yyyy/MM/dd HH:mm:ss'}}</td>
-                            <td class="text-center">{{memberAdmin.gmt_create | date:'yyyy/MM/dd HH:mm:ss'}}</td>
-                            <!--<td class="text-center">-->
-                                <!--<button class="btn btn-sm btn-success" title="修改"><i class="fa fa-edit"></i></button>-->
-                                <!--<button class="btn btn-sm btn-danger" title="删除"-->
-                                        <!--ng-click="deleteBrand(brand.brand_id,brand.file_id)"><i class="fa fa-close"></i>-->
-                                <!--</button>-->
-                            <!--</td>-->
+                            <td class="color-primary font-weight-bold">{{memberUser.user_name}}</td>
+                            <td class="color-info font-weight-bold">{{memberUser.email}}</td>
+                            <td>{{memberUser.phone_number}}</td>
+                            <td>{{memberUser.login_datetime | date:'yyyy/MM/dd HH:mm:ss'}}</td>
+                            <td class="text-center">{{memberUser.gmt_create | date:'yyyy/MM/dd HH:mm:ss'}}</td>
                         </tr>
                         <tr ng-if="memberAdminList.length<=0">
                             <td colspan="15" style="text-align:center">暂无数据</td>

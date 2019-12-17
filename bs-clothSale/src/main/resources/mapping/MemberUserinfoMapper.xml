@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.clothSale.mapper.MemberUserinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.clothSale.model.MemberUserinfo" >
+    <id column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="phone_number" property="phoneNumber" jdbcType="VARCHAR" />
+    <result column="user_password" property="userPassword" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="icon_id" property="iconId" jdbcType="VARCHAR" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="address_id" property="addressId" jdbcType="VARCHAR" />
+    <result column="login_datetime" property="loginDatetime" jdbcType="TIMESTAMP" />
+    <result column="login_times" property="loginTimes" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, user_name, phone_number, user_password, email, icon_id, gmt_create, address_id,
+    login_datetime, login_times
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from member_userinfo
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from member_userinfo
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.clothSale.model.MemberUserinfo" >
+    insert into member_userinfo (user_id, user_name, phone_number, 
+      user_password, email, icon_id,
+      gmt_create, address_id, login_datetime, 
+      login_times)
+    values (#{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR}, 
+      #{userPassword,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{iconId,jdbcType=VARCHAR},
+      #{gmtCreate,jdbcType=TIMESTAMP}, #{addressId,jdbcType=VARCHAR}, #{loginDatetime,jdbcType=TIMESTAMP}, 
+      #{loginTimes,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.clothSale.model.MemberUserinfo" >
+    insert into member_userinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="phoneNumber != null" >
+        phone_number,
+      </if>
+      <if test="userPassword != null" >
+        user_password,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="iconId != null" >
+        icon_id,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="addressId != null" >
+        address_id,
+      </if>
+      <if test="loginDatetime != null" >
+        login_datetime,
+      </if>
+      <if test="loginTimes != null" >
+        login_times,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null" >
+        #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null" >
+        #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="iconId != null" >
+        #{iconId,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addressId != null" >
+        #{addressId,jdbcType=VARCHAR},
+      </if>
+      <if test="loginDatetime != null" >
+        #{loginDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginTimes != null" >
+        #{loginTimes,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.clothSale.model.MemberUserinfo" >
+    update member_userinfo
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null" >
+        phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null" >
+        user_password = #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="iconId != null" >
+        icon_id = #{iconId,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addressId != null" >
+        address_id = #{addressId,jdbcType=VARCHAR},
+      </if>
+      <if test="loginDatetime != null" >
+        login_datetime = #{loginDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginTimes != null" >
+        login_times = #{loginTimes,jdbcType=INTEGER},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.clothSale.model.MemberUserinfo" >
+    update member_userinfo
+    set user_name = #{userName,jdbcType=VARCHAR},
+      phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      user_password = #{userPassword,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      icon_id = #{iconId,jdbcType=VARCHAR},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      address_id = #{addressId,jdbcType=VARCHAR},
+      login_datetime = #{loginDatetime,jdbcType=TIMESTAMP},
+      login_times = #{loginTimes,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectUserinfoByLogin" resultType="java.util.Map">
+    select u.*,f.file_name,f.file_content from member_userinfo u
+    left join tb_file f on f.file_id = u.icon_id
+    where (u.user_name = #{user_name} and u.user_password = #{user_password}) or
+        (u.phone_number = #{user_name} and u.user_password = #{user_password})
+  </select>
+
+  <select id="selectAllUserinfo" resultType="java.util.Map">
+    select u.*,f.file_name,f.file_content from member_userinfo u
+    left join tb_file f on f.file_id = u.icon_id
+    where 1 = 1
+    <if test="user_name != null and user_name != ''">
+      and u.user_name like concat('%',#{user_name},'%')
+    </if>
+    order by u.gmt_create desc limit #{pageIndex},#{pageSize}
+  </select>
+
+  <select id="selectAllUserinfoNum" resultType="java.util.Map">
+    select count(*) as total from member_userinfo
+    where 1 = 1
+    <if test="user_name != null and user_name != ''">
+      and user_name like concat('%',#{user_name},'%')
+    </if>
+    order by gmt_create desc
+  </select>
+
+</mapper>

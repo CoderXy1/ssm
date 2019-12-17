@@ -33,7 +33,7 @@ public class GoodsBrandController {
 
         List<HashMap<String,Object>> list = goodsBrandService.selectGoodsBrand(pageIndex, pageSize, brandName);
 
-        if (list != null){
+        if (!list.isEmpty()){
             res.setItem(list);
             res.setMsg("查询成功");
             res.setSuccess(true);
