@@ -23,25 +23,27 @@ public class GoodsSkuController {
     @Resource
     private IGoodsSkuService goodsSkuService;
 
-    @RequestMapping("/selectGoodsSku")
+    @RequestMapping("/selectSkuBySpecSpu")
     @ResponseBody
     //有参数要加 @RequestParam("参数名")
-    public RequsetData<List<HashMap<String, Object>>> selectGoodsSku(@RequestParam("specIds") String specIds, @RequestParam("spu_id")String spu_id) {
+    public RequsetData<List<HashMap<String, Object>>> selectSkuBySpecSpu(@RequestParam("specIds") String specIds, @RequestParam("spu_id")String spu_id) {
 
         RequsetData<List<HashMap<String, Object>>> res = new RequsetData<>();
 
         List<String> list = new ArrayList<>();
 
-        JSONObject jsonObj = new JSONObject(specIds);
-        for(String str:jsonObj.keySet()){
-            if (!jsonObj.isNull(str)){
-                list.add(jsonObj.get(str).toString());
+        for(String str:specIds.split(",")){
+            if (!str.equals("null")){
+                list.add(str);
             }
         }
 
-        List<HashMap<String, Object>> list1 = goodsSkuService.test(list,list.size(),spu_id);
+        List<HashMap<String, Object>> list1 = new ArrayList<>();
+        if (!list.isEmpty()){
+            list1 = goodsSkuService.selectSkuBySpecSpu(list,list.size(),spu_id);
+        }
 
-        if (list1 != null) {
+        if (!list1.isEmpty()) {
             res.setItem(list1);
             res.setMsg("成功");
             res.setSuccess(true);

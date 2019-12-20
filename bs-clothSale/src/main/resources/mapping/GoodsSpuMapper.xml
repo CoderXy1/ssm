@@ -177,4 +177,12 @@
         order by sp.spu_order limit #{pageIndex},#{pageSize}
     </select>
 
+    <select id="selectSingleGoodsSpu" resultType="java.util.Map">
+        SELECT sp.*,b.brand_name,c.category_name,f.* FROM goods_spu sp
+        LEFT JOIN goods_brand b on b.brand_id = sp.brand_id
+        LEFT JOIN goods_category c on c.category_id = sp.category_id
+        LEFT JOIN tb_file f on f.file_id = sp.spu_icon_id
+        where sp.spu_id = #{spu_id}
+    </select>
+
 </mapper>

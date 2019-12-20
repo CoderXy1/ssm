@@ -125,8 +125,8 @@
 		  limit #{pageIndex},#{pageSize}
     </select>
 
-    <select id="test" resultType="java.util.Map">
-        select sku.sku_id,sku.price_input,price_sale,sku.stock from goods_sku_spec_value sv
+    <select id="selectSkuBySpecSpu" resultType="java.util.Map">
+        select sku.sku_id,sku.price_input,price_sale,sku.stock,GROUP_CONCAT(val.spec_value) as spec_value from goods_sku_spec_value sv
         left join goods_sku sku on sku.sku_id = sv.sku_id
         left join goods_spec_value val on val.spec_value_id = sv.spec_value_id
         where

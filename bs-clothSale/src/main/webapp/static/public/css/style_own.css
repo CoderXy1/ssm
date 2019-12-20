@@ -57,7 +57,7 @@
     font-size: 25px;
     font-weight: 700;
     padding: 20px 0;
-    color: orangered;
+    color: #94193f;
     border-bottom: 1px solid #f0f0f0;
     margin-bottom: 10px;
 }
@@ -93,7 +93,7 @@
 }
 
 .form-horizontal .form-control:focus + i {
-    color: orangered;
+    color: #94193f;
 }
 
 .form-horizontal .fa-eye {
@@ -136,7 +136,7 @@
 }
 
 .login_footer a:hover{
-    color: #f40;
+    color: #94193f;
 }
 
 .form-horizontal .text {
@@ -150,7 +150,7 @@
 .form-horizontal .btn-sm {
     font-size: 14px;
     color: #fff;
-    background: #f40;
+    background: #94193f;
     cursor: pointer;
     border-radius: 5px;
     padding: 10px 25px;
@@ -169,7 +169,13 @@
     }
 }
 
+/* 注册界面 register */
 
+
+/* 购物车shopCar */
+.line_height_60 {
+    line-height: 60px;
+}
 
 
 

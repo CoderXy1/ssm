@@ -48,8 +48,8 @@ public class GoodsSkuServiceImpl implements IGoodsSkuService {
     }
 
     @Override
-    public List<HashMap<String, Object>> test(List<String> list,int size,String spu_id) {
-        return goodsSkuMapper.test(list,size,spu_id);
+    public List<HashMap<String, Object>> selectSkuBySpecSpu(List<String> list,int size,String spu_id) {
+        return goodsSkuMapper.selectSkuBySpecSpu(list,size,spu_id);
     }
 
     @Override

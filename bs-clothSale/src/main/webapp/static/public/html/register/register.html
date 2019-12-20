@@ -1,0 +1,45 @@
+<div class="row" style="width: 100%;height: 600px;margin: 10px 0;border:1px solid #94193f">
+
+    <div class="row col-md-10" style="margin: 50px auto">
+
+        <div class="col-md-7" style="background-color: grey;"></div>
+
+        <div class="col-md-5 card">
+
+            <form id="registerForm" class="form-horizontal" autocomplete="off" ng-submit="register()">
+                <span class="heading">用户注册</span>
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="selectParams.user_name" placeholder="用户名"
+                           autofocus="autofocus" ng-required="true">
+                    <i class="fa fa-user"></i>
+                </div>
+                <div class="form-group">
+                    <input id="admin_password" type="password" class="form-control" ng-model="selectParams.user_password"
+                           placeholder="密码" ng-required="true">
+                    <i class="fa fa-lock"></i>
+                    <a href="javascript:void(0)" ng-click="showPassword()" title="显示密码"
+                       ng-class="{'fa fa-eye':isShowPassword == 0,'fa fa-eye-slash':isShowPassword == 1}"></a>
+                </div>
+                <div class="form-group">
+                    <input type="number" class="form-control" ng-model="selectParams.phone_number" placeholder="联系电话"
+                           ng-required="true">
+                    <i class="fa fa-phone"></i>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" ng-model="selectParams.email" placeholder="邮箱"
+                           ng-required="true">
+                    <i class="ti-email"></i>
+                </div>
+                <button type="submit" class="btn-sm col-md-10" form="registerForm">注册</button>
+                <div class="login_footer col-md-11">
+                    <small>已有账号?</small>
+                    <a ui-sref="public.login">登录</a>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+
+
+</div>

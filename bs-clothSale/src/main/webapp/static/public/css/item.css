@@ -12,9 +12,10 @@
 	width: 380px;
 }
 .con_top_r{
-	float: right;
+	float: left;
 	width: 720px;
-	margin-left: 60;
+	margin-left: 30px;
+    padding: 10px;
 }
 .con_top_l .tab-w{
 	width: 100%;
@@ -160,7 +161,7 @@
 }
 .detail_tit_md {
     font-size: 14px;
-    color: #8e8e8e;
+    color: tomato;
     font-weight: normal;
 }
 .price_wrap {
@@ -175,7 +176,7 @@
     font-family: arial;
     font-size: 42px;
     font-weight: bold;
-    color: #404040;
+    color: tomato;
 }
 .em_sign {
     color: #717171;
@@ -226,6 +227,16 @@
     line-height: 34px;
     padding-bottom: 60px;
 }
+.buy_btns .btn_cart {
+    background-color: #94193f;
+    color: white;
+    cursor: pointer;
+    margin-left: 20px;
+}
+.buy_btns .btn_buy {
+    margin-left: 20px;
+    cursor: pointer;
+}
 .color_ul li {
     min-width: 24px;
     border: 1px solid #dbdbdb;
@@ -253,6 +264,7 @@
 }
 .color_ul .no_kc {
     border: 1px dashed #c9c9c9;
+    height: 100%;
 }
 .color_ul .on {
     border: 1px solid #94193f;
@@ -289,7 +301,7 @@
     left: 46px;
     position: absolute;
     text-indent: -999em;
-    top: 20px;
+    top: 10px;
     width: 16px;
 }
 .text {

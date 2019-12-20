@@ -2,6 +2,7 @@ package com.clothSale.service;
 
 
 import com.clothSale.model.GoodsSpu;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +19,8 @@ public interface IGoodsSpuService {
     int updateByPrimaryKeySelective(GoodsSpu record);
 
     int updateByPrimaryKey(GoodsSpu record);
+
+    HashMap<String, Object> selectSingleGoodsSpu(String spu_id);
 
     List<HashMap<String,Object>> selectGoodsSpu(int pageIndex, int pageSize, String category_id, String brand_id,String goods_name);
 

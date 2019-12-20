@@ -65,7 +65,7 @@ public class MemberAdminController {
         MemberAdmin memberAdmin = new MemberAdmin();
         memberAdmin.setAdminId(admin_id);
         memberAdmin.setAdminName(admin_name);
-        memberAdmin.setAdminPassword(admin_password);
+        memberAdmin.setAdminPassword(DigestUtils.md5DigestAsHex(admin_password.getBytes()).toUpperCase());
         memberAdmin.setRealName(real_name);
         memberAdmin.setAdminPhone(admin_phone);
         memberAdmin.setAdminIconId(admin_icon_id);
@@ -74,10 +74,10 @@ public class MemberAdminController {
         int count =  memberAdminService.insertSelective(memberAdmin);
         if (count == 1) {
             res.setItem(count);
-            res.setMsg("添加成功");
+            res.setMsg("注册成功");
             res.setSuccess(true);
         } else {
-            res.setMsg("添加失败");
+            res.setMsg("注册失败");
             res.setSuccess(false);
         }
         return res;

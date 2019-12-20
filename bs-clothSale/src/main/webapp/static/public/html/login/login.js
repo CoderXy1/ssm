@@ -1,7 +1,8 @@
 angular.module("clothSalePublicApp")
     .controller("loginCtrl", function ($scope, $rootScope,$http,$state,$stateParams) {
 
-        $scope.goUrl = $stateParams.url;
+        $scope.goUrl = $stateParams.url == undefined ?"public.main":$stateParams.url;
+        $scope.extraData = $stateParams.extraData == undefined ? "":$stateParams.extraData;
 
         $scope.isShowPassword = 0; //0不可见 1可见
         $scope.selectParams = {
@@ -33,7 +34,12 @@ angular.module("clothSalePublicApp")
                     sessionStorage.setItem("token_user", response.data.success);
                     sessionStorage.setItem("user_info", JSON.stringify(response.data.item));
                     $scope.showAlert("提示: ",response.data.msg,"success");
-                    $state.go($scope.goUrl,{},{reload:true});
+                    if ($scope.extraData != ''){
+                        $state.go($scope.goUrl,JSON.parse($scope.extraData),{reload:true});
+                    }else{
+                        $state.go($scope.goUrl,{},{reload:true});
+                    }
+
                 }else {
                     $scope.showAlert("错误: ",response.data.msg,"danger");
                 }

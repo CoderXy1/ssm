@@ -106,12 +106,14 @@
     <div class="goods">
         <ul class="row goods_ul" ng-if="tabsSign == 1">
             <li class="goods_li" ng-repeat="spu in spuList">
-                <div style="cursor: pointer;position: relative;">
-                    <span class="badge badge-primary goods_badge" style="background-color: #f40;">精选服饰</span>
-                    <img ng-src="data:image/jpg;base64,{{spu.file_content}}" title="{{spu.goods_name}}"
-                         style="width: 100%;height: 200px;overflow: hidden"/>
-                    <p style="width:100%;color: gray;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
-                        {{spu.goods_name}}</p>
+                <div style="position: relative;">
+                    <a ui-sref="public.goodsItem({spu_id:spu.spu_id})">
+                        <span class="badge badge-primary goods_badge" style="background-color: #f40;">精选服饰</span>
+                        <img ng-src="data:image/jpg;base64,{{spu.file_content}}" title="{{spu.goods_name}}"
+                             style="width: 100%;height: 200px;overflow: hidden"/>
+                        <p style="width:100%;color: gray;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
+                            {{spu.goods_name}}</p>
+                    </a>
                 </div>
                 <span style="font-weight: bold;color: #fd3f31">￥{{spu.low_price}}</span>
                 <span style="font-weight: lighter;font-size:12px;color: gray;float: right">月销1.2万件</span>

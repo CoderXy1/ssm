@@ -20,7 +20,7 @@ public interface IGoodsSkuService {
 
     int updateByPrimaryKey(GoodsSku record);
 
-    List<HashMap<String,Object>> test(List<String> list, int size, String spu_id);
+    List<HashMap<String,Object>> selectSkuBySpecSpu(List<String> list, int size, String spu_id);
 
     List<HashMap<String,Object>> selectAllSku(String spu_id,int pageIndex,int pageSize);
 

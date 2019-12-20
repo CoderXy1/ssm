@@ -21,7 +21,7 @@ public interface GoodsSkuMapper {
 
     int updateByPrimaryKey(GoodsSku record);
 
-    List<HashMap<String,Object>> test(@Param("list") List<String> list, @Param("size") int size, @Param("spu_id") String spu_id);
+    List<HashMap<String,Object>> selectSkuBySpecSpu(@Param("list") List<String> list, @Param("size") int size, @Param("spu_id") String spu_id);
 
     List<HashMap<String,Object>> selectAllSku(@Param("spu_id")String spu_id,@Param("pageIndex")int pageIndex,@Param("pageSize")int pageSize);
 

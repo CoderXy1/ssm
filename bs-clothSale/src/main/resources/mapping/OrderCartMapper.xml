@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.clothSale.mapper.OrderCartMapper">
+    <resultMap id="BaseResultMap" type="com.clothSale.model.OrderCart">
+        <id column="cart_id" property="cartId" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId" jdbcType="VARCHAR"/>
+        <result column="sku_id" property="skuId" jdbcType="VARCHAR"/>
+        <result column="total_num" property="totalNum" jdbcType="INTEGER"/>
+        <result column="cart_state" property="cartState" jdbcType="INTEGER"/>
+        <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    cart_id, user_id, sku_id, total_num, cart_state, gmt_create
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from order_cart
+        where cart_id = #{cartId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from order_cart
+    where cart_id = #{cartId,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.clothSale.model.OrderCart">
+    insert into order_cart (cart_id, user_id, sku_id, 
+      total_num, cart_state, gmt_create
+      )
+    values (#{cartId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{skuId,jdbcType=VARCHAR}, 
+      #{totalNum,jdbcType=INTEGER}, #{cartState,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.clothSale.model.OrderCart">
+        insert into order_cart
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="cartId != null">
+                cart_id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="skuId != null">
+                sku_id,
+            </if>
+            <if test="totalNum != null">
+                total_num,
+            </if>
+            <if test="cartState != null">
+                cart_state,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="cartId != null">
+                #{cartId,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="skuId != null">
+                #{skuId,jdbcType=VARCHAR},
+            </if>
+            <if test="totalNum != null">
+                #{totalNum,jdbcType=INTEGER},
+            </if>
+            <if test="cartState != null">
+                #{cartState,jdbcType=INTEGER},
+            </if>
+            <if test="gmtCreate != null">
+                #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.clothSale.model.OrderCart">
+        update order_cart
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="skuId != null">
+                sku_id = #{skuId,jdbcType=VARCHAR},
+            </if>
+            <if test="totalNum != null">
+                total_num = #{totalNum,jdbcType=INTEGER},
+            </if>
+            <if test="cartState != null">
+                cart_state = #{cartState,jdbcType=INTEGER},
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where cart_id = #{cartId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.clothSale.model.OrderCart">
+    update order_cart
+    set user_id = #{userId,jdbcType=VARCHAR},
+      sku_id = #{skuId,jdbcType=VARCHAR},
+      total_num = #{totalNum,jdbcType=INTEGER},
+      cart_state = #{cartState,jdbcType=INTEGER},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP}
+    where cart_id = #{cartId,jdbcType=VARCHAR}
+  </update>
+
+    <select id="selectCartByUserId" resultType="java.util.Map">
+    select oc.*,spu.goods_name,f.file_content,GROUP_CONCAT(val.spec_value) as spec_value from order_cart oc
+	  left join goods_sku sku on sku.sku_id = oc.sku_id
+	  left join goods_spu spu on spu.spu_id = sku.spu_id
+	  left join tb_file f on f.file_id = spu.spu_icon_id
+	  left join goods_sku_spec_value ssv on sku.sku_id = ssv.sku_id
+	  left join goods_spec_value val on val.spec_value_id = ssv.spec_value_id
+	where oc.user_id = #{user_id}
+	GROUP BY sku.sku_id
+    order by oc.gmt_create desc limit #{pageIndex},#{pageSize}
+  </select>
+
+    <select id="selectCartNumByUserId" resultType="java.util.Map">
+      select count(*) as total from (select oc.* from order_cart oc
+	    left join goods_sku sku on sku.sku_id = oc.sku_id
+	    left join goods_spu spu on spu.spu_id = sku.spu_id
+	    left join tb_file f on f.file_id = spu.spu_icon_id
+	    left join goods_sku_spec_value ssv on sku.sku_id = ssv.sku_id
+	    left join goods_spec_value val on val.spec_value_id = ssv.spec_value_id
+	  where oc.user_id = #{user_id}
+	GROUP BY sku.sku_id ) ta
+  </select>
+
+</mapper>

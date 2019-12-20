@@ -64,8 +64,8 @@
                <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
         <!--</table>-->
 
-        <!--<table schema="test" tableName="member_userinfo"-->
-               <!--domainObjectName="MemberUserinfo" enableCountByExample="false"-->
+        <!--<table schema="test" tableName="order_cart"-->
+               <!--domainObjectName="OrderCart" enableCountByExample="false"-->
                <!--enableUpdateByExample="false" enableDeleteByExample="false"-->
                <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
         <!--</table>-->

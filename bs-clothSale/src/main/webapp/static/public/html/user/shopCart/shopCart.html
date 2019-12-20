@@ -3,122 +3,56 @@
     <span>&gt;</span>
     <a class="a_cur">我的购物车</a>
 </div>
-<!--uer_top-->
-<div class="ur_r_list">
-    <div class="ur_list_tab">
-        <ul class="ur_tab_ul">
-            <li class="on ">
-                <a href="">全部订单</a>
-            </li>
-            <li>
-                <a href="">待付款</a>
-            </li>
-            <li>
-                <a href="">待发货</a>
-            </li>
-            <li>
-                <a href="">待评价</a>
-            </li>
-        </ul>
-        <div class="more_rk">
-            <a href="" class="more_order">查看历史订单</a>
-            <a href="" class="more_qqg_order">查看全球购订单&gt;&gt;</a>
-        </div>
-    </div>
-    <table class="order_table">
-        <thead class="thead">
-        <tr>
-            <td class="padding_40">
-                <div class="select_div">
-                    <div class="select_h2">
-                        <span>近三月的订单</span>
-                        <b></b>
-                    </div>
-                    <div class="select_list">
-                        <ul>
-                            <li data-name="近三月的订单" class="cur">
-                                <a href=""><b></b>近三月的订单</a>
-                            </li>
-                            <li data-name="近半年的订单" class="">
-                                <a href=""><b></b>半年的订单</a>
-                            </li>
-                            <li data-name="最近一年的订单" class="">
-                                <a href=""><b></b>最近一年的订单</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </td>
-            <td>订单金额</td>
-            <td>交易状态</td>
-            <td>交易操作</td>
+<div class="form-group" style="margin-top: 10px;">
+    <table class="table table-bordered table-striped">
+        <thead class="text-center">
+        <tr style="color: #94193f;font-size: 14px;font-weight: normal;">
+            <th>勾选</th>
+            <th>序号</th>
+            <th>图片</th>
+            <th>商品名</th>
+            <th>规格</th>
+            <th>数量</th>
+            <th style="text-align: center">操作</th>
         </tr>
         </thead>
         <tbody>
-        <!--单号 时间-->
-        <tr class="tr_top">
-            <td colspan="6">
-                <span class="number">订单号：<a target="_blank" href="">340517399129797757</a></span>
-                <span class="dealtime" title="下单时间">下单时间：2016-05-24 09:58:49</span>
+        <tr class="text-center" ng-repeat="shopCart in shopCartList">
+            <td>
+                <div class="checkbox checkbox-primary"><input id="{{shopCart.cart_id}}" type="checkbox" name="role"><label
+                        for="{{shopCart.cart_id}}"></label></div>
+            </td>
+            <td class="line_height_60" scope="row">{{$index+1}}</td>
+            <td><img ng-src="data:image/jpg;base64,{{shopCart.file_content}}"
+                     style="object-fit: cover;height: 60px;"></td>
+            <td class="line_height_60"><span class="badge" style="background-color:  #94193f;color: white">{{shopCart.goods_name}}</span>
+            </td>
+            <td class="line_height_60" style="font-size: 14px">{{shopCart.spec_value}}</td>
+            <td class="line_height_60" style="font-size: 14px">{{shopCart.total_num}}</td>
+            <td class="line_height_60" class="text-center">
+                <button class="btn btn-sm btn-danger" title="删除"
+                        ng-click="deleteShopCart(shopCart.cart_id)"><i class="fa fa-close"></i>
+                </button>
             </td>
         </tr>
-        <!--单号 时间-->
-        <!--订单商品-->
-        <tr class="tr_bd">
-            <td class="goods-item">
-                <div class="p-img">
-                    <a href="" target="_blank">
-                        <img class="" src="image/true_1.jpg" title="" height="60" width="60">
-                    </a>
-                </div>
-                <div class="p-msg">
-                    <div class="p-name">
-                        <a href="" class="a-link" target="_blank" title="">娜露可 迷迭香防晒3支装</a>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="goods_price">￥199.00</div>
-            </td>
-            <td>
-                <div class="goods-number">x1</div>
-            </td>
-            <td rowspan="1">
-                <div class="amount"><span>￥199.00</span><br>（免运费）<br>在线支付</div>
-            </td>
-            <td rowspan="1">
-                <div class="status">
-                    <span class="order-status"><span style="color:#999">已取消</span></span><br>
-                    <a href="" target="_blank">订单详情</a>
-                </div>
-            </td>
-            <td rowspan="1">
-                <div class="operate">
-                    <p><a href="javascript:void(0);" class="btn-del"><i class="icon-trash"></i>删除</a></p>
-                </div>
-            </td>
+        <tr ng-if="shopCartList.length<=0">
+            <td colspan="15" style="text-align:center">暂无数据</td>
         </tr>
-        <!--订单商品-->
         </tbody>
     </table>
-</div>
-<!--page-->
-<!--分页-->
-<div class="page_list margin_top20">
-    <div class="page_r">
-        <ul>
-            <li class="pre a_btn un">
-                <span><b><</b>上一页</span>
-            </li>
-            <li class="a_p_num">
-                <span>1</span>
-            </li>
-            <li>
-                <a href=""><span>2</span></a>
-            </li>
-            <li class="next a_btn">
-                <a href=""><span>下一页<b>></b></span></a>
-            </li>
-        </ul>
-    </div>
+
+    <ul uib-pagination class="pagination-md pagination-custom float-right" style="margin-right: 20px"
+        total-items="selectParams.totalNum"
+        first-text="«"
+        last-text="»"
+        previous-text="上一页"
+        next-text="下一页"
+        force-ellipses="true"
+        max-size="5"
+        ng-change="loadData()"
+        rotate="true"
+        ng-model="selectParams.pageNum"
+        items-per-page="selectParams.pageSize"
+        class="pagination-sm page-right" boundary-links="true" boundary-link-numbers="true"></ul>
+
 </div>

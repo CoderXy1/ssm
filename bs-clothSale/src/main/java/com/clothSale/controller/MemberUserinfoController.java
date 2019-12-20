@@ -67,7 +67,7 @@ public class MemberUserinfoController {
         memberUserinfo.setUserId(user_id);
         memberUserinfo.setUserName(user_name);
         memberUserinfo.setPhoneNumber(phone_number);
-        memberUserinfo.setUserPassword(user_password);
+        memberUserinfo.setUserPassword(DigestUtils.md5DigestAsHex(user_password.getBytes()).toUpperCase());
         memberUserinfo.setEmail(email);
         memberUserinfo.setGmtCreate(new Date());
         memberUserinfo.setIconId(icon_id);
@@ -75,10 +75,10 @@ public class MemberUserinfoController {
         int count =  memberUserinfoService.insertSelective(memberUserinfo);
         if (count == 1) {
             res.setItem(count);
-            res.setMsg("添加成功");
+            res.setMsg("注册成功");
             res.setSuccess(true);
         } else {
-            res.setMsg("添加失败");
+            res.setMsg("注册失败");
             res.setSuccess(false);
         }
         return res;

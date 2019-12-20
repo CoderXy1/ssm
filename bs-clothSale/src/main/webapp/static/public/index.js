@@ -14,12 +14,21 @@ angular.module("clothSalePublicApp", ['ui.router', 'oc.lazyLoad', 'ui.bootstrap'
                 }]
             }
         }).state('public.login', {
-            url: '/login?url',
+            url: '/login?url&extraData',
             templateUrl: 'html/login/login.html',
             controller: 'loginCtrl',
             resolve: {
                 deps: ['$ocLazyLoad', function (e) {
                     return e.load(['html/login/login.js']);
+                }]
+            }
+        }).state('public.register', {
+            url: '/register',
+            templateUrl: 'html/register/register.html',
+            controller: 'registerCtrl',
+            resolve: {
+                deps: ['$ocLazyLoad', function (e) {
+                    return e.load(['html/register/register.js']);
                 }]
             }
         }).state('public.main', {
@@ -29,6 +38,15 @@ angular.module("clothSalePublicApp", ['ui.router', 'oc.lazyLoad', 'ui.bootstrap'
             resolve: {
                 deps: ['$ocLazyLoad', function (e) {
                     return e.load(['html/main/main.js']);
+                }]
+            }
+        }).state('public.goodsItem', {
+            url: '/goodsItem?spu_id',
+            templateUrl: 'html/goodsItem/goodsItem.html',
+            controller: 'goodsItemCtrl',
+            resolve: {
+                deps: ['$ocLazyLoad', function (e) {
+                    return e.load(['html/goodsItem/goodsItem.js']);
                 }]
             }
         }).state('public.user', {
@@ -70,15 +88,15 @@ angular.module("clothSalePublicApp", ['ui.router', 'oc.lazyLoad', 'ui.bootstrap'
         });
 
     })
-    .run(['$rootScope', '$state', function ($rootScope, $state,$scope) {
+    .run(['$rootScope', '$state', function ($rootScope, $state, $scope) {
         /* 监听路由的状态变化*/
         $rootScope.$on('$stateChangeSuccess', function (event, toState) {
-            $rootScope.needLoginPage = ['public.user.orderInfo','public.user.shopCart'];
+            $rootScope.needLoginPage = ['public.user.orderInfo', 'public.user.shopCart'];
             //是否需要登录的界面
             if ($rootScope.needLoginPage.indexOf(toState.name) != -1) {
                 //是否未登录
                 if (!(sessionStorage.getItem("token_user"))) {
-                    $state.go('public.login');
+                    $state.go('public.login', {url: toState.name}, {reload: true});
                 }
             }
         });

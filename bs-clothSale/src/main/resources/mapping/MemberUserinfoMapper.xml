@@ -132,7 +132,7 @@
         login_datetime = #{loginDatetime,jdbcType=TIMESTAMP},
       </if>
       <if test="loginTimes != null" >
-        login_times = #{loginTimes,jdbcType=INTEGER},
+        login_times = login_times + 1,
       </if>
     </set>
     where user_id = #{userId,jdbcType=VARCHAR}

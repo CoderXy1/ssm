@@ -49,6 +49,28 @@ public class GoodsSpuController {
         return res;
     }
 
+    @RequestMapping("/selectSingleGoodsSpu")
+    @ResponseBody
+    //有参数要加 @RequestParam("参数名")
+    public RequsetData<List<HashMap<String, Object>>> selectSingleGoodsSpu(@RequestParam("spu_id") String spu_id){
+        RequsetData<List<HashMap<String, Object>>> res = new RequsetData<>();
+
+        HashMap<String, Object> spu = goodsSpuService.selectSingleGoodsSpu(spu_id);
+        List<HashMap<String, Object>> spec_list = goodsSpecService.selectGoodsSpecAndValue(spu_id);
+
+        if (!spu.isEmpty()) {
+            res.setItem(spec_list);
+            res.setExtdata(spu);
+            res.setMsg("成功");
+            res.setSuccess(true);
+        } else {
+            res.setMsg("失败");
+            res.setSuccess(false);
+        }
+
+        return res;
+    }
+
     @RequestMapping("/selectGoodsSpuNum")
     @ResponseBody
     //有参数要加 @RequestParam("参数名")
