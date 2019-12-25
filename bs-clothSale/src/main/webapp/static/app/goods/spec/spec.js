@@ -64,7 +64,7 @@ angular.module("clothSaleApp")
             }).then(function successCallback(response) {
                 //请求成功
                 $scope.specList = response.data.item;
-                $scope.selectParams.totalNum = response.data.extdata.total;
+                $scope.selectParams.totalNum = response.data.extdata==null?0:response.data.extdata.total;
             }, function errorCallback(response) {
                 //请求失败
             });

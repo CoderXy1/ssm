@@ -1,0 +1,64 @@
+<div class="main" style="height: 600px;margin-top: 20px">
+    <div class="container-fluid" style="height: 100%;">
+        <div class="card">
+
+            <div class="card-title">
+                <h4><i class="fa fa-address-book-o color-info"></i> 收货地址</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 input-group">
+                        <input class="form-control" placeholder="用户名" type="text" ng-model="selectParams.user_name">
+                        <span class="input-group-btn"><button class="btn btn-sm btn-primary" ng-click="searchAddress()"><i
+                                class="ti-search"></i></button></span>
+                    </div>
+                </div>
+
+                <div class="table-responsive" style="margin-top: 10px">
+                    <table class="table table-bordered table-striped">
+                        <thead class="text-center">
+                        <tr>
+                            <th>序号</th>
+                            <th>用户名</th>
+                            <th>收货联系人</th>
+                            <th>收货联系电话</th>
+                            <th>邮编</th>
+                            <th class="text-center">收货地址</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="text-center" ng-repeat="memberAddress in memberAddressList">
+                            <th scope="row">{{$index+1}}</th>
+                            <td class="color-primary font-weight-bold">{{memberAddress.user_name}}</td>
+                            <td class="color-info font-weight-bold">{{memberAddress.liaison_person}}</td>
+                            <td>{{memberAddress.phone_number}}</td>
+                            <td>{{memberAddress.postal_code}}</td>
+                            <td class="text-center">{{memberAddress.area_name}}</td>
+                        </tr>
+                        <tr ng-if="memberAddressList.length<=0">
+                            <td colspan="15" style="text-align:center">暂无数据</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <ul uib-pagination class="pagination-md pagination-custom float-right" style="margin-right: 20px"
+                        total-items="selectParams.totalNum"
+                        first-text="«"
+                        last-text="»"
+                        previous-text="上一页"
+                        next-text="下一页"
+                        force-ellipses="true"
+                        max-size="5"
+                        ng-change="loadData()"
+                        rotate="true"
+                        ng-model="selectParams.pageNum"
+                        items-per-page="selectParams.pageSize"
+                        class="pagination-sm page-right" boundary-links="true" boundary-link-numbers="true"></ul>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

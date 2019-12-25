@@ -14,7 +14,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/address")
-public class AddressController {
+public class AddressAreasController {
 
     @Resource
     private IAddressAreasService addressAreasService;

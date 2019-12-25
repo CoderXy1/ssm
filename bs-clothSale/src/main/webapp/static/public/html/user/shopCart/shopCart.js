@@ -2,6 +2,8 @@ angular.module("clothSalePublicApp")
     .controller("shopCartCtrl", function ($scope, $rootScope,$http) {
 
         $scope.shopCartList = [];
+        $scope.totalPrice = 0;
+        $scope.selectCartList = {};
 
         $scope.selectParams = {
             pageIndex : 0,
@@ -31,6 +33,36 @@ angular.module("clothSalePublicApp")
 
         }
 
+        $scope.addOrderCart = function (OrderCartSelected,price_sale,total_num,cart_id,goods_name){
+            if (OrderCartSelected){
+                $scope.totalPrice += price_sale * total_num;
+                $scope.selectCartList[goods_name] = cart_id;
+            }else {
+                $scope.totalPrice -= price_sale * total_num;
+                $scope.selectCartList[goods_name] = null;
+            }
+        }
+
+        $scope.changeTotalNum = function(cart_id,total_num) {
+            if (total_num <= 0 || total_num == null){
+                $scope.showAlert('错误:','请输入正确的数值','danger');
+            }else{
+                $http({
+                    method: "POST",
+                    url: '../../OrderCart/updateOrderCart',
+                    params: {
+                        cart_id : cart_id,
+                        total_num : total_num
+                    }
+                }).then(function successCallback(response) {
+                    //请求成功
+                    $scope.loadData();
+                }, function errorCallback(response) {
+                    //请求失败
+                });
+            }
+        }
+
         $scope.selectShopCart = function (){
             $http({
                 method: "POST",
@@ -39,7 +71,7 @@ angular.module("clothSalePublicApp")
             }).then(function successCallback(response) {
                 //请求成功
                 $scope.shopCartList = response.data.item;
-                $scope.selectParams.totalNum = response.data.extdata.total;
+                $scope.selectParams.totalNum = response.data.extdata==null?0:response.data.extdata.total;
             }, function errorCallback(response) {
                 //请求失败
             });

@@ -1,0 +1,64 @@
+<div class="ur_location">
+    <a href="">我的信息</a>
+    <span>&gt;</span>
+    <a class="a_cur">修改地址</a>
+    <a ui-sref="public.user.address" class="a_cur" style="float: right;margin-right: 50px">返回</a>
+</div>
+<div class="form-group" style="margin-top: 20px;">
+
+    <form name="editForm" role="form" id="editForm" autocomplete="off" ng-submit="insertMemberAddress()"  style="font-size: 14px">
+
+        <div class="row">
+            <div class="col-md-4 input-group">
+                <label for="provinceId" class="col-form-label col-md-2">省:</label>
+                <select class="col-md-10" id="provinceId" ng-model="selectParams.province_id" ng-change="selectCityByProvinceId()" ng-required="true">
+                    <option value="">--请选择--</option>
+                    <option ng-repeat="province in provinceList" value="{{province.province_id}}">{{province.province_name}}
+                    </option>
+                </select>
+            </div>
+            <div class="col-md-4 input-group">
+                <label for="cityId" class="col-form-label col-md-2">市:</label>
+                <select class="col-md-10" id="cityId" ng-model="selectParams.city_id" ng-change="selectAreaByCityId()" ng-required="true">
+                    <option value="">--请选择--</option>
+                    <option ng-repeat="city in cityList" value="{{city.city_id}}">{{city.city_name}}</option>
+                </select>
+            </div>
+            <div class="col-md-4 input-group">
+                <label for="areaId" class="col-form-label col-md-3">区县:</label>
+                <select class="col-md-9" id="areaId" ng-model="selectParams.area_id" ng-required="true">
+                    <option value="">--请选择--</option>
+                    <option ng-repeat="area in areaList" value="{{area.area_id}}">{{area.area_name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row" style="margin-top: 10px">
+            <div class="col-md-6">
+                <label for="goods_name" class="col-form-label">详细地址:&nbsp;</label>
+                <input id="goods_name" type="text" class="form-control"
+                       ng-model="selectParams.details_address" ng-required="true">
+            </div>
+            <div class="col-md-6">
+                <label for="goods_icon" class="col-form-label">联系人:&nbsp;</label>
+                <input id="goods_icon" type="text" class="form-control" ng-model="selectParams.liaison_person"
+                       ng-required="true">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-6">
+                <label for="spu_order" class="col-form-label">联系电话:&nbsp;</label>
+                <input id="spu_order" type="text" class="form-control"
+                       ng-model="selectParams.phone_number" ng-required="true">
+            </div>
+            <div class="col-md-6">
+                <label for="goods_low_price" class="col-form-label">邮编:&nbsp;</label>
+                <input id="goods_low_price" type="text" class="form-control"
+                       ng-model="selectParams.postal_code" ng-required="true">
+            </div>
+        </div>
+
+        <button style="float: right;margin-right: 50px;background-color: #94193f;color: white" type="submit" class="btn" form="editForm">保存</button>
+
+    </form>
+
+</div>

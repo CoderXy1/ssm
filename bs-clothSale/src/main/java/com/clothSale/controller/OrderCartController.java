@@ -78,9 +78,37 @@ public class OrderCartController {
         return res;
     }
 
-    @RequestMapping("/deleteOrderCart")
+    @RequestMapping("/updateOrderCart")
     @ResponseBody
     //有参数要加 @RequestParam("参数名")
+    public RequsetData<Integer> updateOrderCart(@RequestParam("cart_id") String cart_id,@RequestParam(required = false) String user_id,
+                                                @RequestParam(required = false) String sku_id,@RequestParam(required = false)int total_num,@RequestParam(required = false)String cart_state) {
+
+        RequsetData<Integer> res = new RequsetData<>();
+
+        OrderCart orderCart = new OrderCart();
+        orderCart.setCartId(cart_id);
+        orderCart.setUserId(user_id);
+        orderCart.setSkuId(sku_id);
+        orderCart.setTotalNum(total_num);
+        orderCart.setCartState(cart_state == null?1:Integer.valueOf(cart_state));
+
+        int count = orderCartService.updateByPrimaryKeySelective(orderCart);
+
+        if (count == 1) {
+            res.setItem(count);
+            res.setMsg("修改成功");
+            res.setSuccess(true);
+        } else {
+            res.setMsg("修改失败");
+            res.setSuccess(false);
+        }
+
+        return res;
+    }
+
+    @RequestMapping("/deleteOrderCart")
+    @ResponseBody
     public RequsetData<Integer> deleteOrderCart(@RequestParam("cart_id") String cart_id) {
 
         RequsetData<Integer> res = new RequsetData<>();

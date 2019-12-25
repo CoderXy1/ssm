@@ -7,11 +7,12 @@
     <table class="table table-bordered table-striped">
         <thead class="text-center">
         <tr style="color: #94193f;font-size: 14px;font-weight: normal;">
-            <th>勾选</th>
+            <th>  </th>
             <th>序号</th>
             <th>图片</th>
             <th>商品名</th>
             <th>规格</th>
+            <th>价格</th>
             <th>数量</th>
             <th style="text-align: center">操作</th>
         </tr>
@@ -19,7 +20,8 @@
         <tbody>
         <tr class="text-center" ng-repeat="shopCart in shopCartList">
             <td>
-                <div class="checkbox checkbox-primary"><input id="{{shopCart.cart_id}}" type="checkbox" name="role"><label
+                <div class="checkbox checkbox-primary"><input id="{{shopCart.cart_id}}" type="checkbox" name="role" ng-model="OrderCartSelected"
+                                                              ng-change="addOrderCart(OrderCartSelected,shopCart.price_sale,shopCart.total_num,shopCart.cart_id,shopCart.goods_name)"><label
                         for="{{shopCart.cart_id}}"></label></div>
             </td>
             <td class="line_height_60" scope="row">{{$index+1}}</td>
@@ -28,10 +30,11 @@
             <td class="line_height_60"><span class="badge" style="background-color:  #94193f;color: white">{{shopCart.goods_name}}</span>
             </td>
             <td class="line_height_60" style="font-size: 14px">{{shopCart.spec_value}}</td>
-            <td class="line_height_60" style="font-size: 14px">{{shopCart.total_num}}</td>
+            <td class="line_height_60" style="font-size: 14px;color: red">￥{{shopCart.price_sale}}</td>
+            <td class="line_height_60" style="font-size: 14px"><input class="form-control" ng-blur="changeTotalNum(shopCart.cart_id,shopCart.total_num)" style="width: 60px" min="1" type="number" ng-model="shopCart.total_num"></td>
             <td class="line_height_60" class="text-center">
                 <button class="btn btn-sm btn-danger" title="删除"
-                        ng-click="deleteShopCart(shopCart.cart_id)"><i class="fa fa-close"></i>
+                        ng-click="deleteShopCart(shopCart.cart_id)"><i class="fa fa-trash-o"></i>
                 </button>
             </td>
         </tr>
@@ -40,6 +43,11 @@
         </tr>
         </tbody>
     </table>
+
+    <div>
+        <span style="font-size: 18px;display:inline-block; width:150px;">总价:<span style="color: tomato">￥{{totalPrice}}</span></span>
+        <button class="btn btn-danger" style="width: 100px">去结算</button>
+    </div>
 
     <ul uib-pagination class="pagination-md pagination-custom float-right" style="margin-right: 20px"
         total-items="selectParams.totalNum"

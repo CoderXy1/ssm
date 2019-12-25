@@ -105,7 +105,7 @@
   </update>
 
     <select id="selectCartByUserId" resultType="java.util.Map">
-    select oc.*,spu.goods_name,f.file_content,GROUP_CONCAT(val.spec_value) as spec_value from order_cart oc
+    select oc.*,spu.goods_name,f.file_content,sku.price_sale,GROUP_CONCAT(val.spec_value) as spec_value from order_cart oc
 	  left join goods_sku sku on sku.sku_id = oc.sku_id
 	  left join goods_spu spu on spu.spu_id = sku.spu_id
 	  left join tb_file f on f.file_id = spu.spu_icon_id

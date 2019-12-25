@@ -2,12 +2,13 @@ angular.module("clothSalePublicApp")
     .controller("mainCtrl", function ($scope, $rootScope,$http) {
 
         $scope.categoryFirstList = [];
+        $scope.showList = false;
         $scope.categoryList = [];
         $scope.spuList = [];
         $scope.tabsSign = 1;
         $scope.selectFirstParams = {
             pageIndex : 0,
-            pageSize : 12,
+            pageSize : 10,
         }
         $scope.changeTabs = function (num){
             $scope.tabsSign = num;

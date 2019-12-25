@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.clothSale.mapper.MemberAddressMapper">
+    <resultMap id="BaseResultMap" type="com.clothSale.model.MemberAddress">
+        <id column="address_id" property="addressId" jdbcType="VARCHAR"/>
+        <result column="area_id" property="areaId" jdbcType="INTEGER"/>
+        <result column="details_address" property="detailsAddress" jdbcType="VARCHAR"/>
+        <result column="liaison_person" property="liaisonPerson" jdbcType="VARCHAR"/>
+        <result column="phone_number" property="phoneNumber" jdbcType="VARCHAR"/>
+        <result column="postal_code" property="postalCode" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    address_id, area_id, details_address, liaison_person, phone_number,postal_code
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from member_address
+        where address_id = #{addressId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from member_address where address_id = #{addressId,jdbcType=VARCHAR};
+    delete from member_userinfo_address where address_id = #{addressId,jdbcType=VARCHAR};
+  </delete>
+    <insert id="insert" parameterType="com.clothSale.model.MemberAddress">
+    insert into member_address (address_id, area_id, details_address, 
+      liaison_person, phone_number,postal_code)
+    values (#{addressId,jdbcType=VARCHAR}, #{areaId,jdbcType=INTEGER}, #{detailsAddress,jdbcType=VARCHAR}, 
+      #{liaisonPerson,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR},#{postalCode,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.clothSale.model.MemberAddress">
+        insert into member_address
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="addressId != null">
+                address_id,
+            </if>
+            <if test="areaId != null">
+                area_id,
+            </if>
+            <if test="detailsAddress != null">
+                details_address,
+            </if>
+            <if test="liaisonPerson != null">
+                liaison_person,
+            </if>
+            <if test="phoneNumber != null">
+                phone_number,
+            </if>
+            <if test="postalCode != null">
+                postal_code,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="addressId != null">
+                #{addressId,jdbcType=VARCHAR},
+            </if>
+            <if test="areaId != null">
+                #{areaId,jdbcType=INTEGER},
+            </if>
+            <if test="detailsAddress != null">
+                #{detailsAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="liaisonPerson != null">
+                #{liaisonPerson,jdbcType=VARCHAR},
+            </if>
+            <if test="phoneNumber != null">
+                #{phoneNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="postalCode != null">
+                #{postalCode,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.clothSale.model.MemberAddress">
+        update member_address
+        <set>
+            <if test="areaId != null">
+                area_id = #{areaId,jdbcType=INTEGER},
+            </if>
+            <if test="detailsAddress != null">
+                details_address = #{detailsAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="liaisonPerson != null">
+                liaison_person = #{liaisonPerson,jdbcType=VARCHAR},
+            </if>
+            <if test="phoneNumber != null">
+                phone_number = #{phoneNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="postalCode != null">
+                postal_code = #{postalCode,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where address_id = #{addressId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.clothSale.model.MemberAddress">
+    update member_address
+    set area_id = #{areaId,jdbcType=INTEGER},
+      details_address = #{detailsAddress,jdbcType=VARCHAR},
+      liaison_person = #{liaisonPerson,jdbcType=VARCHAR},
+      phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      postal_code = #{postalCode,jdbcType=VARCHAR}
+    where address_id = #{addressId,jdbcType=VARCHAR}
+  </update>
+
+    <select id="selectSingleMemberAddress" resultType="java.util.Map">
+        SELECT ma.address_id,ma.details_address,ma.liaison_person,ma.phone_number,ma.postal_code,aa.area_id,ac.city_id,ap.province_id,mu.user_id FROM member_userinfo_address mua
+        left join member_address ma on ma.address_id = mua.address_id
+        left join member_userinfo mu on mu.user_id = mua.user_id
+        left join address_areas aa on aa.area_id = ma.area_id
+        left join address_cities ac on ac.city_id = aa.city_id
+        left join address_provinces ap on ap.province_id = ac.province_id
+        where ma.address_id = #{address_id}
+    </select>
+
+    <select id="selectAllMemberAddress" resultType="java.util.Map">
+        SELECT
+        mu.user_name,ma.address_id,ma.liaison_person,ma.phone_number,ma.postal_code,concat(ap.province_name,aa.area_name,ac.city_name,ma.details_address)
+        as area_name FROM member_userinfo_address mua
+        left join member_address ma on ma.address_id = mua.address_id
+        left join member_userinfo mu on mu.user_id = mua.user_id
+        left join address_areas aa on aa.area_id = ma.area_id
+        left join address_cities ac on ac.city_id = aa.city_id
+        left join address_provinces ap on ap.province_id = ac.province_id
+        where 1 = 1
+        <if test="user_id != null and user_id != ''">
+            and mua.user_id = #{user_id}
+        </if>
+        <if test="user_name != null and user_name != ''">
+            and mu.user_name like concat('%',#{user_name},'%')
+        </if>
+        limit #{pageIndex},#{pageSize}
+    </select>
+
+    <select id="selectAllMemberAddressNum" resultType="java.util.Map">
+        SELECT count(*) as total FROM member_userinfo_address mua
+        left join member_address ma on ma.address_id = mua.address_id
+        left join member_userinfo mu on mu.user_id = mua.user_id
+        left join address_areas aa on aa.area_id = ma.area_id
+        left join address_cities ac on ac.city_id = aa.city_id
+        left join address_provinces ap on ap.province_id = ac.province_id
+        where 1 = 1
+        <if test="user_id != null">
+            and mua.user_id = #{user_id}
+        </if>
+        <if test="user_name != null and user_name != ''">
+            and mu.user_name like concat('%',#{user_name},'%')
+        </if>
+    </select>
+
+    <insert id="insertMemberUserAddress">
+    insert into member_userinfo_address (user_id, address_id, gmt_create)
+    values (#{user_id}, #{address_id}, #{gmt_create})
+  </insert>
+
+</mapper>

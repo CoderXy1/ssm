@@ -328,7 +328,7 @@ ul li{
 .nav_type_list {
 	display: none;
     position: absolute;
-    left: 215px;
+    left: 150px;
     width: 200px;
     background: white;
     z-index: 5;
@@ -347,7 +347,7 @@ ul li{
     padding-right: 10px;
     height: 25px;
     line-height: 25px;
-    white-space: nowrap;
+    /*white-space: nowrap;*/
 }
 .nav_type_list ul li a {
     color: #333;
@@ -383,7 +383,7 @@ ul li{
 }
 .nav_head {
     height: 39px;
-    float: left;
+    margin-left: 100px;
 }
 .nav_head li a{
 	color: #303030;
@@ -391,18 +391,21 @@ ul li{
 	font-family: "微软雅黑";
 }
 .nav_head .li_all_type {
-    width: 215px;
+    width: 150px;
     padding: 0;
     text-align: center;
     background-color: #B1191A;
-}
-.nav_head .li_all_type a{
+    line-height: 39px;
     color: #fff;
-    font-size: 16px;
-    float: left;
-    padding-left: 55px;
-    letter-spacing: 2px;
 }
+
+/*.nav_head .li_all_type a{*/
+    /*color: #fff;*/
+    /*font-size: 16px;*/
+    /*float: left;*/
+    /*padding-left: 55px;*/
+    /*letter-spacing: 2px;*/
+/*}*/
 .nav_head li .b_down {
     background: url(./../image/icon_list.png) no-repeat -36px -128px;
     height: 8px;

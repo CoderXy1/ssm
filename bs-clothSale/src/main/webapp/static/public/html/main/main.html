@@ -2,9 +2,9 @@
 <div class="full_nav">
     <div class="w1200">
         <ul class="nav_head">
-            <li class="li_all_type">
-                <a href="">全部分类</a>
-                <b class="b_down"></b>
+            <li class="li_all_type" ng-mouseover="showList = true">
+                <i class="fa fa-th-list"></i>
+                <span>全部分类</span>
             </li>
             <li class="home">
                 <a href="index.html" style="color: #C41F3A;">首页</a>
@@ -26,18 +26,19 @@
 <!--轮播区域-->
 <div class="full_big_eye">
     <!--菜单-->
-    <div class="index_type">
-        <ul class="index_type_ul">
-            <li ng-repeat="categoryFirst in categoryFirstList" style="cursor: pointer"
-                ng-mouseover="selectCategory(categoryFirst.category_first_id)">
-                <span>{{categoryFirst.category_first_name}}<b>></b></span>
+    <div class="index_type" ng-show="showList">
+        <ul class="index_type_ul" ng-mouseover="showList = true" ng-mouseleave="showList = false">
+            <li ng-repeat="categoryFirst in categoryFirstList" style="cursor: pointer">
+                <div ng-mouseover="selectCategory(categoryFirst.category_first_id)">
+                    <span>{{categoryFirst.category_first_name}}<b>></b></span>
+                </div>
                 <div class="nav_type_list">
                     <ul>
                         <li ng-repeat="category in categoryList">
-                            <a href="javascript:void(0);" target="_blank" style="font-weight: bold">{{category.category_name}}</a>
+                            <a ui-sref="public.login" target="_blank" style="font-weight: bold">{{category.category_name}}</a>
                         </li>
-                        <li ng-if="spuList.length<=0">
-                            <a>暂无商品</a>
+                        <li ng-if="categoryList.length == null">
+                            <a href="javascript:void(0);" target="_blank" style="font-weight: bold">暂无商品</a>
                         </li>
                     </ul>
                 </div>
@@ -47,43 +48,36 @@
     <!--菜单-->
     <!--轮播图-->
     <div class="full_eye">
-        <div id="inBaner">
-            <ul class="big_eye_pic">
-                <li style="display: block;">
-                    <a href="" class="img_box">
-                        <img src="./image/web-101-101-1.jpg"/>
-                    </a>
-                </li>
-                <li>
-                    <a href="" class="tpl">
-                        <img src="./image/web-101-101-2.jpg"/>
-                    </a>
-                </li>
-                <li>
-                    <a href="" class="tpl">
-                        <img src="./image/web-101-101-3.jpg"/>
-                    </a>
-                </li>
-                <li>
-                    <a href="" class="tpl">
-                        <img src="./image/web-101-101-4.jpg"/>
-                    </a>
-                </li>
-                <li>
-                    <a href="" class="tpl">
-                        <img src="./image/web-101-101-5.jpg"/>
-                    </a>
-                </li>
+        <div id="demo" class="carousel slide" data-ride="carousel" data-interval="4000" style="padding-top: 20px">
+
+            <!-- 指示符 -->
+            <ul class="carousel-indicators">
+                <li data-target="#demo" data-slide-to="0" class="active"></li>
+                <li data-target="#demo" data-slide-to="1"></li>
+                <li data-target="#demo" data-slide-to="2"></li>
             </ul>
-            <div class="btn">
-                <ul>
-                    <li class="cur"></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ul>
+
+            <!-- 轮播图片 -->
+            <div class="carousel-inner" style="height: 400px;overflow: hidden">
+                <div class="carousel-item active">
+                    <img src="./images/main/main_7.jpg" style="width: 100%;object-fit: cover">
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/main/main_6.jpg" style="width: 100%;object-fit: cover">
+                </div>
+                <div class="carousel-item">
+                    <img src="./images/main/main_5.jpg" style="width: 100%;object-fit: cover">
+                </div>
             </div>
+
+            <!-- 左右切换按钮 -->
+            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#demo" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
+
         </div>
     </div>
     <!--轮播图-->
@@ -133,52 +127,7 @@
                 <span style="font-weight: lighter;font-size:12px;color: gray;float: right">月销1.2万件</span>
             </li>
         </ul>
-
     </div>
-    <!--第二区-->
-    <div style="margin-top: 10px">
-        <div class="qinha_title">
-            <div class="v_h2">
-                <p class="h2_top">限时抢购</p>
-                <p class="h2_bottom">天天特价 早10点强势上新 </p>
-            </div>
-        </div>
-        <div class="qinha_cons">
-            <ul class="qinha_ul">
-                <li>
-                    <div class="djs_time">
-                        还剩<span>10:50:22</span>
-                    </div>
-                    <a href=""><img src="./image/top_2_1.jpg" style="width: 595px;height: 317px;"/></a>
-                </li>
-                <li style="margin-right: 0;">
-                    <div class="djs_time">
-                        还剩<span>10:50:22</span>
-                    </div>
-                    <a href=""><img src="./image/top_2_2.jpg" style="width: 595px;height: 317px;"/></a>
-                </li>
-                <li>
-                    <div class="djs_time">
-                        还剩<span>10:50:22</span>
-                    </div>
-                    <a href=""><img src="./image/top_2_3.jpg" style="width: 595px;height: 317px;"/></a>
-                </li>
-                <li style="margin-right: 0;">
-                    <div class="djs_time">
-                        还剩<span>10:50:22</span>
-                    </div>
-                    <a href=""><img src="./image/top_2_4.jpg" style="width: 595px;height: 317px;"/></a>
-                </li>
-                <li>
-                    <div class="djs_time">
-                        还剩<span>10:50:22</span>
-                    </div>
-                    <a href=""><img src="./image/top_2_5.jpg" style="width: 595px;height: 317px;"/></a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <!--第二区-->
     <!--第三区-->
     <div class="jinpin_box">
         <div class="qinha_title">

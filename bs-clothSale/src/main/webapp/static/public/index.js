@@ -76,6 +76,24 @@ angular.module("clothSalePublicApp", ['ui.router', 'oc.lazyLoad', 'ui.bootstrap'
                     return e.load(['html/user/shopCart/shopCart.js']);
                 }]
             }
+        }).state('public.user.address', {
+            url: '/address',
+            templateUrl: 'html/user/address/address.html',
+            controller: 'addressCtrl',
+            resolve: {
+                deps: ['$ocLazyLoad', function (e) {
+                    return e.load(['html/user/address/address.js']);
+                }]
+            }
+        }).state('public.user.addressEdit', {
+            url: '/addressEdit?address_id',
+            templateUrl: 'html/user/address/addressEdit.html',
+            controller: 'addressEditCtrl',
+            resolve: {
+                deps: ['$ocLazyLoad', function (e) {
+                    return e.load(['html/user/address/addressEdit.js']);
+                }]
+            }
         }).state('public.test', {
             url: '/test',
             templateUrl: 'html/test/test.html',

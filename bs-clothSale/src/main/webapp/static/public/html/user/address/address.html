@@ -1,0 +1,52 @@
+<div class="ur_location">
+    <a href="">我的信息</a>
+    <span>&gt;</span>
+    <a class="a_cur">地址管理</a>
+    <a ui-sref="public.user.addressEdit" class="a_cur" style="float: right;margin-right: 50px">新增收货地址</a>
+</div>
+<div class="form-group" style="margin-top: 10px;">
+    <table class="table table-bordered table-striped">
+        <thead class="text-center">
+        <tr style="color: #94193f;font-size: 14px;font-weight: normal;">
+            <th>序号</th>
+            <th>收货联系人</th>
+            <th>收货联系电话</th>
+            <th>邮编</th>
+            <th>收货地址</th>
+            <th class="text-center">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="text-center" ng-repeat="memberAddress in memberAddressList">
+            <th scope="row">{{$index+1}}</th>
+            <td>{{memberAddress.liaison_person}}</td>
+            <td>{{memberAddress.phone_number}}</td>
+            <td>{{memberAddress.postal_code}}</td>
+            <td>{{memberAddress.area_name}}</td>
+            <td class="text-center">
+                <a ui-sref="public.user.addressEdit({address_id:'{{memberAddress.address_id}}'})" class="fa fa-edit" style="cursor: pointer" title="修改"></a>
+                <a href="javascript:void(0)" ng-click="deleteAddress(memberAddress.address_id)" class="fa fa-trash-o" style="cursor: pointer" title="删除"></a>
+                <a href="javascript:void(0)" ng-if="user_info.address_id == memberAddress.address_id">设为默认</a>
+            </td>
+        </tr>
+        <tr ng-if="shopCartList.length<=0">
+            <td colspan="15" style="text-align:center">暂无数据</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <ul uib-pagination class="pagination-md pagination-custom float-right" style="margin-right: 20px"
+        total-items="selectParams.totalNum"
+        first-text="«"
+        last-text="»"
+        previous-text="上一页"
+        next-text="下一页"
+        force-ellipses="true"
+        max-size="5"
+        ng-change="loadData()"
+        rotate="true"
+        ng-model="selectParams.pageNum"
+        items-per-page="selectParams.pageSize"
+        class="pagination-sm page-right" boundary-links="true" boundary-link-numbers="true"></ul>
+
+</div>

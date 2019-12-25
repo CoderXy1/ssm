@@ -59,7 +59,7 @@ angular.module("clothSaleApp")
             }).then(function successCallback(response) {
                 //请求成功
                 $scope.spuList = response.data.item;
-                $scope.selectParams.totalNum = response.data.extdata.total;
+                $scope.selectParams.totalNum = response.data.extdata==null?0:response.data.extdata.total;
                 angular.forEach($scope.spuList, function (item, index) {
                     $scope.spuList[index]['isChecked'] = false;
                 });
