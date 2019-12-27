@@ -127,4 +127,33 @@
 	GROUP BY sku.sku_id ) ta
   </select>
 
+    <insert id="insertOrderCollect">
+    insert into order_collect (collect_id,user_id, spu_id, gmt_create)
+    values (#{collect_id},#{user_id}, #{spu_id}, #{gmt_create})
+  </insert>
+
+    <delete id="deleteOrderCollect" parameterType="java.lang.String">
+    delete from order_collect where collect_id = #{collect_id};
+  </delete>
+
+    <select id="selectOrderCollect" resultType="java.util.Map">
+        SELECT oc.*,sp.goods_name,sp.low_price,b.brand_name,c.category_name,f.*  FROM order_collect oc
+        LEFT JOIN goods_spu sp on sp.spu_id = oc.spu_id
+        LEFT JOIN goods_brand b on b.brand_id = sp.brand_id
+        LEFT JOIN goods_category c on c.category_id = sp.category_id
+        LEFT JOIN tb_file f on f.file_id = sp.spu_icon_id
+        where oc.user_id = #{user_id}
+        order by oc.gmt_create desc limit #{pageIndex},#{pageSize}
+    </select>
+
+    <select id="selectOrderCollectNum" resultType="java.util.Map">
+        SELECT count(*) as total  FROM order_collect oc
+        LEFT JOIN goods_spu sp on sp.spu_id = oc.spu_id
+        LEFT JOIN goods_brand b on b.brand_id = sp.brand_id
+        LEFT JOIN goods_category c on c.category_id = sp.category_id
+        LEFT JOIN tb_file f on f.file_id = sp.spu_icon_id
+        where oc.user_id = #{user_id}
+    </select>
+
+
 </mapper>

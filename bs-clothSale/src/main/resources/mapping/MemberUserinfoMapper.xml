@@ -151,6 +151,12 @@
     where user_id = #{userId,jdbcType=VARCHAR}
   </update>
 
+  <select id="selectUserinfoByUserId" resultType="java.util.Map">
+    select u.*,f.file_name,f.file_content from member_userinfo u
+    left join tb_file f on f.file_id = u.icon_id
+    where u.user_id = #{user_id}
+  </select>
+
   <select id="selectUserinfoByLogin" resultType="java.util.Map">
     select u.*,f.file_name,f.file_content from member_userinfo u
     left join tb_file f on f.file_id = u.icon_id

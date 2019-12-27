@@ -96,6 +96,23 @@ angular.module("clothSalePublicApp")
             })
         }
 
+        $scope.insertOrderCollect = function () {
+            $http({
+                method: "POST",
+                url: '../../OrderCart/insertOrderCollect',
+                params: {
+                    collect_id: $scope.getUUID(),
+                    user_id : $scope.getUserInfoBySession().user_id,
+                    spu_id: $scope.spu_id
+                }
+            }).then(function successCallback(response) {
+                //请求成功
+                $scope.showAlert('成功:',response.data.msg,'success');
+            }, function errorCallback(response) {
+                //请求失败
+            })
+        }
+
         $scope.changeTotalNum = function (flag){
             if (flag == 1){
                 $scope.total_num++;

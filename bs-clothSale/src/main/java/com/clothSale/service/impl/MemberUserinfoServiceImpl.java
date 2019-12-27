@@ -59,4 +59,9 @@ public class MemberUserinfoServiceImpl implements IMemberUserinfoService {
     public HashMap<String, Object> selectAllUserinfoNum(String user_name) {
         return memberUserinfoMapper.selectAllUserinfoNum(user_name);
     }
+
+    @Override
+    public List<HashMap<String, Object>> selectUserinfoByUserId(String user_id) {
+        return memberUserinfoMapper.selectUserinfoByUserId(user_id);
+    }
 }

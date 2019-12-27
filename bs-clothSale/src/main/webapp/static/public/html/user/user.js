@@ -1,4 +1,4 @@
 angular.module("clothSalePublicApp")
-    .controller("userCtrl", function ($scope, $rootScope) {
+    .controller("userCtrl", function ($scope, $rootScope,$http) {
         $scope.tip = "main";
     });

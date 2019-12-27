@@ -87,6 +87,31 @@ angular.module("clothSalePublicApp")
             });
         }
 
+        $scope.updateMemberAddress = function (){
+
+            $scope.selectParams.address_id = $scope.address_id_get;
+
+            $http({
+                method: "POST",
+                url: '../../memberAddress/updateMemberAddress',
+                params : $scope.selectParams
+            }).then(function successCallback(response) {
+                //请求成功
+                $scope.showAlert('提示:',response.data.msg,'success');
+                $state.go('public.user.address',{},{reload:true});
+            }, function errorCallback(response) {
+                //请求失败
+            });
+        }
+
+        $scope.saveAddress = function (){
+            if ($scope.address_id_get != ''){
+                $scope.updateMemberAddress();
+            }else {
+                $scope.insertMemberAddress();
+            }
+        }
+
         $scope.selectAllProvincesByEdit = function (){
             $http({
                 method: "POST",

@@ -24,6 +24,24 @@ public class MemberUserinfoController {
     @Resource
     private IMemberUserinfoService memberUserinfoService;
 
+    @RequestMapping("/selectUserinfoByUserId")
+    @ResponseBody
+    public RequsetData<List<HashMap<String,Object>>> selectUserinfoByUserId(@RequestParam("user_id") String user_id) {
+        RequsetData<List<HashMap<String, Object>>> res = new RequsetData<>();
+
+        List<HashMap<String,Object>> list = memberUserinfoService.selectUserinfoByUserId(user_id);
+
+        if (!list.isEmpty()) {
+            res.setItem(list);
+            res.setMsg("成功");
+            res.setSuccess(true);
+        } else {
+            res.setMsg("失败");
+            res.setSuccess(false);
+        }
+        return res;
+    }
+
     @RequestMapping("/selectUserinfoByLogin")
     @ResponseBody
     public RequsetData<List<HashMap<String,Object>>> selectUserinfoByLogin(@RequestParam("user_name") String user_name,@RequestParam("user_password")String user_password) {
@@ -70,6 +88,7 @@ public class MemberUserinfoController {
         memberUserinfo.setUserPassword(DigestUtils.md5DigestAsHex(user_password.getBytes()).toUpperCase());
         memberUserinfo.setEmail(email);
         memberUserinfo.setGmtCreate(new Date());
+        memberUserinfo.setAddressId(null);
         memberUserinfo.setIconId(icon_id);
         memberUserinfo.setLoginTimes(0);
         int count =  memberUserinfoService.insertSelective(memberUserinfo);
@@ -86,12 +105,19 @@ public class MemberUserinfoController {
 
     @RequestMapping("/updateMemberUserinfo")
     @ResponseBody
-    public RequsetData<Integer> updateMemberUserinfo(@RequestParam("user_id") String user_id,@RequestParam(required = false)String user_password) {
+    public RequsetData<Integer> updateMemberUserinfo(@RequestParam("user_id") String user_id,@RequestParam(required = false) String user_name,@RequestParam(required = false) String phone_number,
+                                                     @RequestParam(required = false)String user_password,@RequestParam(required = false) String email,@RequestParam(required = false) String icon_id,
+                                                     @RequestParam(required = false) String address_id) {
         RequsetData<Integer> res = new RequsetData<>();
 
         MemberUserinfo memberUserinfo = new MemberUserinfo();
         memberUserinfo.setUserId(user_id);
-        memberUserinfo.setUserPassword(user_password);
+        memberUserinfo.setUserName(user_name);
+        memberUserinfo.setPhoneNumber(phone_number);
+        memberUserinfo.setUserPassword(user_password == null?null:DigestUtils.md5DigestAsHex(user_password.getBytes()).toUpperCase());
+        memberUserinfo.setEmail(email);
+        memberUserinfo.setAddressId(address_id);
+        memberUserinfo.setIconId(icon_id);
         int count =  memberUserinfoService.updateByPrimaryKeySelective(memberUserinfo);
         if (count == 1) {
             res.setItem(count);

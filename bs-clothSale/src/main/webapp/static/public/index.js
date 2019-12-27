@@ -76,6 +76,15 @@ angular.module("clothSalePublicApp", ['ui.router', 'oc.lazyLoad', 'ui.bootstrap'
                     return e.load(['html/user/shopCart/shopCart.js']);
                 }]
             }
+        }).state('public.user.collect', {
+            url: '/collect',
+            templateUrl: 'html/user/collect/collect.html',
+            controller: 'orderCollectCtrl',
+            resolve: {
+                deps: ['$ocLazyLoad', function (e) {
+                    return e.load(['html/user/collect/collect.js']);
+                }]
+            }
         }).state('public.user.address', {
             url: '/address',
             templateUrl: 'html/user/address/address.html',
@@ -109,7 +118,8 @@ angular.module("clothSalePublicApp", ['ui.router', 'oc.lazyLoad', 'ui.bootstrap'
     .run(['$rootScope', '$state', function ($rootScope, $state, $scope) {
         /* 监听路由的状态变化*/
         $rootScope.$on('$stateChangeSuccess', function (event, toState) {
-            $rootScope.needLoginPage = ['public.user.orderInfo', 'public.user.shopCart'];
+            $rootScope.needLoginPage = ['public.user.orderInfo', 'public.user.shopCart','public.user.collect','public.user.address'
+                ,'public.user.addressEdit'];
             //是否需要登录的界面
             if ($rootScope.needLoginPage.indexOf(toState.name) != -1) {
                 //是否未登录
@@ -121,6 +131,15 @@ angular.module("clothSalePublicApp", ['ui.router', 'oc.lazyLoad', 'ui.bootstrap'
     }])
     .controller("clothSalePublicCtrl", ['$scope', '$http', '$rootScope', '$alert',
         function ($scope, $http, $rootScope, $alert) {
+
+            $scope.getUserInfoBySession = function (){
+                //是否登录
+                if (sessionStorage.getItem("token_user")) {
+                    return JSON.parse(sessionStorage.getItem("user_info"))[0];
+                }else {
+                    return {user_id:''};
+                }
+            }
 
             //生成随机字母数字
             $scope.getUUID = function () {

@@ -92,6 +92,34 @@ public class MemberAddressController {
         return res;
     }
 
+    @RequestMapping("/updateMemberAddress")
+    @ResponseBody
+    public RequsetData<Integer> updateMemberAddress(@RequestParam("address_id") String address_id,@RequestParam(required = false)int area_id,@RequestParam(required = false)String details_address,@RequestParam(required = false)String liaison_person,@RequestParam(required = false)String phone_number,@RequestParam(required = false)String postal_code) {
+
+        RequsetData<Integer> res = new RequsetData<>();
+
+        MemberAddress memberAddress = new MemberAddress();
+        memberAddress.setAddressId(address_id);
+        memberAddress.setAreaId(area_id);
+        memberAddress.setDetailsAddress(details_address);
+        memberAddress.setLiaisonPerson(liaison_person);
+        memberAddress.setPhoneNumber(phone_number);
+        memberAddress.setPostalCode(postal_code);
+
+        int count = memberAddressService.updateByPrimaryKeySelective(memberAddress);
+
+        if (count == 1) {
+            res.setItem(count);
+            res.setMsg("修改成功");
+            res.setSuccess(true);
+        } else {
+            res.setMsg("修改失败");
+            res.setSuccess(false);
+        }
+
+        return res;
+    }
+
     @RequestMapping("/selectSingleMemberAddress")
     @ResponseBody
     public RequsetData<HashMap<String, Object>> selectSingleMemberAddress(@RequestParam("address_id") String address_id) {

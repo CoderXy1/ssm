@@ -22,6 +22,8 @@ public interface IMemberUserinfoService {
 
     List<HashMap<String,Object>> selectUserinfoByLogin(String user_name,String user_password);
 
+    List<HashMap<String,Object>> selectUserinfoByUserId(String user_id);
+
     List<HashMap<String,Object>> selectAllUserinfo(int pageIndex,int pageSize,String user_name);
 
     HashMap<String,Object> selectAllUserinfoNum(String user_name);

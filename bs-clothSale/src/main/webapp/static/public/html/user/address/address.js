@@ -11,9 +11,42 @@ angular.module("clothSalePublicApp")
             user_id : '',
         }
 
-        //是否登录
-        if (sessionStorage.getItem("token_user")) {
-            $scope.user_info = JSON.parse(sessionStorage.getItem("user_info"))[0];
+        $scope.user_info = $scope.getUserInfoBySession();
+
+        $scope.changeAddressId = function(address_id){
+
+            $http({
+                method: "POST",
+                url: '../../memberUserinfo/updateMemberUserinfo',
+                params : {
+                    user_id : $scope.user_info.user_id,
+                    address_id : address_id
+                }
+            }).then(function successCallback(response) {
+                //请求成功
+                $scope.updateLocalUserInfo();
+                $scope.showAlert('成功:',response.data.msg,'success');
+            }, function errorCallback(response) {
+                //请求失败
+            });
+
+        }
+
+        $scope.updateLocalUserInfo = function (){
+            $http({
+                method: "POST",
+                url: '../../memberUserinfo/selectUserinfoByUserId',
+                params : {
+                    user_id : $scope.user_info.user_id,
+                }
+            }).then(function successCallback(response) {
+                //请求成功
+                sessionStorage.setItem("user_info", JSON.stringify(response.data.item)); //修改session默认地址信息
+                $scope.user_info = $scope.getUserInfoBySession();
+                $scope.loadData();
+            }, function errorCallback(response) {
+                //请求失败
+            });
         }
 
         $scope.selectAllAddress = function (){
@@ -42,6 +75,7 @@ angular.module("clothSalePublicApp")
                 }).then(function successCallback(response) {
                     //请求成功
                     $scope.showAlert('提示:',response.data.msg,'success');
+                    $scope.loadData();
                 }, function errorCallback(response) {
                     //请求失败
                 });

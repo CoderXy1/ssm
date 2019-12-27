@@ -177,6 +177,19 @@
     line-height: 60px;
 }
 
+/* 商品详细页goodsItem */
+.add_collect {
+    margin-top: 50px;
+    margin-left: 50px;
+    float: left;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.add_collect i:hover {
+    font-size: 20px;
+}
+
 
 
 

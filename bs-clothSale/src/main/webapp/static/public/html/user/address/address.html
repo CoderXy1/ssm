@@ -26,7 +26,8 @@
             <td class="text-center">
                 <a ui-sref="public.user.addressEdit({address_id:'{{memberAddress.address_id}}'})" class="fa fa-edit" style="cursor: pointer" title="修改"></a>
                 <a href="javascript:void(0)" ng-click="deleteAddress(memberAddress.address_id)" class="fa fa-trash-o" style="cursor: pointer" title="删除"></a>
-                <a href="javascript:void(0)" ng-if="user_info.address_id == memberAddress.address_id">设为默认</a>
+                <a href="javascript:void(0)" ng-click="changeAddressId(memberAddress.address_id)" ng-if="user_info.address_id != memberAddress.address_id">设为默认</a>
+                <span ng-if="user_info.address_id == memberAddress.address_id">默认地址</span>
             </td>
         </tr>
         <tr ng-if="shopCartList.length<=0">
