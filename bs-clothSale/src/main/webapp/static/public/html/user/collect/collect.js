@@ -1,10 +1,10 @@
 angular.module("clothSalePublicApp")
     .controller("orderCollectCtrl", function ($scope, $rootScope, $http) {
 
-        $scope.collectList = [];
+        $scope.collectList = null;
         $scope.selectParams = {
             pageIndex: 0,
-            pageSize: 5,
+            pageSize: 10,
             pageNum: 1,
             totalNum: 0,
             user_id: $scope.getUserInfoBySession().user_id,
@@ -45,6 +45,7 @@ angular.module("clothSalePublicApp")
         }
 
         $scope.loadData = function () {
+            $scope.selectParams.pageIndex = ($scope.selectParams.pageNum - 1) * $scope.selectParams.pageSize;
             $scope.selectAllCollect();
         }
 

@@ -1,0 +1,84 @@
+<div class="main" style="height: 600px;margin-top: 20px">
+    <div class="container-fluid" style="height: 100%;">
+        <div class="card">
+
+            <div class="card-title">
+                <h4><i class="fa fa-list-ul color-info"></i> 订单一览</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 input-group">
+                        <input class="form-control" placeholder="用户名" type="text" ng-model="selectParams.user_name">
+                        <span class="input-group-btn"><button class="btn btn-sm btn-primary" ng-click="searchOrderInfo()"><i
+                                class="ti-search"></i></button></span>
+                    </div>
+                    <div class="col-md-4 input-group">
+                        <select class="form-control" ng-model="selectParams.order_state" ng-change="searchOrderInfo()">
+                            <option value="0">--请选择状态--</option>
+                            <option value="1">待付款</option>
+                            <option value="2">待发货</option>
+                            <option value="3">待收货</option>
+                            <option value="4">待评价</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table-responsive" style="margin-top: 10px">
+                    <table class="table table-bordered table-striped">
+                        <thead class="text-center">
+                        <tr>
+                            <th>序号</th>
+                            <th>图片</th>
+                            <th>商品名</th>
+                            <th>用户名</th>
+                            <th>规格</th>
+                            <th>数量</th>
+                            <th>下单时间</th>
+                            <th style="text-align: center">状态</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="text-center" ng-repeat="orderInfo in orderInfoList">
+                            <th scope="row">{{$index+1}}</th>
+                            <td><img ng-src="data:image/jpg;base64,{{orderInfo.file_content}}"
+                                     style="object-fit: cover;height: 60px;width: 60px"></td>
+                            <td class="color-primary font-weight-bold">{{orderInfo.goods_name}}</td>
+                            <td class="color-info font-weight-bold">{{orderInfo.user_name}}</td>
+                            <td>{{orderInfo.spec_value}}</td>
+                            <td><span style="color: orangered">￥{{orderInfo.total_price}}<span style="margin-left: 10px;color: gray">×{{orderInfo.total_num}}</span></span></td>
+                            <td>{{orderInfo.gmt_create | date:'yyyy/MM/dd HH:mm:ss'}}</td>
+                            <td class="text-center">
+                                <span class="badge badge-danger" style="color: white" ng-if="orderInfo.order_state == 1">待付款</span>
+                                <span class="badge badge-warning" style="color: white" ng-if="orderInfo.order_state == 2">待发货</span>
+                                <span class="badge badge-secondary" style="color: white"
+                                      ng-if="orderInfo.order_state == 3">待收货</span>
+                                <span class="badge badge-success" style="color: white" ng-if="orderInfo.order_state == 4">待评价</span>
+                            </td>
+                        </tr>
+                        <tr ng-if="orderInfoList == null">
+                            <td colspan="15" style="text-align:center">暂无数据</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <ul uib-pagination class="pagination-md pagination-custom float-right" style="margin-right: 20px"
+                        total-items="selectParams.totalNum"
+                        first-text="«"
+                        last-text="»"
+                        previous-text="上一页"
+                        next-text="下一页"
+                        force-ellipses="true"
+                        max-size="5"
+                        ng-change="loadData()"
+                        rotate="true"
+                        ng-model="selectParams.pageNum"
+                        items-per-page="selectParams.pageSize"
+                        class="pagination-sm page-right" boundary-links="true" boundary-link-numbers="true"></ul>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

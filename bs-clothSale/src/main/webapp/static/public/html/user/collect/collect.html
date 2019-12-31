@@ -4,18 +4,44 @@
     <a class="a_cur">我的收藏</a>
 </div>
 <!--{{collectList}}-->
-<div class="row" style="margin-top: 20px;">
+<div style="margin-top: 20px;" ng-if="collectList != null">
+    <div class="row" >
 
-    <div class="col-md-2 text-center" style="margin: 10px;" ng-repeat="collect in collectList">
-        <img ui-sref="public.goodsItem({spu_id:collect.spu_id})"  ng-src="data:image/jpg;base64,{{collect.file_content}}" style="width: 160px;height: 160px;object-fit: cover;cursor: pointer">
-        <div style="width: 160px;border: 1px solid lightgrey">
-            <p style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;color: gray" title="{{collect.goods_name}}">{{collect.goods_name}}</p>
-            <p style="text-align: left;font-size: 14px;color: cornflowerblue">最低价:
-                <span style="color: orangered;font-size: 16px">￥{{collect.low_price}}</span>
-                <i class="fa fa-remove" ng-click="deleteCollect(collect.collect_id)" style="margin-left: 30px;color: darkred;cursor: pointer"  title="删除"></i>
-            </p>
+        <div class="col-md-2 text-center" style="margin: 10px;" ng-repeat="collect in collectList">
+            <img ui-sref="public.goodsItem({spu_id:collect.spu_id})"
+                 ng-src="data:image/jpg;base64,{{collect.file_content}}"
+                 style="width: 160px;height: 160px;object-fit: cover;cursor: pointer">
+            <div style="width: 160px;border: 1px solid lightgrey">
+                <p style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;color: gray"
+                   title="{{collect.goods_name}}">{{collect.goods_name}}</p>
+                <p style="text-align: left;font-size: 14px;color: cornflowerblue">最低价:
+                    <span style="color: orangered;font-size: 16px">￥{{collect.low_price}}</span>
+                    <i class="fa fa-remove" ng-click="deleteCollect(collect.collect_id)"
+                       style="margin-left: 30px;color: darkred;cursor: pointer" title="删除"></i>
+                </p>
+            </div>
         </div>
+
     </div>
 
+    <ul uib-pagination class="pagination-md pagination-custom float-right" style="margin-right: 20px"
+        total-items="selectParams.totalNum"
+        first-text="«"
+        last-text="»"
+        previous-text="上一页"
+        next-text="下一页"
+        force-ellipses="true"
+        max-size="5"
+        ng-change="loadData()"
+        rotate="true"
+        ng-model="selectParams.pageNum"
+        items-per-page="selectParams.pageSize"
+        class="pagination-sm page-right" boundary-links="true" boundary-link-numbers="true"></ul>
 
 </div>
+
+
+<div ng-if="collectList == null" style="width:100%;text-align: center;">
+    <img style="width: 385px;height: 300px" src="./images/no_goods.jpg">
+</div>
+

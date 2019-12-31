@@ -2,13 +2,13 @@ angular.module("clothSalePublicApp")
     .controller("addressCtrl", function ($scope, $rootScope,$http) {
 
         $scope.user_info = [];
-        $scope.memberAddressList = [];
+        $scope.memberAddressList = null;
         $scope.selectParams = {
             pageIndex : 0,
             pageSize : 5,
             pageNum : 1,
             totalNum : 0,
-            user_id : '',
+            user_id : $scope.getUserInfoBySession().user_id,
         }
 
         $scope.user_info = $scope.getUserInfoBySession();

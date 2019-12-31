@@ -4,7 +4,7 @@
     <a class="a_cur">地址管理</a>
     <a ui-sref="public.user.addressEdit" class="a_cur" style="float: right;margin-right: 50px">新增收货地址</a>
 </div>
-<div class="form-group" style="margin-top: 10px;">
+<div class="form-group" style="margin-top: 10px;" ng-if="memberAddressList != null">
     <table class="table table-bordered table-striped">
         <thead class="text-center">
         <tr style="color: #94193f;font-size: 14px;font-weight: normal;">
@@ -30,9 +30,6 @@
                 <span ng-if="user_info.address_id == memberAddress.address_id">默认地址</span>
             </td>
         </tr>
-        <tr ng-if="shopCartList.length<=0">
-            <td colspan="15" style="text-align:center">暂无数据</td>
-        </tr>
         </tbody>
     </table>
 
@@ -50,4 +47,8 @@
         items-per-page="selectParams.pageSize"
         class="pagination-sm page-right" boundary-links="true" boundary-link-numbers="true"></ul>
 
+</div>
+
+<div ng-if="memberAddressList == null" style="width:100%;text-align: center;">
+    <img style="width: 385px;height: 300px" src="./images/no_goods.jpg">
 </div>

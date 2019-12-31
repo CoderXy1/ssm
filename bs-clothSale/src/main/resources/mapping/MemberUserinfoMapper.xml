@@ -152,14 +152,22 @@
   </update>
 
   <select id="selectUserinfoByUserId" resultType="java.util.Map">
-    select u.*,f.file_name,f.file_content from member_userinfo u
+    select u.*,ma.liaison_person,ma.phone_number as liaison_phone,concat(ap.province_name,aa.area_name,ac.city_name,ma.details_address) as address,f.file_name,f.file_content from member_userinfo u
     left join tb_file f on f.file_id = u.icon_id
+    left join member_address ma on ma.address_id = u.address_id
+    left join address_areas aa on aa.area_id = ma.area_id
+    left join address_cities ac on ac.city_id = aa.city_id
+    left join address_provinces ap on ap.province_id = ac.province_id
     where u.user_id = #{user_id}
   </select>
 
   <select id="selectUserinfoByLogin" resultType="java.util.Map">
-    select u.*,f.file_name,f.file_content from member_userinfo u
+    select u.*,ma.liaison_person,ma.phone_number as liaison_phone,concat(ap.province_name,aa.area_name,ac.city_name,ma.details_address) as address,f.file_name,f.file_content from member_userinfo u
     left join tb_file f on f.file_id = u.icon_id
+    left join member_address ma on ma.address_id = u.address_id
+    left join address_areas aa on aa.area_id = ma.area_id
+    left join address_cities ac on ac.city_id = aa.city_id
+    left join address_provinces ap on ap.province_id = ac.province_id
     where (u.user_name = #{user_name} and u.user_password = #{user_password}) or
         (u.phone_number = #{user_name} and u.user_password = #{user_password})
   </select>

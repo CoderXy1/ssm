@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.clothSale.mapper.OrderInfoMapper">
+    <resultMap id="BaseResultMap" type="com.clothSale.model.OrderInfo">
+        <id column="order_info_id" property="orderInfoId" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId" jdbcType="VARCHAR"/>
+        <result column="sku_id" property="skuId" jdbcType="VARCHAR"/>
+        <result column="total_num" property="totalNum" jdbcType="INTEGER"/>
+        <result column="order_address" property="orderAddress" jdbcType="VARCHAR"/>
+        <result column="liaison_person" property="liaisonPerson" jdbcType="VARCHAR"/>
+        <result column="phone_number" property="phoneNumber" jdbcType="VARCHAR"/>
+        <result column="total_price" property="totalPrice" jdbcType="DECIMAL"/>
+        <result column="pay_way" property="payWay" jdbcType="VARCHAR"/>
+        <result column="pay_datetime" property="payDatetime" jdbcType="TIMESTAMP"/>
+        <result column="order_state" property="orderState" jdbcType="INTEGER"/>
+        <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    order_info_id, user_id, sku_id, total_num, order_address, liaison_person, phone_number, 
+    total_price, pay_way, pay_datetime, order_state, gmt_create
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from order_info
+        where order_info_id = #{orderInfoId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from order_info
+    where order_info_id = #{orderInfoId,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.clothSale.model.OrderInfo">
+    insert into order_info (order_info_id, user_id, sku_id, 
+      total_num, order_address, liaison_person, 
+      phone_number, total_price, pay_way, 
+      pay_datetime, order_state, gmt_create
+      )
+    values (#{orderInfoId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{skuId,jdbcType=VARCHAR}, 
+      #{totalNum,jdbcType=INTEGER}, #{orderAddress,jdbcType=VARCHAR}, #{liaisonPerson,jdbcType=VARCHAR}, 
+      #{phoneNumber,jdbcType=VARCHAR}, #{totalPrice,jdbcType=DECIMAL}, #{payWay,jdbcType=VARCHAR}, 
+      #{payDatetime,jdbcType=TIMESTAMP}, #{orderState,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.clothSale.model.OrderInfo">
+        insert into order_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderInfoId != null">
+                order_info_id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="skuId != null">
+                sku_id,
+            </if>
+            <if test="totalNum != null">
+                total_num,
+            </if>
+            <if test="orderAddress != null">
+                order_address,
+            </if>
+            <if test="liaisonPerson != null">
+                liaison_person,
+            </if>
+            <if test="phoneNumber != null">
+                phone_number,
+            </if>
+            <if test="totalPrice != null">
+                total_price,
+            </if>
+            <if test="payWay != null">
+                pay_way,
+            </if>
+            <if test="payDatetime != null">
+                pay_datetime,
+            </if>
+            <if test="orderState != null">
+                order_state,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderInfoId != null">
+                #{orderInfoId,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="skuId != null">
+                #{skuId,jdbcType=VARCHAR},
+            </if>
+            <if test="totalNum != null">
+                #{totalNum,jdbcType=INTEGER},
+            </if>
+            <if test="orderAddress != null">
+                #{orderAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="liaisonPerson != null">
+                #{liaisonPerson,jdbcType=VARCHAR},
+            </if>
+            <if test="phoneNumber != null">
+                #{phoneNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="totalPrice != null">
+                #{totalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="payWay != null">
+                #{payWay,jdbcType=VARCHAR},
+            </if>
+            <if test="payDatetime != null">
+                #{payDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="orderState != null">
+                #{orderState,jdbcType=INTEGER},
+            </if>
+            <if test="gmtCreate != null">
+                #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.clothSale.model.OrderInfo">
+        update order_info
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="skuId != null">
+                sku_id = #{skuId,jdbcType=VARCHAR},
+            </if>
+            <if test="totalNum != null">
+                total_num = #{totalNum,jdbcType=INTEGER},
+            </if>
+            <if test="orderAddress != null">
+                order_address = #{orderAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="liaisonPerson != null">
+                liaison_person = #{liaisonPerson,jdbcType=VARCHAR},
+            </if>
+            <if test="phoneNumber != null">
+                phone_number = #{phoneNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="totalPrice != null">
+                total_price = #{totalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="payWay != null">
+                pay_way = #{payWay,jdbcType=VARCHAR},
+            </if>
+            <if test="payDatetime != null">
+                pay_datetime = #{payDatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="orderState != null">
+                order_state = #{orderState,jdbcType=INTEGER},
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where order_info_id = #{orderInfoId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.clothSale.model.OrderInfo">
+    update order_info
+    set user_id = #{userId,jdbcType=VARCHAR},
+      sku_id = #{skuId,jdbcType=VARCHAR},
+      total_num = #{totalNum,jdbcType=INTEGER},
+      order_address = #{orderAddress,jdbcType=VARCHAR},
+      liaison_person = #{liaisonPerson,jdbcType=VARCHAR},
+      phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      total_price = #{totalPrice,jdbcType=DECIMAL},
+      pay_way = #{payWay,jdbcType=VARCHAR},
+      pay_datetime = #{payDatetime,jdbcType=TIMESTAMP},
+      order_state = #{orderState,jdbcType=INTEGER},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP}
+    where order_info_id = #{orderInfoId,jdbcType=VARCHAR}
+  </update>
+
+
+    <select id="selectAllOrderInfoByUserId" resultType="java.util.Map">
+        select oi.*,mu.user_name,spu.goods_name,f.file_content,GROUP_CONCAT(sv.spec_value) as spec_value from order_info oi
+        LEFT JOIN goods_sku sku on sku.sku_id = oi.sku_id
+        LEFT JOIN goods_spu spu on sku.spu_id = spu.spu_id
+        LEFT JOIN goods_sku_spec_value ssv on ssv.sku_id = sku.sku_id
+        LEFT JOIN goods_spec_value sv on sv.spec_value_id = ssv.spec_value_id
+        LEFT JOIN goods_brand b on b.brand_id = spu.brand_id
+        LEFT JOIN goods_category c on c.category_id = spu.category_id
+        LEFT JOIN tb_file f on f.file_id = spu.spu_icon_id
+        LEFT JOIN member_userinfo mu on mu.user_id = oi.user_id
+        where 1 = 1
+        and oi.order_state != 5
+        <if test="user_id != null and user_id != ''">
+            and oi.user_id = #{user_id}
+        </if>
+        <if test="user_name != null and user_name != ''">
+            and mu.user_name like concat('%',#{user_name},'%')
+        </if>
+        <if test="order_state != 0">
+            and oi.order_state = #{order_state}
+        </if>
+        GROUP BY oi.order_info_id
+        order by oi.gmt_create desc limit #{pageIndex},#{pageSize}
+    </select>
+
+    <select id="selectAllOrderInfoNumByUserId" resultType="java.util.Map">
+        select count(*) as total from
+        ( select oi.order_info_id from order_info oi
+        LEFT JOIN goods_sku sku on sku.sku_id = oi.sku_id
+        LEFT JOIN goods_spu spu on sku.spu_id = spu.spu_id
+        LEFT JOIN goods_sku_spec_value ssv on ssv.sku_id = sku.sku_id
+        LEFT JOIN goods_spec_value sv on sv.spec_value_id = ssv.spec_value_id
+        LEFT JOIN goods_brand b on b.brand_id = spu.brand_id
+        LEFT JOIN goods_category c on c.category_id = spu.category_id
+        LEFT JOIN tb_file f on f.file_id = spu.spu_icon_id
+        LEFT JOIN member_userinfo mu on mu.user_id = oi.user_id
+        where 1 = 1
+        and oi.order_state != 5
+        <if test="user_id != null and user_id != ''">
+            and oi.user_id = #{user_id}
+        </if>
+        <if test="user_name != null and user_name != ''">
+            and mu.user_name like concat('%',#{user_name},'%')
+        </if>
+        <if test="order_state != 0">
+            and oi.order_state = #{order_state}
+        </if>
+        GROUP BY oi.order_info_id
+        ) ta
+    </select>
+
+</mapper>

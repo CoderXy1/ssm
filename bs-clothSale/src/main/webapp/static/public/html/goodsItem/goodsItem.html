@@ -1,5 +1,112 @@
 <div class="line_divider"></div>
 <div class="w1200">
+
+    <!-- modal:购物对话框 -->
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <!-- 确认信息 -->
+            <div class="modal-content" ng-if="payState == 0">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="picModalModalLabel">立即购买</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group text-center">
+                        <label style="font-size: 14px;font-weight: bold;color: orangered">{{spuInfo.goods_name}}</label>
+                        <img ng-src="data:image/jpg;base64,{{spuInfo.file_content}}"
+                             title="{{spuInfo.goods_name}}" style="width: 200px;height: 200px">
+                    </div>
+                    <div class="form-group">
+                        所选规格 : <label style="font-size: 16px;font-weight: bold;color: deepskyblue">{{goodsSku[0].spec_value}}<span
+                            style="font-size: 16px;color: gray">×{{total_num}}</span></label><br/>
+                        应付金额 : <label style="font-size: 25px;font-weight: bold;color: orangered">￥{{total_num *
+                        goodsSku[0].price_sale}}</label><br/>
+                        默认收货地址 : <label style="font-size: 16px;color: grey">{{user_info.address}}</label><i class="fa fa-edit" ng-click="changeAddress(1)" title="修改地址" style="margin-left: 20px;color: red"></i><br/>
+                        联系人 : <label style="font-size: 16px;color: grey">{{user_info.liaison_person}}</label><br/>
+                        联系人电话 : <label style="font-size: 16px;color: grey">{{user_info.liaison_phone}}</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-danger" ng-click="insertOrderInfo()">确认购买</button>
+                </div>
+            </div>
+            <!-- 修改地址 -->
+            <div class="modal-content" ng-if="isChangeAddress == 1">
+                <div class="modal-header">
+                    <h5 class="modal-title">修改地址</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered table-striped" style="font-size: 10px">
+                        <thead class="text-center">
+                        <tr style="color: #94193f;font-weight: normal;">
+                            <th>序号</th>
+                            <th>收货联系人</th>
+                            <th>收货联系电话</th>
+                            <th>邮编</th>
+                            <th>收货地址</th>
+                            <th class="text-center">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="text-center" ng-repeat="memberAddress in memberAddressList">
+                            <th scope="row">{{$index+1}}</th>
+                            <td>{{memberAddress.liaison_person}}</td>
+                            <td>{{memberAddress.phone_number}}</td>
+                            <td>{{memberAddress.postal_code}}</td>
+                            <td>{{memberAddress.area_name}}</td>
+                            <td class="text-center">
+                                <a href="javascript:void(0)" ng-click="changeAddressId(memberAddress.address_id)" ng-if="user_info.address_id != memberAddress.address_id">设为默认</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" ng-click="changeAddress(0)">返回</button>
+                </div>
+            </div>
+            <!-- 付款方式 -->
+            <div class="modal-content" ng-if="payState == 1">
+                <div class="modal-header">
+                    <h5 class="modal-title">付款</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-3 radio radio-info">
+                            <input id="pay_way1" type="radio" ng-model="payGoodsParams.pay_way" value='1'>
+                            <label class="font-weight-light" for="pay_way1"
+                                   style="line-height: 16px">
+                                支付宝
+                            </label>
+                        </div>
+                        <div class="col-md-3 radio radio-info">
+                            <input id="pay_way2" type="radio" ng-model="payGoodsParams.pay_way" value='2'>
+                            <label class="font-weight-light" for="pay_way2"
+                                   style="line-height: 16px">
+                                微信
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">稍后支付</button>
+                    <button type="submit" class="btn btn-danger" ng-click="payGoods()">立即支付</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="con_content">
         <!--提交区域-->
         <div class="con_top">
@@ -56,7 +163,8 @@
                     </div>
                 </div>
                 <div class="add_collect" ng-click="insertOrderCollect()">
-                    <i class="fa fa-star" style="color: orangered;width: 18px;"></i><sapn>加入收藏</sapn>
+                    <i class="fa fa-star" style="color: orangered;width: 18px;"></i>
+                    <sapn>加入收藏</sapn>
                 </div>
             </div>
             <div class="con_top_r">
@@ -110,8 +218,12 @@
                             </div>
                         </div>
                         <div class="row buy_btns">
-                            <button type="button" class="btn btn-outline-danger col-md-3 btn_buy">立即购买</button>
-                            <button type="button" class="btn col-md-3 btn_cart" ng-click="addCart()"><i class="fa fa-cart-plus color-white"></i> 加入购物车</button>
+                            <button type="button" class="btn btn-outline-danger col-md-3 btn_buy" ng-click="buyGoods()">
+                                立即购买
+                            </button>
+                            <button type="button" class="btn col-md-3 btn_cart" ng-click="addCart()"><i
+                                    class="fa fa-cart-plus color-white"></i> 加入购物车
+                            </button>
                         </div>
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 angular.module("clothSalePublicApp")
     .controller("shopCartCtrl", function ($scope, $rootScope,$http) {
 
-        $scope.shopCartList = [];
+        $scope.shopCartList = null;
         $scope.totalPrice = 0;
         $scope.selectCartList = {};
 

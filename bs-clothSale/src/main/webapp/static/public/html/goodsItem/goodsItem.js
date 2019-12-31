@@ -4,6 +4,16 @@ angular.module("clothSalePublicApp")
         $scope.spu_id = $stateParams.spu_id == undefined ? '' : $stateParams.spu_id;
         $scope.spuInfo = {};
         $scope.total_num = 1;
+        $scope.payState = 0;
+        $scope.isChangeAddress = 0;
+        $scope.memberAddressList = [];
+        $scope.payGoodsParams = {
+            order_info_id : '',
+            pay_way : 1,
+            order_state : 2
+        }
+        $scope.order_info_id = '';
+        $scope.user_info = $scope.getUserInfoBySession();
         $scope.specList = {
             spec_id: [],
             spec_name: [],
@@ -12,6 +22,69 @@ angular.module("clothSalePublicApp")
         $scope.selectSpecValue = [];
         $scope.goodsSku = '';
 
+        $scope.changeAddress = function (state){
+            if (state == 1){
+                $scope.isChangeAddress = 1;
+                $scope.payState = -1;
+            }else{
+                $scope.isChangeAddress = 0;
+                $scope.payState = 0;
+            }
+        }
+
+        $scope.changeAddressId = function(address_id){
+
+            $http({
+                method: "POST",
+                url: '../../memberUserinfo/updateMemberUserinfo',
+                params : {
+                    user_id : $scope.user_info.user_id,
+                    address_id : address_id
+                }
+            }).then(function successCallback(response) {
+                //请求成功
+                $scope.updateLocalUserInfo();
+                $scope.showAlert('成功:',response.data.msg,'success');
+            }, function errorCallback(response) {
+                //请求失败
+            });
+
+        }
+
+        $scope.updateLocalUserInfo = function (){
+            $http({
+                method: "POST",
+                url: '../../memberUserinfo/selectUserinfoByUserId',
+                params : {
+                    user_id : $scope.user_info.user_id,
+                }
+            }).then(function successCallback(response) {
+                //请求成功
+                sessionStorage.setItem("user_info", JSON.stringify(response.data.item)); //修改session默认地址信息
+                $scope.user_info = $scope.getUserInfoBySession();
+                $scope.selectAllAddress();
+            }, function errorCallback(response) {
+                //请求失败
+            });
+        }
+
+        $scope.selectAllAddress = function (){
+            $http({
+                method: "POST",
+                url: '../../memberAddress/selectAllMemberAddress',
+                params : {
+                    pageIndex : 0,
+                    pageSize : 1000,
+                    user_id : $scope.getUserInfoBySession().user_id,
+                }
+            }).then(function successCallback(response) {
+                //请求成功
+                $scope.memberAddressList = response.data.item;
+            }, function errorCallback(response) {
+                //请求失败
+            });
+        }
+
         $scope.changeSelectSpecValue = function (index, selectSpecValue) {
             if ($scope.selectSpecValue[index] == selectSpecValue){
                 $scope.selectSpecValue[index] = null;
@@ -19,6 +92,66 @@ angular.module("clothSalePublicApp")
                 $scope.selectSpecValue[index] = selectSpecValue;
             }
             $scope.selectSkuBySpecSpu();
+        }
+
+        $scope.buyGoods = function (){
+            if (sessionStorage.getItem("token_user")){
+                if ($scope.goodsSku != null && $scope.goodsSku != ''){
+                    if ($scope.goodsSku[0].stock < $scope.total_num){
+                        $scope.showAlert('错误','库存不足，请重新选择数量','danger');
+                    }else {
+                        $('#addModal').modal('show');
+                    }
+                }else {
+                    $scope.showAlert('提示','暂无该规格商品','danger');
+                }
+            }else {
+                $state.go('public.login',{url:'public.goodsItem',extraData:'{"spu_id":"'+$stateParams.spu_id + '"}'});
+            }
+        }
+
+        $scope.insertOrderInfo = function (){
+            $scope.order_info_id = $scope.getUUID();
+            $http({
+                method: "POST",
+                url: '../../OrderInfo/insertOrderInfo',
+                params: {
+                    order_info_id : $scope.order_info_id,
+                    user_id : $scope.getUserInfoBySession().user_id,
+                    sku_id : $scope.goodsSku[0].sku_id,
+                    total_num : $scope.total_num,
+                    total_price : $scope.total_num * $scope.goodsSku[0].price_sale,
+                    stock : $scope.goodsSku[0].stock,
+                    order_address : $scope.user_info.address,
+                    phone_number : $scope.user_info.liaison_phone,
+                    liaison_person : $scope.user_info.liaison_person
+                }
+            }).then(function successCallback(response) {
+                //请求成功
+                $scope.showAlert('提示',response.data.msg,'success');
+                $scope.payGoodsParams.order_info_id = $scope.order_info_id;
+                $scope.payState = 1;
+            }, function errorCallback(response) {
+                //请求失败
+                $scope.showAlert('错误',response.data.msg,'danger');
+            });
+        }
+
+        //付款
+        $scope.payGoods = function (){
+            $http({
+                method: "POST",
+                url: '../../OrderInfo/updateOrderInfo',
+                params: $scope.payGoodsParams
+            }).then(function successCallback(response) {
+                //请求成功
+                $scope.showAlert('提示','付款成功，请等待发货','success');
+                $('#addModal').modal('hide');
+                $scope.payState = 0;
+            }, function errorCallback(response) {
+                //请求失败
+                $scope.showAlert('错误',response.data.msg,'danger');
+            });
         }
 
         $scope.addCart = function (){
@@ -125,6 +258,7 @@ angular.module("clothSalePublicApp")
 
         $scope.loadData = function () {
             $scope.selectSingleSpu();
+            $scope.selectAllAddress();
         };
 
         $scope.loadData();

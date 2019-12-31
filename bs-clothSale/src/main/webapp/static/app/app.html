@@ -55,28 +55,13 @@
                     </ul>
                 </li>
 
-                <li class="label">Features</li>
-                <li><a class="sidebar-sub-toggle"><i class="ti-layout"></i> UI Elements <span
-                        class="sidebar-collapse-icon ti-angle-down"></span></a>
-                    <ul>
-                        <li ng-class="{'active': info.currentPage == 10}" ng-click="changeActive(10)"><a>Typography</a>
-                        </li>
-                        <li ng-class="{'active': info.currentPage == 11}" ng-click="changeActive(11)"><a>Alerts</a></li>
-                        <li ng-class="{'active': info.currentPage == 12}" ng-click="changeActive(12)"><a>Button</a></li>
-                        <li ng-class="{'active': info.currentPage == 13}" ng-click="changeActive(13)"><a>Dropdown</a>
-                        </li>
-                    </ul>
+                <li class="label">订单管理</li>
+                <li ui-sref-active="active">
+                    <a ui-sref="app.orderInfo"><i class="fa fa-list-ul"></i>订单一览</a>
                 </li>
-                <li><a class="sidebar-sub-toggle"><i class="ti-panel"></i> Components <span
-                        class="sidebar-collapse-icon ti-angle-down"></span></a>
-                    <ul>
-                        <li ng-class="{'active': info.currentPage == 14}" ng-click="changeActive(14)"><a>Calendar</a>
-                        </li>
-                        <li ng-class="{'active': info.currentPage == 15}" ng-click="changeActive(15)"><a>Carousel</a>
-                        </li>
-                    </ul>
+                <li ui-sref-active="active">
+                    <a ><i class="fa fa-sliders"></i>订单发货</a>
                 </li>
-
             </ul>
         </div>
     </div>

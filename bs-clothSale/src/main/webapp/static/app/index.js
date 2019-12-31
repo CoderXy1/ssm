@@ -121,6 +121,15 @@ angular.module("clothSaleApp", ['ui.router', 'oc.lazyLoad', 'ui.bootstrap', 'mgc
                     return e.load(['member/user/address/address.js']);
                 }]
             }
+        }).state('app.orderInfo', {
+            url: '/orderInfo',
+            templateUrl: 'order/orderInfo.html',
+            controller: 'orderInfoCtrl',
+            resolve: {
+                deps: ['$ocLazyLoad', function (e) {
+                    return e.load(['order/orderInfo.js']);
+                }]
+            }
         });
     })
     .run(['$rootScope','$state',function($rootScope,$state) {

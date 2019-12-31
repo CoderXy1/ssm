@@ -1,14 +1,15 @@
-angular.module("clothSalePublicApp")
-    .controller("orderInfoCtrl", function ($scope, $rootScope,$http) {
+angular.module("clothSaleApp")
+    .controller("orderInfoCtrl", function ($scope, $rootScope,$state,$http) {
 
         $scope.orderInfoList = null;
         $scope.selectParams = {
             pageIndex: 0,
-            pageSize: 3,
+            pageSize: 10,
             pageNum: 1,
             totalNum: 0,
-            order_state : 0,
-            user_id : $scope.getUserInfoBySession().user_id,
+            order_state : '0',
+            user_id : '',
+            user_name : '',
         }
 
         $scope.changeOrderState = function (order_state) {
@@ -30,6 +31,11 @@ angular.module("clothSalePublicApp")
                 //请求失败
             });
 
+        }
+
+        $scope.searchOrderInfo = function (){
+            $scope.selectParams.pageIndex = 0;
+            $scope.selectAllOrderInfo();
         }
 
         $scope.loadData = function () {
