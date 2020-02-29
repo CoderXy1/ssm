@@ -11,7 +11,7 @@
  Target Server Version : 50562
  File Encoding         : 65001
 
- Date: 30/12/2019 12:02:03
+ Date: 29/02/2020 09:52:35
 */
 
 SET NAMES utf8mb4;
@@ -3832,13 +3832,13 @@ CREATE TABLE `goods_sku`  (
 -- Records of goods_sku
 -- ----------------------------
 INSERT INTO `goods_sku` VALUES ('17f42457-12fd-4435-82b2-3119896800f0', 75.00, 100.00, 20, '36b4e3ae-3eb5-4e33-962d-ff645cd04642', '2019-12-10 14:32:44', NULL);
-INSERT INTO `goods_sku` VALUES ('7522e9b5-93d6-4b1c-9e9f-ad2dfef4d5ce', 80.00, 100.00, 9, 'ea64134a-ac26-40f4-9370-c5f85c39f827', '2019-12-10 15:34:26', NULL);
-INSERT INTO `goods_sku` VALUES ('80648133-f2db-4115-db36-48b6577c6f9f', 480.00, 550.00, 21, '10faa11a-5307-472d-e92b-be83137ffe4e', '2019-12-10 16:01:58', NULL);
+INSERT INTO `goods_sku` VALUES ('7522e9b5-93d6-4b1c-9e9f-ad2dfef4d5ce', 80.00, 100.00, 7, 'ea64134a-ac26-40f4-9370-c5f85c39f827', '2019-12-10 15:34:26', NULL);
+INSERT INTO `goods_sku` VALUES ('80648133-f2db-4115-db36-48b6577c6f9f', 480.00, 550.00, 20, '10faa11a-5307-472d-e92b-be83137ffe4e', '2019-12-10 16:01:58', NULL);
 INSERT INTO `goods_sku` VALUES ('8d0a5fe1-868c-47a4-b44f-a3f57f4da8d7', 75.00, 90.00, 10, 'c2b2c4f6-bbf1-405d-d56b-2f562e113d31', '2019-12-10 15:27:20', NULL);
-INSERT INTO `goods_sku` VALUES ('a26c48f1-be68-41f8-a7d7-2a86aa039a73', 100.00, 120.00, 10, '2e938637-151a-47de-8c4c-67a4ea0cf3d0', '2019-12-10 15:56:13', NULL);
-INSERT INTO `goods_sku` VALUES ('c07d3a09-661b-4a9f-f919-998d0a9c4540', 40.00, 60.00, 24, '6332fbc4-0f65-4060-8745-9627925bc6b4', '2019-12-10 15:59:13', NULL);
+INSERT INTO `goods_sku` VALUES ('a26c48f1-be68-41f8-a7d7-2a86aa039a73', 100.00, 120.00, 9, '2e938637-151a-47de-8c4c-67a4ea0cf3d0', '2019-12-10 15:56:13', NULL);
+INSERT INTO `goods_sku` VALUES ('c07d3a09-661b-4a9f-f919-998d0a9c4540', 40.00, 60.00, 23, '6332fbc4-0f65-4060-8745-9627925bc6b4', '2019-12-10 15:59:13', NULL);
 INSERT INTO `goods_sku` VALUES ('c08f2f00-b6dd-4776-9fb2-b6eeba2791a2', 89.00, 100.00, 10, 'c2b2c4f6-bbf1-405d-d56b-2f562e113d31', '2019-12-10 15:51:44', NULL);
-INSERT INTO `goods_sku` VALUES ('eb27c498-2bfb-4c4e-b70f-73f3fb55c712', 80.00, 120.00, 10, '8ee7311a-aeb5-4602-e945-0b3c6503d327', '2019-12-10 15:53:09', NULL);
+INSERT INTO `goods_sku` VALUES ('eb27c498-2bfb-4c4e-b70f-73f3fb55c712', 80.00, 120.00, 7, '8ee7311a-aeb5-4602-e945-0b3c6503d327', '2019-12-10 15:53:09', NULL);
 
 -- ----------------------------
 -- Table structure for goods_sku_spec_value
@@ -4177,6 +4177,8 @@ CREATE TABLE `member_address`  (
 -- ----------------------------
 INSERT INTO `member_address` VALUES ('026a073b-cf51-4afe-8f32-9f5eb03e7737', 310101, 'XXX街道555号101', '余老师', '18323550000', '200000');
 INSERT INTO `member_address` VALUES ('0f173ccb-8309-4cd1-ee6f-ef4be177d0c6', 500102, 'XXX街道666号403', '余老师', '18323550001', '404501');
+INSERT INTO `member_address` VALUES ('1dbef19a-df5f-4261-ab4a-8f000c958cdc', 110101, 'XXX街道777号402', '张先生', '15632150000', '000000');
+INSERT INTO `member_address` VALUES ('585800e2-9351-4e82-840d-f5e43956a7da', 430581, 'XXX街道333号405', '张先生', '15632150000', '400000');
 
 -- ----------------------------
 -- Table structure for member_admin
@@ -4198,7 +4200,7 @@ CREATE TABLE `member_admin`  (
 -- ----------------------------
 -- Records of member_admin
 -- ----------------------------
-INSERT INTO `member_admin` VALUES ('123', 'admin', '21232F297A57A5A743894A0E4A801FC3', '管理员1', '123456', 'aa598905-d970-4633-d64d-4d1d8d9fc552', '2019-12-30 11:53:21', '2019-12-12 11:05:33', 32);
+INSERT INTO `member_admin` VALUES ('123', 'admin', '21232F297A57A5A743894A0E4A801FC3', '管理员1', '123456', 'aa598905-d970-4633-d64d-4d1d8d9fc552', '2019-12-31 11:22:07', '2019-12-12 11:05:33', 34);
 
 -- ----------------------------
 -- Table structure for member_certification
@@ -4237,7 +4239,8 @@ CREATE TABLE `member_userinfo`  (
 -- ----------------------------
 -- Records of member_userinfo
 -- ----------------------------
-INSERT INTO `member_userinfo` VALUES ('7c4eb02e-3a9a-4ce1-b8e2-8338d9008b7e', 'Avecle', '18556540000', '202CB962AC59075B964B07152D234B70', '116201@qq.com', 'aa598905-d970-4633-d64d-4d1d8d9fc552', '2019-12-18 14:37:48', '0f173ccb-8309-4cd1-ee6f-ef4be177d0c6', '2019-12-30 10:07:20', 26);
+INSERT INTO `member_userinfo` VALUES ('4bfeff5f-7e68-4ccf-9fef-aa518e257ecd', 'cool', '18324562020', 'B1F4F9A523E36FD969F4573E25AF4540', '163@qq.com', 'aa598905-d970-4633-d64d-4d1d8d9fc552', '2019-12-31 10:01:32', '1dbef19a-df5f-4261-ab4a-8f000c958cdc', '2019-12-31 10:33:52', 3);
+INSERT INTO `member_userinfo` VALUES ('7c4eb02e-3a9a-4ce1-b8e2-8338d9008b7e', 'Avecle', '18556540000', '202CB962AC59075B964B07152D234B70', '116201@qq.com', 'aa598905-d970-4633-d64d-4d1d8d9fc552', '2019-12-18 14:37:48', '0f173ccb-8309-4cd1-ee6f-ef4be177d0c6', '2019-12-31 11:18:11', 29);
 
 -- ----------------------------
 -- Table structure for member_userinfo_address
@@ -4249,13 +4252,15 @@ CREATE TABLE `member_userinfo_address`  (
   `address_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
   `gmt_create` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`info_address_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of member_userinfo_address
 -- ----------------------------
 INSERT INTO `member_userinfo_address` VALUES (3, '7c4eb02e-3a9a-4ce1-b8e2-8338d9008b7e', '0f173ccb-8309-4cd1-ee6f-ef4be177d0c6', '2019-12-25 16:16:50');
 INSERT INTO `member_userinfo_address` VALUES (4, '7c4eb02e-3a9a-4ce1-b8e2-8338d9008b7e', '026a073b-cf51-4afe-8f32-9f5eb03e7737', '2019-12-25 16:24:11');
+INSERT INTO `member_userinfo_address` VALUES (6, '4bfeff5f-7e68-4ccf-9fef-aa518e257ecd', '585800e2-9351-4e82-840d-f5e43956a7da', '2019-12-31 10:22:16');
+INSERT INTO `member_userinfo_address` VALUES (7, '4bfeff5f-7e68-4ccf-9fef-aa518e257ecd', '1dbef19a-df5f-4261-ab4a-8f000c958cdc', '2019-12-31 10:53:07');
 
 -- ----------------------------
 -- Table structure for order_cart
@@ -4275,8 +4280,9 @@ CREATE TABLE `order_cart`  (
 -- Records of order_cart
 -- ----------------------------
 INSERT INTO `order_cart` VALUES ('1c5feaf3-24f7-4b95-d4a3-278e771bb547', '7c4eb02e-3a9a-4ce1-b8e2-8338d9008b7e', '80648133-f2db-4115-db36-48b6577c6f9f', 1, 1, '2019-12-18 16:28:30');
+INSERT INTO `order_cart` VALUES ('5ce8a586-dd76-407a-b041-411762ed2e24', '4bfeff5f-7e68-4ccf-9fef-aa518e257ecd', 'eb27c498-2bfb-4c4e-b70f-73f3fb55c712', 3, 1, '2019-12-31 10:23:01');
 INSERT INTO `order_cart` VALUES ('6a9a5921-842c-44a7-9719-1d38d6b912bf', '7c4eb02e-3a9a-4ce1-b8e2-8338d9008b7e', 'eb27c498-2bfb-4c4e-b70f-73f3fb55c712', 1, 1, '2019-12-18 16:27:46');
-INSERT INTO `order_cart` VALUES ('787d76fb-d463-4132-8437-32c9dc848848', '7c4eb02e-3a9a-4ce1-b8e2-8338d9008b7e', 'c07d3a09-661b-4a9f-f919-998d0a9c4540', 1, 1, '2019-12-25 10:11:05');
+INSERT INTO `order_cart` VALUES ('787d76fb-d463-4132-8437-32c9dc848848', '7c4eb02e-3a9a-4ce1-b8e2-8338d9008b7e', 'c07d3a09-661b-4a9f-f919-998d0a9c4540', 2, 1, '2019-12-25 10:11:05');
 INSERT INTO `order_cart` VALUES ('b649f8dd-47e0-4217-8631-9ebc9b7de6d1', '7c4eb02e-3a9a-4ce1-b8e2-8338d9008b7e', '7522e9b5-93d6-4b1c-9e9f-ad2dfef4d5ce', 3, 1, '2019-12-25 10:11:01');
 
 -- ----------------------------
@@ -4294,9 +4300,11 @@ CREATE TABLE `order_collect`  (
 -- ----------------------------
 -- Records of order_collect
 -- ----------------------------
+INSERT INTO `order_collect` VALUES ('265b4c1f-3735-4236-b18d-1473bb70e11e', '4bfeff5f-7e68-4ccf-9fef-aa518e257ecd', '10faa11a-5307-472d-e92b-be83137ffe4e', '2019-12-31 10:23:22');
 INSERT INTO `order_collect` VALUES ('535a662c-83fe-4090-e69a-fd798e81b907', '7c4eb02e-3a9a-4ce1-b8e2-8338d9008b7e', '8ee7311a-aeb5-4602-e945-0b3c6503d327', '2019-12-27 10:36:52');
 INSERT INTO `order_collect` VALUES ('b0171619-0a98-446a-bc53-5a0d378aa60d', '7c4eb02e-3a9a-4ce1-b8e2-8338d9008b7e', '10faa11a-5307-472d-e92b-be83137ffe4e', '2019-12-27 10:35:24');
 INSERT INTO `order_collect` VALUES ('c625fe42-93bf-4714-822a-265c475c6fa0', '7c4eb02e-3a9a-4ce1-b8e2-8338d9008b7e', '6332fbc4-0f65-4060-8745-9627925bc6b4', '2019-12-27 10:54:20');
+INSERT INTO `order_collect` VALUES ('fdad3e62-0b1b-413a-bad5-66e9f199f155', '4bfeff5f-7e68-4ccf-9fef-aa518e257ecd', '8ee7311a-aeb5-4602-e945-0b3c6503d327', '2019-12-31 10:23:30');
 
 -- ----------------------------
 -- Table structure for order_comment
@@ -4322,6 +4330,9 @@ CREATE TABLE `order_info`  (
   `user_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
   `sku_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
   `total_num` int(11) NULL DEFAULT NULL,
+  `order_address` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
+  `liaison_person` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `phone_number` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
   `total_price` decimal(10, 2) NULL DEFAULT NULL,
   `pay_way` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '支付方式',
   `pay_datetime` datetime NULL DEFAULT NULL,
@@ -4333,11 +4344,13 @@ CREATE TABLE `order_info`  (
 -- ----------------------------
 -- Records of order_info
 -- ----------------------------
-INSERT INTO `order_info` VALUES ('60fbfd1f-3e15-4566-8839-e4a8ecd8a665', '7c4eb02e-3a9a-4ce1-b8e2-8338d9008b7e', '80648133-f2db-4115-db36-48b6577c6f9f', 1, 550.00, '1', '2019-12-30 11:23:37', 2, '2019-12-30 11:23:29');
-INSERT INTO `order_info` VALUES ('7d88a620-fb48-4b20-be26-ef488fe97906', '7c4eb02e-3a9a-4ce1-b8e2-8338d9008b7e', 'c07d3a09-661b-4a9f-f919-998d0a9c4540', 1, 60.00, NULL, NULL, 1, '2019-12-30 10:59:09');
-INSERT INTO `order_info` VALUES ('9371ac81-18d7-49b4-f192-c3a9e7f53b55', '7c4eb02e-3a9a-4ce1-b8e2-8338d9008b7e', 'a26c48f1-be68-41f8-a7d7-2a86aa039a73', 2, 240.00, '2', '2019-12-30 11:51:02', 2, '2019-12-30 11:50:59');
-INSERT INTO `order_info` VALUES ('c66b3eaa-71f6-400d-a5f3-ccaa75df69e8', '7c4eb02e-3a9a-4ce1-b8e2-8338d9008b7e', 'eb27c498-2bfb-4c4e-b70f-73f3fb55c712', 2, 240.00, NULL, NULL, 1, '2019-12-30 10:59:46');
-INSERT INTO `order_info` VALUES ('fd344eed-9971-4544-a313-edbfdb60238e', '7c4eb02e-3a9a-4ce1-b8e2-8338d9008b7e', '7522e9b5-93d6-4b1c-9e9f-ad2dfef4d5ce', 1, 100.00, NULL, NULL, 1, '2019-12-30 11:15:39');
+INSERT INTO `order_info` VALUES ('0a2ef9f0-d96d-4cb2-b564-47181ff4ab04', '7c4eb02e-3a9a-4ce1-b8e2-8338d9008b7e', '7522e9b5-93d6-4b1c-9e9f-ad2dfef4d5ce', 1, '重庆市涪陵区市辖区XXX街道666号403', '余老师', '18323550001', 100.00, NULL, NULL, 1, '2019-12-31 11:18:55');
+INSERT INTO `order_info` VALUES ('24d79e9c-ba47-4559-b02d-60c7e5560c03', '7c4eb02e-3a9a-4ce1-b8e2-8338d9008b7e', 'eb27c498-2bfb-4c4e-b70f-73f3fb55c712', 1, '上海市黄浦区市辖区XXX街道555号101', '余老师', '18323550000', 120.00, '1', '2019-12-31 11:18:34', 2, '2019-12-31 11:18:31');
+INSERT INTO `order_info` VALUES ('cc931448-3c6e-470f-dcff-6d8acb3f148d', '7c4eb02e-3a9a-4ce1-b8e2-8338d9008b7e', 'a26c48f1-be68-41f8-a7d7-2a86aa039a73', 1, '重庆市涪陵区市辖区XXX街道666号403', '余老师', '18323550001', 120.00, '2', '2019-12-31 11:19:10', 2, '2019-12-31 11:19:07');
+INSERT INTO `order_info` VALUES ('d0b3ae1c-7318-4711-a28a-73eb0c380c8e', '7c4eb02e-3a9a-4ce1-b8e2-8338d9008b7e', 'c07d3a09-661b-4a9f-f919-998d0a9c4540', 1, '上海市黄浦区市辖区XXX街道555号101', '余老师', '18323550000', 60.00, NULL, NULL, 1, '2019-12-31 11:19:29');
+INSERT INTO `order_info` VALUES ('e6b11954-949c-4595-f323-74d7a378a604', '4bfeff5f-7e68-4ccf-9fef-aa518e257ecd', '7522e9b5-93d6-4b1c-9e9f-ad2dfef4d5ce', 1, '湖南省武冈市邵阳市XXX街道333号405', '张先生', '15632150000', 100.00, '1', '2019-12-31 11:16:54', 2, '2019-12-31 11:16:51');
+INSERT INTO `order_info` VALUES ('f296422c-d214-4f37-87e7-6eea5259b3be', '4bfeff5f-7e68-4ccf-9fef-aa518e257ecd', 'eb27c498-2bfb-4c4e-b70f-73f3fb55c712', 2, '北京市东城区市辖区XXX街道777号402', '张先生', '15632150000', 240.00, NULL, NULL, 1, '2019-12-31 11:17:38');
+INSERT INTO `order_info` VALUES ('f46d78f3-e0ff-41f4-9279-64c494c4c2cc', '7c4eb02e-3a9a-4ce1-b8e2-8338d9008b7e', '80648133-f2db-4115-db36-48b6577c6f9f', 1, '重庆市涪陵区市辖区XXX街道666号403', '余老师', '18323550001', 550.00, '2', '2019-12-31 11:19:45', 2, '2019-12-31 11:19:43');
 
 -- ----------------------------
 -- Table structure for tb_file
