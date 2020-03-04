@@ -129,8 +129,12 @@ angular.module("clothSalePublicApp", ['ui.router', 'oc.lazyLoad', 'ui.bootstrap'
             }
         });
     }])
-    .controller("clothSalePublicCtrl", ['$scope', '$http', '$rootScope', '$alert',
-        function ($scope, $http, $rootScope, $alert) {
+    .controller("clothSalePublicCtrl", ['$scope', '$http', '$rootScope', '$alert','$anchorScroll','$location',
+        function ($scope, $http, $rootScope, $alert,$anchorScroll,$location) {
+
+            $anchorScroll.yOffset = 30;   // 总是滚动额外的30像素（此处是因为我的项目中样式设置原因，需要加上以offset）
+            $location.hash('view-pos');
+            $anchorScroll();
 
             $scope.getUserInfoBySession = function (){
                 //是否登录

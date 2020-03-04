@@ -64,4 +64,9 @@ public class MemberUserinfoServiceImpl implements IMemberUserinfoService {
     public List<HashMap<String, Object>> selectUserinfoByUserId(String user_id) {
         return memberUserinfoMapper.selectUserinfoByUserId(user_id);
     }
+
+    @Override
+    public int selectSameName(String user_name) {
+        return memberUserinfoMapper.selectSameName(user_name);
+    }
 }

@@ -60,4 +60,9 @@ public class GoodsSpuServiceImpl implements IGoodsSpuService {
     public HashMap<String, Object> selectSingleGoodsSpu(String spu_id) {
         return goodsSpuMapper.selectSingleGoodsSpu(spu_id);
     }
+
+    @Override
+    public List<HashMap<String, Object>> selectGoodsSpuRand(int pageIndex, int pageSize, String category_id, String brand_id, String goods_name) {
+        return goodsSpuMapper.selectGoodsSpuRand(pageIndex, pageSize, category_id, brand_id, goods_name);
+    }
 }

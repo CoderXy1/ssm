@@ -49,6 +49,30 @@ public class GoodsSpuController {
         return res;
     }
 
+    //随机取若干条数据
+    @RequestMapping("/selectGoodsSpuRand")
+    @ResponseBody
+    //有参数要加 @RequestParam("参数名")
+    public RequsetData<List<HashMap<String, Object>>> selectGoodsSpuRand(@RequestParam("pageIndex") int pageIndex, @RequestParam("pageSize") int pageSize, @RequestParam(required = false) String category_id, @RequestParam(required = false) String brand_id,@RequestParam(required = false)String goods_name) {
+
+        RequsetData<List<HashMap<String, Object>>> res = new RequsetData<>();
+
+        List<HashMap<String, Object>> list = goodsSpuService.selectGoodsSpuRand(pageIndex, pageSize, category_id, brand_id,goods_name);
+        HashMap<String, Object> total = goodsSpuService.selectGoodsSpuNum(category_id, brand_id,goods_name);
+
+        if (!list.isEmpty()) {
+            res.setItem(list);
+            res.setExtdata(total);
+            res.setMsg("成功");
+            res.setSuccess(true);
+        } else {
+            res.setMsg("失败");
+            res.setSuccess(false);
+        }
+
+        return res;
+    }
+
     @RequestMapping("/selectSingleGoodsSpu")
     @ResponseBody
     //有参数要加 @RequestParam("参数名")

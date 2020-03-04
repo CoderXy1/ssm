@@ -440,19 +440,23 @@ ul li{
 	padding-top: 20px;
 	overflow: hidden;
 }
+.day_goods li:hover {
+    border: 1px solid tomato;
+    border-radius: 5px;
+}
 .day_goods li {
     float: left;
     border: 1px solid #eaeaea;
-    margin-right: 12px;
-    width: 286px;
+    margin-right: 1%;
+    width: 19%;
     padding: 0 0 5px 0;
     background-color: #f5f5f5;
     margin-bottom: 15px;
     position: relative;
 }
 .day_goods li a p img{
-	width: 286px;
-    height: 286px;
+	width: 100%;
+    height: 100%;
 }
 .a_con_list {
     display: block;
@@ -461,7 +465,7 @@ ul li{
 .day_goods li .p_img {
     overflow: hidden;
     width: 100%;
-    height: 286px;
+    height: 220px;
     padding: 0;
 }
 .day_goods li p {
@@ -470,21 +474,21 @@ ul li{
 .p_title, .p_title a {
     margin-top: 12px;
     height: 40px;
-    line-height: 20px;
-    font-size: 16px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
     overflow: hidden;
-    color: #434343;
+    color: gray;
 }.p_p {
-    height: 44px;
-    margin-top: 5px;
+    height: 20px;
 }
 .p_p .price1 {
     color: #94193f;
-    font-family: "华文细黑";
-    font-size: 20px;
+    font-family: PingFangSC-Medium;
+    font-size: 16px;
     float: left;
-    height: 35px;
-    padding-top: 10px;
+    height: 30px;
+    padding: 5px;
 }
 .p_p .price2 {
     padding-left: 10px;

@@ -33,6 +33,62 @@ angular.module("clothSaleApp")
 
         }
 
+        //发货
+        $scope.orderSend = function (order_info_id){
+            $http({
+                method: "POST",
+                url: '../../OrderInfo/updateOrderInfo',
+                params: {
+                    order_info_id : order_info_id,
+                    order_state : 3
+                }
+            }).then(function successCallback(response) {
+                //请求成功
+                $scope.loadData();
+                $scope.showAlert('成功:','发货成功','success');
+            }, function errorCallback(response) {
+                //请求失败
+                $scope.showAlert('失败:',response.data.msg,'danger');
+            });
+        }
+
+        //退货
+        $scope.orderReturn = function (order_info_id,sku_id,total_num){
+            $http({
+                method: "POST",
+                url: '../../OrderInfo/updateOrderInfo',
+                params: {
+                    order_info_id : order_info_id,
+                    order_state : 7
+                }
+            }).then(function successCallback(response) {
+                //请求成功
+                $scope.changeGoodsStock(sku_id,total_num);
+            }, function errorCallback(response) {
+                //请求失败
+                $scope.showAlert('失败:',response.data.msg,'danger');
+            });
+        }
+
+        //修改退货后库存
+        $scope.changeGoodsStock = function (sku_id,total_num){
+            $http({
+                method: "POST",
+                url: '../../GoodsSku/updateGoodsSku',
+                params: {
+                    sku_id : sku_id,
+                    stock : total_num
+                }
+            }).then(function successCallback(response) {
+                //请求成功
+                $scope.loadData();
+                $scope.showAlert('成功:','退货成功','success');
+            }, function errorCallback(response) {
+                //请求失败
+                $scope.showAlert('失败:',response.data.msg,'danger');
+            });
+        }
+
         $scope.searchOrderInfo = function (){
             $scope.selectParams.pageIndex = 0;
             $scope.selectAllOrderInfo();

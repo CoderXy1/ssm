@@ -19,6 +19,8 @@
                             <option value="2">待发货</option>
                             <option value="3">待收货</option>
                             <option value="4">待评价</option>
+                            <option value="6">待退货</option>
+                            <option value="7">已退货</option>
                         </select>
                     </div>
                 </div>
@@ -34,7 +36,8 @@
                             <th>规格</th>
                             <th>数量</th>
                             <th>下单时间</th>
-                            <th style="text-align: center">状态</th>
+                            <th>状态</th>
+                            <th style="text-align: center">操作</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -53,6 +56,12 @@
                                 <span class="badge badge-secondary" style="color: white"
                                       ng-if="orderInfo.order_state == 3">待收货</span>
                                 <span class="badge badge-success" style="color: white" ng-if="orderInfo.order_state == 4">待评价</span>
+                                <span class="badge badge-primary" style="color: white" ng-if="orderInfo.order_state == 6">待退货</span>
+                                <span class="badge badge-dark" style="color: white" ng-if="orderInfo.order_state == 7">已退货</span>
+                            </td>
+                            <td class="text-center">
+                                <button class="btn btn-success" ng-if="orderInfo.order_state == 2" ng-click="orderSend(orderInfo.order_info_id)">发货</button>
+                                <button class="btn btn-danger" ng-if="orderInfo.order_state == 6" ng-click="orderReturn(orderInfo.order_info_id,orderInfo.sku_id,orderInfo.total_num)">退货</button>
                             </td>
                         </tr>
                         <tr ng-if="orderInfoList == null">

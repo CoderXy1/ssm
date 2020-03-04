@@ -24,6 +24,8 @@ public interface IGoodsSpuService {
 
     List<HashMap<String,Object>> selectGoodsSpu(int pageIndex, int pageSize, String category_id, String brand_id,String goods_name);
 
+    List<HashMap<String,Object>> selectGoodsSpuRand(int pageIndex, int pageSize, String category_id, String brand_id,String goods_name);
+
     HashMap<String, Object> selectGoodsSpuNum(String category_id, String brand_id,String goods_name);
 
 }

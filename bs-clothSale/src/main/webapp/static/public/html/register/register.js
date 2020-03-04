@@ -34,8 +34,12 @@ angular.module("clothSalePublicApp")
                 params: $scope.selectParams
             }).then(function successCallback(response) {
                 //请求成功
-                $scope.showAlert("提示: ",response.data.msg,"success");
-                $state.go('public.login');
+                if (response.data.success){
+                    $scope.showAlert("提示: ",response.data.msg,"success");
+                    $state.go('public.login');
+                }else {
+                    $scope.showAlert("错误: ",response.data.msg,"danger");
+                }
             }, function errorCallback(response) {
                 //请求失败
             });

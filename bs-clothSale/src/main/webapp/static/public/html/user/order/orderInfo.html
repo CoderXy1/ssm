@@ -6,6 +6,42 @@
 <!--uer_top-->
 <div style="margin-top: 10px">
 
+    <!-- 付款方式 -->
+    <div class="modal fade" id="payModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">付款</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-3 radio radio-info">
+                            <input id="pay_way1" type="radio" ng-model="payGoodsParams.pay_way" value='1'>
+                            <label class="font-weight-light" for="pay_way1"
+                                   style="line-height: 16px">
+                                支付宝
+                            </label>
+                        </div>
+                        <div class="col-md-3 radio radio-info">
+                            <input id="pay_way2" type="radio" ng-model="payGoodsParams.pay_way" value='2'>
+                            <label class="font-weight-light" for="pay_way2"
+                                   style="line-height: 16px">
+                                微信
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger" ng-click="payGoods()">支付</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div style="border: 1px solid #E2E2E2;background-color: #F6F6F6;height: 45px;">
         <ul class="ur_tab_ul">
             <li ng-class="{'on':selectParams.order_state == 0}" ng-click="changeOrderState(0)">
@@ -22,6 +58,12 @@
             </li>
             <li ng-class="{'on':selectParams.order_state == 4}" ng-click="changeOrderState(4)">
                 <a href="">待评价</a>
+            </li>
+            <li ng-class="{'on':selectParams.order_state == 6}" ng-click="changeOrderState(6)">
+                <a href="">待退货</a>
+            </li>
+            <li ng-class="{'on':selectParams.order_state == 7}" ng-click="changeOrderState(7)">
+                <a href="">已退货</a>
             </li>
         </ul>
     </div>
@@ -48,13 +90,26 @@
                     <span class="badge badge-secondary" style="color: white"
                           ng-if="orderInfo.order_state == 3">待收货</span>
                     <span class="badge badge-success" style="color: white" ng-if="orderInfo.order_state == 4">待评价</span>
+                    <span class="badge badge-primary" style="color: white" ng-if="orderInfo.order_state == 6">待退货</span>
+                    <span class="badge badge-dark" style="color: white" ng-if="orderInfo.order_state == 7">已退货</span>
                 </div>
                 <div style="margin:40px 80px;float: right;">
-                    <button class="btn btn-outline-info"
-                            ng-if="orderInfo.order_state == 1 || orderInfo.order_state == 2">退货
+                    <button class="btn btn-outline-warning" ng-if="orderInfo.order_state == 1"
+                            ng-click="orderPay(orderInfo.order_info_id)">付款
                     </button>
-                    <button class="btn btn-outline-success" ng-if="orderInfo.order_state == 3">收货</button>
+                    <button class="btn btn-outline-info" ng-if="orderInfo.order_state == 2"
+                            ng-click="orderReturn(orderInfo.order_info_id)">退货
+                    </button>
+                    <button class="btn btn-outline-success" ng-if="orderInfo.order_state == 3"
+                            ng-click="orderSend(orderInfo.order_info_id)">确认收货
+                    </button>
                     <button class="btn btn-outline-primary" ng-if="orderInfo.order_state == 4">评价</button>
+                    <button class="btn btn-outline-danger" ng-if="orderInfo.order_state == 6"
+                            ng-click="orderReturnCancel(orderInfo.order_info_id)">取消退货
+                    </button>
+                    <button class="btn btn-outline-danger" ng-if="orderInfo.order_state == 7"
+                            ng-click="orderDelete(orderInfo.order_info_id)">删除订单
+                    </button>
                 </div>
             </li>
             <li class="list-group-item" ng-if="orderInfoList == null">

@@ -20,6 +20,8 @@ public interface IMemberUserinfoService {
 
     int updateByPrimaryKey(MemberUserinfo record);
 
+    int selectSameName(String user_name);
+
     List<HashMap<String,Object>> selectUserinfoByLogin(String user_name,String user_password);
 
     List<HashMap<String,Object>> selectUserinfoByUserId(String user_id);

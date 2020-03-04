@@ -5,6 +5,7 @@ angular.module("clothSalePublicApp")
         $scope.showList = false;
         $scope.categoryList = [];
         $scope.spuList = [];
+        $scope.spuList_today = [];
         $scope.tabsSign = 1;
         $scope.selectFirstParams = {
             pageIndex : 0,
@@ -46,7 +47,7 @@ angular.module("clothSalePublicApp")
             });
         }
 
-        //查询spu
+        //查询精选服饰
         $scope.selectGoodsSpu = function () {
             $http({
                 method: "POST",
@@ -63,9 +64,27 @@ angular.module("clothSalePublicApp")
             });
         }
 
+        //查询今日发现
+        $scope.selectGoodsSpuToday = function () {
+            $http({
+                method: "POST",
+                url: '../../GoodsSpu/selectGoodsSpuRand',
+                params: {
+                    pageIndex: 0,
+                    pageSize: 25,
+                }
+            }).then(function successCallback(response) {
+                //请求成功
+                $scope.spuList_today = response.data.item;
+            }, function errorCallback(response) {
+                //请求失败
+            });
+        }
+
         $scope.loadData = function () {
             $scope.selectFirstCategory();
             $scope.selectGoodsSpu();
+            $scope.selectGoodsSpuToday();
         }
 
         $scope.loadData();

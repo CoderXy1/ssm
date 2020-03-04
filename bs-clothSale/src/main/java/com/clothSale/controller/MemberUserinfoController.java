@@ -91,15 +91,21 @@ public class MemberUserinfoController {
         memberUserinfo.setAddressId(null);
         memberUserinfo.setIconId(icon_id);
         memberUserinfo.setLoginTimes(0);
-        int count =  memberUserinfoService.insertSelective(memberUserinfo);
-        if (count == 1) {
-            res.setItem(count);
-            res.setMsg("注册成功");
-            res.setSuccess(true);
-        } else {
-            res.setMsg("注册失败");
+        if (memberUserinfoService.selectSameName(user_name) == 0){
+            int count =  memberUserinfoService.insertSelective(memberUserinfo);
+            if (count == 1) {
+                res.setItem(count);
+                res.setMsg("注册成功");
+                res.setSuccess(true);
+            } else {
+                res.setMsg("注册失败");
+                res.setSuccess(false);
+            }
+        }else {
+            res.setMsg("注册失败，用户名重复");
             res.setSuccess(false);
         }
+
         return res;
     }
 

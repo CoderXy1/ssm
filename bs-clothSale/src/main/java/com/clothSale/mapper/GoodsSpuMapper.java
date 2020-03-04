@@ -23,5 +23,7 @@ public interface GoodsSpuMapper {
 
     List<HashMap<String,Object>> selectGoodsSpu(@Param("pageIndex") int pageIndex, @Param("pageSize") int pageSize, @Param("category_id") String category_id, @Param("brand_id") String brand_id,@Param("goods_name")String goods_name);
 
+    List<HashMap<String,Object>> selectGoodsSpuRand(@Param("pageIndex") int pageIndex, @Param("pageSize") int pageSize, @Param("category_id") String category_id, @Param("brand_id") String brand_id,@Param("goods_name")String goods_name);
+
     HashMap<String, Object> selectGoodsSpuNum(@Param("category_id")String category_id,@Param("brand_id") String brand_id,@Param("goods_name")String goods_name);
 }

@@ -19,6 +19,8 @@ public interface MemberUserinfoMapper {
 
     int updateByPrimaryKey(MemberUserinfo record);
 
+    int selectSameName(@Param("user_name")String user_name);
+
     List<HashMap<String,Object>> selectUserinfoByUserId(@Param("user_id") String user_id);
 
     List<HashMap<String,Object>> selectUserinfoByLogin(@Param("user_name") String user_name, @Param("user_password") String user_password);

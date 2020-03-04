@@ -13,7 +13,7 @@
                 <a href="refined.html">精选品牌</a>
             </li>
             <li>
-                <a href="go.html">全球购</a>
+                <a href="go.html">限时抢购</a>
             </li>
             <li>
                 <a href="brand.html">品牌馆</a>
@@ -128,226 +128,25 @@
             </li>
         </ul>
     </div>
-    <!--第三区-->
-    <div class="jinpin_box">
-        <div class="qinha_title">
-            <div class="v_h2">
-                <p class="h2_top">品类精选</p>
-                <p class="h2_bottom">品类齐全 轻松购物</p>
-            </div>
-        </div>
-        <ul class="jinpin_ul">
-            <li>
-                <a href=""><img src="./image/jinpin_1.png"/></a>
-                <a href="go.html" target="_blank" class="ppsx_tc">
-                    <div class="ppsx_tc_xx">
-                        <div class="ppsx_tc_xx1">
-                            <div class="ppsx_xx_zk"><span>79</span>元起</div>
-                            <div class="ppsx_xx_qg">立即抢购</div>
-                        </div>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href=""><img src="./image/jinpin_2.png"/></a>
-                <a href="go.html" target="_blank" class="ppsx_tc">
-                    <div class="ppsx_tc_xx">
-                        <div class="ppsx_tc_xx1">
-                            <div class="ppsx_xx_zk"><span>79</span>元起</div>
-                            <div class="ppsx_xx_qg">立即抢购</div>
-                        </div>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href=""><img src="./image/jinpin_3.png"/></a>
-                <a href="go.html" target="_blank" class="ppsx_tc">
-                    <div class="ppsx_tc_xx">
-                        <div class="ppsx_tc_xx1">
-                            <div class="ppsx_xx_zk"><span>79</span>元起</div>
-                            <div class="ppsx_xx_qg">立即抢购</div>
-                        </div>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a href=""><img src="./image/jinpin_4.png"/></a>
-                <a href="go.html" target="_blank" class="ppsx_tc">
-                    <div class="ppsx_tc_xx">
-                        <div class="ppsx_tc_xx1">
-                            <div class="ppsx_xx_zk"><span>79</span>元起</div>
-                            <div class="ppsx_xx_qg">立即抢购</div>
-                        </div>
-                    </div>
-                </a>
-            </li>
-        </ul>
-    </div>
-    <!--第三区-->
     <!--第四区-->
     <div class="day_box">
         <div class="qinha_title">
             <div class="v_h2">
                 <p class="h2_top">今日发现</p>
-                <p class="h2_bottom">精致好物 更快乐的生活</p>
             </div>
         </div>
         <ul class="day_goods">
-            <li>
-                <a href="" class="a_con_list">
-                    <p class="p_img"><img src="./image/day_1.jpg"/></p>
+            <li ng-repeat="spu_today in spuList_today">
+                <a ui-sref="public.goodsItem({spu_id:spu_today.spu_id})" title="{{spu_today.goods_name}}" class="a_con_list">
+                    <p class="p_img"><img ng-src="data:image/jpg;base64,{{spu_today.file_content}}"
+                                          title="{{spu_today.goods_name}}"/></p>
+                    <p class="p_title">
+                        <span>{{spu_today.goods_name}}</span>
+                    </p>
+                    <p class="p_p">
+                        <span class="price1">￥<span>{{spu_today.low_price}}</span></span>
+                    </p>
                 </a>
-                <p class="p_title">
-                    <span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
-                </p>
-                <p class="p_p">
-                    <span class="price1">￥<span>298.00</span></span>
-                    <span class="price2"><del>￥398.00</del></span>
-                    <a href="" class="gwc"></a>
-                </p>
-            </li>
-            <li>
-                <a href="" class="a_con_list">
-                    <p class="p_img"><img src="./image/day_2.jpg"/></p>
-                </a>
-                <p class="p_title">
-                    <span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
-                </p>
-                <p class="p_p">
-                    <span class="price1">￥<span>298.00</span></span>
-                    <span class="price2"><del>￥398.00</del></span>
-                    <a href="" class="gwc"></a>
-                </p>
-            </li>
-            <li>
-                <a href="" class="a_con_list">
-                    <p class="p_img"><img src="./image/day_3.jpg"/></p>
-                </a>
-                <p class="p_title">
-                    <span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
-                </p>
-                <p class="p_p">
-                    <span class="price1">￥<span>298.00</span></span>
-                    <span class="price2"><del>￥398.00</del></span>
-                    <a href="" class="gwc"></a>
-                </p>
-            </li>
-            <li>
-                <a href="" class="a_con_list">
-                    <p class="p_img"><img src="./image/day_4.jpg"/></p>
-                </a>
-                <p class="p_title">
-                    <span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
-                </p>
-                <p class="p_p">
-                    <span class="price1">￥<span>298.00</span></span>
-                    <span class="price2"><del>￥398.00</del></span>
-                    <a href="" class="gwc"></a>
-                </p>
-            </li>
-            <li>
-                <a href="" class="a_con_list">
-                    <p class="p_img"><img src="./image/day_5.jpg"/></p>
-                </a>
-                <p class="p_title">
-                    <span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
-                </p>
-                <p class="p_p">
-                    <span class="price1">￥<span>298.00</span></span>
-                    <span class="price2"><del>￥398.00</del></span>
-                    <a href="" class="gwc"></a>
-                </p>
-            </li>
-            <li>
-                <a href="" class="a_con_list">
-                    <p class="p_img"><img src="./image/day_6.jpg"/></p>
-                </a>
-                <p class="p_title">
-                    <span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
-                </p>
-                <p class="p_p">
-                    <span class="price1">￥<span>298.00</span></span>
-                    <span class="price2"><del>￥398.00</del></span>
-                    <a href="" class="gwc"></a>
-                </p>
-            </li>
-            <li>
-                <a href="" class="a_con_list">
-                    <p class="p_img"><img src="./image/day_7.jpg"/></p>
-                </a>
-                <p class="p_title">
-                    <span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
-                </p>
-                <p class="p_p">
-                    <span class="price1">￥<span>298.00</span></span>
-                    <span class="price2"><del>￥398.00</del></span>
-                    <a href="" class="gwc"></a>
-                </p>
-            </li>
-            <li>
-                <a href="" class="a_con_list">
-                    <p class="p_img"><img src="./image/day_8.jpg"/></p>
-                </a>
-                <p class="p_title">
-                    <span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
-                </p>
-                <p class="p_p">
-                    <span class="price1">￥<span>298.00</span></span>
-                    <span class="price2"><del>￥398.00</del></span>
-                    <a href="" class="gwc"></a>
-                </p>
-            </li>
-            <li>
-                <a href="" class="a_con_list">
-                    <p class="p_img"><img src="./image/day_9.jpg"/></p>
-                </a>
-                <p class="p_title">
-                    <span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
-                </p>
-                <p class="p_p">
-                    <span class="price1">￥<span>298.00</span></span>
-                    <span class="price2"><del>￥398.00</del></span>
-                    <a href="" class="gwc"></a>
-                </p>
-            </li>
-            <li>
-                <a href="" class="a_con_list">
-                    <p class="p_img"><img src="./image/day_10.jpg"/></p>
-                </a>
-                <p class="p_title">
-                    <span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
-                </p>
-                <p class="p_p">
-                    <span class="price1">￥<span>298.00</span></span>
-                    <span class="price2"><del>￥398.00</del></span>
-                    <a href="" class="gwc"></a>
-                </p>
-            </li>
-            <li>
-                <a href="" class="a_con_list">
-                    <p class="p_img"><img src="./image/day_11.jpg"/></p>
-                </a>
-                <p class="p_title">
-                    <span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
-                </p>
-                <p class="p_p">
-                    <span class="price1">￥<span>298.00</span></span>
-                    <span class="price2"><del>￥398.00</del></span>
-                    <a href="" class="gwc"></a>
-                </p>
-            </li>
-            <li>
-                <a href="" class="a_con_list">
-                    <p class="p_img"><img src="./image/day_12.jpg"/></p>
-                </a>
-                <p class="p_title">
-                    <span>【7.5折】</span>乐途女士经典跑鞋1+1时尚组（后跟杯）
-                </p>
-                <p class="p_p">
-                    <span class="price1">￥<span>298.00</span></span>
-                    <span class="price2"><del>￥398.00</del></span>
-                    <a href="" class="gwc"></a>
-                </p>
             </li>
         </ul>
     </div>

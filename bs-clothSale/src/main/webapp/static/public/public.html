@@ -60,35 +60,8 @@
                 </div>
                 <div class="search_key">
                     <ul>
-                        <li>
-                            <a href="">太阳镜</a>
-                        </li>
-                        <li>
-                            <a href="">蕉下</a>
-                        </li>
-                        <li>
-                            <a href="">果蔬脆片</a>
-                        </li>
-                        <li>
-                            <a href="">德亚酸牛奶</a>
-                        </li>
-                        <li>
-                            <a href="">蚕丝面膜</a>
-                        </li>
-                        <li>
-                            <a href="">山地车</a>
-                        </li>
-                        <li>
-                            <a href="">BB霜</a>
-                        </li>
-                        <li>
-                            <a href="">乳胶枕</a>
-                        </li>
-                        <li>
-                            <a href="">蝙蝠侠系列石英表</a>
-                        </li>
-                        <li>
-                            <a href="">拍立得</a>
+                        <li ng-repeat="category in categoryList">
+                            <a ui-sref="public.login" target="_blank">{{category.category_name}}</a>
                         </li>
                     </ul>
                 </div>
