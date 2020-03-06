@@ -190,6 +190,40 @@
     font-size: 20px;
 }
 
+/*颜色*/
+.color-primary,
+.text-primary {
+    color: #5873fe;
+}
+.color-success,
+.text-success {
+    color: #28a745;
+}
+.color-info,
+.text-info {
+    color: #03a9f4;
+}
+.color-danger,
+.text-danger {
+    color: #dc3545;
+}
+.color-warning,
+.text-warning {
+    color: #e7b63a;
+}
+.color-pink,
+.text-pink {
+    color: #e6a1f2;
+}
+.color-dark,
+.text-dark {
+    color: #545454;
+}
+.color-grey,
+.text-grey {
+    color: #ddd;
+}
+
 
 
 

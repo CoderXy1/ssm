@@ -103,6 +103,15 @@ angular.module("clothSalePublicApp", ['ui.router', 'oc.lazyLoad', 'ui.bootstrap'
                     return e.load(['html/user/address/addressEdit.js']);
                 }]
             }
+        }).state('public.search', {
+            url: '/search?goods_name&category_id&brand_id',
+            templateUrl: 'html/search/search.html',
+            controller: 'searchCtrl',
+            resolve: {
+                deps: ['$ocLazyLoad', function (e) {
+                    return e.load(['html/search/search.js']);
+                }]
+            }
         }).state('public.test', {
             url: '/test',
             templateUrl: 'html/test/test.html',
@@ -115,9 +124,10 @@ angular.module("clothSalePublicApp", ['ui.router', 'oc.lazyLoad', 'ui.bootstrap'
         });
 
     })
-    .run(['$rootScope', '$state', function ($rootScope, $state, $scope) {
+    .run(['$rootScope', '$state',function ($rootScope, $state, $scope) {
         /* 监听路由的状态变化*/
         $rootScope.$on('$stateChangeSuccess', function (event, toState) {
+
             $rootScope.needLoginPage = ['public.user.orderInfo', 'public.user.shopCart','public.user.collect','public.user.address'
                 ,'public.user.addressEdit'];
             //是否需要登录的界面
@@ -129,12 +139,8 @@ angular.module("clothSalePublicApp", ['ui.router', 'oc.lazyLoad', 'ui.bootstrap'
             }
         });
     }])
-    .controller("clothSalePublicCtrl", ['$scope', '$http', '$rootScope', '$alert','$anchorScroll','$location',
-        function ($scope, $http, $rootScope, $alert,$anchorScroll,$location) {
-
-            $anchorScroll.yOffset = 30;   // 总是滚动额外的30像素（此处是因为我的项目中样式设置原因，需要加上以offset）
-            $location.hash('view-pos');
-            $anchorScroll();
+    .controller("clothSalePublicCtrl", ['$scope', '$http', '$rootScope', '$alert',
+        function ($scope, $http, $rootScope, $alert) {
 
             $scope.getUserInfoBySession = function (){
                 //是否登录

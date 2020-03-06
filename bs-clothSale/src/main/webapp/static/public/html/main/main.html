@@ -35,7 +35,7 @@
                 <div class="nav_type_list">
                     <ul>
                         <li ng-repeat="category in categoryList">
-                            <a ui-sref="public.login" target="_blank" style="font-weight: bold">{{category.category_name}}</a>
+                            <a ui-sref="public.search({category_id:category.category_id})" target="_blank" style="font-weight: bold">{{category.category_name}}</a>
                         </li>
                         <li ng-if="categoryList.length == null">
                             <a href="javascript:void(0);" target="_blank" style="font-weight: bold">暂无商品</a>
@@ -132,7 +132,7 @@
     <div class="day_box">
         <div class="qinha_title">
             <div class="v_h2">
-                <p class="h2_top">今日发现</p>
+                <p class="h2_top">今日推荐</p>
             </div>
         </div>
         <ul class="day_goods">

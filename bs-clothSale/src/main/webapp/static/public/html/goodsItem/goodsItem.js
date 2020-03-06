@@ -1,5 +1,9 @@
 angular.module("clothSalePublicApp")
-    .controller("goodsItemCtrl", function ($scope, $rootScope, $state, $stateParams, $http) {
+    .controller("goodsItemCtrl", function ($scope, $rootScope, $state, $stateParams, $http,$anchorScroll,$location) {
+
+        $anchorScroll.yOffset = 30;   // 总是滚动额外的30像素（此处是因为我的项目中样式设置原因，需要加上以offset）
+        $location.hash();
+        $anchorScroll();
 
         $scope.spu_id = $stateParams.spu_id == undefined ? '' : $stateParams.spu_id;
         $scope.spuInfo = {};

@@ -1,5 +1,5 @@
 angular.module("clothSalePublicApp")
-    .controller("mainCtrl", function ($scope, $rootScope,$http) {
+    .controller("mainCtrl", function ($scope, $rootScope,$http,$state) {
 
         $scope.categoryFirstList = [];
         $scope.showList = false;
@@ -15,6 +15,20 @@ angular.module("clothSalePublicApp")
             $scope.tabsSign = num;
         }
 
+        //查询一级分类
+        $scope.selectFirstCategory = function (){
+            $http({
+                method: "POST",
+                url: '../../GoodsCategory/selectGoodsCategoryFirst',
+                params : $scope.selectFirstParams
+            }).then(function successCallback(response) {
+                //请求成功
+                $scope.categoryFirstList = response.data.item;
+            }, function errorCallback(response) {
+                //请求失败
+            });
+        }
+
         //查询分类
         $scope.selectCategory = function (category_first_id){
             $http({
@@ -28,20 +42,6 @@ angular.module("clothSalePublicApp")
             }).then(function successCallback(response) {
                 //请求成功
                 $scope.categoryList = response.data.item;
-            }, function errorCallback(response) {
-                //请求失败
-            });
-        }
-
-        //查询一级分类
-        $scope.selectFirstCategory = function (){
-            $http({
-                method: "POST",
-                url: '../../GoodsCategory/selectGoodsCategoryFirst',
-                params : $scope.selectFirstParams
-            }).then(function successCallback(response) {
-                //请求成功
-                $scope.categoryFirstList = response.data.item;
             }, function errorCallback(response) {
                 //请求失败
             });

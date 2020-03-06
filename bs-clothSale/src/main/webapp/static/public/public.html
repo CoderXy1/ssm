@@ -55,13 +55,13 @@
 
             <div style="width: 50%;float: left">
                 <div class="mainindex">
-                    <input type="text" class="input_text" placeholder="商品名">
-                    <button class="button input_sub">搜索</button>
+                    <input type="text" class="input_text" placeholder="商品名" ng-model="search_goods_name">
+                    <button class="button input_sub" ng-click="searchGoods(search_goods_name,'','')">搜索</button>
                 </div>
                 <div class="search_key">
                     <ul>
                         <li ng-repeat="category in categoryList">
-                            <a ui-sref="public.login" target="_blank">{{category.category_name}}</a>
+                            <a href="" ng-click="searchGoods('',category.category_id,'')" target="_blank">{{category.category_name}}</a>
                         </li>
                     </ul>
                 </div>
@@ -76,15 +76,15 @@
 </div>
 
 <!--下拉搜索-->
-<div id="nav" class="search_fixed">
-    <div class="w1200">
-        <div class="s_fixed_l"><img src="XX" style="width: 36px;height: 36px"/></div>
-        <div class="s_fixed_r">
-            <input placeholder="商品名" autocomplete="off" class="txt_f_sb" name="keyword" type="text">
-            <input value="搜索" class="f_btn_search" style="cursor:pointer" type="button">
-        </div>
-    </div>
-</div>
+<!--<div id="nav" class="search_fixed">-->
+    <!--<div class="w1200">-->
+        <!--<div class="s_fixed_l"><img src="XX" style="width: 36px;height: 36px"/></div>-->
+        <!--<div class="s_fixed_r">-->
+            <!--<input placeholder="商品名" autocomplete="off" class="txt_f_sb" name="keyword" type="text" ng-model="search_spuName">-->
+            <!--<input value="搜索" class="f_btn_search" style="cursor:pointer" type="button" ng-click="searchGoods()">-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
 
 <div ui-view></div>
 

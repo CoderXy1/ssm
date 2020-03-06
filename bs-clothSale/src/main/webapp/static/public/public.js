@@ -4,6 +4,7 @@ angular.module("clothSalePublicApp")
         $scope.user_info = [];
         $scope.isLogin = sessionStorage.getItem("token_user");
         $scope.categoryList = [];
+        $scope.search_goods_name = '';
 
         $scope.selectCategory = function (){
             $http({
@@ -19,6 +20,10 @@ angular.module("clothSalePublicApp")
             }, function errorCallback(response) {
                 //请求失败
             });
+        }
+
+        $scope.searchGoods = function (goods_name,category_id,brand_id) {
+            $state.go('public.search',{goods_name:goods_name,category_id:category_id,brand_id:brand_id});
         }
 
         //是否登录
