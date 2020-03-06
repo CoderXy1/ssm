@@ -1,0 +1,44 @@
+<div class="line_divider"></div>
+<div class="w1200">
+
+    <div>
+        <p ng-if="selectParams.goods_name != ''">当前关键字 : <span class="text-success">{{selectParams.goods_name}}</span></p>
+        <table class="table table-bordered" style="font-size: 14px">
+            <tr>
+                <th style="padding-left: 20px" width="8%">品牌</th>
+                <td><a href="" ng-class="{'color-danger' : brand.brand_id == selectParams.brand_id}" ng-click="searchGoods(selectParams.goods_name,selectParams.category_id,brand.brand_id)"
+                       ng-repeat="brand in brandList" style="margin-right: 15px;">{{brand.brand_name}}</a></td>
+                <td><span class="text-warning" style="cursor: pointer" ng-click="clearBrand()">清除</span></td>
+            </tr>
+            <tr>
+                <th style="padding-left: 20px" width="8%">分类</th>
+                <td><a href="" ng-class="{'color-danger' : category.category_id == selectParams.category_id}" ng-click="searchGoods(selectParams.goods_name,category.category_id,selectParams.brand_id)"
+                       ng-repeat="category in categoryList" style="margin-right: 15px;">{{category.category_name}}</a></td>
+                <td><span class="text-warning" style="cursor: pointer"  ng-click="clearCategory()">清除</span></td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <ul class="day_goods">
+            <li ng-repeat="spuSearch in spuSearchList">
+                <a ui-sref="public.goodsItem({spu_id:spuSearch.spu_id})" title="{{spuSearch.goods_name}}" class="a_con_list">
+                    <p class="p_img"><img ng-src="data:image/jpg;base64,{{spuSearch.file_content}}"
+                                          title="{{spuSearch.goods_name}}"/></p>
+                    <p class="p_title">
+                        <span>{{spuSearch.goods_name}}</span>
+                    </p>
+                    <p class="p_p">
+                        <span class="price1">￥<span>{{spuSearch.low_price}}</span></span>
+                    </p>
+                </a>
+            </li>
+        </ul>
+        <div ng-if="spuSearchList == null">
+             <p class="text-center">暂无该类服饰</p>
+        </div>
+    </div>
+
+
+</div>
+
