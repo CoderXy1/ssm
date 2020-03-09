@@ -70,6 +70,5 @@
                <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
         <!--</table>-->
 
-
     </context>
 </generatorConfiguration>

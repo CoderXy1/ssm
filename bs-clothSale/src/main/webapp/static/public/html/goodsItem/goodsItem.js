@@ -16,6 +16,13 @@ angular.module("clothSalePublicApp")
             pay_way : 1,
             order_state : 2
         }
+        $scope.commentsParams = {
+            pageIndex : 0,
+            pageSize : 10,
+            pageNum : 1,
+            totalNum : 0,
+            spu_id : $scope.spu_id
+        }
         $scope.order_info_id = '';
         $scope.user_info = $scope.getUserInfoBySession();
         $scope.specList = {
@@ -84,6 +91,21 @@ angular.module("clothSalePublicApp")
             }).then(function successCallback(response) {
                 //请求成功
                 $scope.memberAddressList = response.data.item;
+            }, function errorCallback(response) {
+                //请求失败
+            });
+        }
+
+        //获取评论
+        $scope.selectComments = function (){
+            $http({
+                method: "POST",
+                url: '../../OrderComment/selectCartBySpuId',
+                params : $scope.commentsParams
+            }).then(function successCallback(response) {
+                //请求成功
+                $scope.commentsList = response.data.item;
+                $scope.commentsParams.totalNum = response.data.extdata==null?0:response.data.extdata.total;
             }, function errorCallback(response) {
                 //请求失败
             });
@@ -263,7 +285,13 @@ angular.module("clothSalePublicApp")
         $scope.loadData = function () {
             $scope.selectSingleSpu();
             $scope.selectAllAddress();
+            $scope.selectComments();
         };
+
+        $scope.loadCommentData = function (){
+            $scope.commentsParams.pageIndex = ($scope.commentsParams.pageNum - 1) * $scope.commentsParams.pageSize;
+            $scope.selectComments();
+        }
 
         $scope.loadData();
 

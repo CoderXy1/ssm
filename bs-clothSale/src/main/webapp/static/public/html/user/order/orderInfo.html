@@ -6,7 +6,7 @@
 <!--uer_top-->
 <div style="margin-top: 10px">
 
-    <!-- 付款方式 -->
+    <!-- 付款方式弹窗 -->
     <div class="modal fade" id="payModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -42,6 +42,38 @@
         </div>
     </div>
 
+    <!-- 评价弹窗 -->
+    <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">评价</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form name="editForm" role="form" id="editForm" autocomplete="off" ng-submit="insertComment()">
+                        <div class="form-group">
+                            <label for="comment_content" class="col-form-label">评价内容<span class="color-danger">*</span></label>
+                            <textarea style="height: 100px" class="form-control" id="comment_content" ng-model="selectParams_comment.comment_content" ng-required="true">
+                            </textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="comment_score" class="col-form-label">评分<span class="color-danger">*</span></label>
+                            <input type="number" class="form-control" id="comment_score" ng-model="selectParams_comment.comment_score" ng-required="true">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger" form="editForm">确认</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div style="border: 1px solid #E2E2E2;background-color: #F6F6F6;height: 45px;">
         <ul class="ur_tab_ul">
             <li ng-class="{'on':selectParams.order_state == 0}" ng-click="changeOrderState(0)">
@@ -57,7 +89,7 @@
                 <a href="">待收货</a>
             </li>
             <li ng-class="{'on':selectParams.order_state == 4}" ng-click="changeOrderState(4)">
-                <a href="">待评价</a>
+                <a href="">已收货</a>
             </li>
             <li ng-class="{'on':selectParams.order_state == 6}" ng-click="changeOrderState(6)">
                 <a href="">待退货</a>
@@ -89,7 +121,7 @@
                     <span class="badge badge-warning" style="color: white" ng-if="orderInfo.order_state == 2">待发货</span>
                     <span class="badge badge-secondary" style="color: white"
                           ng-if="orderInfo.order_state == 3">待收货</span>
-                    <span class="badge badge-success" style="color: white" ng-if="orderInfo.order_state == 4">待评价</span>
+                    <span class="badge badge-success" style="color: white" ng-if="orderInfo.order_state == 4">已收货</span>
                     <span class="badge badge-primary" style="color: white" ng-if="orderInfo.order_state == 6">待退货</span>
                     <span class="badge badge-dark" style="color: white" ng-if="orderInfo.order_state == 7">已退货</span>
                 </div>
@@ -101,13 +133,12 @@
                             ng-click="orderReturn(orderInfo.order_info_id)">退货
                     </button>
                     <button class="btn btn-outline-success" ng-if="orderInfo.order_state == 3"
-                            ng-click="orderSend(orderInfo.order_info_id)">确认收货
+                            ng-click="orderSend(orderInfo.order_info_id,orderInfo.user_id,orderInfo.sku_id)">确认收货
                     </button>
-                    <button class="btn btn-outline-primary" ng-if="orderInfo.order_state == 4">评价</button>
                     <button class="btn btn-outline-danger" ng-if="orderInfo.order_state == 6"
                             ng-click="orderReturnCancel(orderInfo.order_info_id)">取消退货
                     </button>
-                    <button class="btn btn-outline-danger" ng-if="orderInfo.order_state == 7"
+                    <button class="btn btn-outline-danger" ng-if="orderInfo.order_state == 7 || orderInfo.order_state == 4"
                             ng-click="orderDelete(orderInfo.order_info_id)">删除订单
                     </button>
                 </div>

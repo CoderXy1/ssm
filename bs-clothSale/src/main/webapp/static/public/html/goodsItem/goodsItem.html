@@ -24,7 +24,9 @@
                             style="font-size: 16px;color: gray">×{{total_num}}</span></label><br/>
                         应付金额 : <label style="font-size: 25px;font-weight: bold;color: orangered">￥{{total_num *
                         goodsSku[0].price_sale}}</label><br/>
-                        默认收货地址 : <label style="font-size: 16px;color: grey">{{user_info.address}}</label><i class="fa fa-edit" ng-click="changeAddress(1)" title="修改地址" style="margin-left: 20px;color: red"></i><br/>
+                        默认收货地址 : <label style="font-size: 16px;color: grey">{{user_info.address}}</label><i
+                            class="fa fa-edit" ng-click="changeAddress(1)" title="修改地址"
+                            style="margin-left: 20px;color: red"></i><br/>
                         联系人 : <label style="font-size: 16px;color: grey">{{user_info.liaison_person}}</label><br/>
                         联系人电话 : <label style="font-size: 16px;color: grey">{{user_info.liaison_phone}}</label>
                     </div>
@@ -62,7 +64,8 @@
                             <td>{{memberAddress.postal_code}}</td>
                             <td>{{memberAddress.area_name}}</td>
                             <td class="text-center">
-                                <a href="javascript:void(0)" ng-click="changeAddressId(memberAddress.address_id)" ng-if="user_info.address_id != memberAddress.address_id">设为默认</a>
+                                <a href="javascript:void(0)" ng-click="changeAddressId(memberAddress.address_id)"
+                                   ng-if="user_info.address_id != memberAddress.address_id">设为默认</a>
                             </td>
                         </tr>
                         </tbody>
@@ -230,40 +233,7 @@
             </div>
         </div>
         <!--提交区域end-->
-        <!--展示区域-->
-        <div class="con_tab">
-            <div class="con_nav">
-                <div class="con_nav_c">
-                    <div class="w1200">
-                        <ul>
-                            <li class="on "><a href="javascript:;">商品详情</a></li>
-                            <li><a href="javascript:;">商品参数</a></li>
-                            <li><a href="javascript:;">用户评价</a></li>
-                            <li><a href="javascript:;">为您推荐</a></li>
-                        </ul>
-                        <div class="fix_add_car">
-                            <div class="db_price">
-                                <em>¥</em>298.00
-                            </div>
-                            <a class="fixed_add_car" href="javascript:;">加入购物车</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="display">
-            <div class="goods_box">
-                <div class="detail_lists">
-                    <div class="d_h2">
-                        <h2>商品详情</h2>
-                    </div>
-                    <div class="detail_con">
-                        <div style="margin: auto;">
-                            <p><img src="image/d_1.jpg"/></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="premeter_box">
                 <div class="detail_lists">
                     <div class="d_h2">
@@ -284,150 +254,40 @@
                     <div class="d_h2 ">
                         <h2>用户评价</h2>
                     </div>
-                    <div class="detail_l_con3 ">
-                        <div class="appraise_h2 ">
-                            <div class="appraise_t1 ">评价心得</div>
-                            <div class="appraise_t2 ">用户满意度</div>
-                            <div class="appraise_t3 ">购买价格</div>
-                            <div class="appraise_t4 ">用户信息</div>
-                        </div>
+
+                    <div style="margin-top: 30px;margin-left: 24px">
                         <ul>
-                            <li class="appraise_li ">
-                                <div class="a_li_t1 ">
-                                    <div class="appr_cons ">很轻，很舒适^_^</div>
-                                    <div class="appr_time ">2016-05-19 12:27</div>
+                            <li ng-repeat="comment in commentsList"
+                                style="padding: 10px;margin-bottom:10px;border-bottom: 1px solid lightgrey">
+                                <div style="width: 100%">
+                                    <span style="display:inline-block;width: 50%">{{comment.comment_content}}</span>
+                                    <span style="display:inline-block;width: 30%">规格: <span class="color-info">{{comment.spec_value}}</span></span>
+                                    <span style="display:inline-block;width: 10%">{{comment.user_name}}</span>
                                 </div>
-                                <div class="a_li_t2 ">
-                                    <i class="i_icon_csi i_satisfy "></i>
-                                    <i class="i_icon_csi i_satisfy "></i>
-                                    <i class="i_icon_csi i_satisfy "></i>
-                                    <i class="i_icon_csi i_satisfy "></i>
-                                    <i class="i_icon_csi "></i>
-                                </div>
-                                <div class="a_li_t3 ">
-                                    <p class="p_p ">￥<span>298.00</span></p>
-                                </div>
-                                <div class="a_li_t4 ">
-                                    <img src="image/user_center_img4.jpg "><br><span>MB***</span>
-                                </div>
-                            </li>
-                            <li class="appraise_li ">
-                                <div class="a_li_t1 ">
-                                    <div class="appr_cons ">很轻，很舒适^_^</div>
-                                    <!--反馈图片-->
-                                    <div class="appraise_img ">
-                                        <ul class="appr_img_list ">
-                                            <li><img src="image/pinlun_1.jpg "/></li>
-                                        </ul>
-                                    </div>
-                                    <!--反馈图片-->
-                                    <div class="appr_time ">2016-05-19 12:27</div>
-                                    <!--卖家回复-->
-                                    <div class="call_me_back ">
-                                        客服回复：<span>您好！感谢您对我们的支持和开发商品提出的宝贵建议，您的建议就是我们的动力，我们会继续努力的，请您继续关注我们哦！</span>
-                                    </div>
-                                    <!--卖家回复-->
-                                </div>
-                                <div class="a_li_t2 ">
-                                    <i class="i_icon_csi i_satisfy "></i>
-                                    <i class="i_icon_csi i_satisfy "></i>
-                                    <i class="i_icon_csi i_satisfy "></i>
-                                    <i class="i_icon_csi i_satisfy "></i>
-                                    <i class="i_icon_csi "></i>
-                                </div>
-                                <div class="a_li_t3 ">
-                                    <p class="p_p ">￥<span>298.00</span></p>
-                                </div>
-                                <div class="a_li_t4 ">
-                                    <img src="image/user_center_img4.jpg "><br><span>MB***</span>
-                                </div>
-                            </li>
-                            <li class="appraise_li ">
-                                <div class="a_li_t1">
-                                    <div class="appr_cons ">很轻，很舒适^_^</div>
-                                    <div class="appr_time ">2016-05-19 12:27</div>
-                                </div>
-                                <div class="a_li_t2 ">
-                                    <i class="i_icon_csi i_satisfy "></i>
-                                    <i class="i_icon_csi i_satisfy "></i>
-                                    <i class="i_icon_csi i_satisfy "></i>
-                                    <i class="i_icon_csi i_satisfy "></i>
-                                    <i class="i_icon_csi "></i>
-                                </div>
-                                <div class="a_li_t3 ">
-                                    <p class="p_p ">￥<span>298.00</span></p>
-                                </div>
-                                <div class="a_li_t4 ">
-                                    <img src="image/user_center_img4.jpg "><br><span>MB***</span>
+                                <div style="width: 100%;margin-top: 10px">
+                                    <span style="display:inline-block;width: 40%">{{comment.comment_score}}</span>
+                                    <span style="display:inline-block;width: 59%;text-align: right;color: lightgrey">{{comment.gmt_create | date:'yyyy/MM/dd HH:mm:ss '}}</span>
                                 </div>
                             </li>
                         </ul>
                     </div>
-                </div>
-            </div>
-            <div class="recommend_box">
-                <div class="detail_lists">
-                    <div class="d_h2">
-                        <h2>为您推荐</h2>
-                    </div>
-                    <div class="detail_l_con4">
-                        <div class="d_l_con4_list">
-                            <ul>
-                                <li>
-                                    <a href="" class="a_con4_list">
-                                        <p class="p_img"><img src="image/tui_1.jpg"/></p>
-                                        <p class="p_title">乐途男士经典跑鞋1+1时尚组（后跟杯） 蓝灰色 245(39)</p>
-                                        <p class="p_price">
-                                            <span class="price1">￥<span>298.00</span></span>
-                                        </p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="" class="a_con4_list">
-                                        <p class="p_img"><img src="image/tui_2.jpg"/></p>
-                                        <p class="p_title">乐途男士经典跑鞋1+1时尚组（后跟杯） 蓝灰色 245(39)</p>
-                                        <p class="p_price">
-                                            <span class="price1">￥<span>298.00</span></span>
-                                        </p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="" class="a_con4_list">
-                                        <p class="p_img"><img src="image/tui_3.jpg"/></p>
-                                        <p class="p_title">乐途男士经典跑鞋1+1时尚组（后跟杯） 蓝灰色 245(39)</p>
-                                        <p class="p_price">
-                                            <span class="price1">￥<span>298.00</span></span>
-                                        </p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="" class="a_con4_list">
-                                        <p class="p_img"><img src="image/tui_4.jpg"/></p>
-                                        <p class="p_title">乐途男士经典跑鞋1+1时尚组（后跟杯） 蓝灰色 245(39)</p>
-                                        <p class="p_price">
-                                            <span class="price1">￥<span>298.00</span></span>
-                                        </p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="" class="a_con4_list">
-                                        <p class="p_img"><img src="image/tui_5.jpg"/></p>
-                                        <p class="p_title">乐途男士经典跑鞋1+1时尚组（后跟杯） 蓝灰色 245(39)</p>
-                                        <p class="p_price">
-                                            <span class="price1">￥<span>298.00</span></span>
-                                        </p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="hd">
-                            <a href="javascript:;" class="prev"><</a>
-                            <a href="javascript:;" class="next">></a>
-                        </div>
-                    </div>
+
+                    <ul uib-pagination class="pagination-md pagination-custom float-right" style="margin-right: 20px"
+                        total-items="commentsParams.totalNum"
+                        first-text="«"
+                        last-text="»"
+                        previous-text="上一页"
+                        next-text="下一页"
+                        force-ellipses="true"
+                        max-size="5"
+                        ng-change="loadCommentData()"
+                        rotate="true"
+                        ng-model="commentsParams.pageNum"
+                        items-per-page="commentsParams.pageSize"
+                        class="pagination-sm page-right" boundary-links="true" boundary-link-numbers="true"></ul>
+
                 </div>
             </div>
         </div>
-        <!--展示区域end-->
     </div>
 </div>

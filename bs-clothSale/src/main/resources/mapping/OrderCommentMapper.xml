@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.clothSale.mapper.OrderCommentMapper">
+    <resultMap id="BaseResultMap" type="com.clothSale.model.OrderComment">
+        <id column="comment_id" property="commentId" jdbcType="VARCHAR"/>
+        <result column="sku_id" property="skuId" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId" jdbcType="VARCHAR"/>
+        <result column="order_info_id" property="orderInfoId" jdbcType="VARCHAR"/>
+        <result column="comment_content" property="commentContent" jdbcType="VARCHAR"/>
+        <result column="comment_score" property="commentScore" jdbcType="INTEGER"/>
+        <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    comment_id, sku_id, user_id, order_info_id, comment_content, comment_score,
+    gmt_create
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from order_comment
+        where comment_id = #{commentId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from order_comment
+    where comment_id = #{commentId,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.clothSale.model.OrderComment">
+    insert into order_comment (comment_id, sku_id, user_id, 
+      order_info_id, comment_content, comment_score, gmt_create)
+    values (#{commentId,jdbcType=VARCHAR}, #{skuId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{orderInfoId,jdbcType=VARCHAR}, #{commentContent,jdbcType=VARCHAR}, #{commentScore,jdbcType=INTEGER}, 
+      #{gmtCreate,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="com.clothSale.model.OrderComment">
+        insert into order_comment
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="commentId != null">
+                comment_id,
+            </if>
+            <if test="skuId != null">
+                sku_id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="orderInfoId != null">
+                order_info_id,
+            </if>
+            <if test="commentContent != null">
+                comment_content,
+            </if>
+            <if test="commentScore != null">
+                comment_score,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="commentId != null">
+                #{commentId,jdbcType=VARCHAR},
+            </if>
+            <if test="skuId != null">
+                #{skuId,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="orderInfoId != null">
+                #{orderInfoId,jdbcType=VARCHAR},
+            </if>
+            <if test="commentContent != null">
+                #{commentContent,jdbcType=VARCHAR},
+            </if>
+            <if test="commentScore != null">
+                #{commentScore,jdbcType=INTEGER},
+            </if>
+            <if test="gmtCreate != null">
+                #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.clothSale.model.OrderComment">
+        update order_comment
+        <set>
+            <if test="skuId != null">
+                sku_id = #{skuId,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="orderInfoId != null">
+                order_info_id = #{orderInfoId,jdbcType=VARCHAR},
+            </if>
+            <if test="commentContent != null">
+                comment_content = #{commentContent,jdbcType=VARCHAR},
+            </if>
+            <if test="commentScore != null">
+                comment_score = #{commentScore,jdbcType=INTEGER},
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where comment_id = #{commentId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.clothSale.model.OrderComment">
+    update order_comment
+    set sku_id = #{skuId,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      order_info_id = #{orderInfoId,jdbcType=VARCHAR},
+      comment_content = #{commentContent,jdbcType=VARCHAR},
+      comment_score = #{commentScore,jdbcType=INTEGER},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP}
+    where comment_id = #{commentId,jdbcType=VARCHAR}
+  </update>
+
+    <select id="selectCommentBySpuId" resultType="java.util.Map">
+        select oc.comment_id,oc.comment_content,oc.comment_score,oc.gmt_create,spu.goods_name,
+            GROUP_CONCAT(sv.spec_value) as spec_value,mu.user_name from order_comment oc
+            left join goods_sku sku on oc.sku_id = sku.sku_id
+            left join goods_spu spu on sku.spu_id = spu.spu_id
+            left join goods_sku_spec_value ssv on ssv.sku_id = sku.sku_id
+            left join goods_spec_value sv on sv.spec_value_id = ssv.spec_value_id
+            left join member_userinfo mu on mu.user_id = oc.user_id
+            where spu.spu_id = #{spu_id}
+            GROUP BY oc.comment_id
+            order by oc.gmt_create desc limit #{pageIndex},#{pageSize}
+  </select>
+
+    <select id="selectCommentNumBySpuId" resultType="java.util.Map">
+      select count(*) as total from (
+        select oc.comment_id from order_comment oc
+            left join goods_sku sku on oc.sku_id = sku.sku_id
+            left join goods_spu spu on sku.spu_id = spu.spu_id
+            left join goods_sku_spec_value ssv on ssv.sku_id = sku.sku_id
+            left join goods_spec_value sv on sv.spec_value_id = ssv.spec_value_id
+            left join member_userinfo mu on mu.user_id = oc.user_id
+            where spu.spu_id = #{spu_id}
+            GROUP BY oc.comment_id
+            order by oc.gmt_create
+            ) ta
+  </select>
+
+
+</mapper>
