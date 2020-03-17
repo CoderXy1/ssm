@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.clothSale.mapper.ActivityInfoMapper">
+    <resultMap id="BaseResultMap" type="com.clothSale.model.ActivityInfo">
+        <id column="activity_id" property="activityId" jdbcType="VARCHAR"/>
+        <result column="activity_name" property="activityName" jdbcType="VARCHAR"/>
+        <result column="activity_describe" property="activityDescribe" jdbcType="VARCHAR"/>
+        <result column="activity_state" property="activityState" jdbcType="INTEGER"/>
+        <result column="activity_date_begin" property="activityDateBegin" jdbcType="DATE"/>
+        <result column="activity_date_end" property="activityDateEnd" jdbcType="DATE"/>
+        <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP"/>
+        <result column="gmt_update" property="gmtUpdate" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    activity_id, activity_name, activity_describe, activity_state, activity_date_begin, 
+    activity_date_end, gmt_create, gmt_update
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from activity_info
+        where activity_id = #{activityId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from activity_info where activity_id = #{activityId,jdbcType=VARCHAR};
+    delete from activity_spu_connect where activity_id = #{activityId,jdbcType=VARCHAR};
+  </delete>
+    <insert id="insert" parameterType="com.clothSale.model.ActivityInfo">
+    insert into activity_info (activity_id, activity_name, activity_describe, 
+      activity_state, activity_date_begin, activity_date_end, 
+      gmt_create, gmt_update)
+    values (#{activityId,jdbcType=VARCHAR}, #{activityName,jdbcType=VARCHAR}, #{activityDescribe,jdbcType=VARCHAR}, 
+      #{activityState,jdbcType=INTEGER}, #{activityDateBegin,jdbcType=DATE}, #{activityDateEnd,jdbcType=DATE}, 
+      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtUpdate,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="com.clothSale.model.ActivityInfo">
+        insert into activity_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="activityId != null">
+                activity_id,
+            </if>
+            <if test="activityName != null">
+                activity_name,
+            </if>
+            <if test="activityDescribe != null">
+                activity_describe,
+            </if>
+            <if test="activityState != null">
+                activity_state,
+            </if>
+            <if test="activityDateBegin != null">
+                activity_date_begin,
+            </if>
+            <if test="activityDateEnd != null">
+                activity_date_end,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
+            </if>
+            <if test="gmtUpdate != null">
+                gmt_update,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="activityId != null">
+                #{activityId,jdbcType=VARCHAR},
+            </if>
+            <if test="activityName != null">
+                #{activityName,jdbcType=VARCHAR},
+            </if>
+            <if test="activityDescribe != null">
+                #{activityDescribe,jdbcType=VARCHAR},
+            </if>
+            <if test="activityState != null">
+                #{activityState,jdbcType=INTEGER},
+            </if>
+            <if test="activityDateBegin != null">
+                #{activityDateBegin,jdbcType=DATE},
+            </if>
+            <if test="activityDateEnd != null">
+                #{activityDateEnd,jdbcType=DATE},
+            </if>
+            <if test="gmtCreate != null">
+                #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtUpdate != null">
+                #{gmtUpdate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.clothSale.model.ActivityInfo">
+        update activity_info
+        <set>
+            <if test="activityName != null">
+                activity_name = #{activityName,jdbcType=VARCHAR},
+            </if>
+            <if test="activityDescribe != null">
+                activity_describe = #{activityDescribe,jdbcType=VARCHAR},
+            </if>
+            <if test="activityState != null">
+                activity_state = #{activityState,jdbcType=INTEGER},
+            </if>
+            <if test="activityDateBegin != null">
+                activity_date_begin = #{activityDateBegin,jdbcType=DATE},
+            </if>
+            <if test="activityDateEnd != null">
+                activity_date_end = #{activityDateEnd,jdbcType=DATE},
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtUpdate != null">
+                gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where activity_id = #{activityId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.clothSale.model.ActivityInfo">
+    update activity_info
+    set activity_name = #{activityName,jdbcType=VARCHAR},
+      activity_describe = #{activityDescribe,jdbcType=VARCHAR},
+      activity_state = #{activityState,jdbcType=INTEGER},
+      activity_date_begin = #{activityDateBegin,jdbcType=DATE},
+      activity_date_end = #{activityDateEnd,jdbcType=DATE},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP}
+    where activity_id = #{activityId,jdbcType=VARCHAR}
+  </update>
+
+    <select id="selectActivityInfo" resultType="java.util.Map">
+        select * from activity_info
+        where 1 = 1
+        <if test="activity_name != null and activity_name != ''">
+            and activity_name like concat('%',#{activity_name},'%')
+        </if>
+        <if test="activity_state != -1">
+            and activity_state = #{activity_state}
+        </if>
+        order by gmt_create desc limit #{pageIndex},#{pageSize}
+    </select>
+
+    <select id="selectNumActivityInfo" resultType="java.util.Map">
+        select count(*) as total from activity_info
+        where 1 = 1
+        <if test="activity_name != null and activity_name != ''">
+            and activity_name like concat('%',#{activity_name},'%')
+        </if>
+        <if test="activity_state != -1">
+            and activity_state = #{activity_state}
+        </if>
+        order by gmt_create desc
+    </select>
+
+    <select id="selectSpuAndActivity" resultType="java.util.Map">
+        select spu.*,b.brand_name,c.category_name,f.*,spu.spu_id in (select spu.spu_id from goods_spu spu
+        left join activity_spu_connect aspu on aspu.spu_id = spu.spu_id
+        left join activity_info ai on ai.activity_id = aspu.activity_id
+        where aspu.activity_id = #{activity_id}
+        ) as isActivity from goods_spu spu
+        LEFT JOIN goods_brand b on b.brand_id = spu.brand_id
+        LEFT JOIN goods_category c on c.category_id = spu.category_id
+        LEFT JOIN tb_file f on f.file_id = spu.spu_icon_id
+        where 1 = 1
+        <if test="goods_name != null and goods_name != ''">
+            and goods_name like concat('%',#{goods_name},'%')
+        </if>
+        ORDER BY spu_order limit #{pageIndex},#{pageSize}
+    </select>
+
+    <select id="selectNumSpuAndActivity" resultType="java.util.Map">
+        select count(*) as total from goods_spu spu
+        LEFT JOIN goods_brand b on b.brand_id = spu.brand_id
+        LEFT JOIN goods_category c on c.category_id = spu.category_id
+        LEFT JOIN tb_file f on f.file_id = spu.spu_icon_id
+        where 1 = 1
+        <if test="goods_name != null and goods_name != ''">
+            and goods_name like concat('%',#{goods_name},'%')
+        </if>
+        ORDER BY spu_order
+    </select>
+
+    <delete id="deleteActivitySpu">
+        delete from activity_spu_connect where activity_id = #{activity_id} and spu_id = #{spu_id}
+    </delete>
+
+    <insert id="insertActivitySpu">
+    insert into activity_spu_connect (activity_id,spu_id,gmt_create)
+    values (#{activity_id,jdbcType=VARCHAR},#{spu_id,jdbcType=VARCHAR},#{gmt_create,jdbcType=TIMESTAMP})
+  </insert>
+
+</mapper>

@@ -1,0 +1,121 @@
+<div class="main" style="height: 600px;margin-top: 20px">
+    <div class="container-fluid" style="height: 100%;">
+        <div class="card">
+
+            <!-- modal:新增活动 -->
+            <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="picModalModalLabel">新增活动</h5>
+                        </div>
+                        <div class="modal-body">
+                            <form name="editForm" role="form" id="editForm" autocomplete="off" ng-submit="insertActivity()">
+                                <div class="form-group">
+                                    <label for="activity_name" class="col-form-label">活动名:</label>
+                                    <input name="brand_name" type="text" class="form-control" id="activity_name" ng-model="insertParamsActivity.activity_name" ng-required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="activity_describe" class="col-form-label">活动描述:</label>
+                                    <input id="activity_describe" type="text" class="form-control" ng-model="insertParamsActivity.activity_describe" ng-required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="activity_date_begin" class="col-form-label">活动开始时间:</label>
+                                    <input id="activity_date_begin" type="date" class="form-control" ng-model="insertParamsActivity.activity_date_begin" ng-required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="activity_date_end" class="col-form-label">活动结束时间:</label>
+                                    <input id="activity_date_end" type="date" class="form-control" ng-model="insertParamsActivity.activity_date_end" ng-required="true">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                            <button type="submit" class="btn btn-primary" form="editForm">保存</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-title">
+                <h4><i class="fa fa-telegram color-info"></i> 活动一览</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 input-group">
+                        <input class="form-control" placeholder="活动名" type="text" ng-model="selectParamsActivity.activity_name">
+                        <span class="input-group-btn"><button class="btn btn-sm btn-primary" ng-click="selectActivityInfo()"><i
+                                class="ti-search"></i></button></span>
+                    </div>
+                    <div class="col-md-4 input-group">
+                        <select class="form-control" ng-model="selectParamsActivity.activity_state" ng-change="selectActivityInfo()">
+                            <option value='-1'>--全部活动状态--</option>
+                            <option value='0'>未开始</option>
+                            <option value='1'>进行中</option>
+                            <option value='2'>已结束</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <button class="btn btn-outline-primary" data-toggle="modal" data-target="#addModal">新增活动</button>
+                    </div>
+                </div>
+
+                <div class="table-responsive" style="margin-top: 10px">
+                    <table class="table table-bordered table-striped">
+                        <thead class="text-center">
+                        <tr>
+                            <th>序号</th>
+                            <th>活动名</th>
+                            <th>描述</th>
+                            <th>状态</th>
+                            <th>开始日期</th>
+                            <th>结束日期</th>
+                            <th>创建时间</th>
+                            <th style="text-align: center">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="text-center" ng-repeat="activityInfo in activityInfoList">
+                            <th scope="row">{{$index+1}}</th>
+                            <td class="color-primary font-weight-bold"><a ui-sref="app.activitySpu({activity_id:activityInfo.activity_id})">{{activityInfo.activity_name}}</a></td>
+                            <td class="color-info font-weight-bold">{{activityInfo.activity_describe}}</td>
+                            <td>
+                                <span class="badge badge-danger" style="color: white" ng-if="activityInfo.activity_state == 0">未开始</span>
+                                <span class="badge badge-success" style="color: white" ng-if="activityInfo.activity_state == 1">进行中</span>
+                                <span class="badge badge-secondary" style="color: white" ng-if="activityInfo.activity_state == 2">已结束</span>
+                            </td>
+                            <td>{{activityInfo.activity_date_begin | date:'yyyy/MM/dd'}}</td>
+                            <td>{{activityInfo.activity_date_end | date:'yyyy/MM/dd'}}</td>
+                            <td>{{activityInfo.gmt_create | date:'yyyy/MM/dd HH:mm:ss'}}</td>
+                            <td class="text-center">
+                                <button class="btn btn-sm btn-success" title="修改"><i class="fa fa-edit"></i></button>
+                                <button class="btn btn-sm btn-danger" ng-click="deleteActivity(activityInfo.activity_id)"><i class="fa fa-close"></i></button>
+                            </td>
+                        </tr>
+                        <tr ng-if="activityInfoList == null">
+                            <td colspan="15" style="text-align:center">暂无数据</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <ul uib-pagination class="pagination-md pagination-custom float-right" style="margin-right: 20px"
+                        total-items="selectParamsActivity.totalNum"
+                        first-text="«"
+                        last-text="»"
+                        previous-text="上一页"
+                        next-text="下一页"
+                        force-ellipses="true"
+                        max-size="5"
+                        ng-change="loadData()"
+                        rotate="true"
+                        ng-model="selectParamsActivity.pageNum"
+                        items-per-page="selectParamsActivity.pageSize"
+                        class="pagination-sm page-right" boundary-links="true" boundary-link-numbers="true"></ul>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

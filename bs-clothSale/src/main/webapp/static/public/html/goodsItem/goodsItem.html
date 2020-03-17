@@ -254,25 +254,27 @@
                     <div class="d_h2 ">
                         <h2>用户评价</h2>
                     </div>
-
+                    <div class="my-rating"></div>
                     <div style="margin-top: 30px;margin-left: 24px">
                         <ul>
                             <li ng-repeat="comment in commentsList"
                                 style="padding: 10px;margin-bottom:10px;border-bottom: 1px solid lightgrey">
-                                <div style="width: 100%">
-                                    <span style="display:inline-block;width: 50%">{{comment.comment_content}}</span>
+                                <div style="width: 100%;font-size: 14px">
+                                    <span style="display:inline-block;width: 50%">{{comment.user_name}} : {{comment.comment_content}}</span>
                                     <span style="display:inline-block;width: 30%">规格: <span class="color-info">{{comment.spec_value}}</span></span>
-                                    <span style="display:inline-block;width: 10%">{{comment.user_name}}</span>
                                 </div>
                                 <div style="width: 100%;margin-top: 10px">
-                                    <span style="display:inline-block;width: 40%">{{comment.comment_score}}</span>
-                                    <span style="display:inline-block;width: 59%;text-align: right;color: lightgrey">{{comment.gmt_create | date:'yyyy/MM/dd HH:mm:ss '}}</span>
+                                    <span style="display:inline-block;width: 40%"><i class="fa fa-star text-warning" ng-repeat="array in comment.arrayNum track by $index"></i></span>
+                                    <span style="display:inline-block;width: 59%;text-align: right;color: lightgrey;font-size: 12px">{{comment.gmt_create | date:'yyyy/MM/dd HH:mm:ss '}}</span>
                                 </div>
                             </li>
+                            <div ng-if="commentsList == null">
+                                <p class="text-center">暂无评论</p>
+                            </div>
                         </ul>
                     </div>
 
-                    <ul uib-pagination class="pagination-md pagination-custom float-right" style="margin-right: 20px"
+                    <ul uib-pagination class="pagination-sm pagination-custom float-right" style="margin-right: 20px"
                         total-items="commentsParams.totalNum"
                         first-text="«"
                         last-text="»"
@@ -284,7 +286,7 @@
                         rotate="true"
                         ng-model="commentsParams.pageNum"
                         items-per-page="commentsParams.pageSize"
-                        class="pagination-sm page-right" boundary-links="true" boundary-link-numbers="true"></ul>
+                        boundary-links="true" boundary-link-numbers="true"></ul>
 
                 </div>
             </div>

@@ -1,0 +1,76 @@
+<div class="main" style="height: 600px;margin-top: 20px">
+    <div class="container-fluid" style="height: 100%;">
+        <div class="card">
+
+            <div class="card-title">
+                <h4><i class="fa fa-telegram color-info"></i> 活动商品</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 input-group">
+                        <input class="form-control" placeholder="商品名" type="text" ng-model="selectParamsActivitySpu.goods_name">
+                        <span class="input-group-btn"><button class="btn btn-sm btn-primary" ng-click="selectActivitySpu()"><i
+                                class="ti-search"></i></button></span>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <a class="btn btn-outline-info" ui-sref="app.activityInfo">返回</a>
+                    </div>
+                </div>
+
+                <div class="table-responsive" style="margin-top: 10px">
+                    <table class="table table-bordered table-striped">
+                        <thead class="text-center">
+                        <tr>
+                            <th>序号</th>
+                            <th>图片</th>
+                            <th>服饰名</th>
+                            <th>最低价格</th>
+                            <th>所属品牌</th>
+                            <th>所属类别</th>
+                            <th class="text-center">活动商品</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="text-center" ng-repeat="activitySpu in activitySpuList">
+                            <th scope="row">{{$index+1}}</th>
+                            <td><img ng-src="data:image/jpg;base64,{{activitySpu.file_content}}"
+                                     style="object-fit: cover;height: 60px;width: 60px"></td>
+                            <td class="color-primary font-weight-bold"><a>{{activitySpu.goods_name}}</a></td>
+                            <td>￥{{activitySpu.low_price}}</td>
+                            <td><span class="badge badge-warning">{{activitySpu.brand_name}}</span></td>
+                            <td><span class="badge badge-primary">{{activitySpu.category_name}}</span></td>
+                            <td class="text-center">
+                                <div class="checkbox checkbox-success" >
+                                    <input id="{{activitySpu.spu_id}}" type="checkbox" name="role" ng-checked="{{activitySpu.isActivity}} == 1"
+                                           ng-click="changeActivitySpu(activitySpu.isActivity,activitySpu.spu_id)">
+                                    <label class="font-weight-light" for="{{activitySpu.spu_id}}" style="line-height: 16px"></label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr ng-if="activitySpuList == null">
+                            <td colspan="15" style="text-align:center">暂无数据</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <ul uib-pagination class="pagination-md pagination-custom float-right" style="margin-right: 20px"
+                        total-items="selectParamsActivitySpu.totalNum"
+                        first-text="«"
+                        last-text="»"
+                        previous-text="上一页"
+                        next-text="下一页"
+                        force-ellipses="true"
+                        max-size="5"
+                        ng-change="loadData()"
+                        rotate="true"
+                        ng-model="selectParamsActivitySpu.pageNum"
+                        items-per-page="selectParamsActivitySpu.pageSize"
+                        class="pagination-sm page-right" boundary-links="true" boundary-link-numbers="true"></ul>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

@@ -105,6 +105,14 @@ angular.module("clothSalePublicApp")
             }).then(function successCallback(response) {
                 //请求成功
                 $scope.commentsList = response.data.item;
+                angular.forEach($scope.commentsList,function(comment,index,objs){
+                    var num = comment.comment_score;
+                    var arrays = {'arrayNum':[]};
+                    for (var i=0;i<num;i++){
+                        arrays.arrayNum.push('0');
+                    }
+                    $scope.commentsList[index] = angular.merge($scope.commentsList[index],arrays);
+                });
                 $scope.commentsParams.totalNum = response.data.extdata==null?0:response.data.extdata.total;
             }, function errorCallback(response) {
                 //请求失败
@@ -300,4 +308,5 @@ angular.module("clothSalePublicApp")
             //切换颜色
             $(this).addClass("on").siblings().removeClass("on");
         });
+
     });

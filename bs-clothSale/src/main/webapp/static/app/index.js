@@ -130,6 +130,24 @@ angular.module("clothSaleApp", ['ui.router', 'oc.lazyLoad', 'ui.bootstrap', 'mgc
                     return e.load(['order/orderInfo.js']);
                 }]
             }
+        }).state('app.activityInfo', {
+            url: '/activityInfo',
+            templateUrl: 'activity/activityInfo.html',
+            controller: 'activityInfoCtrl',
+            resolve: {
+                deps: ['$ocLazyLoad', function (e) {
+                    return e.load(['activity/activityInfo.js']);
+                }]
+            }
+        }).state('app.activitySpu', {
+            url: '/activitySpu?activity_id',
+            templateUrl: 'activity/activitySpu/activitySpu.html',
+            controller: 'activitySpuCtrl',
+            resolve: {
+                deps: ['$ocLazyLoad', function (e) {
+                    return e.load(['activity/activitySpu/activitySpu.js']);
+                }]
+            }
         });
     })
     .run(['$rootScope','$state',function($rootScope,$state) {

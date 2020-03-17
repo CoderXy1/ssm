@@ -64,8 +64,8 @@
                <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
         <!--</table>-->
 
-        <!--<table schema="test" tableName="order_info"-->
-               <!--domainObjectName="OrderInfo" enableCountByExample="false"-->
+        <!--<table schema="test" tableName="activity_info"-->
+               <!--domainObjectName="activityInfo" enableCountByExample="false"-->
                <!--enableUpdateByExample="false" enableDeleteByExample="false"-->
                <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
         <!--</table>-->

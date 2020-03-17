@@ -103,6 +103,15 @@ angular.module("clothSalePublicApp", ['ui.router', 'oc.lazyLoad', 'ui.bootstrap'
                     return e.load(['html/user/address/addressEdit.js']);
                 }]
             }
+        }).state('public.user.userInfo', {
+            url: '/userInfo',
+            templateUrl: 'html/user/userInfo/userInfo.html',
+            controller: 'userInfoCtrl',
+            resolve: {
+                deps: ['$ocLazyLoad', function (e) {
+                    return e.load(['html/user/userInfo/userInfo.js']);
+                }]
+            }
         }).state('public.search', {
             url: '/search?goods_name&category_id&brand_id',
             templateUrl: 'html/search/search.html',
