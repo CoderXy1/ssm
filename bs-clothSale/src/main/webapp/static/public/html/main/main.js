@@ -3,16 +3,19 @@ angular.module("clothSalePublicApp")
 
         $scope.categoryFirstList = [];
         $scope.showList = false;
+        $scope.activityInfoList = [];
+        $scope.activitySpuList = [];
         $scope.categoryList = [];
         $scope.spuList = [];
         $scope.spuList_today = [];
-        $scope.tabsSign = 1;
+        $scope.tabsSign = 0;
         $scope.selectFirstParams = {
             pageIndex : 0,
             pageSize : 10,
         }
-        $scope.changeTabs = function (num){
+        $scope.changeTabs = function (num,activity_id){
             $scope.tabsSign = num;
+            $scope.selectActivitySpu(activity_id);
         }
 
         //查询一级分类
@@ -47,21 +50,45 @@ angular.module("clothSalePublicApp")
             });
         }
 
-        //查询精选服饰
-        $scope.selectGoodsSpu = function () {
+        //查询活动
+        $scope.selectActivityInfo = function (){
             $http({
                 method: "POST",
-                url: '../../GoodsSpu/selectGoodsSpu',
+                url: '../../ActivityInfo/selectActivityInfo',
                 params: {
                     pageIndex: 0,
-                    pageSize: 5,
+                    pageSize: 4,
+                    activity_state : 1,
                 }
             }).then(function successCallback(response) {
                 //请求成功
-                $scope.spuList = response.data.item;
+                $scope.activityInfoList = response.data.item;
+                $scope.selectActivitySpu($scope.activityInfoList[$scope.tabsSign].activity_id);
             }, function errorCallback(response) {
                 //请求失败
+                $scope.showAlert('错误:',response.data.msg,'danger');
             });
+        }
+
+        //查询活动商品
+        $scope.selectActivitySpu = function (activity_id){
+
+            $http({
+                method: "POST",
+                url: '../../ActivityInfo/selectSpuOfActivity',
+                params: {
+                    pageIndex: 0,
+                    pageSize: 5,
+                    activity_id : activity_id,
+                }
+            }).then(function successCallback(response) {
+                //请求成功
+                $scope.activitySpuList = response.data.item;
+            }, function errorCallback(response) {
+                //请求失败
+                $scope.showAlert('错误:',response.data.msg,'danger');
+            });
+
         }
 
         //查询今日发现
@@ -83,7 +110,7 @@ angular.module("clothSalePublicApp")
 
         $scope.loadData = function () {
             $scope.selectFirstCategory();
-            $scope.selectGoodsSpu();
+            $scope.selectActivityInfo();
             $scope.selectGoodsSpuToday();
         }
 

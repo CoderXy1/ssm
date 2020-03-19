@@ -1,0 +1,45 @@
+<div class="line_divider"></div>
+<div class="w1200">
+
+    <div class="text-center">
+        <p style="color: orangered;font-size: 21px">{{selectParamsActivitySpu.activity_name}}</p>
+    </div>
+
+    <div>
+        <ul class="day_goods">
+            <li ng-repeat="activitySpu in activitySpuList">
+                <a ui-sref="public.goodsItem({spu_id:activitySpu.spu_id})" title="{{activitySpu.goods_name}}"
+                   class="a_con_list">
+                    <p class="p_img"><img ng-src="data:image/jpg;base64,{{activitySpu.file_content}}"
+                                          title="{{activitySpu.goods_name}}"/></p>
+                    <p class="p_title">
+                        <span>{{activitySpu.goods_name}}</span>
+                    </p>
+                    <p class="p_p">
+                        <span class="price1">￥<span>{{activitySpu.low_price}}</span></span>
+                    </p>
+                </a>
+            </li>
+        </ul>
+        <div ng-if="activitySpuList == null">
+            <p class="text-center">暂无该类服饰</p>
+        </div>
+
+        <ul uib-pagination class="pagination-sm pagination-custom float-right" style="margin-right: 20px"
+            total-items="selectParamsActivitySpu.totalNum"
+            first-text="«"
+            last-text="»"
+            previous-text="上一页"
+            next-text="下一页"
+            force-ellipses="true"
+            max-size="5"
+            ng-change="loadData()"
+            rotate="true"
+            ng-model="selectParamsActivitySpu.pageNum"
+            items-per-page="selectParamsActivitySpu.pageSize"
+            boundary-links="true" boundary-link-numbers="true"></ul>
+    </div>
+
+
+</div>
+

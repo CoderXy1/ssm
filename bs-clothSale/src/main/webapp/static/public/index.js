@@ -121,6 +121,15 @@ angular.module("clothSalePublicApp", ['ui.router', 'oc.lazyLoad', 'ui.bootstrap'
                     return e.load(['html/search/search.js']);
                 }]
             }
+        }).state('public.activityInfo', {
+            url: '/activityInfo?activity_id&activity_name',
+            templateUrl: 'html/main/activityInfo/activityInfo.html',
+            controller: 'activityInfoCtrl',
+            resolve: {
+                deps: ['$ocLazyLoad', function (e) {
+                    return e.load(['html/main/activityInfo/activityInfo.js']);
+                }]
+            }
         }).state('public.test', {
             url: '/test',
             templateUrl: 'html/test/test.html',

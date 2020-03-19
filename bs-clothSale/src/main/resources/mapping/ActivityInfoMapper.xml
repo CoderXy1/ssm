@@ -179,6 +179,26 @@
         ORDER BY spu_order
     </select>
 
+    <select id="selectSpuOfActivity" resultType="java.util.Map">
+        select spu.*,f.*
+        from activity_spu_connect aspu
+        LEFT JOIN activity_info ai on ai.activity_id = aspu.activity_id
+        LEFT JOIN goods_spu spu on spu.spu_id = aspu.spu_id
+        LEFT JOIN tb_file f on f.file_id = spu.spu_icon_id
+        where aspu.activity_id = #{activity_id}
+        ORDER BY spu_order limit #{pageIndex},#{pageSize}
+    </select>
+
+    <select id="selectNumSpuOfActivity" resultType="java.util.Map">
+        select count(*) as total
+        from activity_spu_connect aspu
+        LEFT JOIN activity_info ai on ai.activity_id = aspu.activity_id
+        LEFT JOIN goods_spu spu on spu.spu_id = aspu.spu_id
+        LEFT JOIN tb_file f on f.file_id = spu.spu_icon_id
+        where aspu.activity_id = #{activity_id}
+        ORDER BY spu_order
+    </select>
+
     <delete id="deleteActivitySpu">
         delete from activity_spu_connect where activity_id = #{activity_id} and spu_id = #{spu_id}
     </delete>

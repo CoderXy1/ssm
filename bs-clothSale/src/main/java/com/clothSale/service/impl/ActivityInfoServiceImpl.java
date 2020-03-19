@@ -67,6 +67,16 @@ public class ActivityInfoServiceImpl implements IActivityInfoService {
     }
 
     @Override
+    public List<HashMap<String, Object>> selectSpuOfActivity(int pageIndex, int pageSize, String activity_id) {
+        return activityInfoMapper.selectSpuOfActivity(pageIndex, pageSize, activity_id);
+    }
+
+    @Override
+    public HashMap<String, Object> selectNumSpuOfActivity(String activity_id) {
+        return activityInfoMapper.selectNumSpuOfActivity(activity_id);
+    }
+
+    @Override
     public int deleteActivitySpu(String activity_id, String spu_id) {
         return activityInfoMapper.deleteActivitySpu(activity_id, spu_id);
     }

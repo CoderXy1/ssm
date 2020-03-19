@@ -68,6 +68,27 @@ public class ActivityInfoController {
         return res;
     }
 
+    @RequestMapping("/selectSpuOfActivity")
+    @ResponseBody
+    public RequsetData<List<HashMap<String, Object>>> selectSpuOfActivity(@RequestParam("pageIndex") int pageIndex, @RequestParam("pageSize") int pageSize, @RequestParam("activity_id") String activity_id) {
+
+        RequsetData<List<HashMap<String, Object>>> res = new RequsetData<>();
+
+        List<HashMap<String, Object>> list = activityInfoService.selectSpuOfActivity(pageIndex, pageSize, activity_id);
+        HashMap<String,Object> total = activityInfoService.selectNumSpuOfActivity(activity_id);
+
+        if (!list.isEmpty()) {
+            res.setItem(list);
+            res.setExtdata(total);
+            res.setMsg("查询成功");
+            res.setSuccess(true);
+        } else {
+            res.setMsg("查询失败");
+            res.setSuccess(false);
+        }
+        return res;
+    }
+
     @RequestMapping("/insertSelective")
     @ResponseBody
     public RequsetData<Integer> insertSelective(@RequestParam("activity_id") String activity_id,@RequestParam("activity_name")String activity_name,

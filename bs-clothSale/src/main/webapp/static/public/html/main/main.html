@@ -9,14 +9,8 @@
             <li class="home">
                 <a href="index.html" style="color: #C41F3A;">首页</a>
             </li>
-            <li>
-                <a href="refined.html">精选品牌</a>
-            </li>
-            <li>
-                <a href="go.html">限时抢购</a>
-            </li>
-            <li>
-                <a href="brand.html">品牌馆</a>
+            <li ng-repeat="activityInfo in activityInfoList">
+                <a ui-sref="public.activityInfo({activity_id:activityInfo.activity_id,activity_name:activityInfo.activity_name})">{{activityInfo.activity_name}}</a>
             </li>
         </ul>
     </div>
@@ -35,7 +29,8 @@
                 <div class="nav_type_list">
                     <ul>
                         <li ng-repeat="category in categoryList">
-                            <a ui-sref="public.search({category_id:category.category_id})" target="_blank" style="font-weight: bold">{{category.category_name}}</a>
+                            <a ui-sref="public.search({category_id:category.category_id})" target="_blank"
+                               style="font-weight: bold">{{category.category_name}}</a>
                         </li>
                         <li ng-if="categoryList.length == null">
                             <a href="javascript:void(0);" target="_blank" style="font-weight: bold">暂无商品</a>
@@ -86,44 +81,26 @@
 <!--商品区-->
 <div class="w1200" style="margin-top: 50px">
     <ul class="her_menu her_title">
-        <li ng-class="{'current':tabsSign == 1}" ng-click="changeTabs(1)">
-            <i class="today_zb_icon"></i>
-            精选服饰
-            <i class="jx_icon_down"></i>
-        </li>
-        <li ng-class="{'current':tabsSign == 2}" ng-click="changeTabs(2)">
+        <li ng-repeat="activityInfo in activityInfoList" ng-class="{'current':tabsSign == $index}"
+            ng-click="changeTabs($index,activityInfo.activity_id)">
             <i class="yesto_icon"></i>
-            限时抢购
+            {{activityInfo.activity_name}}
             <i class="jx_icon_down"></i>
         </li>
     </ul>
     <div class="goods">
-        <ul class="row goods_ul" ng-if="tabsSign == 1">
-            <li class="goods_li" ng-repeat="spu in spuList">
+        <ul class="row goods_ul">
+            <li class="goods_li" ng-repeat="activitySpu in activitySpuList">
                 <div style="position: relative;">
-                    <a ui-sref="public.goodsItem({spu_id:spu.spu_id})">
-                        <span class="badge badge-primary goods_badge" style="background-color: #f40;">精选服饰</span>
-                        <img ng-src="data:image/jpg;base64,{{spu.file_content}}" title="{{spu.goods_name}}"
+                    <a ui-sref="public.goodsItem({spu_id:activitySpu.spu_id})">
+                        <span class="badge badge-primary goods_badge" style="background-color: #f40;">{{activityInfoList[tabsSign].activity_name}}</span>
+                        <img ng-src="data:image/jpg;base64,{{activitySpu.file_content}}" title="{{activitySpu.goods_name}}"
                              style="width: 100%;height: 200px;overflow: hidden"/>
                         <p style="width:100%;color: gray;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
-                            {{spu.goods_name}}</p>
+                            {{activitySpu.goods_name}}</p>
                     </a>
                 </div>
-                <span style="font-weight: bold;color: #fd3f31">￥{{spu.low_price}}</span>
-                <span style="font-weight: lighter;font-size:12px;color: gray;float: right">月销1.2万件</span>
-            </li>
-        </ul>
-
-        <ul class="row goods_ul" ng-if="tabsSign == 2">
-            <li class="goods_li" ng-repeat="spu in spuList">
-                <div style="cursor: pointer;position: relative;">
-                    <span class="badge badge-danger goods_badge">限时抢购</span>
-                    <img ng-src="data:image/jpg;base64,{{spu.file_content}}" title="{{spu.goods_name}}"
-                         style="width: 100%;height: 200px;overflow: hidden"/>
-                    <p style="width:100%;color: gray;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
-                        {{spu.goods_name}}</p>
-                </div>
-                <span style="font-weight: bold;color: #fd3f31">￥{{spu.low_price}}</span>
+                <span style="font-weight: bold;color: #fd3f31">￥{{activitySpu.low_price}}</span>
                 <span style="font-weight: lighter;font-size:12px;color: gray;float: right">月销1.2万件</span>
             </li>
         </ul>
@@ -137,7 +114,8 @@
         </div>
         <ul class="day_goods">
             <li ng-repeat="spu_today in spuList_today">
-                <a ui-sref="public.goodsItem({spu_id:spu_today.spu_id})" title="{{spu_today.goods_name}}" class="a_con_list">
+                <a ui-sref="public.goodsItem({spu_id:spu_today.spu_id})" title="{{spu_today.goods_name}}"
+                   class="a_con_list">
                     <p class="p_img"><img ng-src="data:image/jpg;base64,{{spu_today.file_content}}"
                                           title="{{spu_today.goods_name}}"/></p>
                     <p class="p_title">
