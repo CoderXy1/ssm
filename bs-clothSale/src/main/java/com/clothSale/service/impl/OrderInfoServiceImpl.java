@@ -54,4 +54,9 @@ public class OrderInfoServiceImpl implements IOrderInfoService {
     public HashMap<String, Object> selectAllOrderInfoNumByUserId(String user_id,String user_name, int order_state) {
         return orderInfoMapper.selectAllOrderInfoNumByUserId(user_id,user_name, order_state);
     }
+
+    @Override
+    public List<HashMap<String, Object>> selectAllOrderInfoNumByMonth() {
+        return orderInfoMapper.selectAllOrderInfoNumByMonth();
+    }
 }

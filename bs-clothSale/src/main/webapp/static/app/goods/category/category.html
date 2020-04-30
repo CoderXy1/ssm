@@ -26,7 +26,8 @@
                                     <div id="category_first_id" class="row">
                                         <div class="col-md-3 checkbox checkbox-info"
                                              ng-repeat="categoryFirst in allCategoryFirstList">
-                                            <input id="{{categoryFirst.category_first_id}}" type="checkbox" name="role" ng-model="GoodsCategoryFirstSelected"
+                                            <input id="{{categoryFirst.category_first_id}}" type="checkbox" name="role"
+                                                   ng-model="GoodsCategoryFirstSelected"
                                                    ng-change="addGoodsCategoryFirst(GoodsCategoryFirstSelected,categoryFirst.category_first_id,categoryFirst.category_first_name)">
                                             <label class="font-weight-light" for="{{categoryFirst.category_first_id}}"
                                                    style="line-height: 16px">
@@ -41,8 +42,8 @@
                                            ng-model="editCategory_name" ng-required="true">
                                 </div>
                                 <div class="form-group">
-                                    <label for="brand_icon_id" class="col-form-label">类别优先级:</label>
-                                    <input id="brand_icon_id" type="number" class="form-control"
+                                    <label for="category_order" class="col-form-label">类别优先级:</label>
+                                    <input id="category_order" type="number" class="form-control"
                                            ng-model="category_order" ng-required="true">
                                 </div>
                             </form>
@@ -50,6 +51,37 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
                             <button type="submit" class="btn btn-primary" form="editForm">保存</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- modal:修改分类 -->
+            <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editModalModalLabel">分类修改</h5>
+                        </div>
+                        <div class="modal-body">
+                            <form name="editForm" role="form" id="editForm1" autocomplete="off"
+                                  ng-submit="saveUpdateCategory()">
+                                <div class="form-group">
+                                    <label for="category_name" class="col-form-label">类别名:</label>
+                                    <input type="text" class="form-control" id="category_name_edit"
+                                           ng-model="category_name_edit" ng-required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="category_order_edit" class="col-form-label">类别优先级:</label>
+                                    <input id="category_order_edit" type="number" class="form-control"
+                                           ng-model="category_order_edit" ng-required="true">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                            <button type="submit" class="btn btn-primary" form="editForm1">保存</button>
                         </div>
                     </div>
                 </div>
@@ -98,9 +130,10 @@
                             <td><span class="badge badge-primary">{{categoryFirst.category_first_order}}</span></td>
                             <td>{{categoryFirst.gmt_create | date:'yyyy/MM/dd HH:mm:ss'}}</td>
                             <td class="text-center">
-                                <button class="btn btn-sm btn-success" title="修改"><i class="fa fa-edit"></i></button>
+                                <button class="btn btn-sm btn-success" title="修改"
+                                        ng-click="updateCategory(categoryFirst.category_first_id,categoryFirst.category_first_name,categoryFirst.category_first_order)"><i class="fa fa-edit"></i></button>
                                 <button class="btn btn-sm btn-danger" title="删除"
-                                        ng-click="deleteCategory(category.category_id)"><i class="fa fa-close"></i>
+                                        ng-click="deleteCategory(categoryFirst.category_first_id)"><i class="fa fa-close"></i>
                                 </button>
                             </td>
                         </tr>
@@ -150,6 +183,7 @@
                             <th>序号</th>
                             <th>类别名</th>
                             <th>优先级</th>
+                            <th>所属一级分类</th>
                             <th>添加时间</th>
                             <th style="text-align: center">操作</th>
                         </tr>
@@ -159,9 +193,11 @@
                             <th scope="row">{{$index+1}}</th>
                             <td class="color-primary font-weight-bold">{{category.category_name}}</td>
                             <td><span class="badge badge-primary">{{category.category_order}}</span></td>
+                            <td><span class="badge badge-dark">{{category.category_first_name}}</span></td>
                             <td>{{category.gmt_create | date:'yyyy/MM/dd HH:mm:ss'}}</td>
                             <td class="text-center">
-                                <button class="btn btn-sm btn-success" title="修改"><i class="fa fa-edit"></i></button>
+                                <button class="btn btn-sm btn-success" title="修改"
+                                        ng-click="updateCategory(category.category_id,category.category_name,category.category_order)"><i class="fa fa-edit"></i></button>
                                 <button class="btn btn-sm btn-danger" title="删除"
                                         ng-click="deleteCategory(category.category_id)"><i class="fa fa-close"></i>
                                 </button>

@@ -30,7 +30,7 @@
                                 <div class="stat-content">
                                     <div class="text-left dib">
                                         <div class="stat-heading">用户人数</div>
-                                        <div class="stat-text">Total: 24720</div>
+                                        <div class="stat-text">Total: {{userTotalNum}}</div>
                                     </div>
                                 </div>
                             </div>
@@ -44,8 +44,8 @@
                                 </div>
                                 <div class="stat-content">
                                     <div class="text-left dib">
-                                        <div class="stat-heading">Daily sales</div>
-                                        <div class="stat-text">Total: 765</div>
+                                        <div class="stat-heading">订单数量</div>
+                                        <div class="stat-text">Total: {{orderTotalNum}}</div>
                                     </div>
                                 </div>
                             </div>
@@ -59,8 +59,8 @@
                                 </div>
                                 <div class="stat-content">
                                     <div class="text-left dib">
-                                        <div class="stat-heading">Bandwidth</div>
-                                        <div class="stat-text">Total: 24720</div>
+                                        <div class="stat-heading">活动数量</div>
+                                        <div class="stat-text">Total: {{activityTotalNum}}</div>
                                     </div>
                                 </div>
                             </div>
@@ -72,7 +72,7 @@
                     <div class="col-lg-7">
                         <div class="card">
                             <div class="card-title">
-                                <h4><i class="fa fa-line-chart color-info"></i> 销售数量统计</h4>
+                                <h4><i class="fa fa-line-chart color-info"></i> 今年订单统计</h4>
                             </div>
                             <div class="card-body">
                                 <div id="chart-bar"></div>

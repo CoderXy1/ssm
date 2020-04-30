@@ -75,7 +75,6 @@ public class GoodsSpuController {
 
     @RequestMapping("/selectSingleGoodsSpu")
     @ResponseBody
-    //有参数要加 @RequestParam("参数名")
     public RequsetData<List<HashMap<String, Object>>> selectSingleGoodsSpu(@RequestParam("spu_id") String spu_id){
         RequsetData<List<HashMap<String, Object>>> res = new RequsetData<>();
 
@@ -85,6 +84,25 @@ public class GoodsSpuController {
         if (!spu.isEmpty()) {
             res.setItem(spec_list);
             res.setExtdata(spu);
+            res.setMsg("成功");
+            res.setSuccess(true);
+        } else {
+            res.setMsg("失败");
+            res.setSuccess(false);
+        }
+
+        return res;
+    }
+
+    @RequestMapping("/selectByPrimaryKey")
+    @ResponseBody
+    public RequsetData<GoodsSpu> selectByPrimaryKey(@RequestParam("spu_id") String spu_id){
+        RequsetData<GoodsSpu> res = new RequsetData<>();
+
+        GoodsSpu spu = goodsSpuService.selectByPrimaryKey(spu_id);
+
+        if (spu != null) {
+            res.setItem(spu);
             res.setMsg("成功");
             res.setSuccess(true);
         } else {
@@ -177,5 +195,32 @@ public class GoodsSpuController {
         return res;
     }
 
+    @RequestMapping("/updateGoodsSpu")
+    @ResponseBody
+    public RequsetData<Integer> updateGoodsSpu(@RequestParam("spuId") String spuId,@RequestParam("goodsName") String goodsName,
+                                               @RequestParam("lowPrice") BigDecimal lowPrice,@RequestParam("spuOrder")int spuOrder) {
+
+        RequsetData<Integer> res = new RequsetData<>();
+
+        GoodsSpu goodsSpu = new GoodsSpu();
+        goodsSpu.setSpuId(spuId);
+        goodsSpu.setGoodsName(goodsName);
+        goodsSpu.setLowPrice(lowPrice);
+        goodsSpu.setSpuOrder(spuOrder);
+        goodsSpu.setGmtUpdate(new Date());
+
+        int count = goodsSpuService.updateByPrimaryKeySelective(goodsSpu);
+
+        if (count == 1) {
+            res.setItem(count);
+            res.setMsg("修改成功");
+            res.setSuccess(true);
+        } else {
+            res.setMsg("修改失败");
+            res.setSuccess(false);
+        }
+
+        return res;
+    }
 
 }

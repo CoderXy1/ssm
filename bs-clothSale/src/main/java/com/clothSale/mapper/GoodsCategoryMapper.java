@@ -3,6 +3,7 @@ package com.clothSale.mapper;
 
 import com.clothSale.model.GoodsCategory;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -30,4 +31,8 @@ public interface GoodsCategoryMapper {
     List<HashMap<String,Object>> selectGoodsCategoryFirst(@Param("pageIndex")int pageIndex,@Param("pageSize") int pageSize,@Param("categoryFirstName") String categoryFirstName);
 
     List<HashMap<String,Object>> selectCategorySpuTotal();
+
+    int updateGoodsCategoryFirst(@Param("category_first_id") String category_first_id, @Param("category_name_edit") String category_name_edit, @Param("category_order_edit") Integer category_order_edit,@Param("gmt_update")Date gmt_update);
+
+    int deleteGoodsCategoryFirst(@Param("category_first_id")String category_first_id);
 }

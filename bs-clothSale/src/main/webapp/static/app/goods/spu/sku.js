@@ -9,36 +9,20 @@ angular.module("clothSaleApp")
             totalNum : 0,
             spu_id : $stateParams.spu_id,
         }
-
-        //新增规格
-        $scope.insertSpec = function (){
-            $http({
-                method: "POST",
-                url: '../../GoodsSpec/insertGoodsSpec',
-                params: {
-                    spec_id : $scope.getUUID(),
-                    spec_name : $scope.editSpec_name,
-                    category_id : $scope.editCategory_id,
-                }
-            }).then(function successCallback(response) {
-                //请求成功
-                $scope.loadData();
-                $('#addModal').modal('hide');
-                $scope.showAlert('提示:',response.data.msg,'success');
-            }, function errorCallback(response) {
-                //请求失败
-            });
+        $scope.editSku = {
+            sku_id : '',
+            price_sale : '',
         }
 
         //删除规格
-        $scope.deleteSpec = function (spec_id){
+        $scope.deleteSku = function (sku_id){
 
-            if (confirm("将会删除该规格下的所有规格值,确定删除")){
+            if (confirm("将会删除该服装,确定删除")){
                 $http({
                     method: "POST",
-                    url: '../../GoodsSpec/deleteGoodsSpec',
+                    url: '../../GoodsSku/deleteGoodsSku',
                     params: {
-                        specId : spec_id,
+                        sku_id : sku_id,
                     }
                 }).then(function successCallback(response) {
                     //请求成功
@@ -50,6 +34,30 @@ angular.module("clothSaleApp")
                 });
             }
 
+        }
+
+        //查询单个sku
+        $scope.selectSingleSku = function (sku_id,price_sale){
+            $scope.editSku.sku_id = sku_id;
+            $scope.editSku.price_sale = price_sale;
+            $('#addModal').modal('show');
+        }
+
+        //修改sku
+        $scope.updateGoodsSku = function (){
+            $http({
+                method: "POST",
+                url: '../../GoodsSku/updateGoodsSkuPriceSale',
+                params: $scope.editSku
+                }).then(function successCallback(response) {
+                //请求成功
+                $scope.showAlert('提示:',response.data.msg,'success');
+                $scope.loadData();
+                $('#addModal').modal('hide');
+            }, function errorCallback(response) {
+                //请求失败
+                $scope.showAlert('警告:',response.data.msg,'danger');
+            });
         }
 
         //查询sku

@@ -75,6 +75,16 @@ public class MemberUserinfoController {
         return setRequsetData(list,"成功","失败",total);
     }
 
+    @RequestMapping("/selectAllUserinfoNum")
+    @ResponseBody
+    public HashMap<String,Object> selectAllUserinfoNum(@RequestParam(required = false) String user_name) {
+
+        HashMap<String,Object> total = memberUserinfoService.selectAllUserinfoNum(user_name);
+
+        return total;
+    }
+
+
     @RequestMapping("/insertMemberUserinfo")
     @ResponseBody
     public RequsetData<Integer> insertMemberUserinfo(@RequestParam("user_id") String user_id,@RequestParam("user_name") String user_name,@RequestParam("phone_number") String phone_number,

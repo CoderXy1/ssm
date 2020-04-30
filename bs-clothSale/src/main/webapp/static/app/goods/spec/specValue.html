@@ -31,7 +31,7 @@
 
             <div class="card-title">
                 <h4><i class="fa fa-sliders color-info"></i> <span class="color-danger">{{spec_name}}</span>规格值管理</h4>
-                <a class="float-right" ui-sref="goodsSpec" style="margin-right: 30px"><i class="fa fa-arrow-left color-info"></i>返回</a>
+                <a class="float-right" ui-sref="app.goodsSpec" style="margin-right: 30px"><i class="fa fa-arrow-left color-info"></i>返回</a>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -62,7 +62,6 @@
                             <td><span class="badge badge-warning">{{spec_name}}</span></td>
                             <td>{{specValue.gmt_create | date:'yyyy/MM/dd HH:mm:ss'}}</td>
                             <td class="text-center">
-                                <button class="btn btn-sm btn-success" title="修改"><i class="fa fa-edit"></i></button>
                                 <button class="btn btn-sm btn-danger" title="删除" ng-click="deleteGoodsSpecValue(specValue.spec_value_id)"><i class="fa fa-close"></i></button>
                             </td>
                         </tr>

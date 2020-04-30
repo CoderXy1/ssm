@@ -23,4 +23,6 @@ public interface OrderInfoMapper {
 
     HashMap<String,Object> selectAllOrderInfoNumByUserId(@Param("user_id") String user_id,@Param("user_name")String user_name,@Param("order_state")int order_state);
 
+    List<HashMap<String,Object>> selectAllOrderInfoNumByMonth();
+
 }

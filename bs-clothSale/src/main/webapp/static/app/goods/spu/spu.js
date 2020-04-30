@@ -13,6 +13,15 @@ angular.module("clothSaleApp")
             brand_id : '',
             category_id : '',
         }
+        $scope.editSpu = {
+            spuId: '',
+            goodsName: '',
+            lowPrice: '',
+            spuIconId: '',
+            brandId: '',
+            categoryId: '',
+            spuOrder: '',
+        }
 
         //删除服饰
         $scope.deleteSpu = function (spu_id){
@@ -49,6 +58,42 @@ angular.module("clothSaleApp")
             }, function errorCallback(response) {
                 //请求失败
             });
+        }
+
+        //查询单个spu
+        $scope.selectSingleGoodsSpu = function (spu_id) {
+            $http({
+                method: "POST",
+                url: '../../GoodsSpu/selectByPrimaryKey',
+                params: {
+                    spu_id : spu_id
+                }
+            }).then(function successCallback(response) {
+                //请求成功
+                $scope.editSpu = response.data.item;
+                $('#addModal').modal('show');
+            }, function errorCallback(response) {
+                //请求失败
+                $scope.showAlert('警告:',response.data.msg,'danger');
+            });
+        }
+
+        //修改服装
+        $scope.updateGoodsSpu = function (){
+
+            $http({
+                method: "POST",
+                url: '../../GoodsSpu/updateGoodsSpu',
+                params: $scope.editSpu
+            }).then(function successCallback(response) {
+                //请求成功
+                $scope.showAlert('提示:',response.data.msg,'success');
+                $scope.loadData();
+                $('#addModal').modal('hide');
+            }, function errorCallback(response) {
+                //请求失败
+            });
+
         }
 
         //查询分类

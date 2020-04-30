@@ -227,4 +227,12 @@
         ) ta
     </select>
 
+    <select id="selectAllOrderInfoNumByMonth" resultType="java.util.Map">
+        select count(*) as total,date_format(gmt_create, '%Y-%m') as gmt_create,date_format(gmt_create, '%m') as month_date from order_info
+	      where YEAR(gmt_create)=YEAR(NOW())
+	      group by date_format(gmt_create, '%Y-%m')
+	      order by gmt_create
+    </select>
+
+
 </mapper>

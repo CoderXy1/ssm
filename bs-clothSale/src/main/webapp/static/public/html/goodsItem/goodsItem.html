@@ -113,9 +113,8 @@
     <div class="con_content">
         <!--提交区域-->
         <div class="con_top">
-            <div class="con_top_l">
+            <div class="con_top_l" style="margin-top: 50px">
                 <div class="tab-w">
-                    <!--放大镜-->
                     <div class="divw">
                         <a href="">
 									<span class="zoomPad">
@@ -128,41 +127,10 @@
 	    									<div style="width: 380px;" class="zoomWrapper"><div
                                                     style="width: 100%; position: absolute; display: block;"
                                                     class="zoomWrapperTitle"></div>
-	    									    <div style="width: 100%; height: 380px;" class="zoomWrapperImage"><img
-                                                        src="./image/con_c_2.png"
-                                                        style="position: absolute; border: 0px none; display: block; left: -5000px; top: 0px; width: 800px; height: 800px;">
-	    									    </div>
 	    									</div>
 	    								</div>
 	    							</span>
                         </a>
-                    </div>
-                    <!--放大镜-->
-                    <!--tab,ajax-->
-                    <div class="box-tab">
-                        <div class="ul-w">
-                            <ul class="als-wrapper">
-                                <li class="als-item">
-                                    <a href="javascipt:;"><img src="image/con_s_1.jpg"/></a>
-                                </li>
-                                <li class="als-item">
-                                    <a href="javascipt:;"><img src="image/con_s_2.jpg"/></a>
-                                </li>
-                                <li class="als-item">
-                                    <a href="javascipt:;"><img src="image/con_s_3.jpg"/></a>
-                                </li>
-                                <li class="als-item">
-                                    <a href="javascipt:;"><img src="image/con_s_4.jpg"/></a>
-                                </li>
-                                <li class="als-item">
-                                    <a href="javascipt:;"><img src="image/con_s_5.jpg"/></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="g_t_l_hd">
-                            <a href="javascript:;" class="btn l als-prev"></a>
-                            <a href="javascript:;" class="btn r als-next"></a>
-                        </div>
                     </div>
                 </div>
                 <div class="add_collect" ng-click="insertOrderCollect()">
@@ -173,7 +141,6 @@
             <div class="con_top_r">
                 <div class="detail_top">
                     <h1 class="detail_tit">{{spuInfo.goods_name}}</h1>
-                    <h2 class="detail_tit_md">描述.........</h2>
                     <div class="price_wrap">
                         <div class="detail_price">
 									<span class="price_now" ng-if="!goodsSku">
@@ -237,59 +204,66 @@
             <div class="premeter_box">
                 <div class="detail_lists">
                     <div class="d_h2">
-                        <h2>商品参数</h2>
+                        <h2>商品规格</h2>
                     </div>
                     <div class="detail_con_l">
                         <ul>
                             <li>
-                                <div class="d_l_con1_l">主商品配套：</div>
-                                <div class="d_l_con1_r">乐途女士后跟杯款经典跑鞋</div>
-                            </li>
-                        </ul>
+                                <div ng-init="p_index=$index"
+                                     ng-repeat="spec in specList.spec_name">
+                                    <span class="text-danger" style="font-size: 21px">{{spec}} : </span>
+                            <span ng-class="{on : selectSpecValue[p_index] == values[0]}" ng-model="specId"
+                                ng-repeat="values in specList.spec_value[p_index]">
+                                <span>{{values[1]}} |</span>
+                            </span>
                     </div>
-                </div>
-            </div>
-            <div class="appraise_box">
-                <div class="detail_lists ">
-                    <div class="d_h2 ">
-                        <h2>用户评价</h2>
-                    </div>
-                    <div class="my-rating"></div>
-                    <div style="margin-top: 30px;margin-left: 24px">
-                        <ul>
-                            <li ng-repeat="comment in commentsList"
-                                style="padding: 10px;margin-bottom:10px;border-bottom: 1px solid lightgrey">
-                                <div style="width: 100%;font-size: 14px">
-                                    <span style="display:inline-block;width: 50%">{{comment.user_name}} : {{comment.comment_content}}</span>
-                                    <span style="display:inline-block;width: 30%">规格: <span class="color-info">{{comment.spec_value}}</span></span>
-                                </div>
-                                <div style="width: 100%;margin-top: 10px">
-                                    <span style="display:inline-block;width: 40%"><i class="fa fa-star text-warning" ng-repeat="array in comment.arrayNum track by $index"></i></span>
-                                    <span style="display:inline-block;width: 59%;text-align: right;color: lightgrey;font-size: 12px">{{comment.gmt_create | date:'yyyy/MM/dd HH:mm:ss '}}</span>
-                                </div>
-                            </li>
-                            <div ng-if="commentsList == null">
-                                <p class="text-center">暂无评论</p>
-                            </div>
-                        </ul>
-                    </div>
-
-                    <ul uib-pagination class="pagination-sm pagination-custom float-right" style="margin-right: 20px"
-                        total-items="commentsParams.totalNum"
-                        first-text="«"
-                        last-text="»"
-                        previous-text="上一页"
-                        next-text="下一页"
-                        force-ellipses="true"
-                        max-size="5"
-                        ng-change="loadCommentData()"
-                        rotate="true"
-                        ng-model="commentsParams.pageNum"
-                        items-per-page="commentsParams.pageSize"
-                        boundary-links="true" boundary-link-numbers="true"></ul>
-
+                    </li>
+                    </ul>
                 </div>
             </div>
         </div>
+        <div class="appraise_box">
+            <div class="detail_lists ">
+                <div class="d_h2 ">
+                    <h2>用户评价</h2>
+                </div>
+                <div class="my-rating"></div>
+                <div style="margin-top: 30px;margin-left: 24px">
+                    <ul>
+                        <li ng-repeat="comment in commentsList"
+                            style="padding: 10px;margin-bottom:10px;border-bottom: 1px solid lightgrey">
+                            <div style="width: 100%;font-size: 14px">
+                                <span style="display:inline-block;width: 50%">{{comment.user_name}} : {{comment.comment_content}}</span>
+                                <span style="display:inline-block;width: 30%">规格: <span class="color-info">{{comment.spec_value}}</span></span>
+                            </div>
+                            <div style="width: 100%;margin-top: 10px">
+                                <span style="display:inline-block;width: 40%"><i class="fa fa-star text-warning"
+                                                                                 ng-repeat="array in comment.arrayNum track by $index"></i></span>
+                                <span style="display:inline-block;width: 59%;text-align: right;color: lightgrey;font-size: 12px">{{comment.gmt_create | date:'yyyy/MM/dd HH:mm:ss '}}</span>
+                            </div>
+                        </li>
+                        <div ng-if="commentsList == null">
+                            <p class="text-center">暂无评论</p>
+                        </div>
+                    </ul>
+                </div>
+
+                <ul uib-pagination class="pagination-sm pagination-custom float-right" style="margin-right: 20px"
+                    total-items="commentsParams.totalNum"
+                    first-text="«"
+                    last-text="»"
+                    previous-text="上一页"
+                    next-text="下一页"
+                    force-ellipses="true"
+                    max-size="5"
+                    ng-change="loadCommentData()"
+                    rotate="true"
+                    ng-model="commentsParams.pageNum"
+                    items-per-page="commentsParams.pageSize"
+                    boundary-links="true" boundary-link-numbers="true"></ul>
+
+            </div>
+        </div>
     </div>
+</div>
 </div>

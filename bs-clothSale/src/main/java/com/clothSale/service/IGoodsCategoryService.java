@@ -1,6 +1,7 @@
 package com.clothSale.service;
 
 import com.clothSale.model.GoodsCategory;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -28,4 +29,9 @@ public interface IGoodsCategoryService {
     List<HashMap<String,Object>> selectGoodsCategoryFirst(int pageIndex, int pageSize, String categoryFirstName);
 
     List<HashMap<String,Object>> selectCategorySpuTotal();
+
+    int updateGoodsCategoryFirst(String category_first_id,String category_name_edit,Integer category_order_edit,Date gmt_update);
+
+    int deleteGoodsCategoryFirst(String category_first_id);
+
 }

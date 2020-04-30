@@ -98,10 +98,9 @@
         select c.*,(select count(*) from goods_category where 1 = 1
         <if test="categoryName != null and categoryName != ''">
             and category_name like concat('%',#{categoryName},'%')
-        </if>) as total from goods_category c
-        <if test="category_first_id != null and category_first_id != ''">
+        </if>) as total,GROUP_CONCAT(gcf.category_first_name) as category_first_name from goods_category c
             left join goods_category_connect con on c.category_id = con.category_id
-        </if>
+            left join goods_category_first gcf on con.category_first_id = gcf.category_first_id
         where 1 = 1
         <if test="categoryName != null and categoryName != ''">
             and c.category_name like concat('%',#{categoryName},'%')
@@ -109,6 +108,7 @@
         <if test="category_first_id != null and category_first_id != ''">
             and con.category_first_id = #{category_first_id}
         </if>
+        group by c.category_id
         order by c.category_order limit #{pageIndex},#{pageSize}
     </select>
 
@@ -150,5 +150,26 @@
           GROUP BY cf.category_first_id ORDER BY y desc LIMIT 5,1000 )
           as t2
     </select>
+
+    <update id="updateGoodsCategoryFirst">
+        update goods_category_first
+        <set>
+            <if test="category_name_edit != null">
+                category_first_name = #{category_name_edit,jdbcType=VARCHAR},
+            </if>
+            <if test="category_order_edit != null">
+                category_first_order = #{category_order_edit,jdbcType=INTEGER},
+            </if>
+            <if test="gmt_update != null">
+                gmt_update = #{gmt_update,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where category_first_id = #{category_first_id,jdbcType=VARCHAR}
+    </update>
+
+    <delete id="deleteGoodsCategoryFirst" parameterType="java.lang.String">
+        delete from goods_category_first where category_first_id = #{category_first_id,jdbcType=VARCHAR};
+        delete from goods_category_connect where category_first_id = #{category_first_id,jdbcType=VARCHAR};
+  </delete>
 
 </mapper>

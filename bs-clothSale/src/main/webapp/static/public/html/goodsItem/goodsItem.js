@@ -1,7 +1,7 @@
 angular.module("clothSalePublicApp")
     .controller("goodsItemCtrl", function ($scope, $rootScope, $state, $stateParams, $http,$anchorScroll,$location) {
 
-        $anchorScroll.yOffset = 30;   // 总是滚动额外的30像素（此处是因为我的项目中样式设置原因，需要加上以offset）
+        $anchorScroll.yOffset = 30;   // 总是滚动额外的30像素（此处是因为项目中样式设置原因，需要加上以offset）
         $location.hash();
         $anchorScroll();
 
@@ -145,30 +145,34 @@ angular.module("clothSalePublicApp")
         }
 
         $scope.insertOrderInfo = function (){
-            $scope.order_info_id = $scope.getUUID();
-            $http({
-                method: "POST",
-                url: '../../OrderInfo/insertOrderInfo',
-                params: {
-                    order_info_id : $scope.order_info_id,
-                    user_id : $scope.getUserInfoBySession().user_id,
-                    sku_id : $scope.goodsSku[0].sku_id,
-                    total_num : $scope.total_num,
-                    total_price : $scope.total_num * $scope.goodsSku[0].price_sale,
-                    stock : $scope.goodsSku[0].stock,
-                    order_address : $scope.user_info.address,
-                    phone_number : $scope.user_info.liaison_phone,
-                    liaison_person : $scope.user_info.liaison_person
-                }
-            }).then(function successCallback(response) {
-                //请求成功
-                $scope.showAlert('提示',response.data.msg,'success');
-                $scope.payGoodsParams.order_info_id = $scope.order_info_id;
-                $scope.payState = 1;
-            }, function errorCallback(response) {
-                //请求失败
-                $scope.showAlert('错误',response.data.msg,'danger');
-            });
+            if ($scope.user_info.address == null || $scope.user_info.address == ''){
+                $scope.showAlert('错误 : ','收货地址为空，请前往个人中心的地址管理','danger');
+            }else {
+                $scope.order_info_id = $scope.getUUID();
+                $http({
+                    method: "POST",
+                    url: '../../OrderInfo/insertOrderInfo',
+                    params: {
+                        order_info_id : $scope.order_info_id,
+                        user_id : $scope.getUserInfoBySession().user_id,
+                        sku_id : $scope.goodsSku[0].sku_id,
+                        total_num : $scope.total_num,
+                        total_price : $scope.total_num * $scope.goodsSku[0].price_sale,
+                        stock : $scope.goodsSku[0].stock,
+                        order_address : $scope.user_info.address,
+                        phone_number : $scope.user_info.liaison_phone,
+                        liaison_person : $scope.user_info.liaison_person
+                    }
+                }).then(function successCallback(response) {
+                    //请求成功
+                    $scope.showAlert('提示',response.data.msg,'success');
+                    $scope.payGoodsParams.order_info_id = $scope.order_info_id;
+                    $scope.payState = 1;
+                }, function errorCallback(response) {
+                    //请求失败
+                    $scope.showAlert('错误',response.data.msg,'danger');
+                });
+            }
         }
 
         //付款

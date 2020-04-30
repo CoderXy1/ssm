@@ -2,9 +2,12 @@ angular.module("clothSaleApp")
     .controller("mainCtrl", function ($scope, $rootScope, $state,$http) {
 
         $scope.spuTotalNum = 0; //商品种类
+        $scope.userTotalNum = 0 ; //用户数量
+        $scope.orderTotalNum = 0; //订单数量
+        $scope.activityTotalNum = 0; //活动数量
 
         //统计图
-        $scope.makeBarChart = function () {
+        $scope.makeBarChart = function (data) {
             Highcharts.chart('chart-bar',{
                 colors:["#03a9f4","#f76b8a","#fa4659","#8971d0","#5873fe","#ffb400","#e4d354","#2b908f","#f45b5b","#91e8e1"],
                 chart: {
@@ -19,14 +22,14 @@ angular.module("clothSaleApp")
                 yAxis: {
                     min: 0,
                     title: {
-                        text: '销售量(件)'
+                        text: '订单数量(个)'
                     }
                 },
                 tooltip: {
                     // head + 每个 point + footer 拼接成完整的 table
                     headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                     pointFormat: '<tr><td style="color:{series.color};padding:0;">{series.name}: </td>' +
-                        '<td style="padding:0;"><b>{point.y:.1f} 件</b></td></tr>',
+                        '<td style="padding:0;"><b>{point.y:.0f} 个</b></td></tr>',
                     footerFormat: '</table>',
                     shared: true,
                     useHTML: true
@@ -37,12 +40,23 @@ angular.module("clothSaleApp")
                     }
                 },
                 series: [{
-                    name: '销售额',
-                    data: [49, 71, 106, 129, 144, 176, 135, 148, 216, 194, 95, 54]
-                },{
-                    name: '进货额',
-                    data: [60, 73, 105, 112, 150, 150, 111, 120, 250, 190, 231, 58]
+                    name: '订单数量',
+                    data: data
                 }]
+            });
+        }
+
+        $scope.selectAllOrderInfoNumByMonth = function (){
+            $http({
+                method: "POST",
+                url: '../../OrderInfo/selectAllOrderInfoNumByMonth',
+                params: {}
+            }).then(function successCallback(response) {
+                //请求成功
+                $scope.makeBarChart(response.data.item)
+            }, function errorCallback(response) {
+                //请求失败
+                $scope.showAlert('警告:',response.data.msg,'danger');
             });
         }
 
@@ -114,10 +128,55 @@ angular.module("clothSaleApp")
             });
         }
 
+        $scope.selectUserTotalNum = function (){
+            $http({
+                method: "POST",
+                url: '../../memberUserinfo/selectAllUserinfoNum',
+                params: {}
+            }).then(function successCallback(response) {
+                //请求成功
+                $scope.userTotalNum = response.data.total;
+            }, function errorCallback(response) {
+                //请求失败
+                $scope.showAlert('警告:',response.data.msg,'danger');
+            });
+        }
+
+        $scope.selectOrderTotalNum = function (){
+            $http({
+                method: "POST",
+                url: '../../OrderInfo/selectAllOrderInfoNumByUserId',
+                params: {}
+            }).then(function successCallback(response) {
+                //请求成功
+                $scope.orderTotalNum = response.data.total;
+            }, function errorCallback(response) {
+                //请求失败
+                $scope.showAlert('警告:',response.data.msg,'danger');
+            });
+        }
+
+        $scope.selectActivityTotalNum = function (){
+            $http({
+                method: "POST",
+                url: '../../ActivityInfo/selectNumActivityInfo',
+                params: {}
+            }).then(function successCallback(response) {
+                //请求成功
+                $scope.activityTotalNum = response.data.total;
+            }, function errorCallback(response) {
+                //请求失败
+                $scope.showAlert('警告:',response.data.msg,'danger');
+            });
+        }
+
         $scope.loadData = function () {
             $scope.selectSpuTotalNum();
+            $scope.selectUserTotalNum();
+            $scope.selectOrderTotalNum();
+            $scope.selectActivityTotalNum();
             $scope.selectCategorySpuTotal();
-            $scope.makeBarChart();
+            $scope.selectAllOrderInfoNumByMonth();
         }
 
         $scope.loadData();

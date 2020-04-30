@@ -11,7 +11,7 @@
  Target Server Version : 50562
  File Encoding         : 65001
 
- Date: 17/03/2020 14:27:42
+ Date: 30/04/2020 22:53:34
 */
 
 SET NAMES utf8mb4;
@@ -36,9 +36,10 @@ CREATE TABLE `activity_info`  (
 -- ----------------------------
 -- Records of activity_info
 -- ----------------------------
-INSERT INTO `activity_info` VALUES ('5d5d80e4-4478-439f-da0b-bf27fbcf6a60', '限时抢购', '在限定时间内进行销售', 1, '2020-03-17', '2020-03-20', '2020-03-17 11:59:35', NULL);
-INSERT INTO `activity_info` VALUES ('62b2792c-0124-4bb1-8de5-ee2b56687155', '精选服饰', '挑选精品服饰进行销售', 0, '2020-03-19', '2020-03-31', '2020-03-17 12:00:28', NULL);
-INSERT INTO `activity_info` VALUES ('8de14f95-fc3d-4aa7-e390-e3717396b17b', '劳动光荣', '五一劳动节进行促销活动', 0, '2020-05-01', '2020-05-07', '2020-03-17 12:02:32', NULL);
+INSERT INTO `activity_info` VALUES ('5d5d80e4-4478-439f-da0b-bf27fbcf6a60', '限时抢购', '在限定时间内进行销售', 1, '2020-03-17', '2020-04-30', '2020-03-17 11:59:35', NULL);
+INSERT INTO `activity_info` VALUES ('62b2792c-0124-4bb1-8de5-ee2b56687155', '精选服饰', '挑选精品服饰进行销售', 1, '2020-03-19', '2020-05-30', '2020-03-17 12:00:28', NULL);
+INSERT INTO `activity_info` VALUES ('8de14f95-fc3d-4aa7-e390-e3717396b17b', '劳动光荣', '五一劳动节进行促销活动', 0, '2020-05-01', '2020-05-07', '2020-03-17 12:02:32', '2020-04-30 21:04:01');
+INSERT INTO `activity_info` VALUES ('d47769cd-bb38-458b-b432-e82d991ccb6d', '打折促销', '通过打折进行销售', 1, '2020-03-02', '2020-12-31', '2020-03-19 11:57:35', '2020-04-30 20:59:58');
 
 -- ----------------------------
 -- Table structure for activity_spu_connect
@@ -51,17 +52,25 @@ CREATE TABLE `activity_spu_connect`  (
   `gmt_create` datetime NULL DEFAULT NULL,
   `gmt_update` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`activity_spu_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of activity_spu_connect
 -- ----------------------------
-INSERT INTO `activity_spu_connect` VALUES (1, '5d5d80e4-4478-439f-da0b-bf27fbcf6a60', '0900eba5-dbf0-49b1-9387-349e6a8e43de', '2020-03-17 12:39:55', NULL);
 INSERT INTO `activity_spu_connect` VALUES (2, '5d5d80e4-4478-439f-da0b-bf27fbcf6a60', '10faa11a-5307-472d-e92b-be83137ffe4e', '2020-03-17 14:19:47', NULL);
 INSERT INTO `activity_spu_connect` VALUES (4, '5d5d80e4-4478-439f-da0b-bf27fbcf6a60', 'ea64134a-ac26-40f4-9370-c5f85c39f827', '2020-03-17 14:23:56', NULL);
 INSERT INTO `activity_spu_connect` VALUES (5, '62b2792c-0124-4bb1-8de5-ee2b56687155', '0900eba5-dbf0-49b1-9387-349e6a8e43de', '2020-03-17 14:24:03', NULL);
 INSERT INTO `activity_spu_connect` VALUES (6, '62b2792c-0124-4bb1-8de5-ee2b56687155', '2e938637-151a-47de-8c4c-67a4ea0cf3d0', '2020-03-17 14:24:05', NULL);
 INSERT INTO `activity_spu_connect` VALUES (7, '62b2792c-0124-4bb1-8de5-ee2b56687155', 'c2b2c4f6-bbf1-405d-d56b-2f562e113d31', '2020-03-17 14:24:07', NULL);
+INSERT INTO `activity_spu_connect` VALUES (8, '62b2792c-0124-4bb1-8de5-ee2b56687155', '36b4e3ae-3eb5-4e33-962d-ff645cd04642', '2020-03-19 11:51:25', NULL);
+INSERT INTO `activity_spu_connect` VALUES (9, '62b2792c-0124-4bb1-8de5-ee2b56687155', '8ee7311a-aeb5-4602-e945-0b3c6503d327', '2020-03-19 11:51:28', NULL);
+INSERT INTO `activity_spu_connect` VALUES (10, '5d5d80e4-4478-439f-da0b-bf27fbcf6a60', '6332fbc4-0f65-4060-8745-9627925bc6b4', '2020-03-19 11:51:35', NULL);
+INSERT INTO `activity_spu_connect` VALUES (11, '5d5d80e4-4478-439f-da0b-bf27fbcf6a60', '2e938637-151a-47de-8c4c-67a4ea0cf3d0', '2020-03-19 11:51:35', NULL);
+INSERT INTO `activity_spu_connect` VALUES (12, '5d5d80e4-4478-439f-da0b-bf27fbcf6a60', 'c2b2c4f6-bbf1-405d-d56b-2f562e113d31', '2020-03-19 11:51:42', NULL);
+INSERT INTO `activity_spu_connect` VALUES (13, 'd47769cd-bb38-458b-b432-e82d991ccb6d', '0900eba5-dbf0-49b1-9387-349e6a8e43de', '2020-03-19 11:57:43', NULL);
+INSERT INTO `activity_spu_connect` VALUES (14, 'd47769cd-bb38-458b-b432-e82d991ccb6d', '6332fbc4-0f65-4060-8745-9627925bc6b4', '2020-03-19 11:57:44', NULL);
+INSERT INTO `activity_spu_connect` VALUES (15, 'd47769cd-bb38-458b-b432-e82d991ccb6d', 'ea64134a-ac26-40f4-9370-c5f85c39f827', '2020-03-19 11:57:45', NULL);
+INSERT INTO `activity_spu_connect` VALUES (16, 'd47769cd-bb38-458b-b432-e82d991ccb6d', 'c2b2c4f6-bbf1-405d-d56b-2f562e113d31', '2020-03-19 11:57:46', NULL);
 
 -- ----------------------------
 -- Table structure for address_areas
@@ -3675,7 +3684,7 @@ CREATE TABLE `goods_category`  (
 -- Records of goods_category
 -- ----------------------------
 INSERT INTO `goods_category` VALUES ('06e55e80-5aa5-4e72-b1dc-4a465958e9cf', '童鞋', 12, '2019-12-09 11:46:14', NULL);
-INSERT INTO `goods_category` VALUES ('1f4617a8-8441-4e17-e353-f7c1570537f8', '戒指', 7, '2019-12-09 11:43:06', NULL);
+INSERT INTO `goods_category` VALUES ('1f4617a8-8441-4e17-e353-f7c1570537f8', '戒指', 6, '2019-12-09 11:43:06', '2020-04-28 19:51:47');
 INSERT INTO `goods_category` VALUES ('28905fac-cab3-4cc5-b23a-10871b91dbba', '文具盒', 13, '2019-12-09 11:48:15', NULL);
 INSERT INTO `goods_category` VALUES ('3a35bfa9-6b0f-4a80-b4d8-e346167c3b06', '夹克外套', 10, '2019-12-09 11:34:10', NULL);
 INSERT INTO `goods_category` VALUES ('3c881bdb-8603-4be6-8ce6-1afb53eceec6', '毛衣', 10, '2019-12-09 11:36:58', NULL);
@@ -3724,7 +3733,7 @@ CREATE TABLE `goods_category_connect`  (
   `gmt_create` datetime NULL DEFAULT NULL,
   `gmt_update` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`category_connect_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 121 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 122 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of goods_category_connect
@@ -3849,7 +3858,7 @@ CREATE TABLE `goods_category_first`  (
 -- ----------------------------
 INSERT INTO `goods_category_first` VALUES ('1426c66a-d969-4416-8058-789f5a819f10', '箱包皮具', 10, '2019-12-09 08:52:22', NULL);
 INSERT INTO `goods_category_first` VALUES ('2180529d-71f0-4599-c42e-2aa889ef9d06', '内衣', 10, '2019-12-06 16:34:08', NULL);
-INSERT INTO `goods_category_first` VALUES ('30eace26-73f8-46fd-ff2c-61d99b033c5a', '童装', 1, '2019-12-06 16:35:20', NULL);
+INSERT INTO `goods_category_first` VALUES ('30eace26-73f8-46fd-ff2c-61d99b033c5a', '童装', 1, '2019-12-06 16:35:20', '2020-04-28 19:50:37');
 INSERT INTO `goods_category_first` VALUES ('6e6eaefd-8406-40ef-8038-8f26e245ee88', '女装', 1, '2019-12-06 16:35:00', NULL);
 INSERT INTO `goods_category_first` VALUES ('769ba7ea-7730-49b4-a8f7-8178965dea36', '裙子', 12, '2019-12-06 16:32:44', NULL);
 INSERT INTO `goods_category_first` VALUES ('7d5c05b4-6b27-4955-8679-7916eb1c4ae2', '上衣', 1, '2019-12-06 16:33:28', NULL);
@@ -3878,9 +3887,10 @@ CREATE TABLE `goods_sku`  (
 -- Records of goods_sku
 -- ----------------------------
 INSERT INTO `goods_sku` VALUES ('17f42457-12fd-4435-82b2-3119896800f0', 75.00, 100.00, 20, '36b4e3ae-3eb5-4e33-962d-ff645cd04642', '2019-12-10 14:32:44', NULL);
-INSERT INTO `goods_sku` VALUES ('29e46227-f291-407b-afd8-f6c750e714b2', 100.00, 159.00, 19, '0900eba5-dbf0-49b1-9387-349e6a8e43de', '2020-03-03 11:47:55', NULL);
-INSERT INTO `goods_sku` VALUES ('7522e9b5-93d6-4b1c-9e9f-ad2dfef4d5ce', 80.00, 100.00, 7, 'ea64134a-ac26-40f4-9370-c5f85c39f827', '2019-12-10 15:34:26', NULL);
+INSERT INTO `goods_sku` VALUES ('29e46227-f291-407b-afd8-f6c750e714b2', 100.00, 159.00, 28, '0900eba5-dbf0-49b1-9387-349e6a8e43de', '2020-03-03 11:47:55', NULL);
+INSERT INTO `goods_sku` VALUES ('7522e9b5-93d6-4b1c-9e9f-ad2dfef4d5ce', 80.00, 100.00, 5, 'ea64134a-ac26-40f4-9370-c5f85c39f827', '2019-12-10 15:34:26', NULL);
 INSERT INTO `goods_sku` VALUES ('80648133-f2db-4115-db36-48b6577c6f9f', 480.00, 550.00, 20, '10faa11a-5307-472d-e92b-be83137ffe4e', '2019-12-10 16:01:58', NULL);
+INSERT INTO `goods_sku` VALUES ('83592ab0-2e79-4fe9-8357-979dc887f7eb', 100.00, 160.00, 20, '0900eba5-dbf0-49b1-9387-349e6a8e43de', '2020-04-28 20:39:07', '2020-04-30 22:48:03');
 INSERT INTO `goods_sku` VALUES ('8d0a5fe1-868c-47a4-b44f-a3f57f4da8d7', 75.00, 90.00, 10, 'c2b2c4f6-bbf1-405d-d56b-2f562e113d31', '2019-12-10 15:27:20', NULL);
 INSERT INTO `goods_sku` VALUES ('a26c48f1-be68-41f8-a7d7-2a86aa039a73', 100.00, 120.00, 9, '2e938637-151a-47de-8c4c-67a4ea0cf3d0', '2019-12-10 15:56:13', NULL);
 INSERT INTO `goods_sku` VALUES ('c07d3a09-661b-4a9f-f919-998d0a9c4540', 40.00, 60.00, 27, '6332fbc4-0f65-4060-8745-9627925bc6b4', '2019-12-10 15:59:13', NULL);
@@ -3898,7 +3908,7 @@ CREATE TABLE `goods_sku_spec_value`  (
   `gmt_create` datetime NULL DEFAULT NULL,
   `gmt_update` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`sku_spec_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 77 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 83 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of goods_sku_spec_value
@@ -3933,6 +3943,9 @@ INSERT INTO `goods_sku_spec_value` VALUES (73, '80648133-f2db-4115-db36-48b6577c
 INSERT INTO `goods_sku_spec_value` VALUES (74, '29e46227-f291-407b-afd8-f6c750e714b2', 'd8bcfaa4-1056-4e72-baa2-ba77bfcf01d0', '2020-03-03 11:47:55', NULL);
 INSERT INTO `goods_sku_spec_value` VALUES (75, '29e46227-f291-407b-afd8-f6c750e714b2', '71506a96-376b-462d-ff6a-e38eceed3a78', '2020-03-03 11:47:55', NULL);
 INSERT INTO `goods_sku_spec_value` VALUES (76, '29e46227-f291-407b-afd8-f6c750e714b2', 'c8c69264-f5c3-45af-8e26-629daa8b018c', '2020-03-03 11:47:55', NULL);
+INSERT INTO `goods_sku_spec_value` VALUES (77, '83592ab0-2e79-4fe9-8357-979dc887f7eb', '1bdcd6ef-ced2-4469-fc91-4a860f8e7343', '2020-04-28 20:39:07', NULL);
+INSERT INTO `goods_sku_spec_value` VALUES (78, '83592ab0-2e79-4fe9-8357-979dc887f7eb', '71506a96-376b-462d-ff6a-e38eceed3a78', '2020-04-28 20:39:07', NULL);
+INSERT INTO `goods_sku_spec_value` VALUES (79, '83592ab0-2e79-4fe9-8357-979dc887f7eb', '03a0ebc5-ed3b-48af-b63d-6d452e80a484', '2020-04-28 20:39:07', NULL);
 
 -- ----------------------------
 -- Table structure for goods_spec
@@ -4160,12 +4173,12 @@ CREATE TABLE `goods_spu`  (
 -- ----------------------------
 -- Records of goods_spu
 -- ----------------------------
-INSERT INTO `goods_spu` VALUES ('0900eba5-dbf0-49b1-9387-349e6a8e43de', '很仙的法国小众连衣裙春装2020新款超仙甜美仙女两件套装裙女春秋', 159.00, '95b2a537-cf47-4507-bcc1-de35002a15d9', 'a2edba9d-a9f5-4be4-e6b1-40dbcfced83b', 'b26b9b46-55ea-4945-94e5-c6568dae82d8', 1, '2020-03-03 11:47:28', NULL);
+INSERT INTO `goods_spu` VALUES ('0900eba5-dbf0-49b1-9387-349e6a8e43de', '很仙的法国小众连衣裙春装2020新款超仙甜美仙女两件套装裙女春秋', 161.00, '95b2a537-cf47-4507-bcc1-de35002a15d9', 'a2edba9d-a9f5-4be4-e6b1-40dbcfced83b', 'b26b9b46-55ea-4945-94e5-c6568dae82d8', 2, '2020-03-03 11:47:28', '2020-04-30 22:48:20');
 INSERT INTO `goods_spu` VALUES ('10faa11a-5307-472d-e92b-be83137ffe4e', '西服套装男士韩版修身小西装三件套职业正装伴郎服装新郎结婚礼服', 500.00, '24d67424-df8c-4ad4-9ab5-2a60bc7e5f05', 'a6cd56d6-72f1-4524-c8bd-6c11707cdd5d', 'be169f1a-9375-4e24-be2a-bb5e6920d30b', 8, '2019-12-10 16:01:38', NULL);
 INSERT INTO `goods_spu` VALUES ('2e938637-151a-47de-8c4c-67a4ea0cf3d0', '巴厘岛泰国三亚沙滩裙2019新款吊带露背连衣裙长裙超仙海边度假女', 110.00, 'c5c42969-91f4-40b3-cc58-60d073c5706a', 'a2edba9d-a9f5-4be4-e6b1-40dbcfced83b', 'be169f1a-9375-4e24-be2a-bb5e6920d30b', 12, '2019-12-10 15:56:01', NULL);
 INSERT INTO `goods_spu` VALUES ('36b4e3ae-3eb5-4e33-962d-ff645cd04642', '上海故事丝巾女百搭春秋薄款纱巾秋天女士披肩围巾真丝桑蚕丝长款', 89.00, '08ac9160-3340-44b5-f3a3-469ef4508070', 'ce6997ff-bbc4-4955-be42-65daea0aee50', '1df702ac-2bb6-4541-ef2d-395712b32518', 20, '2019-12-10 11:28:30', NULL);
 INSERT INTO `goods_spu` VALUES ('6332fbc4-0f65-4060-8745-9627925bc6b4', '男士莫代尔冰丝无痕短袖T恤V领夏季修身半袖男装体恤紧身打底衫潮', 50.00, '935f2ab6-29e3-4945-bbb3-c60edd101e7d', 'ac1b5b71-2a50-4a36-bff5-af599abe75b9', '1df702ac-2bb6-4541-ef2d-395712b32518', 9, '2019-12-10 15:58:57', NULL);
-INSERT INTO `goods_spu` VALUES ('8ee7311a-aeb5-4602-e945-0b3c6503d327', '欧洲站冬装女2019新款欧货时尚韩版收腰显瘦黑色露肩针织连衣裙潮', 100.00, '1faf6e82-e43d-4dfa-fac8-f3f2850e8da9', 'a2edba9d-a9f5-4be4-e6b1-40dbcfced83b', 'b26b9b46-55ea-4945-94e5-c6568dae82d8', 13, '2019-12-10 15:52:55', NULL);
+INSERT INTO `goods_spu` VALUES ('8ee7311a-aeb5-4602-e945-0b3c6503d327', '欧洲站冬装女2019新款欧货时尚韩版收腰显瘦黑色露肩针织连衣裙潮', 110.00, '1faf6e82-e43d-4dfa-fac8-f3f2850e8da9', 'a2edba9d-a9f5-4be4-e6b1-40dbcfced83b', 'b26b9b46-55ea-4945-94e5-c6568dae82d8', 14, '2019-12-10 15:52:55', '2020-04-30 22:28:05');
 INSERT INTO `goods_spu` VALUES ('c2b2c4f6-bbf1-405d-d56b-2f562e113d31', '秋装2019年新款女连衣裙收腰显瘦长袖气质针织打底过膝毛衣长裙子', 89.00, '294c592f-5c7b-4fe7-86f5-645c33aceaa9', 'a2edba9d-a9f5-4be4-e6b1-40dbcfced83b', 'b26b9b46-55ea-4945-94e5-c6568dae82d8', 15, '2019-12-10 15:26:29', NULL);
 INSERT INTO `goods_spu` VALUES ('ea64134a-ac26-40f4-9370-c5f85c39f827', '1970S复刻初春新款韩版黄色经典后街帆布女百搭防滑板鞋学生白鞋', 99.00, 'de006015-08a5-45aa-8305-1ccd1d4939cc', '94f36e83-0a23-46e8-e226-afbde02df649', '518f3a2f-e09d-4925-db40-0ba41007bcbb', 12, '2019-12-10 15:32:55', NULL);
 
@@ -4232,6 +4245,7 @@ CREATE TABLE `member_address`  (
 INSERT INTO `member_address` VALUES ('026a073b-cf51-4afe-8f32-9f5eb03e7737', 310101, 'XXX街道555号101', '余老师', '18323550000', '200000');
 INSERT INTO `member_address` VALUES ('0f173ccb-8309-4cd1-ee6f-ef4be177d0c6', 500102, 'XXX街道666号403', '余老师', '18323550001', '404501');
 INSERT INTO `member_address` VALUES ('1dbef19a-df5f-4261-ab4a-8f000c958cdc', 110101, 'XXX街道777号402', '张先生', '15632150000', '000000');
+INSERT INTO `member_address` VALUES ('269b35c2-9351-4b7f-c4a4-7544e97f5014', 110102, '北京市西城区XXXX', '小红', '11235465445', 'asdas@qq.com');
 INSERT INTO `member_address` VALUES ('585800e2-9351-4e82-840d-f5e43956a7da', 430581, 'XXX街道333号405', '张先生', '15632150000', '400000');
 
 -- ----------------------------
@@ -4254,23 +4268,7 @@ CREATE TABLE `member_admin`  (
 -- ----------------------------
 -- Records of member_admin
 -- ----------------------------
-INSERT INTO `member_admin` VALUES ('123', 'admin', '21232F297A57A5A743894A0E4A801FC3', '管理员1', '123456', 'aa598905-d970-4633-d64d-4d1d8d9fc552', '2020-03-17 14:23:30', '2019-12-12 11:05:33', 64);
-
--- ----------------------------
--- Table structure for member_certification
--- ----------------------------
-DROP TABLE IF EXISTS `member_certification`;
-CREATE TABLE `member_certification`  (
-  `certification_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
-  `sex` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
-  `nation` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
-  `birthday` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
-  `live_address` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
-  `id_number` int(11) NULL DEFAULT NULL,
-  `user_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
-  PRIMARY KEY (`certification_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Compact;
+INSERT INTO `member_admin` VALUES ('123', 'admin', '21232F297A57A5A743894A0E4A801FC3', '管理员1', '123456', 'aa598905-d970-4633-d64d-4d1d8d9fc552', '2020-04-30 21:29:17', '2019-12-12 11:05:33', 78);
 
 -- ----------------------------
 -- Table structure for member_userinfo
@@ -4294,8 +4292,8 @@ CREATE TABLE `member_userinfo`  (
 -- Records of member_userinfo
 -- ----------------------------
 INSERT INTO `member_userinfo` VALUES ('4bfeff5f-7e68-4ccf-9fef-aa518e257ecd', 'cool', '18324562020', 'B1F4F9A523E36FD969F4573E25AF4540', '163@qq.com', 'aa598905-d970-4633-d64d-4d1d8d9fc552', '2019-12-31 10:01:32', '1dbef19a-df5f-4261-ab4a-8f000c958cdc', '2020-03-09 14:46:29', 4);
-INSERT INTO `member_userinfo` VALUES ('7c4eb02e-3a9a-4ce1-b8e2-8338d9008b7e', 'Avecle', '18556540000', '202CB962AC59075B964B07152D234B70', '116201@qq.com', 'aa598905-d970-4633-d64d-4d1d8d9fc552', '2019-12-18 14:37:48', '0f173ccb-8309-4cd1-ee6f-ef4be177d0c6', '2020-03-15 14:58:12', 37);
-INSERT INTO `member_userinfo` VALUES ('d7c17edf-e78e-4ae6-9ddf-79cd58ef4d83', '123', '123', '202CB962AC59075B964B07152D234B70', '123@qq.com', 'aa598905-d970-4633-d64d-4d1d8d9fc552', '2020-03-02 13:37:07', NULL, '2020-03-02 13:37:10', 1);
+INSERT INTO `member_userinfo` VALUES ('7c4eb02e-3a9a-4ce1-b8e2-8338d9008b7e', 'Avecle', '18556540000', '202CB962AC59075B964B07152D234B70', '116201@qq.com', 'aa598905-d970-4633-d64d-4d1d8d9fc552', '2019-12-18 14:37:48', '0f173ccb-8309-4cd1-ee6f-ef4be177d0c6', '2020-04-17 16:51:47', 42);
+INSERT INTO `member_userinfo` VALUES ('d7c17edf-e78e-4ae6-9ddf-79cd58ef4d83', '123', '123', '202CB962AC59075B964B07152D234B70', '123@qq.com', 'aa598905-d970-4633-d64d-4d1d8d9fc552', '2020-03-02 13:37:07', '269b35c2-9351-4b7f-c4a4-7544e97f5014', '2020-04-30 21:19:20', 8);
 
 -- ----------------------------
 -- Table structure for member_userinfo_address
@@ -4307,7 +4305,7 @@ CREATE TABLE `member_userinfo_address`  (
   `address_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
   `gmt_create` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`info_address_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of member_userinfo_address
@@ -4316,6 +4314,7 @@ INSERT INTO `member_userinfo_address` VALUES (3, '7c4eb02e-3a9a-4ce1-b8e2-8338d9
 INSERT INTO `member_userinfo_address` VALUES (4, '7c4eb02e-3a9a-4ce1-b8e2-8338d9008b7e', '026a073b-cf51-4afe-8f32-9f5eb03e7737', '2019-12-25 16:24:11');
 INSERT INTO `member_userinfo_address` VALUES (6, '4bfeff5f-7e68-4ccf-9fef-aa518e257ecd', '585800e2-9351-4e82-840d-f5e43956a7da', '2019-12-31 10:22:16');
 INSERT INTO `member_userinfo_address` VALUES (7, '4bfeff5f-7e68-4ccf-9fef-aa518e257ecd', '1dbef19a-df5f-4261-ab4a-8f000c958cdc', '2019-12-31 10:53:07');
+INSERT INTO `member_userinfo_address` VALUES (8, 'd7c17edf-e78e-4ae6-9ddf-79cd58ef4d83', '269b35c2-9351-4b7f-c4a4-7544e97f5014', '2020-04-30 21:27:28');
 
 -- ----------------------------
 -- Table structure for order_cart
@@ -4408,11 +4407,13 @@ CREATE TABLE `order_info`  (
 -- Records of order_info
 -- ----------------------------
 INSERT INTO `order_info` VALUES ('0a2ef9f0-d96d-4cb2-b564-47181ff4ab04', '7c4eb02e-3a9a-4ce1-b8e2-8338d9008b7e', '7522e9b5-93d6-4b1c-9e9f-ad2dfef4d5ce', 1, '重庆市涪陵区市辖区XXX街道666号403', '余老师', '18323550001', 100.00, '1', '2020-03-02 14:38:39', 6, '2019-12-31 11:18:55');
+INSERT INTO `order_info` VALUES ('0d72b1b0-b827-4cef-9bea-2bd70746d298', 'd7c17edf-e78e-4ae6-9ddf-79cd58ef4d83', '29e46227-f291-407b-afd8-f6c750e714b2', 1, '北京市西城区市辖区北京市西城区XXXX', '小红', '11235465445', 159.00, NULL, NULL, 1, '2020-04-30 21:28:35');
 INSERT INTO `order_info` VALUES ('24d79e9c-ba47-4559-b02d-60c7e5560c03', '7c4eb02e-3a9a-4ce1-b8e2-8338d9008b7e', 'eb27c498-2bfb-4c4e-b70f-73f3fb55c712', 1, '上海市黄浦区市辖区XXX街道555号101', '余老师', '18323550000', 120.00, '1', '2020-03-09 14:46:06', 4, '2019-12-31 11:18:31');
 INSERT INTO `order_info` VALUES ('68e4558a-dd4c-4122-841d-782593bb1a58', '7c4eb02e-3a9a-4ce1-b8e2-8338d9008b7e', '29e46227-f291-407b-afd8-f6c750e714b2', 1, '重庆市涪陵区市辖区XXX街道666号403', '余老师', '18323550001', 159.00, '1', '2020-03-09 14:28:01', 2, '2020-03-09 14:27:57');
 INSERT INTO `order_info` VALUES ('cb6f8da8-1243-4733-83d2-690356c3eceb', '7c4eb02e-3a9a-4ce1-b8e2-8338d9008b7e', 'c07d3a09-661b-4a9f-f919-998d0a9c4540', 2, '重庆市涪陵区市辖区XXX街道666号403', '余老师', '18323550001', 120.00, '2', '2020-03-02 14:47:13', 7, '2020-03-02 14:25:26');
 INSERT INTO `order_info` VALUES ('cc931448-3c6e-470f-dcff-6d8acb3f148d', '7c4eb02e-3a9a-4ce1-b8e2-8338d9008b7e', 'a26c48f1-be68-41f8-a7d7-2a86aa039a73', 1, '重庆市涪陵区市辖区XXX街道666号403', '余老师', '18323550001', 120.00, '2', '2020-03-09 14:25:48', 4, '2019-12-31 11:19:07');
 INSERT INTO `order_info` VALUES ('d0b3ae1c-7318-4711-a28a-73eb0c380c8e', '7c4eb02e-3a9a-4ce1-b8e2-8338d9008b7e', 'c07d3a09-661b-4a9f-f919-998d0a9c4540', 1, '上海市黄浦区市辖区XXX街道555号101', '余老师', '18323550000', 60.00, NULL, '2020-03-02 14:23:32', 5, '2019-12-31 11:19:29');
+INSERT INTO `order_info` VALUES ('e01ff066-a205-49c7-b418-b52697c9985d', 'd7c17edf-e78e-4ae6-9ddf-79cd58ef4d83', '7522e9b5-93d6-4b1c-9e9f-ad2dfef4d5ce', 2, '北京市西城区市辖区北京市西城区XXXX', '小红', '11235465445', 200.00, '1', '2020-04-30 21:29:05', 2, '2020-04-30 21:29:04');
 INSERT INTO `order_info` VALUES ('e6b11954-949c-4595-f323-74d7a378a604', '4bfeff5f-7e68-4ccf-9fef-aa518e257ecd', '7522e9b5-93d6-4b1c-9e9f-ad2dfef4d5ce', 1, '湖南省武冈市邵阳市XXX街道333号405', '张先生', '15632150000', 100.00, '1', '2020-03-09 14:46:37', 4, '2019-12-31 11:16:51');
 INSERT INTO `order_info` VALUES ('f296422c-d214-4f37-87e7-6eea5259b3be', '4bfeff5f-7e68-4ccf-9fef-aa518e257ecd', 'eb27c498-2bfb-4c4e-b70f-73f3fb55c712', 2, '北京市东城区市辖区XXX街道777号402', '张先生', '15632150000', 240.00, '1', '2020-03-09 14:47:15', 4, '2019-12-31 11:17:38');
 INSERT INTO `order_info` VALUES ('f46d78f3-e0ff-41f4-9279-64c494c4c2cc', '7c4eb02e-3a9a-4ce1-b8e2-8338d9008b7e', '80648133-f2db-4115-db36-48b6577c6f9f', 1, '重庆市涪陵区市辖区XXX街道666号403', '余老师', '18323550001', 550.00, '2', '2019-12-31 11:19:45', 2, '2019-12-31 11:19:43');

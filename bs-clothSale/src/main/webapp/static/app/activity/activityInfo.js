@@ -1,5 +1,5 @@
 angular.module("clothSaleApp")
-    .controller("activityInfoCtrl", function ($scope, $rootScope,$state,$http) {
+    .controller("activityInfoCtrl", function ($scope, $rootScope,$state,$http,$filter) {
 
         $scope.activityInfoList = null;
         $scope.selectParamsActivity = {
@@ -16,6 +16,13 @@ angular.module("clothSaleApp")
             activity_describe : '',
             activity_date_begin : '',
             activity_date_end : '',
+        }
+        $scope.editParamsActivity = {
+            activityId : '',
+            activityName : '',
+            activityDescribe : '',
+            activityDateBegin : '',
+            activityDateEnd : '',
         }
 
         $scope.selectActivityInfo = function (){
@@ -59,6 +66,47 @@ angular.module("clothSaleApp")
                 });
             }
 
+        }
+
+        $scope.editActivity = function (activity_id){
+            $http({
+                method: "POST",
+                url: '../../ActivityInfo/selectSingleActivityInfo',
+                params: {
+                    activity_id : activity_id
+                }
+            }).then(function successCallback(response) {
+                //请求成功
+                $scope.editParamsActivity = response.data.item;
+                $scope.editParamsActivity.activityDateBegin = new Date($filter("date")($scope.editParamsActivity.activityDateBegin, "yyyy-MM-dd"));
+                $scope.editParamsActivity.activityDateEnd = new Date($filter("date")($scope.editParamsActivity.activityDateEnd, "yyyy-MM-dd"));
+                $('#editModal').modal('show');
+            }, function errorCallback(response) {
+                //请求失败
+                $scope.showAlert('错误:',response.data.msg,'danger');
+            });
+        }
+        //修改活动
+        $scope.updateActivity = function (){
+
+            $scope.now = new Date();
+            if ($scope.editParamsActivity.activityDateEnd <= $scope.editParamsActivity.activityDateBegin || $scope.editParamsActivity.activityDateEnd <= $scope.now){
+                $scope.showAlert('提示:','请正确的选择日期','danger');
+            }else {
+                $http({
+                    method: "POST",
+                    url: '../../ActivityInfo/updateActivityInfo',
+                    params: $scope.editParamsActivity
+                }).then(function successCallback(response) {
+                    //请求成功
+                    $scope.loadData();
+                    $scope.showAlert('提示:',response.data.msg,'success');
+                    $('#editModal').modal('hide');
+                }, function errorCallback(response) {
+                    //请求失败
+                    $scope.showAlert('错误:',response.data.msg,'danger');
+                });
+            }
         }
 
         $scope.deleteActivity = function (activity_id){

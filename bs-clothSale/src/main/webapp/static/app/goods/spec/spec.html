@@ -66,12 +66,11 @@
                         <tbody>
                         <tr class="text-center" ng-repeat="spec in specList">
                             <th scope="row">{{$index+1}}</th>
-                            <td class="font-weight-bold"><a class="color-primary" ui-sref="goodsSpecValue({spec_id:'{{spec.spec_id}}',spec_name:'{{spec.spec_name}}'})">{{spec.spec_name}}</a></td>
+                            <td class="font-weight-bold"><a class="color-primary" ui-sref="app.goodsSpecValue({spec_id:'{{spec.spec_id}}',spec_name:'{{spec.spec_name}}'})">{{spec.spec_name}}</a></td>
                             <td><span class="badge badge-dark">{{spec.category_name}}</span></td>
                             <td>{{spec.gmt_create | date:'yyyy/MM/dd HH:mm:ss'}}</td>
                             <td class="text-center">
-                                <button class="btn btn-sm btn-success" title="修改"><i class="fa fa-edit"></i></button>
-                                <button class="btn btn-sm btn-danger" title="删除" ng-click="deleteSpec(spec.spec_id)"><i class="fa fa-close"></i></button>
+                               <button class="btn btn-sm btn-danger" title="删除" ng-click="deleteSpec(spec.spec_id)"><i class="fa fa-close"></i></button>
                             </td>
                         </tr>
                         <tr ng-if="specValueList.length<=0">

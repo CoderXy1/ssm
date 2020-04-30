@@ -121,6 +121,50 @@ public class GoodsSkuController {
         return res;
     }
 
+    @RequestMapping("/deleteGoodsSku")
+    @ResponseBody
+    public RequsetData<Integer> deleteGoodsSku(@RequestParam("sku_id")String sku_id) {
+
+        RequsetData<Integer> res = new RequsetData<>();
+
+        int count = goodsSkuService.deleteByPrimaryKey(sku_id);
+
+        if (count == 1) {
+            res.setItem(count);
+            res.setMsg("删除成功");
+            res.setSuccess(true);
+        } else {
+            res.setMsg("删除失败");
+            res.setSuccess(false);
+        }
+
+        return res;
+    }
+
+    @RequestMapping("/updateGoodsSkuPriceSale")
+    @ResponseBody
+    public RequsetData<Integer> updateGoodsSkuPriceSale(@RequestParam("sku_id")String sku_id, @RequestParam("price_sale") BigDecimal price_sale) {
+
+        RequsetData<Integer> res = new RequsetData<>();
+
+        GoodsSku goodsSku = new GoodsSku();
+        goodsSku.setSkuId(sku_id);
+        goodsSku.setPriceSale(price_sale);
+        goodsSku.setGmtUpdate(new Date());
+        int count = goodsSkuService.updateByPrimaryKeySelective(goodsSku);
+
+        if (count == 1) {
+            res.setItem(count);
+            res.setMsg("修改成功");
+            res.setSuccess(true);
+        } else {
+            res.setMsg("修改失败");
+            res.setSuccess(false);
+        }
+
+        return res;
+    }
+
     private RequsetData<List<HashMap<String, Object>>> setRequsetData(List<HashMap<String, Object>> list,String msg) {
 
         RequsetData<List<HashMap<String, Object>>> res = new RequsetData<>();

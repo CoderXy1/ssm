@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -48,6 +49,15 @@ public class OrderInfoController {
         }
 
         return res;
+    }
+
+    @RequestMapping("/selectAllOrderInfoNumByUserId")
+    @ResponseBody
+    public HashMap<String,Object> selectAllOrderInfoNumByUserId(@RequestParam(required = false) String user_id,@RequestParam(required = false)String user_name) {
+
+        HashMap<String,Object> total = orderInfoService.selectAllOrderInfoNumByUserId(user_id,user_name, 0);
+
+        return total;
     }
 
     @RequestMapping("/insertOrderInfo")
@@ -140,6 +150,32 @@ public class OrderInfoController {
         return res;
     }
 
+    @RequestMapping("/selectAllOrderInfoNumByMonth")
+    @ResponseBody
+    public RequsetData<List<Integer>> selectAllOrderInfoNumByMonth() {
 
+        RequsetData<List<Integer>> res = new RequsetData<>();
+
+        List<HashMap<String, Object>> list = orderInfoService.selectAllOrderInfoNumByMonth();
+        List<Integer> num_list = new ArrayList<>();
+        for (int i = 1;i <= 12;i++){
+            boolean flag = false;
+            for (HashMap map : list){
+                int total = Integer.parseInt(map.get("month_date").toString());
+                if (total == i){
+                    num_list.add(total);
+                    flag = true;
+                    break;
+                }
+            }
+            if (!flag){
+                num_list.add(0);
+            }
+        }
+
+        res.setItem(num_list);
+
+        return res;
+    }
 
 }

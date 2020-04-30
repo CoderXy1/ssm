@@ -68,6 +68,28 @@ public class ActivityInfoController {
         return res;
     }
 
+    @RequestMapping("/selectNumActivityInfo")
+    @ResponseBody
+    public HashMap<String,Object> selectNumActivityInfo(@RequestParam(required = false) String activity_name) {
+
+        RequsetData<List<HashMap<String, Object>>> res = new RequsetData<>();
+
+        HashMap<String,Object> total = activityInfoService.selectNumActivityInfo(activity_name, -1);
+
+        return total;
+    }
+
+    @RequestMapping("/selectSingleActivityInfo")
+    @ResponseBody
+    public RequsetData<ActivityInfo> selectSingleActivityInfo(@RequestParam("activity_id") String activity_id) {
+
+        RequsetData<ActivityInfo> res = new RequsetData<>();
+
+       res.setItem(activityInfoService.selectByPrimaryKey(activity_id));
+
+        return res;
+    }
+
     @RequestMapping("/selectSpuOfActivity")
     @ResponseBody
     public RequsetData<List<HashMap<String, Object>>> selectSpuOfActivity(@RequestParam("pageIndex") int pageIndex, @RequestParam("pageSize") int pageSize, @RequestParam("activity_id") String activity_id) {
@@ -178,6 +200,44 @@ public class ActivityInfoController {
             res.setSuccess(true);
         } else {
             res.setMsg("失败");
+            res.setSuccess(false);
+        }
+        return res;
+    }
+
+    @RequestMapping("/updateActivityInfo")
+    @ResponseBody
+    public RequsetData<Integer> updateActivityInfo(@RequestParam("activityId") String activityId,@RequestParam("activityName") String activityName,
+                                                   @RequestParam("activityDescribe") String activityDescribe, @RequestParam("activityDateBegin") String activityDateBegin,
+                                                   @RequestParam("activityDateEnd") String activityDateEnd) throws Exception{
+
+        RequsetData<Integer> res = new RequsetData<>();
+
+        ActivityInfo activityInfo = new ActivityInfo();
+        activityInfo.setActivityId(activityId);
+        activityInfo.setActivityName(activityName);
+        activityInfo.setActivityDescribe(activityDescribe);
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS Z");
+        Date date_begin = df.parse(activityDateBegin.replace("Z", " UTC"));
+        Date date_end = df.parse(activityDateEnd.replace("Z", " UTC"));
+        activityInfo.setActivityDateBegin(date_begin);
+        activityInfo.setActivityDateEnd(date_end);
+        Date now = new Date();
+        if (now.compareTo(date_begin) >= 0){
+            activityInfo.setActivityState(1);
+        }else {
+            activityInfo.setActivityState(0);
+        }
+        activityInfo.setGmtUpdate(new Date());
+
+        int count = activityInfoService.updateByPrimaryKeySelective(activityInfo);
+
+        if (count == 1) {
+            res.setItem(count);
+            res.setMsg("修改成功");
+            res.setSuccess(true);
+        } else {
+            res.setMsg("修改失败");
             res.setSuccess(false);
         }
         return res;

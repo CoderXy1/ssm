@@ -71,4 +71,14 @@ public class GoodsCategoryServiceImpl implements IGoodsCategoryService {
     public List<HashMap<String, Object>> selectCategorySpuTotal() {
         return goodsCategoryMapper.selectCategorySpuTotal();
     }
+
+    @Override
+    public int updateGoodsCategoryFirst(String category_first_id, String category_name_edit, Integer category_order_edit, Date gmt_update) {
+        return goodsCategoryMapper.updateGoodsCategoryFirst(category_first_id, category_name_edit, category_order_edit, gmt_update);
+    }
+
+    @Override
+    public int deleteGoodsCategoryFirst(String category_first_id) {
+        return goodsCategoryMapper.deleteGoodsCategoryFirst(category_first_id);
+    }
 }
