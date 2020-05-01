@@ -90,7 +90,7 @@ public class MemberAdminController {
 
         MemberAdmin memberAdmin = new MemberAdmin();
         memberAdmin.setAdminId(admin_id);
-        memberAdmin.setAdminPassword(admin_password);
+        memberAdmin.setAdminPassword(DigestUtils.md5DigestAsHex(admin_password.getBytes()).toUpperCase());
         int count =  memberAdminService.updateByPrimaryKeySelective(memberAdmin);
         if (count == 1) {
             res.setItem(count);
