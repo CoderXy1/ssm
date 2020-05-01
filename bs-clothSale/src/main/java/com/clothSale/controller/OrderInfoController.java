@@ -163,7 +163,7 @@ public class OrderInfoController {
             for (HashMap map : list){
                 int total = Integer.parseInt(map.get("month_date").toString());
                 if (total == i){
-                    num_list.add(total);
+                    num_list.add(Integer.parseInt(map.get("total").toString()));
                     flag = true;
                     break;
                 }

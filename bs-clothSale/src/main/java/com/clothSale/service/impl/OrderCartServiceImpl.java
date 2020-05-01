@@ -75,4 +75,9 @@ public class OrderCartServiceImpl implements IOrderCartService {
     public HashMap<String, Object> selectOrderCollectNum(String user_id) {
         return orderCartMapper.selectOrderCollectNum(user_id);
     }
+
+    @Override
+    public List<HashMap<String, Object>> selectOrderCollectBySpuId(String spu_id, String user_id) {
+        return orderCartMapper.selectOrderCollectBySpuId(spu_id, user_id);
+    }
 }

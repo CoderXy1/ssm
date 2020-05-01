@@ -155,5 +155,10 @@
         where oc.user_id = #{user_id}
     </select>
 
+    <select id="selectOrderCollectBySpuId" resultType="java.util.Map">
+        select * from order_collect
+        where spu_id = #{spu_id,jdbcType=VARCHAR} and user_id = #{user_id}
+    </select>
+
 
 </mapper>

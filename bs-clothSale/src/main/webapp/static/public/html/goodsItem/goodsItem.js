@@ -268,20 +268,40 @@ angular.module("clothSalePublicApp")
         }
 
         $scope.insertOrderCollect = function () {
-            $http({
-                method: "POST",
-                url: '../../OrderCart/insertOrderCollect',
-                params: {
-                    collect_id: $scope.getUUID(),
-                    user_id : $scope.getUserInfoBySession().user_id,
-                    spu_id: $scope.spu_id
-                }
-            }).then(function successCallback(response) {
-                //请求成功
-                $scope.showAlert('成功:',response.data.msg,'success');
-            }, function errorCallback(response) {
-                //请求失败
-            })
+            if (sessionStorage.getItem("token_user")){
+                $http({
+                    method: "POST",
+                    url: '../../OrderCart/selectOrderCollectBySpuId',
+                    params: {
+                        user_id : $scope.getUserInfoBySession().user_id,
+                        spu_id: $scope.spu_id
+                    }
+                }).then(function successCallback(response) {
+                    //请求成功
+                    if (!response.data.success){ //不包括该服饰
+                        $http({
+                            method: "POST",
+                            url: '../../OrderCart/insertOrderCollect',
+                            params: {
+                                collect_id: $scope.getUUID(),
+                                user_id : $scope.getUserInfoBySession().user_id,
+                                spu_id: $scope.spu_id
+                            }
+                        }).then(function successCallback(response) {
+                            //请求成功
+                            $scope.showAlert('成功:',response.data.msg,'success');
+                        }, function errorCallback(response) {
+                            //请求失败
+                        })
+                    }else{
+                        $scope.showAlert('失败:','已存在相同服饰','danger');
+                    }
+                }, function errorCallback(response) {
+                    //请求失败
+                })
+            }else {
+                $state.go('public.login',{url:'public.goodsItem',extraData:'{"spu_id":"'+$stateParams.spu_id + '"}'});
+            }
         }
 
         $scope.changeTotalNum = function (flag){

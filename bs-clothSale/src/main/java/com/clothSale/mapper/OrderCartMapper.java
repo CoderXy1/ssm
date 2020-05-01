@@ -32,4 +32,6 @@ public interface OrderCartMapper {
     List<HashMap<String,Object>> selectOrderCollect(@Param("pageIndex") int pageIndex,@Param("pageSize") int pageSize,@Param("user_id") String user_id);
 
     HashMap<String,Object> selectOrderCollectNum(@Param("user_id") String user_id);
+
+    List<HashMap<String,Object>> selectOrderCollectBySpuId(@Param("spu_id")String spu_id,@Param("user_id")String user_id);
 }

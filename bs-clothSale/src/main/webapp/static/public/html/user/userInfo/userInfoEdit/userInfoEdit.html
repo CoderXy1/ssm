@@ -1,0 +1,39 @@
+<div class="ur_location">
+    <a href="">我的信息</a>
+    <span>&gt;</span>
+    <a class="a_cur">资料修改</a>
+</div>
+<div class="form-group" style="margin-top: 10px;">
+
+    <div class="row" style="padding: 10px">
+        <div class="col-md-12 text-center">
+            <img ng-src="data:image/jpg;base64,{{user_info_edit.file_content}}" style="object-fit: cover;height: 80px;cursor: pointer"/>
+            <p style="margin:10px">用户名 : {{user_info.user_name}}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <form style="width:70%;margin: 0 auto" name="editForm" role="form" id="editForm" autocomplete="off" ng-submit="updateUserInfo()">
+            <div class="form-group">
+                <label for="phone_number" class="col-form-label">联系电话:</label>
+                <input id="phone_number" type="number" class="form-control" ng-model="user_info_edit.phone_number" ng-required="true">
+            </div>
+            <div class="form-group">
+                <label for="email" class="col-form-label">Email:</label>
+                <input id="email" type="email" class="form-control" ng-model="user_info_edit.email" ng-required="true">
+            </div>
+            <div class="form-group">
+                <label for="password_old" class="col-form-label">旧密码:</label>
+                <input id="password_old" type="password" class="form-control" ng-model="user_info_edit.password_old" ng-required="true">
+            </div>
+            <div class="form-group">
+                <label for="password_new" class="col-form-label">新密码:</label>
+                <input id="password_new" type="password" class="form-control" ng-model="user_info_edit.password_new" ng-required="true">
+            </div>
+        </form>
+    </div>
+    <div class="row" style="width:70%;margin: 0 auto">
+        <button type="submit" class="btn btn-primary" form="editForm">保存</button>
+    </div>
+
+</div>

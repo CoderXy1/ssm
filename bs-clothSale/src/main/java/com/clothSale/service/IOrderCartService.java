@@ -2,6 +2,7 @@ package com.clothSale.service;
 
 import com.clothSale.model.OrderCart;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -32,5 +33,5 @@ public interface IOrderCartService {
 
     HashMap<String,Object> selectOrderCollectNum(String user_id);
 
-
+    List<HashMap<String,Object>> selectOrderCollectBySpuId(String spu_id,String user_id);
 }

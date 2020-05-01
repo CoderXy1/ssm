@@ -150,6 +150,26 @@ public class OrderCartController {
         return res;
     }
 
+    @RequestMapping("/selectOrderCollectBySpuId")
+    @ResponseBody
+    public RequsetData<List<HashMap<String, Object>>> selectOrderCollectBySpuId(@RequestParam("spu_id") String spu_id,@RequestParam("user_id") String user_id) {
+
+        RequsetData<List<HashMap<String, Object>>> res = new RequsetData<>();
+
+        List<HashMap<String, Object>> list = orderCartService.selectOrderCollectBySpuId(spu_id,user_id);
+
+        if (!list.isEmpty()) {
+            res.setItem(list);
+            res.setMsg("成功");
+            res.setSuccess(true);
+        } else {
+            res.setMsg("失败");
+            res.setSuccess(false);
+        }
+
+        return res;
+    }
+
     @RequestMapping("/insertOrderCollect")
     @ResponseBody
     //有参数要加 @RequestParam("参数名")

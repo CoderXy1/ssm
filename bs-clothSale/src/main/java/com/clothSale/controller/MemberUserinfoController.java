@@ -119,6 +119,16 @@ public class MemberUserinfoController {
         return res;
     }
 
+    @RequestMapping("/MD5Password")
+    @ResponseBody
+    public RequsetData<String> MD5Password(@RequestParam("user_password")String user_password) {
+        RequsetData<String> res = new RequsetData<>();
+
+        res.setItem(DigestUtils.md5DigestAsHex(user_password.getBytes()).toUpperCase());
+
+        return res;
+    }
+
     @RequestMapping("/updateMemberUserinfo")
     @ResponseBody
     public RequsetData<Integer> updateMemberUserinfo(@RequestParam("user_id") String user_id,@RequestParam(required = false) String user_name,@RequestParam(required = false) String phone_number,
@@ -145,6 +155,8 @@ public class MemberUserinfoController {
         }
         return res;
     }
+
+
 
     private RequsetData<List<HashMap<String, Object>>> setRequsetData(List<HashMap<String, Object>> list,String msgSuccess,String msgError,HashMap<String,Object> extdata) {
 
