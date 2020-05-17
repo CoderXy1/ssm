@@ -16,7 +16,7 @@ angular.module("clothSaleApp")
         }
 
         $scope.showAdmin = function () {
-            $('#addModal').modal('show');
+            $('#addModal_password').modal('show');
         }
 
         $scope.updateAdmin = function () {
@@ -39,7 +39,7 @@ angular.module("clothSaleApp")
                         }
                     }).then(function successCallback(response) {
                         //请求成功
-                        $('#addModal').modal('hide');
+                        $('#addModal_password').modal('hide');
                         var a = $timeout(function(){
                             $scope.showAlert('成功:', response.data.msg + ",请重新登录", 'success');
                             sessionStorage.removeItem("token_admin")

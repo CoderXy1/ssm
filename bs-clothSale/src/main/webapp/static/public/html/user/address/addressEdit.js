@@ -149,6 +149,7 @@ angular.module("clothSalePublicApp")
                 }).then(function successCallback(response) {
                     //请求成功
                     $scope.selectParams = response.data.item;
+                    $scope.selectParams.phone_number = $scope.selectParams.phone_number * 1; //转为数字
                     $scope.selectAllProvincesByEdit();
                 }, function errorCallback(response) {
                     //请求失败
