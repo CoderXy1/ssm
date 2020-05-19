@@ -25,7 +25,7 @@ angular.module("clothSaleApp")
             }).then(function successCallback(response) {
                 //请求成功
                 $scope.loadData();
-                $('#addModal').modal('hide');
+                $('#specModal').modal('hide');
                 $scope.showAlert('提示:',response.data.msg,'success');
             }, function errorCallback(response) {
                 //请求失败

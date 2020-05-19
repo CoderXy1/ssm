@@ -3,14 +3,14 @@
         <div class="card">
 
             <!-- modal:新增规格 -->
-            <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+            <div class="modal fade" id="specModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="picModalModalLabel">新增规格</h5>
                         </div>
                         <div class="modal-body">
-                            <form name="editForm" role="form" id="editForm" autocomplete="off" ng-submit="insertSpec()">
+                            <form name="specForm" role="form" id="specForm" autocomplete="off" ng-submit="insertSpec()">
                                 <div class="form-group">
                                     <label for="category_name" class="col-form-label">所属类别:</label>
                                     <select id="category_name" class="form-control" ng-model="editCategory_id" ng-required="true">
@@ -19,14 +19,14 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="brand_icon_id" class="col-form-label">规格名:</label>
-                                    <input id="brand_icon_id" type="text" class="form-control" ng-model="editSpec_name" ng-required="true">
+                                    <label for="spec_name" class="col-form-label">规格名:</label>
+                                    <input id="spec_name" type="text" class="form-control" ng-model="editSpec_name" ng-required="true">
                                 </div>
                             </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                            <button type="submit" class="btn btn-primary" form="editForm">保存</button>
+                            <button type="submit" class="btn btn-primary" form="specForm">保存</button>
                         </div>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                         </select>
                     </div>
                     <div class="col-md-2">
-                        <button class="btn btn-sm btn-primary float-right" data-toggle="modal" data-target="#addModal">新增</button>
+                        <button class="btn btn-sm btn-primary float-right" data-toggle="modal" data-target="#specModal">新增</button>
                     </div>
                 </div>
 

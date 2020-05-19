@@ -14,7 +14,7 @@
                             <!--</button>-->
                         </div>
                         <div class="modal-body">
-                            <form name="editForm" role="form" id="editForm" autocomplete="off" ng-submit="insertBrand()">
+                            <form name="brandForm" role="form" id="brandForm" autocomplete="off" ng-submit="insertBrand()">
                                 <div class="form-group">
                                     <label for="brand_name" class="col-form-label">品牌名:</label>
                                     <input name="brand_name" type="text" class="form-control" id="brand_name" ng-model="editBrand_name" ng-required="true">
@@ -27,7 +27,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                            <button type="submit" class="btn btn-primary" form="editForm">保存</button>
+                            <button type="submit" class="btn btn-primary" form="brandForm">保存</button>
                         </div>
                     </div>
                 </div>

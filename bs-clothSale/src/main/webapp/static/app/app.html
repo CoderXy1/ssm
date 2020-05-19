@@ -132,7 +132,7 @@
                 <h5 class="modal-title" id="picModalModalLabel">修改密码</h5>
             </div>
             <div class="modal-body">
-                <form name="editForm" role="form" id="editForm" autocomplete="off" ng-submit="updateAdmin()">
+                <form name="editForm_password" role="form" id="editForm_password" autocomplete="off" ng-submit="updateAdmin()">
                     <div class="form-group">
                         <label for="password_old" class="col-form-label">旧密码:</label>
                         <input id="password_old" type="password" class="form-control" ng-model="password_old" ng-required="true">
@@ -145,7 +145,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                <button type="submit" class="btn btn-primary" form="editForm">保存</button>
+                <button type="submit" class="btn btn-primary" form="editForm_password">保存</button>
             </div>
         </div>
     </div>
