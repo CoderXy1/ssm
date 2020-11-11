@@ -5,7 +5,7 @@
     <ion-slide-box active-slide=0 does-continue="true" slide-interval="2000" auto-play="true"
                    style="width: 100%;height: 200px">
         <ion-slide ng-repeat="gallery in galleryList">
-            <img ng-src="data:image/jpg;base64,{{gallery.file}}" style="width: 100%;height: 100%;object-fit: cover">
+            <img ng-src="{{gallery.file}}" style="width: 100%;height: 100%;object-fit: cover">
         </ion-slide>
     </ion-slide-box>
 
@@ -43,9 +43,9 @@
         <ion-item ng-repeat="gallery in galleryList">
             <!--缩略图-->
             <a class="item item-thumbnail-left" href="#">
-            <img ng-src="data:image/jpg;base64,{{gallery.file}}" style="object-fit: cover">
-            <h2>Weezer</h2>
-            <p>Blue Album</p>
+            <img ng-src="{{gallery.file}}" style="object-fit: cover">
+            <h2>{{gallery.galleryName}}</h2>
+            <p>{{gallery.galleryDescribe}}</p>
         </a>
         </ion-item>
     </ion-list>

@@ -1,8 +1,8 @@
 <ion-view>
     <ion-content class="ion-contentFit">
-
+        <ion-refresher pulling-text="下拉刷新" on-refresh="onRefresh()"></ion-refresher>
         <a ng-repeat="gallery in galleryList">
-            <img ng-src="data:image/jpg;base64,{{gallery.file}}" on-hold="alertMenu(gallery.fileId,gallery.fileName,gallery.galleryId)" ng-click="showImgAlert(gallery.file,gallery.fileName)"
+            <img ng-src="{{gallery.file}}" on-hold="alertMenu(gallery.fileId,gallery.fileName,gallery.galleryId,gallery.file)" ng-click="showImgAlert(gallery.file,gallery.fileName)"
                  style="object-fit: cover;width: 32%;height: 120px;border-radius: 3px">
         </a>
 

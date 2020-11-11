@@ -7,7 +7,7 @@ public class File {
 
     private String filetype;
 
-    private byte[] file;
+    private String file;
 
     public String getFileid() {
         return fileid;
@@ -33,11 +33,11 @@ public class File {
         this.filetype = filetype == null ? null : filetype.trim();
     }
 
-    public byte[] getFile() {
+    public String getFile() {
         return file;
     }
 
-    public void setFile(byte[] file) {
-        this.file = file;
+    public void setFile(String file) {
+        this.file = file == null ? null : file.trim();
     }
 }

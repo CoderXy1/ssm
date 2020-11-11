@@ -222,7 +222,7 @@ angular.module('ionicApp', ['ionic', 'oc.lazyLoad'])
                 },
             }).then(function successCallback(response) {
                 //请求成功
-                download("data:text/plain;base64," + response.data.file,response.data.filename);
+                download(response.data.file,response.data.filename);
             }, function errorCallback(response) {
                 //请求失败
                 $scope.showAlert("下载失败","");
@@ -231,33 +231,10 @@ angular.module('ionicApp', ['ionic', 'oc.lazyLoad'])
         };
         //下载图片
         function  download(src,name) {
-            var imgData =  src;//这里放需要下载的base64
-            downloadFile(name, imgData);
-        }
-        //下载
-        function downloadFile(fileName, content) {
-            var aLink = document.createElement('a');
-            var blob = base64ToBlob(content); //new Blob([content]);
-            var evt = document.createEvent("HTMLEvents");
-            evt.initEvent("click", true, true);//initEvent 不加后两个参数在FF下会报错  事件类型，是否冒泡，是否阻止浏览器的默认行为
-            aLink.download = fileName;
-            aLink.href = URL.createObjectURL(blob);
-            // aLink.dispatchEvent(evt);
-            aLink.click()
-        }
-        //base64转blob
-        function base64ToBlob(code) {
-            var parts = code.split(';base64,');
-            var contentType = parts[0].split(':')[1];
-            var raw = window.atob(parts[1]);
-            var rawLength = raw.length;
-
-            var uInt8Array = new Uint8Array(rawLength);
-
-            for (var i = 0; i < rawLength; ++i) {
-                uInt8Array[i] = raw.charCodeAt(i);
-            }
-            return new Blob([uInt8Array], {type: contentType});
+            var link = document.createElement('a');
+            link.href = src;
+            link.download = name;
+            link.click();
         }
 
         //对话框

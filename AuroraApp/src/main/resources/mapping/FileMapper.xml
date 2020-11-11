@@ -1,109 +1,94 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.auroraapp.mapper.FileMapper">
-    <resultMap id="BaseResultMap" type="com.auroraapp.model.File">
-        <id column="fileId" property="fileid" jdbcType="VARCHAR"/>
-        <result column="fileName" property="filename" jdbcType="VARCHAR"/>
-        <result column="fileType" property="filetype" jdbcType="VARCHAR"/>
-    </resultMap>
-    <resultMap id="ResultMapWithBLOBs" type="com.auroraapp.model.File" extends="BaseResultMap">
-        <result column="file" property="file" jdbcType="LONGVARBINARY"/>
-    </resultMap>
-    <sql id="Base_Column_List">
-    fileId, fileName, fileType
+<mapper namespace="com.auroraapp.mapper.FileMapper" >
+  <resultMap id="BaseResultMap" type="com.auroraapp.model.File" >
+    <id column="fileId" property="fileid" jdbcType="VARCHAR" />
+    <result column="fileName" property="filename" jdbcType="VARCHAR" />
+    <result column="fileType" property="filetype" jdbcType="VARCHAR" />
+    <result column="file" property="file" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    fileId, fileName, fileType, file
   </sql>
-    <sql id="Blob_Column_List">
-    file
-  </sql>
-    <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
-        select
-        <include refid="Base_Column_List"/>
-        ,
-        <include refid="Blob_Column_List"/>
-        from tb_file
-        where fileId = #{fileid,jdbcType=VARCHAR}
-    </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_file
+    where fileId = #{fileid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from tb_file
     where fileId = #{fileid,jdbcType=VARCHAR}
   </delete>
-    <insert id="insert" parameterType="com.auroraapp.model.File">
+  <insert id="insert" parameterType="com.auroraapp.model.File" >
     insert into tb_file (fileId, fileName, fileType, 
       file)
     values (#{fileid,jdbcType=VARCHAR}, #{filename,jdbcType=VARCHAR}, #{filetype,jdbcType=VARCHAR}, 
-      #{file,jdbcType=LONGVARBINARY})
+      #{file,jdbcType=VARCHAR})
   </insert>
-    <insert id="insertSelective" parameterType="com.auroraapp.model.File">
-        insert into tb_file
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="fileid != null">
-                fileId,
-            </if>
-            <if test="filename != null">
-                fileName,
-            </if>
-            <if test="filetype != null">
-                fileType,
-            </if>
-            <if test="file != null">
-                file,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="fileid != null">
-                #{fileid,jdbcType=VARCHAR},
-            </if>
-            <if test="filename != null">
-                #{filename,jdbcType=VARCHAR},
-            </if>
-            <if test="filetype != null">
-                #{filetype,jdbcType=VARCHAR},
-            </if>
-            <if test="file != null">
-                #{file,jdbcType=LONGVARBINARY},
-            </if>
-        </trim>
-    </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.auroraapp.model.File">
-        update tb_file
-        <set>
-            <if test="filename != null">
-                fileName = #{filename,jdbcType=VARCHAR},
-            </if>
-            <if test="filetype != null">
-                fileType = #{filetype,jdbcType=VARCHAR},
-            </if>
-            <if test="file != null">
-                file = #{file,jdbcType=LONGVARBINARY},
-            </if>
-        </set>
-        where fileId = #{fileid,jdbcType=VARCHAR}
-    </update>
-    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.auroraapp.model.File">
+  <insert id="insertSelective" parameterType="com.auroraapp.model.File" >
+    insert into tb_file
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fileid != null" >
+        fileId,
+      </if>
+      <if test="filename != null" >
+        fileName,
+      </if>
+      <if test="filetype != null" >
+        fileType,
+      </if>
+      <if test="file != null" >
+        file,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fileid != null" >
+        #{fileid,jdbcType=VARCHAR},
+      </if>
+      <if test="filename != null" >
+        #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="filetype != null" >
+        #{filetype,jdbcType=VARCHAR},
+      </if>
+      <if test="file != null" >
+        #{file,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.auroraapp.model.File" >
+    update tb_file
+    <set >
+      <if test="filename != null" >
+        fileName = #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="filetype != null" >
+        fileType = #{filetype,jdbcType=VARCHAR},
+      </if>
+      <if test="file != null" >
+        file = #{file,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where fileId = #{fileid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.auroraapp.model.File" >
     update tb_file
     set fileName = #{filename,jdbcType=VARCHAR},
       fileType = #{filetype,jdbcType=VARCHAR},
-      file = #{file,jdbcType=LONGVARBINARY}
-    where fileId = #{fileid,jdbcType=VARCHAR}
-  </update>
-    <update id="updateByPrimaryKey" parameterType="com.auroraapp.model.File">
-    update tb_file
-    set fileName = #{filename,jdbcType=VARCHAR},
-      fileType = #{filetype,jdbcType=VARCHAR}
+      file = #{file,jdbcType=VARCHAR}
     where fileId = #{fileid,jdbcType=VARCHAR}
   </update>
 
-    <select id="selectAllFile" resultType="com.auroraapp.model.File">
-        select * from tb_file
-        where 1 = 1
-        <if test="fileName != null and fileName != ''">
-            and fileName like "%"#{fileName}"%"
-        </if>
-        <if test="fileType != null and fileType != ''">
-            and fileType = #{fileType}
-        </if>
-        order by fileName limit #{pageIndex},#{pageSize}
-    </select>
-
-
+  <select id="selectAllFile" resultType="com.auroraapp.model.File">
+    select * from tb_file
+    where 1 = 1
+    <if test="fileName != null and fileName != ''">
+      and fileName like "%"#{fileName}"%"
+    </if>
+    <if test="fileType != null and fileType != ''">
+      and fileType = #{fileType}
+    </if>
+    order by fileName limit #{pageIndex},#{pageSize}
+  </select>
 </mapper>

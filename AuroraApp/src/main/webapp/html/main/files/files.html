@@ -22,7 +22,7 @@
         <ion-list>
             <ion-item ng-repeat="file in fileList">
                 <a class="item item-thumbnail-left item-icon-right" on-hold="showFilesMenu(file.fileid,file.filename)">
-                    <img ng-src="data:image/jpg;base64,{{file.file}}" ng-if="isImage(file.filetype)" style="object-fit: cover">
+                    <img ng-src="{{file.file}}" ng-if="isImage(file.filetype)" style="object-fit: cover">
                     <img src="images/main/file.png" ng-if="!isImage(file.filetype)" style="object-fit: cover">
                     <h2>{{file.filename}}</h2>
                     <p>{{file.filetype}}</p>
