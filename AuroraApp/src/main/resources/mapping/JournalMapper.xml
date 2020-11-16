@@ -116,9 +116,15 @@
   </update>
 
     <select id="selectAll" resultType="java.util.Map">
-    select * from tb_journal j,tb_file f
-      where f.fileId = j.fileId
+    select * from tb_journal j
+      left join tb_file f on f.fileId = j.fileId
     order by j.putDate desc limit #{pageIndex},#{pageSize}
+  </select>
+
+    <select id="selectSingle" resultType="java.util.Map">
+    select * from tb_journal j
+    left join tb_file f on f.fileId = j.fileId
+      where journalId = #{journalId,jdbcType=VARCHAR}
   </select>
 
 </mapper>

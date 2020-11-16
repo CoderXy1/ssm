@@ -3,6 +3,8 @@ package com.auroraapp.controller;
 import com.auroraapp.model.File;
 import com.auroraapp.service.IFileService;
 import com.auroraapp.service.IGalleryService;
+import com.auroraapp.util.FIleUtil;
+import com.auroraapp.util.ReduceImgTest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -50,7 +52,7 @@ public class fileController {
             }
             fileStr =  fileStr +  "/" + fileName;
             FileOutputStream out = new FileOutputStream(fileStr);
-            out.write(file.getBytes());
+            out.write(ReduceImgTest.compressPicForScale(file.getBytes(),1000));
             out.flush();
             out.close();
         } catch (Exception e) {

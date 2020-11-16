@@ -1,0 +1,36 @@
+<ion-view>
+    <ion-content class="ion-contentFit">
+        <a class="button button-icon icon ion-ios-arrow-left" ui-sref="main.journal"> 返回</a>
+        <a class="button button-icon icon ion-compose" style="position: absolute;right: 10px" ng-click="editJournal()"> 保存</a>
+
+        <div class="list list-inset" style="margin-top: 0px">
+            <form>
+                <label class="item row">
+                    <label class="item item-input"><input id="fileUpload" type="file"/></label>
+                </label>
+                <label class="item row" ng-if="$parent.selectJournalParams.file != ''">
+                    <img ng-src="{{$parent.selectJournalParams.file}}" style="object-fit: cover;width: 100%;height: 200px">
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="标题" ng-model="$parent.selectJournalParams.title">
+                </label>
+                <label class="item item-input">
+                    <textarea cols="2" rows="20" placeholder="此时此刻你想写点什么..." style="OVERFLOW:scroll"
+                              ng-model="$parent.selectJournalParams.content"></textarea>
+                </label>
+                <label class="item item-input">
+                    天气 : <select class="item-select" style="margin-left: 20px;width: 150px" ng-model="$parent.selectJournalParams.weather">
+                        <option value="晴">晴</option>
+                        <option value="阴">阴</option>
+                        <option value="雨">雨</option>
+                        <option value="雪">雪</option>
+                    </select>
+                </label>
+                <label class="item item-input">
+                    气温 : <input type="number" placeholder="气温" style="margin-left: 20px" ng-model="$parent.selectJournalParams.temperature">
+                </label>
+            </form>
+        </div>
+
+    </ion-content>
+</ion-view>

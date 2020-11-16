@@ -3,7 +3,7 @@
         <ion-refresher pulling-text="下拉刷新" on-refresh="onRefresh()"></ion-refresher>
         <a ng-repeat="gallery in galleryList">
             <img ng-src="{{gallery.file}}" on-hold="alertMenu(gallery.fileId,gallery.fileName,gallery.galleryId,gallery.file)" ng-click="showImgAlert(gallery.file,gallery.fileName)"
-                 style="object-fit: cover;width: 32%;height: 120px;border-radius: 3px">
+                 style="object-fit: cover;width: 32%;height: 120px;border-radius: 3px;margin-bottom: 5px">
         </a>
 
         <ion-infinite-scroll ng-if="isLoadMore" on-infinite="loadMore()" immediate-check="false" distance="1%">

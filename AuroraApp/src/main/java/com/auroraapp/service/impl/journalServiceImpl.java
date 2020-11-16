@@ -49,4 +49,9 @@ public class journalServiceImpl implements IJournalService {
     public List<Map<String,Object>> selectAll(int pageIndex, int pageSize) {
         return journalMapper.selectAll(pageIndex, pageSize);
     }
+
+    @Override
+    public Map<String, Object> selectSingle(String journalId) {
+        return journalMapper.selectSingle(journalId);
+    }
 }

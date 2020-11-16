@@ -2,6 +2,7 @@ package com.auroraapp.controller;
 
 
 import com.auroraapp.model.Journal;
+import com.auroraapp.service.IFileService;
 import com.auroraapp.service.IJournalService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.io.*;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -21,10 +23,13 @@ public class journalController {
     @Resource
     private IJournalService journalService;
 
-    @RequestMapping("/selectJournal")
+    @Resource
+    private IFileService fileService;
+
+    @RequestMapping("/selectSingle")
     @ResponseBody
-    public Journal selectByPrimaryKey(@RequestParam("journalid") String journalid) {
-        return journalService.selectByPrimaryKey(journalid);
+    public Map<String, Object> selectByPrimaryKey(@RequestParam("journalId") String journalId) {
+        return journalService.selectSingle(journalId);
     }
 
     @RequestMapping("/selectAll")
@@ -33,65 +38,41 @@ public class journalController {
         return journalService.selectAll(pageIndex, pageSize);
     }
 
-    @RequestMapping("/upload")
+    @RequestMapping("/updateByPrimaryKeySelective")
     @ResponseBody
-    public int upload(@RequestParam(value = "file") MultipartFile file) {
-
-        /*try (FileInputStream in = (FileInputStream) file.getInputStream();
-             FileOutputStream out = new FileOutputStream("C:\\Users\\Administrator.SC-201907111318\\Desktop")) {
-
-            //保存文件到filePathAndName
-            int hasRead = 0;
-            byte[] bytes = new byte[1024];
-            while ((hasRead = in.read(bytes)) > 0) {
-                out.write(bytes, 0, hasRead);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-
-        OutputStream os = null;
-        InputStream inputStream = null;
-        String fileName = null;
-        try {
-            inputStream = file.getInputStream();
-            fileName = file.getOriginalFilename();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            String path = "C:\\Users\\Administrator.SC-201907111318\\Desktop";
-            // 2、保存到临时文件
-            // 1K的数据缓冲
-            byte[] bs = new byte[1024];
-            // 读取到的数据长度
-            int len;
-            // 输出的文件流保存到本地文件
-            File tempFile = new File(path);
-            if (!tempFile.exists()) {
-                tempFile.mkdirs();
-            }
-            os = new FileOutputStream(tempFile.getPath() + File.separator + fileName);
-            // 开始读取
-            while ((len = inputStream.read(bs)) != -1) {
-                os.write(bs, 0, len);
-            }
-            return 1;
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            // 完毕，关闭所有链接
-            try {
-                os.close();
-                inputStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return  0;
+    public int updateByPrimaryKeySelective(@RequestParam("journalId") String journalId,@RequestParam(required = false)String title,@RequestParam(required = false)String content,
+                                                                @RequestParam(required = false)String weather,@RequestParam(required = false)int temperature,@RequestParam(required = false)String fileId) {
+        Journal journal = new Journal();
+        journal.setJournalid(journalId);
+        journal.setTitle(title);
+        journal.setContent(content);
+        journal.setTemperature(temperature);
+        journal.setWeather(weather);
+        journal.setFileid(fileId);
+        return journalService.updateByPrimaryKeySelective(journal);
     }
+
+    @RequestMapping("/insert")
+    @ResponseBody
+    public int insert(@RequestParam("journalId") String journalId,@RequestParam("title")String title,@RequestParam("content")String content,
+                      @RequestParam("weather")String weather,@RequestParam("temperature")int temperature,@RequestParam("fileId")String fileId) {
+        Journal journal = new Journal();
+        journal.setJournalid(journalId);
+        journal.setTitle(title);
+        journal.setContent(content);
+        journal.setTemperature(temperature);
+        journal.setWeather(weather);
+        journal.setFileid(fileId);
+        journal.setPutdate(new Date());
+        return journalService.insert(journal);
+    }
+
+    @RequestMapping("/deleteJournal")
+    @ResponseBody
+    public int deleteJournal(@RequestParam("journalId") String journalId,@RequestParam("fileId")String fileId) {
+        fileService.deleteByPrimaryKey(fileId);
+        return journalService.deleteByPrimaryKey(journalId);
+    }
+
 
 }

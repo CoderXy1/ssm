@@ -20,4 +20,6 @@ public interface JournalMapper {
     int updateByPrimaryKey(Journal record);
 
     List<Map<String,Object>> selectAll(@Param("pageIndex") int pageIndex, @Param("pageSize") int pageSize);
+
+    Map<String,Object> selectSingle(@Param("journalId")String journalId);
 }

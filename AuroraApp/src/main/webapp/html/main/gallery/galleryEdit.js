@@ -17,7 +17,10 @@ angular.module('ionicApp')
                 //alert("请选择文件");
                 $scope.showAlert("提示","请选择文件");
                 return false;
-            } else {
+            }else if ($scope.galleryname == null || $scope.galleryDescribe == null) {
+                $scope.showAlert("提示","请输入信息");
+                return false;
+            }else {
                 $http({
                     method: 'POST',
                     url: url,
@@ -26,6 +29,7 @@ angular.module('ionicApp')
                     transformRequest: angular.identity
                 }).success(function (data) {
                     //alert("上传成功");
+                    console.log("上传成功" + file);
                 }).error(function (data) {
                     console.log('operation fail' + data);
                 });
@@ -52,7 +56,7 @@ angular.module('ionicApp')
                     $state.go('main.gallery',{},{reload:true});
                 }, function errorCallback(response) {
                     //请求失败
-                    console.log(response.data)
+                    console.log(response.data);
                 });
             }
         }

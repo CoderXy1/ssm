@@ -1,18 +1,25 @@
 <ion-view>
     <ion-content class="ion-contentFit">
         <ion-refresher pulling-text="下拉刷新" on-refresh="onRefresh()"></ion-refresher>
-        <h1>日记</h1>
 
-        <!--<ion-list>-->
-        <!--<ion-item ng-repeat="journal in journalList">-->
+        <ion-list>
+            <ion-item ng-repeat="journal in journalList">
+                <!--缩略图-->
+                <a class="item item-thumbnail-left" ui-sref="main.journalEdit({journalId:journal.journalId})" on-hold="alertMenu(journal.journalId,journal.title,journal.file)">
+                    <img ng-src="{{journal.file}}" style="object-fit: cover">
+                    <h2 style="font-weight: bold">{{journal.title}}</h2>
+                    <p style="margin-top: 10px">{{journal.content}}</p>
+                    <p style="margin-top: 20px">
+                        <span style="font-size: 12px;color: gray">{{journal.putDate | date:'yyyy/MM/dd HH:mm'}}</span>
+                        <i style="font-size: 18px;float: right" ng-class="{'text-orange icon ion-ios-sunny':journal.weather == '晴','text-primary icon ion-ios-rainy':journal.weather == '雨',
+                          'text-gray icon ion-android-cloud':journal.weather == '阴','text-lightBlue icon ion-ios-snowy':journal.weather == '雪'}"> {{journal.temperature}}℃</i>
 
-        <!--&lt;!&ndash;缩略图&ndash;&gt;-->
-        <!--<a class="item item-thumbnail-left" href="#">-->
-        <!--<img ng-src="data:image/jpg;base64,{{journal.file}}" style="object-fit: cover">-->
-        <!--<h2>Weezer</h2>-->
-        <!--<p>Blue Album</p>-->
-        <!--</a>-->
-        <!--</ion-item>-->
-        <!--</ion-list>-->
+                    </p>
+                </a>
+            </ion-item>
+        </ion-list>
+
+        <ion-infinite-scroll ng-if="isLoadMore" on-infinite="loadMore()" immediate-check="false" distance="1%">
+        </ion-infinite-scroll>
     </ion-content>
 </ion-view>

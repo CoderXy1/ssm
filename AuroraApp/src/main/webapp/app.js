@@ -36,6 +36,20 @@ angular.module('ionicApp', ['ionic', 'oc.lazyLoad'])
                     return e.load(['html/main/journal/journal.js']);
                 }]
             }
+        }).state('main.journalEdit', {
+            params : {journalId : ''},
+            url: '/journalEdit',
+            views: {
+                'tab-main-journal': {
+                    templateUrl: 'html/main/journal/journalEdit.html',
+                    controller: 'journalEditCtrl'
+                }
+            },
+            resolve: {
+                deps: ['$ocLazyLoad', function (e) {
+                    return e.load(['html/main/journal/journalEdit.js']);
+                }]
+            }
         }).state('main.gallery', {
             url: '/gallery',
             views: {
@@ -157,7 +171,7 @@ angular.module('ionicApp', ['ionic', 'oc.lazyLoad'])
         })
     })
 
-    .controller('appCtrl', function ($scope,$ionicSideMenuDelegate,$ionicActionSheet,$state,$ionicPopup,$ionicLoading,$http) {
+    .controller('appCtrl', function ($scope,$ionicSideMenuDelegate,$ionicActionSheet,$state,$ionicPopup,$ionicLoading,$http,$timeout) {
 
         $scope.toggleLeftButton = function () {
             $ionicSideMenuDelegate.toggleLeft();
@@ -279,9 +293,12 @@ angular.module('ionicApp', ['ionic', 'oc.lazyLoad'])
                     switch (index) {
                         case 0:
                             $state.go('main.galleryEdit');
+                            $timeout(function(){
+                                location.reload(true);
+                            },1000);
                             break;
                         case 1:
-                            $state.go('main.journal');
+                            $state.go('main.journalEdit');
                             break;
                         case 2:
                             $state.go('main.noteEdit');

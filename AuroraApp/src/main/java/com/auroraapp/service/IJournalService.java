@@ -21,4 +21,6 @@ public interface IJournalService {
 
     List<Map<String,Object>> selectAll(int pageIndex, int pageSize);
 
+    Map<String,Object> selectSingle(String journalId);
+
 }
