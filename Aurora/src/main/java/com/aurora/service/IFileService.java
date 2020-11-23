@@ -2,8 +2,9 @@ package com.aurora.service;
 
 import com.aurora.model.File;
 
-public interface IFileService {
+import java.util.List;
 
+public interface IFileService {
     int deleteByPrimaryKey(String fileid);
 
     int insert(File record);
@@ -16,4 +17,5 @@ public interface IFileService {
 
     int updateByPrimaryKey(File record);
 
+    List<File> selectAllFile(String fileName, String fileType, int pageIndex, int pageSize);
 }

@@ -1,23 +1,20 @@
 package com.aurora.controller;
 
-
 import com.aurora.model.File;
-import com.aurora.model.Journal;
 import com.aurora.service.IFileService;
-import com.aurora.service.IJournalService;
-import com.aurora.util.FIleUtil;
-import com.aurora.util.ReduceImgTest;
+import com.aurora.service.IGalleryService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
 import javax.annotation.Resource;
-import java.io.*;
+import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -27,25 +24,44 @@ public class fileController {
     @Resource
     private IFileService fileService;
 
+    @Resource
+    private IGalleryService galleryService;
+
+    private String FilePath = "/root/AuroraApp/Resource/";
+
+    private String Url = "http://www.shanshaoxy.cn/AuroraApp/Resource/";
+
     @RequestMapping("/insertImage")
     @ResponseBody
     public int insertImage(@RequestParam(value = "file") MultipartFile file,@RequestParam(value = "fileId")String fileId) {
 
         String fileName = null;
-        byte[] fileStr = null;
+        String fileStr = null;
+        String date = null;
 
         try {
             fileName = file.getOriginalFilename();
-            BASE64Encoder encoder = new BASE64Encoder();
-            fileStr = ReduceImgTest.compressPicForScale(file.getBytes(),50);
-        } catch (IOException e) {
+            SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
+            date = df.format(new Date());
+            fileStr =  FilePath + "Photo/" + date;
+            java.io.File filePath = new  java.io.File(fileStr);
+            if(!filePath.exists()){//如果文件夹不存在
+                filePath.mkdir();//创建文件夹
+            }
+            fileStr =  fileStr +  "/" + fileName;
+            FileOutputStream out = new FileOutputStream(fileStr);
+            out.write(file.getBytes());
+            out.flush();
+            out.close();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         File files = new File();
         files.setFileid(fileId);
-        files.setFile(fileStr);
+        files.setFile(Url + "Photo/" + date + "/" + fileName);
         files.setFilename(fileName);
+        files.setFiletype(fileName.substring(fileName.lastIndexOf(".") + 1));
         this.fileService.insert(files);
         return  1;
     }
@@ -55,20 +71,32 @@ public class fileController {
     public int insertFile(@RequestParam(value = "file") MultipartFile file,@RequestParam(value = "fileId")String fileId) {
 
         String fileName = null;
-        byte[] fileStr = null;
+        String fileStr = null;
+        String date = null;
 
         try {
             fileName = file.getOriginalFilename();
-            BASE64Encoder encoder = new BASE64Encoder();
-            fileStr = file.getBytes();
-        } catch (IOException e) {
+            SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
+            date = df.format(new Date());
+            fileStr =  FilePath + "File/" + date;
+            java.io.File filePath = new  java.io.File(fileStr);
+            if(!filePath.exists()){//如果文件夹不存在
+                filePath.mkdir();//创建文件夹
+            }
+            fileStr =  fileStr +  "/" + fileName;
+            FileOutputStream out = new FileOutputStream(fileStr);
+            out.write(file.getBytes());
+            out.flush();
+            out.close();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         File files = new File();
         files.setFileid(fileId);
-        files.setFile(fileStr);
+        files.setFile(Url + "File/" + date + "/" + fileName);
         files.setFilename(fileName);
+        files.setFiletype(fileName.substring(fileName.lastIndexOf(".") + 1));
         this.fileService.insert(files);
         return  1;
     }
@@ -81,23 +109,28 @@ public class fileController {
 
         BASE64Encoder encoder = new BASE64Encoder();
         File file = this.fileService.selectByPrimaryKey(fileId);
-        byte[] bytes = file.getFile();
-        list.add(encoder.encode(bytes));
+        //byte[] bytes = file.getFile();
+        //list.add(encoder.encode(bytes));
 
-        return  list;
+        return list;
+
 
     }
 
     @RequestMapping("/downloadFile")
     @ResponseBody
-    public int selectFile(@RequestParam(value = "fileId")String fileId,@RequestParam(value = "path")String path) {
+    public File downloadFile(@RequestParam(value = "fileId")String fileId) {
 
-        File file = this.fileService.selectByPrimaryKey(fileId);
-        FIleUtil.getFile(file.getFile(),path,file.getFilename());
-
-        return  1;
+        return this.fileService.selectByPrimaryKey(fileId);
 
     }
 
+    @RequestMapping("/selectAllFile")
+    @ResponseBody
+    public List<File> selectAllFile(@RequestParam(value = "fileName")String fileName,@RequestParam(value = "fileType")String fileType,@RequestParam(value = "pageIndex")int pageIndex,@RequestParam(value = "pageSize")int pageSize) {
+
+        return this.fileService.selectAllFile(fileName,fileType,pageIndex,pageSize);
+
+    }
 
 }
