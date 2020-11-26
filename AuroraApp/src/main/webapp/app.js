@@ -279,7 +279,7 @@ angular.module('ionicApp', ['ionic', 'oc.lazyLoad'])
 
             $ionicActionSheet.show({
                 buttons: [
-                    { text: '<b> 相 册 </b>' },
+                    { text: ' 相 册 ' },
                     { text: ' 日 记 ' },
                     { text: ' 便 签 ' },
                     { text: ' 文 件 ' }

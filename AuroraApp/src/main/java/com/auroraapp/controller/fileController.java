@@ -14,6 +14,8 @@ import sun.misc.BASE64Encoder;
 
 import javax.annotation.Resource;
 import java.io.*;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -85,7 +87,7 @@ public class fileController {
             if(!filePath.exists()){//如果文件夹不存在
                 filePath.mkdir();//创建文件夹
             }
-            fileStr =  fileStr +  "/" + fileName;
+            fileStr =  fileStr +  "/" +  fileName;
             FileOutputStream out = new FileOutputStream(fileStr);
             out.write(file.getBytes());
             out.flush();
