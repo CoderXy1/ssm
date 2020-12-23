@@ -155,6 +155,19 @@ angular.module('ionicApp', ['ionic', 'oc.lazyLoad'])
                     return e.load(['html/menu/menu.js']);
                 }]
             }
+        }).state('video', {
+            url: '/video',
+            views: {
+                'tab-video': {
+                    templateUrl: 'html/video/video.html',
+                    controller: 'videoCtrl'
+                }
+            },
+            resolve: {
+                deps: ['$ocLazyLoad', function (e) {
+                    return e.load(['html/video/video.js']);
+                }]
+            }
         }).state('test', {
             url: '/test',
             views: {
@@ -201,7 +214,12 @@ angular.module('ionicApp', ['ionic', 'oc.lazyLoad'])
 
             if (file == null || file == '') {
                 $scope.showAlert("提示", "请选择文件");
+            } else if (file.size/1024/1024 > 100){
+                $scope.showAlert("提示", "文件大小不能超过100M");
             } else {
+
+                $scope.showLoading();
+
                 var suffixIndex = file.name.lastIndexOf(".");
                 var suffix = file.name.substring(suffixIndex + 1).toUpperCase();
                 if (suffix != "BMP" && suffix != "JPG" && suffix != "JPEG" && suffix != "PNG" && suffix != "GIF") {
@@ -217,8 +235,10 @@ angular.module('ionicApp', ['ionic', 'oc.lazyLoad'])
                     headers: {'Content-Type': undefined},
                     transformRequest: angular.identity
                 }).success(function (data) {
+                    $ionicLoading.hide();
                     $scope.showAlert("上传成功", "");
                 }).error(function (data) {
+                    $ionicLoading.hide();
                     $scope.showAlert("上传失败", "");
                 });
             }

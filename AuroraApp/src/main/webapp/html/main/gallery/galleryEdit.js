@@ -5,8 +5,7 @@ angular.module('ionicApp')
         $scope.imgUrl = '';
 
         $scope.insert = function (url) {
-
-            $scope.fileId = $scope.genUUID();
+             $scope.fileId = $scope.genUUID();
 
             var form = new FormData();
             var file = document.getElementById("fileUpload").files[0];
@@ -21,6 +20,9 @@ angular.module('ionicApp')
                 $scope.showAlert("提示","请输入信息");
                 return false;
             }else {
+
+                $scope.showLoading();
+
                 $http({
                     method: 'POST',
                     url: url,
@@ -29,8 +31,10 @@ angular.module('ionicApp')
                     transformRequest: angular.identity
                 }).success(function (data) {
                     //alert("上传成功");
+                    $ionicLoading.hide();
                     console.log("上传成功" + file);
                 }).error(function (data) {
+                    $ionicLoading.hide();
                     console.log('operation fail' + data);
                 });
                 return true;

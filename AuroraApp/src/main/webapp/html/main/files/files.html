@@ -11,6 +11,9 @@
                     <option value="txt">txt</option>
                     <option value="jpg">jpg</option>
                     <option value="png">png</option>
+                    <option value="rar">rar</option>
+                    <option value="zip">zip</option>
+                    <option value="mp4">mp4</option>
                 </select>
             </div>
             <div class="item item-input">
@@ -21,11 +24,19 @@
             </div>
         </div>
 
+        <!--<video id="video" controls="controls">-->
+            <!--<source src="images/Shinya.Shokudo.S01E04.2009.720p.BluRay.x264.AAC-iHD.mp4">-->
+        <!--</video>-->
+        <!--<div id="output"></div>-->
+
         <ion-list>
             <ion-item ng-repeat="file in fileList">
-                <a class="item item-thumbnail-left item-icon-right" on-hold="showFilesMenu(file.fileid,file.filename)">
-                    <img ng-src="{{file.file}}" ng-if="isImage(file.filetype)" style="object-fit: cover">
-                    <img src="images/main/file.png" ng-if="!isImage(file.filetype)" style="object-fit: cover">
+                <a class="item item-thumbnail-left item-icon-right" on-hold="showFilesMenu(file.fileid,file.filename)" ng-href="{{file.file}}" target="_blank">
+                    <video class="img-responsive" style="position:absolute;top:10px;left:10px;max-width:80px;max-height:80px;width:100%;height:100%" ng-if="checkFile(file.fileid,file.filetype) == 2">
+                        <source ng-src="{{videoUrl(file.file)}}">
+                    </video>
+                    <img ng-src="{{file.file}}" ng-if="checkFile(file.fileid,file.filetype) == 1" style="object-fit: cover">
+                    <img src="images/main/file.png" ng-if="checkFile(file.fileid,file.filetype) == 3" style="object-fit: cover">
                     <h2>{{file.filename}}</h2>
                     <p>{{file.filetype}}</p>
                     <i class="icon ion-android-download" style="color: green" ng-click="downloadFile(file.fileid)"></i>
