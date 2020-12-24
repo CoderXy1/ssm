@@ -6,7 +6,7 @@
         <div class="list list-inset" style="margin-top: 0px">
             <form>
                 <label class="item row">
-                    <label class="item item-input"><input id="fileUpload" type="file"/></label>
+                    <label class="item item-input"><input id="fileUpload" type="file" accept="image/*"/></label>
                 </label>
                 <label class="item row" ng-if="$parent.selectJournalParams.file != ''">
                     <img ng-src="{{$parent.selectJournalParams.file}}" style="object-fit: cover;width: 100%;height: 200px">

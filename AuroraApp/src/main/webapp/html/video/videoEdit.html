@@ -1,0 +1,23 @@
+<ion-view>
+    <ion-content class="ion-contentFit">
+        <a class="button button-icon icon ion-ios-arrow-left" ui-sref="video"> 返回</a>
+        <a class="button button-icon icon ion-compose" style="position: absolute;right: 10px" ng-click="editVideo()"> 保存</a>
+
+        <div class="list list-inset" style="margin-top: 0px">
+            <form>
+                <label class="item item-input">
+                    <input type="text" placeholder="标题" ng-model="$parent.selectVideoParams.title">
+                </label>
+                <label class="item row">
+                    <label class="item item-input"><input id="fileUpload" type="file" accept="video/*"/></label>
+                </label>
+                <label class="item row" ng-if="$parent.selectVideoParams.file != ''">
+                    <video controls="controls" style="width: 100%;height: 200px">
+                        <source ng-src="{{videoUrl($parent.selectVideoParams.file)}}">
+                    </video>
+                </label>
+            </form>
+        </div>
+
+    </ion-content>
+</ion-view>

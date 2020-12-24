@@ -2,17 +2,21 @@
 
 <ion-content>
 
-    <div class="list list-inset">
+    <ion-refresher pulling-text="下拉刷新" on-refresh="onRefresh()"></ion-refresher>
 
-        <form>
-            <label class="item item-input">
-                <input id="fileUpload" type="file"/>
-            </label>
-            <div class="button-bar" style="margin-top: 10px;padding: 10px">
-                <button class="button button-positive" ng-click="insertGallery()">添加相册</button>
-            </div>
-        </form>
+    <ion-list>
+        <ion-item ng-repeat="video in videoList">
+            <!--缩略图-->
+            <a class="item" ui-sref="videoEdit({videoId:video.videoId})" on-hold="alertMenu(video.videoId,video.title,video.fileId)">
+                <h2 style="font-weight: bold;text-align: center;color: #0a9dc7">{{video.title}}</h2>
+                <video controls="controls" style="width: 100%;height: 200px">
+                    <source ng-src="{{videoUrl(video.file)}}">
+                </video>
+                <h3 style="text-align: right;margin-top: 10px;color: gray">{{video.putDate | date:'yyyy/MM/dd HH:mm'}}</h3>
+            </a>
+        </ion-item>
+    </ion-list>
 
-
-    </div>
+    <ion-infinite-scroll ng-if="isLoadMore" on-infinite="loadMore()" immediate-check="false" distance="1%">
+    </ion-infinite-scroll>
 </ion-content>

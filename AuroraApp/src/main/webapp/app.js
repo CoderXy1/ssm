@@ -168,6 +168,20 @@ angular.module('ionicApp', ['ionic', 'oc.lazyLoad'])
                     return e.load(['html/video/video.js']);
                 }]
             }
+        }).state('videoEdit', {
+            url: '/videoEdit',
+            params : {videoId : ''},
+            views: {
+                'tab-video': {
+                    templateUrl: 'html/video/videoEdit.html',
+                    controller: 'videoEditCtrl'
+                }
+            },
+            resolve: {
+                deps: ['$ocLazyLoad', function (e) {
+                    return e.load(['html/video/videoEdit.js']);
+                }]
+            }
         }).state('test', {
             url: '/test',
             views: {
@@ -302,6 +316,7 @@ angular.module('ionicApp', ['ionic', 'oc.lazyLoad'])
                     { text: ' 相 册 ' },
                     { text: ' 日 记 ' },
                     { text: ' 便 签 ' },
+                    { text: ' 视 频 ' },
                     { text: ' 文 件 ' }
                 ],
                 titleText: ' 新 增 ',
@@ -324,6 +339,9 @@ angular.module('ionicApp', ['ionic', 'oc.lazyLoad'])
                             $state.go('main.noteEdit');
                             break;
                         case 3:
+                            $state.go('videoEdit');
+                            break;
+                        case 4:
                             $state.go('main.filesEdit');
                             break;
                     }
