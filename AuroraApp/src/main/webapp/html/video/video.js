@@ -84,10 +84,15 @@ angular.module('ionicApp', ['ionic'])
             $scope.downFileId = fileId;
             $scope.alertMenuPopup = $ionicPopup.show({
                 template:
-                    '<div class="button-bar" style="margin-bottom: 10px"><button class="button button-assertive" ng-click="deleteVideo(deleteVideoId,downFileId)">删除</button></div>',
+                    '<div class="button-bar" style="margin-bottom: 10px"><button class="button button-assertive" ng-click="deleteVideo(deleteVideoId,downFileId)">删除</button></div>' +
+                    '<div class="button-bar" style="margin-bottom: 10px"><button class="button button-dark" ng-click="closePopup()">取消</button></div>',
                 title: title,
                 scope: $scope,
             });
+        }
+
+        $scope.closePopup = function (){
+            $scope.alertMenuPopup.close();
         }
 
         $scope.deleteVideo = function (videoId,fileId){

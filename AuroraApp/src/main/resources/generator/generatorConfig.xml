@@ -58,8 +58,8 @@
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
         <!-- 指定数据库表 -->
-        <!--<table schema="test" tableName="tb_video"-->
-               <!--domainObjectName="Video" enableCountByExample="false"-->
+        <!--<table schema="test" tableName="tb_music"-->
+               <!--domainObjectName="Music" enableCountByExample="false"-->
                <!--enableUpdateByExample="false" enableDeleteByExample="false"-->
                <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
         <!--</table>-->

@@ -142,17 +142,17 @@ angular.module('ionicApp', ['ionic', 'oc.lazyLoad'])
                     return e.load(['html/home/home.js']);
                 }]
             }
-        }).state('menu', {
-            url: '/menu',
+        }).state('music', {
+            url: '/music',
             views: {
-                'tab-menu': {
-                    templateUrl: 'html/menu/menu.html',
-                    controller: 'menuCtrl'
+                'tab-music': {
+                    templateUrl: 'html/music/music.html',
+                    controller: 'musicCtrl'
                 }
             },
             resolve: {
                 deps: ['$ocLazyLoad', function (e) {
-                    return e.load(['html/menu/menu.js']);
+                    return e.load(['html/music/music.js']);
                 }]
             }
         }).state('video', {

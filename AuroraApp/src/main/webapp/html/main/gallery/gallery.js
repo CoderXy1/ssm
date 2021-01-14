@@ -37,10 +37,15 @@ angular.module('ionicApp')
                 template:
                     '<div class="button-bar" style="margin-bottom: 10px"><button class="button button-positive" ng-click="originImage(src)">原图</button></div>' +
                     '<div class="button-bar" style="margin-bottom: 10px"><button class="button button-balanced" ng-click="showFile(downFileId)">下载</button></div>' +
-                    '<div class="button-bar" style="margin-bottom: 10px"><button class="button button-assertive" ng-click="deleteGallery(deleteGalleryId,downFileId)">删除</button></div>',
+                    '<div class="button-bar" style="margin-bottom: 10px"><button class="button button-assertive" ng-click="deleteGallery(deleteGalleryId,downFileId)">删除</button></div>' +
+                    '<div class="button-bar" style="margin-bottom: 10px"><button class="button button-dark" ng-click="closePopup()">取消</button></div>',
                 title: imgName,
                 scope: $scope,
             });
+        }
+
+        $scope.closePopup = function (){
+            $scope.alertMenuPopup.close();
         }
 
         $scope.originImage = function (src) {

@@ -32,6 +32,8 @@ angular.module('ionicApp')
                 }).success(function (data) {
                     //alert("上传成功");
                     $ionicLoading.hide();
+                    $scope.showAlert("添加相册","添加成功");
+                    $state.go('main.gallery',{},{reload:true});
                     console.log("上传成功" + file);
                 }).error(function (data) {
                     $ionicLoading.hide();
@@ -56,8 +58,8 @@ angular.module('ionicApp')
                     },
                 }).then(function successCallback(response) {
                     //请求成功
-                    $scope.showAlert("添加相册","添加成功");
-                    $state.go('main.gallery',{},{reload:true});
+                    // $scope.showAlert("添加相册","添加成功");
+                    // $state.go('main.gallery',{},{reload:true});
                 }, function errorCallback(response) {
                     //请求失败
                     console.log(response.data);

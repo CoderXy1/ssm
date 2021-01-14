@@ -41,11 +41,15 @@ angular.module('ionicApp')
             $scope.deleteFileId = fileId;
             $scope.alertMenuPopup = $ionicPopup.show({
                 template:
-                    '<div class="button-bar" style="margin-bottom: 10px"><button class="button button-assertive" ng-click="deleteFile(deleteFileId)">删除</button></div>',
+                    '<div class="button-bar" style="margin-bottom: 10px"><button class="button button-assertive" ng-click="deleteFile(deleteFileId)">删除</button></div>' +
+                    '<div class="button-bar" style="margin-bottom: 10px"><button class="button button-dark" ng-click="closePopup()">取消</button></div>',
                 title: fileName,
                 scope: $scope,
             });
+        }
 
+        $scope.closePopup = function (){
+            $scope.alertMenuPopup.close();
         }
 
         $scope.deleteFile = function (fileId) {

@@ -81,14 +81,14 @@
   </update>
 
   <select id="selectAll" resultType="java.util.Map">
-    select * from tb_video j
-      left join tb_file f on f.fileId = j.fileId
-    order by j.putDate desc limit #{pageIndex},#{pageSize}
+    select * from tb_video v
+      left join tb_file f on f.fileId = v.fileId
+    order by v.putDate desc limit #{pageIndex},#{pageSize}
   </select>
 
   <select id="selectSingle" resultType="java.util.Map">
-    select * from tb_video j
-    left join tb_file f on f.fileId = j.fileId
+    select * from tb_video v
+    left join tb_file f on f.fileId = v.fileId
       where videoId = #{videoId,jdbcType=VARCHAR}
   </select>
 

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class NoteServiceImpl implements INoteService {
+public class noteServiceImpl implements INoteService {
 
     @Resource
     private NoteMapper noteMapper;

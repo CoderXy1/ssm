@@ -41,6 +41,7 @@ angular.module('ionicApp')
             form.append('fileId', $scope.fileId);
 
             if (isModify && (file == null || file == '')){
+                $scope.fileId = null;
                 return true;
             }
 
@@ -65,6 +66,8 @@ angular.module('ionicApp')
                 }).success(function (data) {
                     //alert("上传成功");
                     $ionicLoading.hide();
+                    $scope.showAlert("添加日记","添加成功");
+                    $state.go('main.journal',{},{reload:true});
                     console.log("上传成功" + file);
                 }).error(function (data) {
                     $ionicLoading.hide();
@@ -124,8 +127,8 @@ angular.module('ionicApp')
                 },
             }).then(function successCallback(response) {
                 //请求成功
-                $scope.showAlert("添加日记","添加成功");
-                $state.go('main.journal',{},{reload:true});
+                // $scope.showAlert("添加日记","添加成功");
+                // $state.go('main.journal',{},{reload:true});
             }, function errorCallback(response) {
                 //请求失败
                 console.log(response.data);

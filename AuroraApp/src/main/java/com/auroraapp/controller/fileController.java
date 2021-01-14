@@ -54,7 +54,8 @@ public class fileController {
             }
             fileStr =  fileStr +  "/" + fileName;
             FileOutputStream out = new FileOutputStream(fileStr);
-            out.write(ReduceImgTest.compressPicForScale(file.getBytes(),1000));
+            //out.write(ReduceImgTest.compressPicForScale(file.getBytes(),1000));
+            out.write(file.getBytes());
             out.flush();
             out.close();
         } catch (Exception e) {
